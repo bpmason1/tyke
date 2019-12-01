@@ -14,7 +14,11 @@ fi
 
 . $VENV_DIR/bin/activate
 pip install pip-tools
-pip-compile -o requirements.txt requirements.in
-pip install -r requirements.txt
-pip install ipython
+
+# order matters in the REQ_FILES list because files depend on each other
+REQ_FILES=(requirements requirements-test)
+for fName in ${REQ_FILES[*]}; do
+  pip-compile -o ${fName}.txt ${fName}.in
+  pip install -r ${fName}.txt
+done
 
