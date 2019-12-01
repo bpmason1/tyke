@@ -6,12 +6,11 @@ from MambaListener import MambaListener
 from MambaParser import MambaParser
 import sys
 
-module = ir.Module(name=__file__)  # create better name
+module = ir.Module(name='__file__')  # create better name
+
+FUNC_MAP = {}
 
 def string_to_ir_type(str_type):
-    # if str_type == None:
-    #     return ir.VoidType()
-
     if str_type == 'void':
         return ir.VoidType()
     elif str_type == 'int':
@@ -33,13 +32,13 @@ class MambaPrintListener(MambaListener):
         pass
 
     def enterFuncdef(self, ctx):
-        global module
-
-        # symbolTable = {}
-
         '''
         Create an LLVM IR function based on `ctx.signature()`
         '''
+
+        global FUNC_MAP
+        # symbolTable = {}
+
         sigCtx = ctx.signature()
         name = sigCtx.NAME().getText()
         returnType = string_to_ir_type( sigCtx.getChild(-1).getText() )
@@ -55,10 +54,21 @@ class MambaPrintListener(MambaListener):
                 # argName = tv.NAME().getText()
 
         irFunc = get_ir_func(name, returnType, inputTypes)
+        FUNC_MAP[name] = irFunc
 
         # a, b = irFunc.args
         block = irFunc.append_basic_block(name="entry")
         builder = ir.IRBuilder(block)
+
+        exprList = ctx.expression()
+        for exprCtx in exprList:
+            if exprCtx.funcCall():
+                callCtx = exprCtx.funcCall()
+                callName = callCtx.NAME().getText()
+                i64 = ir.IntType(64)
+                callFn = FUNC_MAP[callName]
+                builder.call(callFn, [ i64(3) ])
+
         result = returnType(42)
         builder.ret(result)
         # for idx in range( ctx.getChildCount() ):

@@ -1,4 +1,4 @@
-# Generated from ./Mamba.g4 by ANTLR 4.7.2
+# Generated from Mamba.g4 by ANTLR 4.7.2
 from antlr4 import *
 if __name__ is not None and "." in __name__:
     from .MambaParser import MambaParser
@@ -77,6 +77,15 @@ class MambaListener(ParseTreeListener):
 
     # Exit a parse tree produced by MambaParser#typedValueList.
     def exitTypedValueList(self, ctx:MambaParser.TypedValueListContext):
+        pass
+
+
+    # Enter a parse tree produced by MambaParser#funcCall.
+    def enterFuncCall(self, ctx:MambaParser.FuncCallContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#funcCall.
+    def exitFuncCall(self, ctx:MambaParser.FuncCallContext):
         pass
 
 

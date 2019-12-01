@@ -12,12 +12,14 @@ funcdef: signature '{' expression* '}' ;
 signature: 'def' NAME inputArgs '->' VAR_TYPE ;
 inputArgs: '(' typedValueList? ')' ;
 
-expression: NAME+ ';' ;
+expression: ( funcCall | NAME+ ) ';'  ;
 
 typedValue: NAME ':' VAR_TYPE;
 main: expression ;
 
 typedValueList: typedValue (',' typedValue)* ;
+
+funcCall : NAME '(' ')' ;
 
 /*
  * lexer rules
