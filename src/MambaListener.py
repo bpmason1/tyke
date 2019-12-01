@@ -17,33 +17,6 @@ class MambaListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by MambaParser#funcdef.
-    def enterFuncdef(self, ctx:MambaParser.FuncdefContext):
-        pass
-
-    # Exit a parse tree produced by MambaParser#funcdef.
-    def exitFuncdef(self, ctx:MambaParser.FuncdefContext):
-        pass
-
-
-    # Enter a parse tree produced by MambaParser#signature.
-    def enterSignature(self, ctx:MambaParser.SignatureContext):
-        pass
-
-    # Exit a parse tree produced by MambaParser#signature.
-    def exitSignature(self, ctx:MambaParser.SignatureContext):
-        pass
-
-
-    # Enter a parse tree produced by MambaParser#inputArgs.
-    def enterInputArgs(self, ctx:MambaParser.InputArgsContext):
-        pass
-
-    # Exit a parse tree produced by MambaParser#inputArgs.
-    def exitInputArgs(self, ctx:MambaParser.InputArgsContext):
-        pass
-
-
     # Enter a parse tree produced by MambaParser#expression.
     def enterExpression(self, ctx:MambaParser.ExpressionContext):
         pass
@@ -62,57 +35,21 @@ class MambaListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by MambaParser#returnStmt.
-    def enterReturnStmt(self, ctx:MambaParser.ReturnStmtContext):
+    # Enter a parse tree produced by MambaParser#funcdef.
+    def enterFuncdef(self, ctx:MambaParser.FuncdefContext):
         pass
 
-    # Exit a parse tree produced by MambaParser#returnStmt.
-    def exitReturnStmt(self, ctx:MambaParser.ReturnStmtContext):
-        pass
-
-
-    # Enter a parse tree produced by MambaParser#typedValue.
-    def enterTypedValue(self, ctx:MambaParser.TypedValueContext):
-        pass
-
-    # Exit a parse tree produced by MambaParser#typedValue.
-    def exitTypedValue(self, ctx:MambaParser.TypedValueContext):
+    # Exit a parse tree produced by MambaParser#funcdef.
+    def exitFuncdef(self, ctx:MambaParser.FuncdefContext):
         pass
 
 
-    # Enter a parse tree produced by MambaParser#assignment.
-    def enterAssignment(self, ctx:MambaParser.AssignmentContext):
+    # Enter a parse tree produced by MambaParser#signature.
+    def enterSignature(self, ctx:MambaParser.SignatureContext):
         pass
 
-    # Exit a parse tree produced by MambaParser#assignment.
-    def exitAssignment(self, ctx:MambaParser.AssignmentContext):
-        pass
-
-
-    # Enter a parse tree produced by MambaParser#typedValueList.
-    def enterTypedValueList(self, ctx:MambaParser.TypedValueListContext):
-        pass
-
-    # Exit a parse tree produced by MambaParser#typedValueList.
-    def exitTypedValueList(self, ctx:MambaParser.TypedValueListContext):
-        pass
-
-
-    # Enter a parse tree produced by MambaParser#valueList.
-    def enterValueList(self, ctx:MambaParser.ValueListContext):
-        pass
-
-    # Exit a parse tree produced by MambaParser#valueList.
-    def exitValueList(self, ctx:MambaParser.ValueListContext):
-        pass
-
-
-    # Enter a parse tree produced by MambaParser#funcCall.
-    def enterFuncCall(self, ctx:MambaParser.FuncCallContext):
-        pass
-
-    # Exit a parse tree produced by MambaParser#funcCall.
-    def exitFuncCall(self, ctx:MambaParser.FuncCallContext):
+    # Exit a parse tree produced by MambaParser#signature.
+    def exitSignature(self, ctx:MambaParser.SignatureContext):
         pass
 
 
