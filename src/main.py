@@ -6,9 +6,9 @@ from MambaListener import MambaListener
 from MambaParser import MambaParser
 import sys
 
-module = ir.Module(name='__file__')  # create better name
+from function_table import FunctionTable
 
-FUNC_MAP = {}
+module = ir.Module(name='__file__')  # create better name
 
 def string_to_ir_type(str_type):
     if str_type == 'void':
@@ -26,19 +26,11 @@ def get_ir_func(name, returnType, inputTypeList):
     fnty = ir.FunctionType(returnType, inputTypeList)  # ingore input types for now
     return ir.Function(module, fnty, name=name)
 
-class MambaPrintListener(MambaListener):
-    def exitFuncdef(self, ctx):
-        # print( f'Exiting {id(ctx)}' )
-        pass
-
+class MambaFunctionTableBuilder(MambaListener):
     def enterFuncdef(self, ctx):
         '''
         Create an LLVM IR function based on `ctx.signature()`
         '''
-
-        global FUNC_MAP
-        # symbolTable = {}
-
         sigCtx = ctx.signature()
         name = sigCtx.NAME().getText()
         returnType = string_to_ir_type( sigCtx.getChild(-1).getText() )
@@ -54,7 +46,21 @@ class MambaPrintListener(MambaListener):
                 # argName = tv.NAME().getText()
 
         irFunc = get_ir_func(name, returnType, inputTypes)
-        FUNC_MAP[name] = irFunc
+        FunctionTable.setFunction(name, irFunc)
+
+class MambaPrintListener(MambaListener):
+    def exitFuncdef(self, ctx):
+        # print( f'Exiting {id(ctx)}' )
+        pass
+
+    def enterFuncdef(self, ctx):
+        # symbolTable = {}
+
+        sigCtx = ctx.signature()
+        name = sigCtx.NAME().getText()
+        returnType = string_to_ir_type( sigCtx.getChild(-1).getText() )
+
+        irFunc = FunctionTable.getFunction(name)
 
         # a, b = irFunc.args
         block = irFunc.append_basic_block(name="entry")
@@ -65,8 +71,8 @@ class MambaPrintListener(MambaListener):
             if exprCtx.funcCall():
                 callCtx = exprCtx.funcCall()
                 callName = callCtx.NAME().getText()
-                i64 = ir.IntType(64)
-                callFn = FUNC_MAP[callName]
+                i64 = ir.IntType(64)sigCtx
+                callFn = FunctionTable.getFunction(callName)
                 builder.call(callFn, [ i64(3) ])
 
         result = returnType(42)
@@ -82,9 +88,14 @@ def main():
     stream = CommonTokenStream(lexer)
     parser = MambaParser(stream)
     tree = parser.program()
-    printer = MambaPrintListener()
     walker = ParseTreeWalker()
+
+    fnBuilder = MambaFunctionTableBuilder()
+    walker.walk(fnBuilder, tree)
+
+    printer = MambaPrintListener()
     walker.walk(printer, tree)
+
     print(module)
 
 if __name__ == '__main__':

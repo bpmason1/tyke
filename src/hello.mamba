@@ -1,12 +1,12 @@
+def main() -> int {
+ fib();
+ return adsf;
+}
+
 def sum( a : double , b : double) -> int {
   return a ;
 }
 
 def fib( value : int) -> int {
  return value ;
-}
-
-def main() -> int {
- fib();
- return adsf;
 }
