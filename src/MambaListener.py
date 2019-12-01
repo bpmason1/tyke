@@ -1,4 +1,4 @@
-# Generated from Mamba.g4 by ANTLR 4.7.2
+# Generated from ./Mamba.g4 by ANTLR 4.7.2
 from antlr4 import *
 if __name__ is not None and "." in __name__:
     from .MambaParser import MambaParser
@@ -53,6 +53,24 @@ class MambaListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MambaParser#expressionList.
+    def enterExpressionList(self, ctx:MambaParser.ExpressionListContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#expressionList.
+    def exitExpressionList(self, ctx:MambaParser.ExpressionListContext):
+        pass
+
+
+    # Enter a parse tree produced by MambaParser#returnStmt.
+    def enterReturnStmt(self, ctx:MambaParser.ReturnStmtContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#returnStmt.
+    def exitReturnStmt(self, ctx:MambaParser.ReturnStmtContext):
+        pass
+
+
     # Enter a parse tree produced by MambaParser#typedValue.
     def enterTypedValue(self, ctx:MambaParser.TypedValueContext):
         pass
@@ -62,12 +80,12 @@ class MambaListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by MambaParser#main.
-    def enterMain(self, ctx:MambaParser.MainContext):
+    # Enter a parse tree produced by MambaParser#assignment.
+    def enterAssignment(self, ctx:MambaParser.AssignmentContext):
         pass
 
-    # Exit a parse tree produced by MambaParser#main.
-    def exitMain(self, ctx:MambaParser.MainContext):
+    # Exit a parse tree produced by MambaParser#assignment.
+    def exitAssignment(self, ctx:MambaParser.AssignmentContext):
         pass
 
 

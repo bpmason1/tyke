@@ -12,10 +12,11 @@ funcdef: signature '{' expression* '}' ;
 signature: 'def' NAME inputArgs '->' VAR_TYPE ;
 inputArgs: '(' typedValueList? ')' ;
 
-expression: ( funcCall | NAME+ ) ';'  ;
-
+expression: ( assignment | returnStmt | funcCall | NAME+ ) ';'  ;
+expressionList: expression*;
+returnStmt: 'return' (NAME | INTEGER)? ;
 typedValue: NAME ':' VAR_TYPE;
-main: expression ;
+assignment: NAME '=' (INTEGER | NAME | funcCall) ;
 
 typedValueList: typedValue (',' typedValue)* ;
 
