@@ -4,6 +4,7 @@ from llvmlite import ir
 from MambaLexer import MambaLexer
 from MambaListener import MambaListener
 from MambaParser import MambaParser
+import re
 import sys
 
 from function_table import FunctionTable
@@ -64,6 +65,7 @@ class MambaPrintListener(MambaListener):
         block = irFunc.append_basic_block(name="entry")
         builder = ir.IRBuilder(block)
 
+        result = irFunc.return_value.type(0) # this is a junk default value
         exprList = ctx.expression()
         for exprCtx in exprList:
             if exprCtx.funcCall():
@@ -71,9 +73,19 @@ class MambaPrintListener(MambaListener):
                 callName = callCtx.NAME().getText()
                 i64 = ir.IntType(64)
                 callFn = FunctionTable.getFunction(callName)
-                builder.call(callFn, [ i64(3) ])
+                result = builder.call(callFn, [ i64(3) ])
+            elif exprCtx.returnStmt():
+                callCtx = exprCtx.returnStmt()
+                tmpRes = callCtx.getChild(-1).getText()
+                if re.match('\d', tmpRes):
+                    result = irFunc.return_value.type(tmpRes)
+                elif len(tmpRes) > 2 and tmpRes[-2:] == '()':
+                    callName = tmpRes[:-2]
+                    callFn = FunctionTable.getFunction(callName)
+                    i64 = ir.IntType(64)
+                    result = builder.call(callFn, [ i64(3) ])
 
-        result = irFunc.return_value.type(42)
+
         builder.ret(result)
         # for idx in range( ctx.getChildCount() ):
         #     print( ctx.getChild(idx).getText() )

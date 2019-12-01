@@ -9,18 +9,18 @@ import sys
 def serializedATN():
     with StringIO() as buf:
         buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\27")
-        buf.write("a\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b")
+        buf.write("c\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b")
         buf.write("\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\3\2\6\2\32\n\2")
         buf.write("\r\2\16\2\33\3\3\3\3\3\3\7\3!\n\3\f\3\16\3$\13\3\3\3\3")
         buf.write("\3\3\4\3\4\3\4\3\4\3\4\3\4\3\5\3\5\5\5\60\n\5\3\5\3\5")
         buf.write("\3\6\3\6\3\6\3\6\6\68\n\6\r\6\16\69\5\6<\n\6\3\6\3\6\3")
-        buf.write("\7\7\7A\n\7\f\7\16\7D\13\7\3\b\3\b\5\bH\n\b\3\t\3\t\3")
-        buf.write("\t\3\t\3\n\3\n\3\n\3\n\3\n\5\nS\n\n\3\13\3\13\3\13\7\13")
-        buf.write("X\n\13\f\13\16\13[\13\13\3\f\3\f\3\f\3\f\3\f\2\2\r\2\4")
-        buf.write("\6\b\n\f\16\20\22\24\26\2\3\3\2\16\17\2a\2\31\3\2\2\2")
+        buf.write("\7\7\7A\n\7\f\7\16\7D\13\7\3\b\3\b\3\b\3\b\5\bJ\n\b\3")
+        buf.write("\t\3\t\3\t\3\t\3\n\3\n\3\n\3\n\3\n\5\nU\n\n\3\13\3\13")
+        buf.write("\3\13\7\13Z\n\13\f\13\16\13]\13\13\3\f\3\f\3\f\3\f\3\f")
+        buf.write("\2\2\r\2\4\6\b\n\f\16\20\22\24\26\2\2\2e\2\31\3\2\2\2")
         buf.write("\4\35\3\2\2\2\6\'\3\2\2\2\b-\3\2\2\2\n;\3\2\2\2\fB\3\2")
-        buf.write("\2\2\16E\3\2\2\2\20I\3\2\2\2\22M\3\2\2\2\24T\3\2\2\2\26")
-        buf.write("\\\3\2\2\2\30\32\5\4\3\2\31\30\3\2\2\2\32\33\3\2\2\2\33")
+        buf.write("\2\2\16E\3\2\2\2\20K\3\2\2\2\22O\3\2\2\2\24V\3\2\2\2\26")
+        buf.write("^\3\2\2\2\30\32\5\4\3\2\31\30\3\2\2\2\32\33\3\2\2\2\33")
         buf.write("\31\3\2\2\2\33\34\3\2\2\2\34\3\3\2\2\2\35\36\5\6\4\2\36")
         buf.write("\"\7\3\2\2\37!\5\n\6\2 \37\3\2\2\2!$\3\2\2\2\" \3\2\2")
         buf.write("\2\"#\3\2\2\2#%\3\2\2\2$\"\3\2\2\2%&\7\4\2\2&\5\3\2\2")
@@ -31,14 +31,15 @@ def serializedATN():
         buf.write("\2\2\289\3\2\2\29\67\3\2\2\29:\3\2\2\2:<\3\2\2\2;\63\3")
         buf.write("\2\2\2;\64\3\2\2\2;\65\3\2\2\2;\67\3\2\2\2<=\3\2\2\2=")
         buf.write(">\7\t\2\2>\13\3\2\2\2?A\5\n\6\2@?\3\2\2\2AD\3\2\2\2B@")
-        buf.write("\3\2\2\2BC\3\2\2\2C\r\3\2\2\2DB\3\2\2\2EG\7\n\2\2FH\t")
-        buf.write("\2\2\2GF\3\2\2\2GH\3\2\2\2H\17\3\2\2\2IJ\7\16\2\2JK\7")
-        buf.write("\13\2\2KL\7\24\2\2L\21\3\2\2\2MN\7\16\2\2NR\7\f\2\2OS")
-        buf.write("\7\17\2\2PS\7\16\2\2QS\5\26\f\2RO\3\2\2\2RP\3\2\2\2RQ")
-        buf.write("\3\2\2\2S\23\3\2\2\2TY\5\20\t\2UV\7\r\2\2VX\5\20\t\2W")
-        buf.write("U\3\2\2\2X[\3\2\2\2YW\3\2\2\2YZ\3\2\2\2Z\25\3\2\2\2[Y")
-        buf.write("\3\2\2\2\\]\7\16\2\2]^\7\7\2\2^_\7\b\2\2_\27\3\2\2\2\13")
-        buf.write("\33\"/9;BGRY")
+        buf.write("\3\2\2\2BC\3\2\2\2C\r\3\2\2\2DB\3\2\2\2EI\7\n\2\2FJ\7")
+        buf.write("\16\2\2GJ\7\17\2\2HJ\5\26\f\2IF\3\2\2\2IG\3\2\2\2IH\3")
+        buf.write("\2\2\2IJ\3\2\2\2J\17\3\2\2\2KL\7\16\2\2LM\7\13\2\2MN\7")
+        buf.write("\24\2\2N\21\3\2\2\2OP\7\16\2\2PT\7\f\2\2QU\7\17\2\2RU")
+        buf.write("\7\16\2\2SU\5\26\f\2TQ\3\2\2\2TR\3\2\2\2TS\3\2\2\2U\23")
+        buf.write("\3\2\2\2V[\5\20\t\2WX\7\r\2\2XZ\5\20\t\2YW\3\2\2\2Z]\3")
+        buf.write("\2\2\2[Y\3\2\2\2[\\\3\2\2\2\\\25\3\2\2\2][\3\2\2\2^_\7")
+        buf.write("\16\2\2_`\7\7\2\2`a\7\b\2\2a\27\3\2\2\2\13\33\"/9;BIT")
+        buf.write("[")
         return buf.getvalue()
 
 
@@ -491,6 +492,10 @@ class MambaParser ( Parser ):
         def INTEGER(self):
             return self.getToken(MambaParser.INTEGER, 0)
 
+        def funcCall(self):
+            return self.getTypedRuleContext(MambaParser.FuncCallContext,0)
+
+
         def getRuleIndex(self):
             return MambaParser.RULE_returnStmt
 
@@ -509,22 +514,24 @@ class MambaParser ( Parser ):
 
         localctx = MambaParser.ReturnStmtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 12, self.RULE_returnStmt)
-        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 67
             self.match(MambaParser.T__7)
-            self.state = 69
+            self.state = 71
             self._errHandler.sync(self)
-            _la = self._input.LA(1)
-            if _la==MambaParser.NAME or _la==MambaParser.INTEGER:
+            la_ = self._interp.adaptivePredict(self._input,6,self._ctx)
+            if la_ == 1:
                 self.state = 68
-                _la = self._input.LA(1)
-                if not(_la==MambaParser.NAME or _la==MambaParser.INTEGER):
-                    self._errHandler.recoverInline(self)
-                else:
-                    self._errHandler.reportMatch(self)
-                    self.consume()
+                self.match(MambaParser.NAME)
+
+            elif la_ == 2:
+                self.state = 69
+                self.match(MambaParser.INTEGER)
+
+            elif la_ == 3:
+                self.state = 70
+                self.funcCall()
 
 
         except RecognitionException as re:
@@ -568,11 +575,11 @@ class MambaParser ( Parser ):
         self.enterRule(localctx, 14, self.RULE_typedValue)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 71
-            self.match(MambaParser.NAME)
-            self.state = 72
-            self.match(MambaParser.T__8)
             self.state = 73
+            self.match(MambaParser.NAME)
+            self.state = 74
+            self.match(MambaParser.T__8)
+            self.state = 75
             self.match(MambaParser.VAR_TYPE)
         except RecognitionException as re:
             localctx.exception = re
@@ -622,25 +629,25 @@ class MambaParser ( Parser ):
         self.enterRule(localctx, 16, self.RULE_assignment)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 75
+            self.state = 77
             self.match(MambaParser.NAME)
-            self.state = 76
+            self.state = 78
             self.match(MambaParser.T__9)
-            self.state = 80
+            self.state = 82
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,7,self._ctx)
             if la_ == 1:
-                self.state = 77
+                self.state = 79
                 self.match(MambaParser.INTEGER)
                 pass
 
             elif la_ == 2:
-                self.state = 78
+                self.state = 80
                 self.match(MambaParser.NAME)
                 pass
 
             elif la_ == 3:
-                self.state = 79
+                self.state = 81
                 self.funcCall()
                 pass
 
@@ -688,17 +695,17 @@ class MambaParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 82
+            self.state = 84
             self.typedValue()
-            self.state = 87
+            self.state = 89
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==MambaParser.T__10:
-                self.state = 83
+                self.state = 85
                 self.match(MambaParser.T__10)
-                self.state = 84
+                self.state = 86
                 self.typedValue()
-                self.state = 89
+                self.state = 91
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -740,11 +747,11 @@ class MambaParser ( Parser ):
         self.enterRule(localctx, 20, self.RULE_funcCall)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 90
-            self.match(MambaParser.NAME)
-            self.state = 91
-            self.match(MambaParser.T__4)
             self.state = 92
+            self.match(MambaParser.NAME)
+            self.state = 93
+            self.match(MambaParser.T__4)
+            self.state = 94
             self.match(MambaParser.T__5)
         except RecognitionException as re:
             localctx.exception = re

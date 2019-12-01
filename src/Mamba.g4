@@ -14,7 +14,7 @@ inputArgs: '(' typedValueList? ')' ;
 
 expression: ( assignment | returnStmt | funcCall | NAME+ ) ';'  ;
 expressionList: expression*;
-returnStmt: 'return' (NAME | INTEGER)? ;
+returnStmt: 'return' (NAME | INTEGER | funcCall)? ;
 typedValue: NAME ':' VAR_TYPE;
 assignment: NAME '=' (INTEGER | NAME | funcCall) ;
 
