@@ -8,10 +8,11 @@ import re
 import sys
 
 from function_table import FunctionTable
+from handlers import ExpressionHandler
 
 module = ir.Module(name='__file__')  # create better name
 
-def string_to_ir_type(str_type):
+def string_to_ir_type(str_type: str):
     if str_type == 'void':
         return ir.VoidType()
     elif str_type == 'int':
@@ -39,15 +40,16 @@ class MambaFunctionTableBuilder(MambaListener):
         inputTypedValueList = inputArgs.typedValueList()
 
         inputTypes = []
+        argNames = []
         if hasattr(inputTypedValueList, 'typedValue'):
             for tv in inputTypedValueList.typedValue():
                 argType = string_to_ir_type(tv.getChild(-1).getText())
                 # print( str(argType) )
                 inputTypes.append(argType)
-                # argName = tv.NAME().getText()
+                argNames.append( tv.NAME() )
 
         irFunc = get_ir_func(name, returnType, inputTypes)
-        FunctionTable.setFunction(name, irFunc)
+        FunctionTable.setFunction(name, irFunc, argNames)
 
 class MambaPrintListener(MambaListener):
     def exitFuncdef(self, ctx):
@@ -68,17 +70,16 @@ class MambaPrintListener(MambaListener):
         result = irFunc.return_value.type(0) # this is a junk default value
         exprList = ctx.expression()
         for exprCtx in exprList:
-            if exprCtx.funcCall():
-                callCtx = exprCtx.funcCall()
-                callName = callCtx.NAME().getText()
-                i64 = ir.IntType(64)
-                callFn = FunctionTable.getFunction(callName)
-                result = builder.call(callFn, [ i64(3) ])
-            elif exprCtx.returnStmt():
+            ExpressionHandler.handle(exprCtx, builder)
+            if exprCtx.returnStmt():
                 callCtx = exprCtx.returnStmt()
                 tmpRes = callCtx.getChild(-1).getText()
                 if re.match('\d', tmpRes):
+
+                    # **************************************
                     result = irFunc.return_value.type(tmpRes)
+                    # **************************************
+
                 elif len(tmpRes) > 2 and tmpRes[-2:] == '()':
                     callName = tmpRes[:-2]
                     callFn = FunctionTable.getFunction(callName)

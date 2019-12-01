@@ -1,4 +1,5 @@
 def main() -> int {
+ fib(7) ;
  return fib() ;
 }
 

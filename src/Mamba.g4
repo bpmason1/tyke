@@ -20,7 +20,10 @@ assignment: NAME '=' (INTEGER | NAME | funcCall) ;
 
 typedValueList: typedValue (',' typedValue)* ;
 
-funcCall : NAME '(' ')' ;
+SCALAR: INTEGER ;
+valueList: SCALAR ( ',' SCALAR )* ;
+
+funcCall : NAME '(' valueList? ')' ;
 
 /*
  * lexer rules
