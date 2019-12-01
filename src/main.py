@@ -58,8 +58,6 @@ class MambaPrintListener(MambaListener):
 
         sigCtx = ctx.signature()
         name = sigCtx.NAME().getText()
-        returnType = string_to_ir_type( sigCtx.getChild(-1).getText() )
-
         irFunc = FunctionTable.getFunction(name)
 
         # a, b = irFunc.args
@@ -71,11 +69,11 @@ class MambaPrintListener(MambaListener):
             if exprCtx.funcCall():
                 callCtx = exprCtx.funcCall()
                 callName = callCtx.NAME().getText()
-                i64 = ir.IntType(64)sigCtx
+                i64 = ir.IntType(64)
                 callFn = FunctionTable.getFunction(callName)
                 builder.call(callFn, [ i64(3) ])
 
-        result = returnType(42)
+        result = irFunc.return_value.type(42)
         builder.ret(result)
         # for idx in range( ctx.getChildCount() ):
         #     print( ctx.getChild(idx).getText() )
