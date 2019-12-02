@@ -1,13 +1,16 @@
 def main() -> int {
-  fib( 4 ) ;
-  sum( 4.5, 6.7 ) ;
-  return 42 ;
+  sum(1.2, 4.7) ;
+  return fib(3) ;
 }
 
 def sum( first : double, second: double ) -> double {
   return 10.10 ;
 }
 
-def fib( nth: int  ) -> void {
-  return ;
+def fib( nth: int  ) -> int {
+  return 7;
+}
+
+def nether(i: int, d: double) -> void {
+  return
 }

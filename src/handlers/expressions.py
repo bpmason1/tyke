@@ -15,7 +15,7 @@ class __ExpressionHandler(BaseHandler):
         if ctx.funcCallStmt():
             print("........... Function Call Statement")
             stmtCtx = ctx.funcCallStmt()
-            return self.handle_funcCall(stmtCtx, builder)
+            return self.handle_funcCall(stmtCtx.funcCall(), builder)
 
         elif ctx.returnStmt():
             print("........... Return Statement")
@@ -30,14 +30,16 @@ class __ExpressionHandler(BaseHandler):
                 irFunc.return_value.type(val)
                 retVal = irFunc.return_value.type(val)
                 builder.ret(retVal)
+            elif retStmt.funcCall():
+                retVal = self.handle_funcCall(retStmt.funcCall(), builder)
+                builder.ret(retVal)
             else:
                 builder.ret_void()
         else:
             print("........... WTF ?!?")
         return  None
 
-    def handle_funcCall(self, stmtCtx, builder):
-            callCtx = stmtCtx.funcCall()
+    def handle_funcCall(self, callCtx, builder):
             callName = callCtx.NAME().getText()
 
             dataListCtx = callCtx.funcCallDataList().dataList()
