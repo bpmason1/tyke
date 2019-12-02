@@ -62,6 +62,15 @@ class MambaListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MambaParser#funcCallStmt.
+    def enterFuncCallStmt(self, ctx:MambaParser.FuncCallStmtContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#funcCallStmt.
+    def exitFuncCallStmt(self, ctx:MambaParser.FuncCallStmtContext):
+        pass
+
+
     # Enter a parse tree produced by MambaParser#funcDefArgList.
     def enterFuncDefArgList(self, ctx:MambaParser.FuncDefArgListContext):
         pass
@@ -89,30 +98,39 @@ class MambaListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by MambaParser#double.
-    def enterDouble(self, ctx:MambaParser.DoubleContext):
+    # Enter a parse tree produced by MambaParser#funcCall.
+    def enterFuncCall(self, ctx:MambaParser.FuncCallContext):
         pass
 
-    # Exit a parse tree produced by MambaParser#double.
-    def exitDouble(self, ctx:MambaParser.DoubleContext):
-        pass
-
-
-    # Enter a parse tree produced by MambaParser#integer.
-    def enterInteger(self, ctx:MambaParser.IntegerContext):
-        pass
-
-    # Exit a parse tree produced by MambaParser#integer.
-    def exitInteger(self, ctx:MambaParser.IntegerContext):
+    # Exit a parse tree produced by MambaParser#funcCall.
+    def exitFuncCall(self, ctx:MambaParser.FuncCallContext):
         pass
 
 
-    # Enter a parse tree produced by MambaParser#name.
-    def enterName(self, ctx:MambaParser.NameContext):
+    # Enter a parse tree produced by MambaParser#funcCallDataList.
+    def enterFuncCallDataList(self, ctx:MambaParser.FuncCallDataListContext):
         pass
 
-    # Exit a parse tree produced by MambaParser#name.
-    def exitName(self, ctx:MambaParser.NameContext):
+    # Exit a parse tree produced by MambaParser#funcCallDataList.
+    def exitFuncCallDataList(self, ctx:MambaParser.FuncCallDataListContext):
+        pass
+
+
+    # Enter a parse tree produced by MambaParser#dataList.
+    def enterDataList(self, ctx:MambaParser.DataListContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#dataList.
+    def exitDataList(self, ctx:MambaParser.DataListContext):
+        pass
+
+
+    # Enter a parse tree produced by MambaParser#data.
+    def enterData(self, ctx:MambaParser.DataContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#data.
+    def exitData(self, ctx:MambaParser.DataContext):
         pass
 
 

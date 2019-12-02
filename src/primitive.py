@@ -1,5 +1,6 @@
 from colorama import Fore, Style
 from llvmlite import ir
+from keywords import *
 
 class __Primitive:
     def __init__(self):
@@ -7,9 +8,9 @@ class __Primitive:
         self._integer = ir.IntType(64)
         self._double = ir.DoubleType()
         self._type_map = {
-            'void': self._void,
-            'int': self._integer,
-            'double': self._double
+            VOID: self._void,
+            INT: self._integer,
+            DOUBLE: self._double
         }
 
     def get_type_by_name(self, var_type: str):

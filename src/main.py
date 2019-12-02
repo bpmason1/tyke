@@ -74,7 +74,7 @@ class MambaPrintListener(MambaListener):
 
         if stmtList:
             for exprCtx in stmtList.statement():
-                ExpressionHandler.handle(exprCtx, builder, irFunc)
+                result = ExpressionHandler.handle(exprCtx, builder, irFunc)
             #     if exprCtx.returnStmt():
             #         callCtx = exprCtx.returnStmt()
             #         tmpRes = callCtx.getChild(-1).getText()
@@ -90,8 +90,6 @@ class MambaPrintListener(MambaListener):
             #             i64 = ir.IntType(64)
             #             result = builder.call(callFn, [ i64(3) ])
 
-
-        # builder.ret(result)
 
 def main():
     # lexer = MambaLexer(StdinStream())
