@@ -1,12 +1,11 @@
 def main() -> int {
- fib(7) ;
- return fib() ;
+  return 42 ;
 }
 
-def sum( a : double , b : double) -> int {
-  return 24 ;
+def sum( first : double, second: double ) -> double {
+  return 10.10 ;
 }
 
-def fib( value : int) -> int {
- return 42 ;
+def fib( nth: int  ) -> void {
+  return ;
 }

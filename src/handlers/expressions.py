@@ -7,15 +7,27 @@ from .base import BaseHandler
 
 class __ExpressionHandler(BaseHandler):
     # ExpressionContext
-    def handle(self, ctx: antlr4.ParserRuleContext, builder):
-        if ctx.funcCall():
-            print("........... Function Call")
-            callCtx = ctx.funcCall()
-            return self.handle_funcCall(callCtx, builder)
-
-        elif ctx.returnStmt():
+    def handle(self, ctx: antlr4.ParserRuleContext, builder, irFunc):
+        # if ctx.funcCall():
+        #     print("........... Function Call")
+        #     callCtx = ctx.funcCall()
+        #     return self.handle_funcCall(callCtx, builder)
+        #
+        if ctx.returnStmt():
             print("........... Return Statement")
-
+            retStmt = ctx.returnStmt()
+            if retStmt.integer():
+                val = retStmt.integer().getText()
+                irFunc.return_value.type(val)
+                retVal = irFunc.return_value.type(val)
+                builder.ret(retVal)
+            elif retStmt.double():
+                val = retStmt.double().getText()
+                irFunc.return_value.type(val)
+                retVal = irFunc.return_value.type(val)
+                builder.ret(retVal)
+            else:
+                builder.ret_void()
         else:
             print("........... WTF ?!?")
         return

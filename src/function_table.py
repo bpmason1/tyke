@@ -9,11 +9,9 @@ class __FunctionTable:
     def getFunction(self, name):
         return self.__name_to_fn[name]
 
-    def setFunction(self, name, fn, *args):
+    def setFunction(self, name, fn, arglist):
         self.__name_to_fn[name] = fn
-        if args:
-            # shallow copy the list for added safety
-            self.__name_to_arg_list[name] = [a for a in args]
+        self.__name_to_arg_list[name] = arglist
 
     def getFunctionArgs(self, name):
         return self.__name_to_arg_list[name]

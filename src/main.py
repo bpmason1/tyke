@@ -7,20 +7,22 @@ from MambaParser import MambaParser
 import re
 import sys
 
+from typed_value import TypedValue
 from function_table import FunctionTable
 from handlers import ExpressionHandler
+from primitive import Primitive
 
 module = ir.Module(name='__file__')  # create better name
 
-def string_to_ir_type(str_type: str):
-    if str_type == 'void':
-        return ir.VoidType()
-    elif str_type == 'int':
-        return ir.IntType(64)
-    elif str_type == 'double':
-        return ir.DoubleType()
-    print(Fore.RED + f'ERROR: string_to_ir_type unknown type {str_type}' + Style.RESET_ALL)
-    return 'Unknown'
+# def string_to_ir_type(str_type: str):
+#     if str_type == 'void':
+#         return ir.VoidType()
+#     elif str_type == 'int':
+#         return ir.IntType(64)
+#     elif str_type == 'double':
+#         return ir.DoubleType()
+#     print(Fore.RED + f'ERROR: string_to_ir_type unknown type {str_type}' + Style.RESET_ALL)
+#     return 'Unknown'
 
 def get_ir_func(name, returnType, inputTypeList):
     global module
@@ -35,21 +37,24 @@ class MambaFunctionTableBuilder(MambaListener):
         '''
         sigCtx = ctx.signature()
         name = sigCtx.NAME().getText()
-        returnType = string_to_ir_type( sigCtx.getChild(-1).getText() )
-        inputArgs = sigCtx.inputArgs()
-        inputTypedValueList = inputArgs.typedValueList()
+        returnType = Primitive.get_type_by_name( sigCtx.returnType().getText() )
+        typedArgList = sigCtx.funcDefArgList().typedArgList()
+        # inputTypedValueList = inputArgs.typedValueList()
 
-        inputTypes = []
+        argList = []
         argNames = []
-        if hasattr(inputTypedValueList, 'typedValue'):
-            for tv in inputTypedValueList.typedValue():
-                argType = string_to_ir_type(tv.getChild(-1).getText())
-                # print( str(argType) )
-                inputTypes.append(argType)
-                argNames.append( tv.NAME() )
 
-        irFunc = get_ir_func(name, returnType, inputTypes)
-        FunctionTable.setFunction(name, irFunc, argNames)
+        # if the function has args
+        if hasattr(typedArgList, 'typedArg'):
+            for tv in typedArgList.typedArg():
+                argName = tv.NAME().getText()
+                argType = Primitive.get_type_by_name(tv.varType().getText())
+                arg = TypedValue(argName, argType)
+                argList.append( arg )
+
+        argValues = [a.type for a in argList]
+        irFunc = get_ir_func(name, returnType, argValues)
+        FunctionTable.setFunction(name, irFunc, argList)
 
 class MambaPrintListener(MambaListener):
     def exitFuncdef(self, ctx):
@@ -57,41 +62,36 @@ class MambaPrintListener(MambaListener):
         pass
 
     def enterFuncdef(self, ctx):
-        # symbolTable = {}
-
         sigCtx = ctx.signature()
         name = sigCtx.NAME().getText()
         irFunc = FunctionTable.getFunction(name)
 
-        # a, b = irFunc.args
+        # # a, b = irFunc.args
         block = irFunc.append_basic_block(name="entry")
         builder = ir.IRBuilder(block)
 
-        result = irFunc.return_value.type(0) # this is a junk default value
-        exprList = ctx.expression()
-        for exprCtx in exprList:
-            ExpressionHandler.handle(exprCtx, builder)
-            if exprCtx.returnStmt():
-                callCtx = exprCtx.returnStmt()
-                tmpRes = callCtx.getChild(-1).getText()
-                if re.match('\d', tmpRes):
+        stmtList = ctx.statementList()
 
-                    # **************************************
-                    result = irFunc.return_value.type(tmpRes)
-                    # **************************************
+        if stmtList:
+            for exprCtx in stmtList.statement():
+                ExpressionHandler.handle(exprCtx, builder, irFunc)
+            #     if exprCtx.returnStmt():
+            #         callCtx = exprCtx.returnStmt()
+            #         tmpRes = callCtx.getChild(-1).getText()
+            #         if re.match('\d', tmpRes):
+            #
+            #             # **************************************
+            #             result = irFunc.return_value.type(tmpRes)
+            #             # **************************************
+            #
+            #         elif len(tmpRes) > 2 and tmpRes[-2:] == '()':
+            #             callName = tmpRes[:-2]
+            #             callFn = FunctionTable.getFunction(callName)
+            #             i64 = ir.IntType(64)
+            #             result = builder.call(callFn, [ i64(3) ])
 
-                elif len(tmpRes) > 2 and tmpRes[-2:] == '()':
-                    callName = tmpRes[:-2]
-                    callFn = FunctionTable.getFunction(callName)
-                    i64 = ir.IntType(64)
-                    result = builder.call(callFn, [ i64(3) ])
 
-
-        builder.ret(result)
-        # for idx in range( ctx.getChildCount() ):
-        #     print( ctx.getChild(idx).getText() )
-        # print( "\n" )
-
+        # builder.ret(result)
 
 def main():
     # lexer = MambaLexer(StdinStream())
