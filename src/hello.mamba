@@ -1,6 +1,6 @@
 def main() -> int {
   sum(1.2, 4.7) ;
-  return fib(3) ;
+  return fib(7) ;
 }
 
 def sum( first : double, second: double ) -> double {
@@ -8,7 +8,15 @@ def sum( first : double, second: double ) -> double {
 }
 
 def fib( nth: int  ) -> int {
-  val = 123;
+  val = 7 ;
+  foobar = val ;
+  val = 9 ;
+  foobar = 42 ;
+  val = foobar
+  foobar = 43
+  val = 41 ;
+  foobar = val ;
+  return foobar ;
 }
 
 def abyss(i: int, d: double) -> void {

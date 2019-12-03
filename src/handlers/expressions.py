@@ -11,22 +11,30 @@ from keywords import *
 
 class __ExpressionHandler(BaseHandler):
 
-    def handle_assigmentStmt(self, assignCtx, builder, irFunc):
-        targetCtx = assignCtx.NAME()
+    def handle_assigmentStmt(self, assignCtx, builder, irFunc, state):
+        name = assignCtx.NAME()[0].getText()
         if assignCtx.INTEGER():
-            val = assignCtx.INTEGER()
+            val = assignCtx.INTEGER().getText()
             intPrim = Primitive.int
-            # builder.add(intPrim(7), intPrim(42), name="foobar")
-            foobar = builder.alloca(intPrim, size=1, name="foobar")
-            builder.store(intPrim(val.getText()), foobar)
-
-            builder.ret(foobar)
-            # fn = FunctionTable.getFunction("fib")
-            # arg = fn.args[0]
-            # builder.load(foobar, name="assss")
+            if name not in state:
+                state[name] = builder.alloca(intPrim, size=1, name=name)
+            builder.store(intPrim(val), state[name])
+        elif assignCtx.DOUBLE():
+            val = assignCtx.DOUBLE().getText()
+            doublePrim = Primitive.double
+            if name not in state:
+                state[name] = builder.alloca(doublePrim, size=1, name=name)
+            builder.store(doublePrim(val), state[name])
+        elif assignCtx.NAME():
+            rhVar = assignCtx.NAME()[1].getText()  # right hand var name
+            val = builder.load(state[rhVar], name=name)
+            if name not in state:
+                state[name] = builder.alloca(val.type, size=1, name=name)
+            builder.store(val, state[name])
         else:
-            print("**************  NO  **********************")
-    def handle_returnStmt(self, retStmt, builder, irFunc):
+            print("************** NO ASSIGN FOR YOU *******************")
+
+    def handle_returnStmt(self, retStmt, builder, irFunc, state):
         if retStmt.INTEGER():
             val = retStmt.INTEGER().getText()
             irFunc.return_value.type(val)
@@ -41,17 +49,10 @@ class __ExpressionHandler(BaseHandler):
             retVal = self.handle_funcCall(retStmt.funcCall(), builder)
             builder.ret(retVal)
         elif retStmt.NAME():
-            var = retStmt.NAME()
-            fnName = irFunc.name
-            args = FunctionTable.getFunctionArgs(fnName)
-            print(irFunc.args[0].name)
-            # is it a function argument ?
-            result = None
-            for idx, arg in enumerate(args):
-                if arg.value == var.getText():
-                    result = irFunc.args[idx]
-                    builder.ret( result )
-            return result
+            varName = retStmt.NAME().getText()
+            varPtr = state[varName]
+            # result = builder.load(varPtr)
+            return builder.ret( builder.load(varPtr) )
         else:
             builder.ret_void()
 

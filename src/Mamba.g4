@@ -13,7 +13,7 @@ statementList: statement+ ;
 statement: returnStmt | funcCallStmt | assigmentStmt;
 returnStmt: 'return' (INTEGER | DOUBLE | funcCall | NAME)?  SEMICOLON;
 funcCallStmt: funcCall SEMICOLON;
-assigmentStmt : NAME '=' (INTEGER | DOUBLE) SEMICOLON ;
+assigmentStmt : NAME '=' (INTEGER | DOUBLE | NAME) SEMICOLON ;
 
 funcDefArgList : '(' typedArgList? ')' ;
 typedArgList: typedArg ( ',' typedArg )* ;

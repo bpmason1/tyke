@@ -75,7 +75,11 @@ class MambaPrintListener(MambaListener):
 
         state = {}
         for idx in range(len(irFunc.args)):
-            state[funcArgs[idx].value] = irFunc.args[idx]
+            argName = funcArgs[idx].value
+            argType = funcArgs[idx].type
+            state[argName] = builder.alloca(argType, name=argName)
+            # print( dir(irFunc.args[idx]) )
+            builder.store(irFunc.args[idx], state[argName])
 
         if stmtList:
             for exprCtx in stmtList.statement():
@@ -87,15 +91,16 @@ class MambaPrintListener(MambaListener):
                 elif exprCtx.returnStmt():
                     print("........... Return Statement")
                     retStmt = exprCtx.returnStmt()
-                    ExpressionHandler.handle_returnStmt(retStmt, builder, irFunc)
+                    ExpressionHandler.handle_returnStmt(retStmt, builder, irFunc, state)
 
                 elif exprCtx.assigmentStmt():
                     print("........... Assignment Statement")
-                    return ExpressionHandler.handle_assigmentStmt(exprCtx.assigmentStmt(), builder, irFunc)
+                    assignCtx = exprCtx.assigmentStmt()
+                    ExpressionHandler.handle_assigmentStmt(assignCtx, builder, irFunc, state)
 
                 else:
                     print("........... WTF ?!?")
-
+            # print(state)
 
 
             #     if exprCtx.returnStmt():
