@@ -10,13 +10,17 @@ signature: 'def' NAME funcDefArgList '->' returnType ;
 
 // statements
 statementList: statement+ ;
-statement: returnStmt | funcCallStmt ;
+statement: returnStmt | funcCallStmt | assigmentStmt;
 returnStmt: 'return' (INTEGER | DOUBLE | funcCall | NAME)?  SEMICOLON;
 funcCallStmt: funcCall SEMICOLON;
+assigmentStmt : NAME '=' (INTEGER | DOUBLE) SEMICOLON ;
 
 funcDefArgList : '(' typedArgList? ')' ;
 typedArgList: typedArg ( ',' typedArg )* ;
 typedArg: NAME ':' varType ;
+
+// arithmetic
+addition : data '+' data ;
 
 funcCall: NAME funcCallDataList ;
 funcCallDataList: '(' dataList? ')' ;

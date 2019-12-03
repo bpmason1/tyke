@@ -88,6 +88,11 @@ class MambaPrintListener(MambaListener):
                     print("........... Return Statement")
                     retStmt = exprCtx.returnStmt()
                     ExpressionHandler.handle_returnStmt(retStmt, builder, irFunc)
+
+                elif exprCtx.assigmentStmt():
+                    print("........... Assignment Statement")
+                    return ExpressionHandler.handle_assigmentStmt(exprCtx.assigmentStmt(), builder, irFunc)
+
                 else:
                     print("........... WTF ?!?")
 

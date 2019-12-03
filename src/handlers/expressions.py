@@ -10,6 +10,22 @@ from primitive import Primitive
 from keywords import *
 
 class __ExpressionHandler(BaseHandler):
+
+    def handle_assigmentStmt(self, assignCtx, builder, irFunc):
+        targetCtx = assignCtx.NAME()
+        if assignCtx.INTEGER():
+            val = assignCtx.INTEGER()
+            intPrim = Primitive.int
+            # builder.add(intPrim(7), intPrim(42), name="foobar")
+            foobar = builder.alloca(intPrim, size=1, name="foobar")
+            builder.store(intPrim(val.getText()), foobar)
+
+            builder.ret(foobar)
+            # fn = FunctionTable.getFunction("fib")
+            # arg = fn.args[0]
+            # builder.load(foobar, name="assss")
+        else:
+            print("**************  NO  **********************")
     def handle_returnStmt(self, retStmt, builder, irFunc):
         if retStmt.INTEGER():
             val = retStmt.INTEGER().getText()
@@ -25,7 +41,6 @@ class __ExpressionHandler(BaseHandler):
             retVal = self.handle_funcCall(retStmt.funcCall(), builder)
             builder.ret(retVal)
         elif retStmt.NAME():
-            print("-----------------BOOM-----------------------")
             var = retStmt.NAME()
             fnName = irFunc.name
             args = FunctionTable.getFunctionArgs(fnName)

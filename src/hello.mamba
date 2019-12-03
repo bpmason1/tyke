@@ -8,7 +8,7 @@ def sum( first : double, second: double ) -> double {
 }
 
 def fib( nth: int  ) -> int {
-  return nth;
+  val = 123;
 }
 
 def abyss(i: int, d: double) -> void {
