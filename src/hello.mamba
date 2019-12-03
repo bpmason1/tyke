@@ -8,9 +8,9 @@ def sum( first : double, second: double ) -> double {
 }
 
 def fib( nth: int  ) -> int {
-  return 7;
+  return nth;
 }
 
-def nether(i: int, d: double) -> void {
-  return
+def abyss(i: int, d: double) -> void {
+  return;
 }

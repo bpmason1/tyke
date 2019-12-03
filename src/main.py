@@ -75,6 +75,7 @@ class MambaPrintListener(MambaListener):
         if stmtList:
             for exprCtx in stmtList.statement():
                 result = ExpressionHandler.handle(exprCtx, builder, irFunc)
+
             #     if exprCtx.returnStmt():
             #         callCtx = exprCtx.returnStmt()
             #         tmpRes = callCtx.getChild(-1).getText()

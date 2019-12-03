@@ -11,7 +11,7 @@ signature: 'def' NAME funcDefArgList '->' returnType ;
 // statements
 statementList: statement+ ;
 statement: returnStmt | funcCallStmt ;
-returnStmt: 'return' (INTEGER | DOUBLE | funcCall)?  SEMICOLON;
+returnStmt: 'return' (INTEGER | DOUBLE | funcCall | NAME)?  SEMICOLON;
 funcCallStmt: funcCall SEMICOLON;
 
 funcDefArgList : '(' typedArgList? ')' ;

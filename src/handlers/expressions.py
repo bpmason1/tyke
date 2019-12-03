@@ -20,24 +20,41 @@ class __ExpressionHandler(BaseHandler):
         elif ctx.returnStmt():
             print("........... Return Statement")
             retStmt = ctx.returnStmt()
-            if retStmt.INTEGER():
-                val = retStmt.INTEGER().getText()
-                irFunc.return_value.type(val)
-                retVal = irFunc.return_value.type(val)
-                builder.ret(retVal)
-            elif retStmt.DOUBLE():
-                val = retStmt.DOUBLE().getText()
-                irFunc.return_value.type(val)
-                retVal = irFunc.return_value.type(val)
-                builder.ret(retVal)
-            elif retStmt.funcCall():
-                retVal = self.handle_funcCall(retStmt.funcCall(), builder)
-                builder.ret(retVal)
-            else:
-                builder.ret_void()
+            self.handle_returnStmt(retStmt, builder, irFunc)
         else:
             print("........... WTF ?!?")
         return  None
+
+    def handle_returnStmt(self, retStmt, builder, irFunc):
+        if retStmt.INTEGER():
+            val = retStmt.INTEGER().getText()
+            irFunc.return_value.type(val)
+            retVal = irFunc.return_value.type(val)
+            builder.ret(retVal)
+        elif retStmt.DOUBLE():
+            val = retStmt.DOUBLE().getText()
+            irFunc.return_value.type(val)
+            retVal = irFunc.return_value.type(val)
+            builder.ret(retVal)
+        elif retStmt.funcCall():
+            retVal = self.handle_funcCall(retStmt.funcCall(), builder)
+            builder.ret(retVal)
+        elif retStmt.NAME():
+            print("-----------------BOOM-----------------------")
+            var = retStmt.NAME()
+            fnName = irFunc.name
+            args = FunctionTable.getFunctionArgs(fnName)
+            fn = FunctionTable.getFunction(fnName)
+            print(fn.args[0].name)
+            # is it a function argument ?
+            result = None
+            for idx, arg in enumerate(args):
+                if arg.value == var.getText():
+                    result = fn.args[idx]
+                    builder.ret( result )
+            return result
+        else:
+            builder.ret_void()
 
     def handle_funcCall(self, callCtx, builder):
             callName = callCtx.NAME().getText()
