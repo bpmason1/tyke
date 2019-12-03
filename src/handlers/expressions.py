@@ -10,21 +10,6 @@ from primitive import Primitive
 from keywords import *
 
 class __ExpressionHandler(BaseHandler):
-    # ExpressionContext
-    def handle(self, ctx: antlr4.ParserRuleContext, builder, irFunc):
-        if ctx.funcCallStmt():
-            print("........... Function Call Statement")
-            stmtCtx = ctx.funcCallStmt()
-            return self.handle_funcCall(stmtCtx.funcCall(), builder)
-
-        elif ctx.returnStmt():
-            print("........... Return Statement")
-            retStmt = ctx.returnStmt()
-            self.handle_returnStmt(retStmt, builder, irFunc)
-        else:
-            print("........... WTF ?!?")
-        return  None
-
     def handle_returnStmt(self, retStmt, builder, irFunc):
         if retStmt.INTEGER():
             val = retStmt.INTEGER().getText()

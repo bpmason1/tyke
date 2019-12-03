@@ -47,6 +47,7 @@ class MambaFunctionTableBuilder(MambaListener):
         # if the function has args
         if hasattr(typedArgList, 'typedArg'):
             for tv in typedArgList.typedArg():
+                # print( tv.NAME().getSymbol().text )
                 argName = tv.NAME().getText()
                 argType = Primitive.get_type_by_name(tv.varType().getText())
                 arg = TypedValue(argName, argType)
@@ -65,16 +66,32 @@ class MambaPrintListener(MambaListener):
         sigCtx = ctx.signature()
         name = sigCtx.NAME().getText()
         irFunc = FunctionTable.getFunction(name)
+        funcArgs = FunctionTable.getFunctionArgs(name)
 
-        # # a, b = irFunc.args
         block = irFunc.append_basic_block(name="entry")
         builder = ir.IRBuilder(block)
 
         stmtList = ctx.statementList()
 
+        state = {}
+        for idx in range(len(irFunc.args)):
+            state[funcArgs[idx].value] = irFunc.args[idx]
+
         if stmtList:
             for exprCtx in stmtList.statement():
-                result = ExpressionHandler.handle(exprCtx, builder, irFunc)
+                if exprCtx.funcCallStmt():
+                    print("........... Function Call Statement")
+                    stmtCtx = exprCtx.funcCallStmt()
+                    ExpressionHandler.handle_funcCall(stmtCtx.funcCall(), builder)
+
+                elif exprCtx.returnStmt():
+                    print("........... Return Statement")
+                    retStmt = exprCtx.returnStmt()
+                    ExpressionHandler.handle_returnStmt(retStmt, builder, irFunc)
+                else:
+                    print("........... WTF ?!?")
+
+
 
             #     if exprCtx.returnStmt():
             #         callCtx = exprCtx.returnStmt()
