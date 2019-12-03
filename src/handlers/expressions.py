@@ -44,13 +44,12 @@ class __ExpressionHandler(BaseHandler):
             var = retStmt.NAME()
             fnName = irFunc.name
             args = FunctionTable.getFunctionArgs(fnName)
-            fn = FunctionTable.getFunction(fnName)
-            print(fn.args[0].name)
+            print(irFunc.args[0].name)
             # is it a function argument ?
             result = None
             for idx, arg in enumerate(args):
                 if arg.value == var.getText():
-                    result = fn.args[idx]
+                    result = irFunc.args[idx]
                     builder.ret( result )
             return result
         else:
