@@ -21,4 +21,16 @@ class __Primitive:
         print(Fore.RED + msg + Style.RESET_ALL)
         return 'Unknown'
 
+    @property
+    def int(self):
+        return self._type_map[INT]
+
+    @property
+    def double(self):
+        return self._type_map[DOUBLE]
+
+    @property
+    def void(self):
+        return self._type_map[VOID]
+
 Primitive = __Primitive()
