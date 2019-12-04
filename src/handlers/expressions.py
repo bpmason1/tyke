@@ -26,11 +26,11 @@ class __ExpressionHandler(BaseHandler):
                 state[name] = builder.alloca(doublePrim, size=1, name=name)
             builder.store(doublePrim(val), state[name])
         elif assignCtx.NAME():
-            rhVar = assignCtx.NAME()[1].getText()  # right hand var name
-            val = builder.load(state[rhVar], name=name)
+            rhName = assignCtx.NAME()[1].getText()  # right hand var name
+            rhVal = builder.load(state[rhName])
             if name not in state:
-                state[name] = builder.alloca(val.type, size=1, name=name)
-            builder.store(val, state[name])
+                state[name] = builder.alloca(rhVal.type, size=1, name=name)
+            builder.store(rhVal, state[name])
         else:
             print("************** NO ASSIGN FOR YOU *******************")
 
