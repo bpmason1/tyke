@@ -4,10 +4,11 @@ from llvmlite import ir
 import re
 import sys
 
-from function_table import FunctionTable
 from .base import BaseHandler
 from primitive import Primitive
 from keywords import *
+
+from builder.ProgramNode import ProgramNode
 
 class __ExpressionHandler(BaseHandler):
 
@@ -63,7 +64,8 @@ class __ExpressionHandler(BaseHandler):
 
 
             if not dataListCtx:
-                callFn = FunctionTable.getFunction(callName)
+                package = ProgramNode.getPackage('main')
+                callFN = package.getFunction(name).llvmIR()
                 return builder.call(callFn, [])
 
             dataList = dataListCtx.data()
@@ -83,7 +85,8 @@ class __ExpressionHandler(BaseHandler):
                     print(Fore.RED + msg + Style.RESET_ALL)
                     sys.exit(1)
 
-            callFn = FunctionTable.getFunction(callName)
+            package = ProgramNode.getPackage('main')
+            callFn = package.getFunction(callName).llvmIR()
             result = builder.call(callFn, callArgs)
             return result
 

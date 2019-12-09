@@ -1,5 +1,7 @@
 *.sw[po]
 
+*.orig
+
 __pycache__/
 
 .venv/

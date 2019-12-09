@@ -9,6 +9,11 @@ class FunctionNode(AstNode):
         argTypes = [a.type for a in funcArgs]
         fnty = ir.Functi = ir.FunctionType(returnType, argTypes)  # ingore input types for now
         self.__llvm = ir.Function(parent.llvmIR(), fnty, name=name)
+        self.__funcArgs = funcArgs
 
     def llvmIR(self):
         return self.__llvm
+
+    @property
+    def args(self):
+        return self.__funcArgs

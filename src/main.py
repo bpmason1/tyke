@@ -8,7 +8,6 @@ import re
 import sys
 
 from typed_value import TypedValue
-from function_table import FunctionTable
 from handlers import ExpressionHandler
 from primitive import Primitive
 
@@ -46,7 +45,6 @@ class MambaFunctionTableBuilder(MambaListener):
 
         funcNode = package.newFunction(name, returnType, argList)
         irFunc = funcNode.llvmIR() # get_ir_func(name, returnType, argValues)
-        FunctionTable.setFunction(name, irFunc, argList)
 
 class MambaPrintListener(MambaListener):
     def exitFuncdef(self, ctx):
@@ -54,10 +52,14 @@ class MambaPrintListener(MambaListener):
         pass
 
     def enterFuncdef(self, ctx):
+        package = ProgramNode.getPackage('main')
+
         sigCtx = ctx.signature()
         name = sigCtx.NAME().getText()
-        irFunc = FunctionTable.getFunction(name)
-        funcArgs = FunctionTable.getFunctionArgs(name)
+        fnAst = package.getFunction(name)
+
+        irFunc = fnAst.llvmIR()
+        funcArgs = fnAst.args
 
         block = irFunc.append_basic_block(name="entry")
         builder = ir.IRBuilder(block)
@@ -91,23 +93,6 @@ class MambaPrintListener(MambaListener):
 
                 else:
                     print("........... WTF ?!?")
-            # print(state)
-
-
-            #     if exprCtx.returnStmt():
-            #         callCtx = exprCtx.returnStmt()
-            #         tmpRes = callCtx.getChild(-1).getText()
-            #         if re.match('\d', tmpRes):
-            #
-            #             # **************************************
-            #             result = irFunc.return_value.type(tmpRes)
-            #             # **************************************
-            #
-            #         elif len(tmpRes) > 2 and tmpRes[-2:] == '()':
-            #             callName = tmpRes[:-2]
-            #             callFn = FunctionTable.getFunction(callName)
-            #             i64 = ir.IntType(64)
-            #             result = builder.call(callFn, [ i64(3) ])
 
 
 def main():

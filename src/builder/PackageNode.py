@@ -11,5 +11,11 @@ class PackageNode(AstNode):
     def newFunction(self, name: str, returnType, funcArgs):
         return FunctionNode(name, returnType, funcArgs, parent=self)
 
+    def getFunction(self, name):
+        for node in self.children:
+            if node.name == name:
+                return node
+        return None
+
     def llvmIR(self):
         return self.__llvm
