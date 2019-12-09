@@ -3,8 +3,9 @@ grammar Mamba;
 /*
  * parser rules
  */
-program: funcdef+ ;
+program: package funcdef+ ;
 
+package: PACKAGE NAME SEMICOLON;
 funcdef: signature '{' statementList? '}' ;
 signature: 'def' NAME funcDefArgList '->' returnType ;
 
@@ -35,6 +36,7 @@ varType : ('double' | 'int') ;
 /*
  * lexer rules
  */
+PACKAGE : 'package' ;
 SEMICOLON : ';' ;
 KW_DOUBLE: 'double' ;
 KW_INT: 'int' ;

@@ -17,6 +17,15 @@ class MambaListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MambaParser#package.
+    def enterPackage(self, ctx:MambaParser.PackageContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#package.
+    def exitPackage(self, ctx:MambaParser.PackageContext):
+        pass
+
+
     # Enter a parse tree produced by MambaParser#funcdef.
     def enterFuncdef(self, ctx:MambaParser.FuncdefContext):
         pass

@@ -1,3 +1,5 @@
+package main;
+
 def main() -> int {
   sum(1.2, 4.7) ;
   return fib(7) ;
