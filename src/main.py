@@ -12,29 +12,18 @@ from function_table import FunctionTable
 from handlers import ExpressionHandler
 from primitive import Primitive
 
-module = ir.Module(name='__file__')  # create better name
+from builder.ProgramNode import ProgramNode
 
-# def string_to_ir_type(str_type: str):
-#     if str_type == 'void':
-#         return ir.VoidType()
-#     elif str_type == 'int':
-#         return ir.IntType(64)
-#     elif str_type == 'double':
-#         return ir.DoubleType()
-#     print(Fore.RED + f'ERROR: string_to_ir_type unknown type {str_type}' + Style.RESET_ALL)
-#     return 'Unknown'
+package = ProgramNode.newPackage('main')
 
-def get_ir_func(name, returnType, inputTypeList):
-    global module
-
-    fnty = ir.FunctionType(returnType, inputTypeList)  # ingore input types for now
-    return ir.Function(module, fnty, name=name)
 
 class MambaFunctionTableBuilder(MambaListener):
     def enterFuncdef(self, ctx):
         '''
         Create an LLVM IR function based on `ctx.signature()`
         '''
+        package = ProgramNode.getPackage('main')
+
         sigCtx = ctx.signature()
         name = sigCtx.NAME().getText()
         returnType = Primitive.get_type_by_name( sigCtx.returnType().getText() )
@@ -54,7 +43,9 @@ class MambaFunctionTableBuilder(MambaListener):
                 argList.append( arg )
 
         argValues = [a.type for a in argList]
-        irFunc = get_ir_func(name, returnType, argValues)
+
+        funcNode = package.newFunction(name, returnType, argList)
+        irFunc = funcNode.llvmIR() # get_ir_func(name, returnType, argValues)
         FunctionTable.setFunction(name, irFunc, argList)
 
 class MambaPrintListener(MambaListener):
@@ -133,7 +124,8 @@ def main():
     printer = MambaPrintListener()
     walker.walk(printer, tree)
 
-    print(module)
+    llvm_ir = ProgramNode.getPackage('main').llvmIR()
+    print(llvm_ir)
 
 if __name__ == '__main__':
     main()
