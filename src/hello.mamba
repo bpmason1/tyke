@@ -12,8 +12,8 @@ def fib( nth: int  ) -> int {
   foobar = val ;
   val = 9 ;
   foobar = 42 ;
-  val = foobar
-  foobar = 43
+  val = foobar ;
+  foobar = 43 ;
   val = 41 ;
   foobar = val ;
   return foobar ;
