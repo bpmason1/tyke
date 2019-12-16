@@ -2,6 +2,7 @@ from llvmlite import ir
 
 from .AstNode import AstNode
 from .FunctionNode import FunctionNode
+
 class PackageNode(AstNode):
     def __init__(self, name: str, parent: AstNode):
         super().__init__(name, parent=parent)
