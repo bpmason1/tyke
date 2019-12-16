@@ -70,7 +70,11 @@ class MambaPrintListener(MambaListener):
         for idx in range(len(irFunc.args)):
             argName = funcArgs[idx].value
             argType = funcArgs[idx].type
+
+            builder.position_at_start(block)
             state[argName] = builder.alloca(argType, name=argName)
+            builder.position_at_end(block)
+
             # print( dir(irFunc.args[idx]) )
             builder.store(irFunc.args[idx], state[argName])
 

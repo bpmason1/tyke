@@ -18,19 +18,25 @@ class __ExpressionHandler(BaseHandler):
             val = assignCtx.INTEGER().getText()
             intPrim = Primitive.int
             if name not in state:
+                builder.position_at_start(builder.block)
                 state[name] = builder.alloca(intPrim, size=1, name=name)
+                builder.position_at_end(builder.block)
             builder.store(intPrim(val), state[name])
         elif assignCtx.DOUBLE():
             val = assignCtx.DOUBLE().getText()
             doublePrim = Primitive.double
             if name not in state:
+                builder.position_at_start(builder.block)
                 state[name] = builder.alloca(doublePrim, size=1, name=name)
+                builder.position_at_end(builder.block)
             builder.store(doublePrim(val), state[name])
         elif assignCtx.NAME():
             rhName = assignCtx.NAME()[1].getText()  # right hand var name
             rhVal = builder.load(state[rhName])
             if name not in state:
+                builder.position_at_start(builder.block)
                 state[name] = builder.alloca(rhVal.type, size=1, name=name)
+                builder.position_at_end(builder.block)
             builder.store(rhVal, state[name])
         else:
             print("************** NO ASSIGN FOR YOU *******************")
