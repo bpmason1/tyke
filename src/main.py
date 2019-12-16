@@ -58,15 +58,15 @@ class MambaPrintListener(MambaListener):
         name = sigCtx.NAME().getText()
         fnAst = package.getFunction(name)
 
-        irFunc = fnAst.llvmIR()
         funcArgs = fnAst.args
 
-        block = irFunc.append_basic_block(name="entry")
+        block = fnAst.getBlock("entry")
         builder = ir.IRBuilder(block)
 
         stmtList = ctx.statementList()
 
         state = {}
+        irFunc = fnAst.llvmIR()
         for idx in range(len(irFunc.args)):
             argName = funcArgs[idx].value
             argType = funcArgs[idx].type
