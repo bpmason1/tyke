@@ -4,6 +4,7 @@ from .PackageNode import PackageNode
 class __ProgramNode(AstNode):
     def __init__(self):
         super().__init__('mamba')
+        std = self.newPackage('std')
 
     def llvmIR(self):
         None

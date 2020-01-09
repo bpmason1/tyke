@@ -68,7 +68,6 @@ class __ExpressionHandler(BaseHandler):
 
             dataListCtx = callCtx.funcCallDataList().dataList()
 
-
             if not dataListCtx:
                 package = ProgramNode.getPackage('main')
                 callFN = package.getFunction(name).llvmIR()

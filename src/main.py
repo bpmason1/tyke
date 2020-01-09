@@ -16,6 +16,17 @@ from builder.ProgramNode import ProgramNode
 package = ProgramNode.newPackage('main')
 
 
+def builtinFunctions():
+    std = ProgramNode.getPackage('std')
+
+    void = Primitive.void
+    i8_ptr = ir.PointerType(ir.IntType(8))
+    std.newDeclaration("print", void, tuple([i8_ptr]))
+    # declare i32 @printf(i8*, ...)
+
+    # funcNode = package.newFunction("print", returnType, argList)
+    return
+
 class MambaFunctionTableBuilder(MambaListener):
     def enterFuncdef(self, ctx):
         '''
@@ -43,8 +54,8 @@ class MambaFunctionTableBuilder(MambaListener):
 
         argValues = [a.type for a in argList]
 
-        funcNode = package.newFunction(name, returnType, argList)
-        irFunc = funcNode.llvmIR() # get_ir_func(name, returnType, argValues)
+        # funcNode = package.newFunction(name, returnType, argList)
+        package.newFunction(name, returnType, argList)
 
 class MambaPrintListener(MambaListener):
     def exitFuncdef(self, ctx):
@@ -100,6 +111,9 @@ class MambaPrintListener(MambaListener):
 
 
 def main():
+    # these exist regardless of the program being compiled
+    builtinFunctions()
+
     # lexer = MambaLexer(StdinStream())
     lexer = MambaLexer(FileStream('hello.mamba'))
     stream = CommonTokenStream(lexer)
@@ -113,8 +127,8 @@ def main():
     printer = MambaPrintListener()
     walker.walk(printer, tree)
 
-    llvm_ir = ProgramNode.getPackage('main').llvmIR()
-    print(llvm_ir)
+    print(ProgramNode.getPackage('std'))
+    print(ProgramNode.getPackage('main'))
 
 if __name__ == '__main__':
     main()
