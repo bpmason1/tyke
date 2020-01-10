@@ -66,6 +66,10 @@ class __ExpressionHandler(BaseHandler):
     def handle_funcCall(self, callCtx, builder):
             callName = callCtx.NAME().getText()
 
+            # TODO - don't make me a special case
+            if callName == 'print':
+                return self.handle_printFuncCall(callCtx, builder)
+
             dataListCtx = callCtx.funcCallDataList().dataList()
 
             if not dataListCtx:
@@ -94,5 +98,35 @@ class __ExpressionHandler(BaseHandler):
             callFn = package.getFunction(callName).llvmIR()
             result = builder.call(callFn, callArgs)
             return result
+
+    def handle_printFuncCall(self, callCtx, builder):
+        int8 = ir.IntType(8)
+        int32 = ir.IntType(32)
+
+        package = ProgramNode.getPackage('main')
+
+        dataListCtx = callCtx.funcCallDataList().dataList()
+        dataList = dataListCtx.data()
+        assert(len(dataList) == 1) #  TODO - allow printf varargs
+
+        text = str(dataList[0].NAME()) + '\n\0' #"foobar\n\0".encode('utf_8')
+        text = text.encode('utf_8')
+        # text = dataList[0].encode('utf_8')
+
+        size = len(text) + 1
+
+        c_fmt = ir.Constant(ir.ArrayType(ir.IntType(8), len(text)),
+                                bytearray(text))
+
+        arrayType = ir.ArrayType(int8, len(text))
+        glbl = ir.GlobalVariable(package.llvmIR(), arrayType, "tmp_name_1")
+        glbl.initializer = c_fmt
+
+        const = [ir.Constant(int32, x) for x in [0, 0]]
+        elemPtr = builder.gep(glbl, const, inbounds=True, name='d')
+        callFn = package.getFunction('printf').llvmIR()
+
+        result = builder.call(callFn, [elemPtr])
+
 
 ExpressionHandler = __ExpressionHandler()

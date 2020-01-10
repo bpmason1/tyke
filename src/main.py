@@ -17,11 +17,11 @@ package = ProgramNode.newPackage('main')
 
 
 def builtinFunctions():
-    std = ProgramNode.getPackage('std')
+    main = ProgramNode.getPackage('main')
 
     void = Primitive.void
     i8_ptr = ir.PointerType(ir.IntType(8))
-    std.newDeclaration("print", void, tuple([i8_ptr]))
+    main.newDeclaration("printf", ir.IntType(32), tuple([i8_ptr]))
     # declare i32 @printf(i8*, ...)
 
     # funcNode = package.newFunction("print", returnType, argList)

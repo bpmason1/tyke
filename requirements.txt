@@ -5,5 +5,5 @@
 #    pip-compile --output-file=requirements.txt requirements.in
 #
 antlr4-python3-runtime==4.7.2
-colorama==0.4.1
-llvmlite==0.30.0
+colorama==0.4.3
+llvmlite==0.31.0
