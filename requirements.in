@@ -1,3 +1,6 @@
 antlr4-python3-runtime
 colorama
 llvmlite
+
+# these are missing dependencies of other libs (not libs I use myself)
+anytree
