@@ -5,11 +5,12 @@ set -e
 SCRIPTS_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 PROJECT_DIR=$(cd $SCRIPTS_DIR/.. && pwd)
 VENV_DIR=$(echo $PROJECT_DIR/.venv)
+LIB_DIR=$(echo $PROJECT_DIR/lib)
 
 cd $PROJECT_DIR
 
 if [ ! -d $VENV_DIR ]; then
-  virtualenv -p python3.6 $VENV_DIR
+  virtualenv -p python3 $VENV_DIR
 fi
 
 . $VENV_DIR/bin/activate
@@ -22,3 +23,16 @@ for fName in ${REQ_FILES[*]}; do
   pip install -r ${fName}.txt
 done
 
+# download the antlr jar file
+if [ ! -d $LIB_DIR ]; then 
+  mkdir $LIB_DIR
+fi
+if [ ! -f $LIB_DIR/antlr-4.9-complete.jar ]; then
+  pushd $LIB_DIR
+  wget http://www.antlr.org/download/antlr-4.9-complete.jar
+  popd
+fi
+
+# install LLVM
+# wget https://github.com/llvm/llvm-project/releases/download/llvmorg-11.0.0/clang+llvm-11.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
+# ... other LLVM install steps

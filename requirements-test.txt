@@ -4,7 +4,7 @@
 #
 #    pip-compile --output-file=requirements-test.txt requirements-test.in
 #
-antlr4-python3-runtime==4.7.2  # via -r requirements.txt
+antlr4-python3-runtime==4.9  # via -r requirements.txt
 anytree==2.8.0            # via -r requirements.txt
 backcall==0.1.0           # via ipython
 colorama==0.4.3           # via -r requirements.txt

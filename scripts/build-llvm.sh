@@ -1,3 +1,6 @@
+#! /usr/bin/bash
+
+# if no filename is given use "mamba" as the default
 NAME=${1:-mamba}
 
 # translate IR to bytecode
