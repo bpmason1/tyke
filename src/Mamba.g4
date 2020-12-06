@@ -26,7 +26,7 @@ addition : data '+' data ;
 funcCall: NAME funcCallDataList ;
 funcCallDataList: '(' dataList? ')' ;
 dataList: data (',' data)* ;
-data: NAME | DOUBLE | INTEGER ;
+data: STRING | NAME | DOUBLE | INTEGER;
 
 returnType: ('void' | 'int' | 'double') ;
 varType : ('double' | 'int') ;
@@ -47,6 +47,7 @@ INTEGER: '0' | NON_ZERO_INTEGER ;
 
 RETURN_TYPE: VAR_TYPE | VOID ;
 NAME: ID_START ID_CONTINUE*;
+STRING: SHORT_STRING ;
 
 fragment ID_START : '_' | [A-Z] | [a-z] ;
 fragment ID_CONTINUE : ID_START | [0-9] ;
@@ -55,7 +56,10 @@ fragment POSITIVE_INTEGER: [1-9] [0-9]* ;
 fragment VAR_TYPE : (KW_DOUBLE | KW_INT) ;
 fragment SIGN: '+' | '-' ;
 
-
+fragment SHORT_STRING
+ : '\'' ( ~[\\\r\n\f'] )* '\''
+ | '"' ( ~[\\\r\n\f"] )* '"'
+ ;
 
 /*
  * ignore rules

@@ -109,8 +109,13 @@ class __ExpressionHandler(BaseHandler):
         dataList = dataListCtx.data()
         assert(len(dataList) == 1) #  TODO - allow printf varargs
 
-        text = str(dataList[0].NAME()) + '\n\0' #"foobar\n\0".encode('utf_8')
-        text = text.encode('utf_8')
+        if dataList[0].NAME():
+            text = str(dataList[0].NAME()) + '\n\0' #"foobar\n\0".encode('utf_8')
+            text = text.encode('utf_8')
+        elif dataList[0].STRING():
+            text = str(dataList[0].STRING())[1:-1] + '\n\0' #"foobar\n\0".encode('utf_8')
+            text = text.encode('utf_8')
+
         # text = dataList[0].encode('utf_8')
 
         size = len(text) + 1

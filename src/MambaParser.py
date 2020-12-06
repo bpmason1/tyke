@@ -11,7 +11,7 @@ else:
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\30")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\31")
         buf.write("\u0088\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
         buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
         buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23\t\23")
@@ -24,36 +24,36 @@ def serializedATN():
         buf.write("\3\16\3\17\3\17\3\17\3\20\3\20\5\20v\n\20\3\20\3\20\3")
         buf.write("\21\3\21\3\21\7\21}\n\21\f\21\16\21\u0080\13\21\3\22\3")
         buf.write("\22\3\23\3\23\3\24\3\24\3\24\2\2\25\2\4\6\b\n\f\16\20")
-        buf.write("\22\24\26\30\32\34\36 \"$&\2\5\4\2\23\24\26\26\3\2\20")
-        buf.write("\22\3\2\20\21\2\u0081\2(\3\2\2\2\4.\3\2\2\2\6\62\3\2\2")
-        buf.write("\2\b9\3\2\2\2\n@\3\2\2\2\fG\3\2\2\2\16I\3\2\2\2\20R\3")
-        buf.write("\2\2\2\22U\3\2\2\2\24Z\3\2\2\2\26`\3\2\2\2\30h\3\2\2\2")
-        buf.write("\32l\3\2\2\2\34p\3\2\2\2\36s\3\2\2\2 y\3\2\2\2\"\u0081")
-        buf.write("\3\2\2\2$\u0083\3\2\2\2&\u0085\3\2\2\2(*\5\4\3\2)+\5\6")
-        buf.write("\4\2*)\3\2\2\2+,\3\2\2\2,*\3\2\2\2,-\3\2\2\2-\3\3\2\2")
-        buf.write("\2./\7\16\2\2/\60\7\26\2\2\60\61\7\17\2\2\61\5\3\2\2\2")
-        buf.write("\62\63\5\b\5\2\63\65\7\3\2\2\64\66\5\n\6\2\65\64\3\2\2")
-        buf.write("\2\65\66\3\2\2\2\66\67\3\2\2\2\678\7\4\2\28\7\3\2\2\2")
-        buf.write("9:\7\5\2\2:;\7\26\2\2;<\5\24\13\2<=\7\6\2\2=>\5$\23\2")
-        buf.write(">\t\3\2\2\2?A\5\f\7\2@?\3\2\2\2AB\3\2\2\2B@\3\2\2\2BC")
-        buf.write("\3\2\2\2C\13\3\2\2\2DH\5\16\b\2EH\5\20\t\2FH\5\22\n\2")
-        buf.write("GD\3\2\2\2GE\3\2\2\2GF\3\2\2\2H\r\3\2\2\2IN\7\7\2\2JO")
-        buf.write("\7\24\2\2KO\7\23\2\2LO\5\34\17\2MO\7\26\2\2NJ\3\2\2\2")
-        buf.write("NK\3\2\2\2NL\3\2\2\2NM\3\2\2\2NO\3\2\2\2OP\3\2\2\2PQ\7")
-        buf.write("\17\2\2Q\17\3\2\2\2RS\5\34\17\2ST\7\17\2\2T\21\3\2\2\2")
-        buf.write("UV\7\26\2\2VW\7\b\2\2WX\t\2\2\2XY\7\17\2\2Y\23\3\2\2\2")
-        buf.write("Z\\\7\t\2\2[]\5\26\f\2\\[\3\2\2\2\\]\3\2\2\2]^\3\2\2\2")
-        buf.write("^_\7\n\2\2_\25\3\2\2\2`e\5\30\r\2ab\7\13\2\2bd\5\30\r")
-        buf.write("\2ca\3\2\2\2dg\3\2\2\2ec\3\2\2\2ef\3\2\2\2f\27\3\2\2\2")
-        buf.write("ge\3\2\2\2hi\7\26\2\2ij\7\f\2\2jk\5&\24\2k\31\3\2\2\2")
-        buf.write("lm\5\"\22\2mn\7\r\2\2no\5\"\22\2o\33\3\2\2\2pq\7\26\2")
-        buf.write("\2qr\5\36\20\2r\35\3\2\2\2su\7\t\2\2tv\5 \21\2ut\3\2\2")
-        buf.write("\2uv\3\2\2\2vw\3\2\2\2wx\7\n\2\2x\37\3\2\2\2y~\5\"\22")
-        buf.write("\2z{\7\13\2\2{}\5\"\22\2|z\3\2\2\2}\u0080\3\2\2\2~|\3")
-        buf.write("\2\2\2~\177\3\2\2\2\177!\3\2\2\2\u0080~\3\2\2\2\u0081")
-        buf.write("\u0082\t\2\2\2\u0082#\3\2\2\2\u0083\u0084\t\3\2\2\u0084")
-        buf.write("%\3\2\2\2\u0085\u0086\t\4\2\2\u0086\'\3\2\2\2\13,\65B")
-        buf.write("GN\\eu~")
+        buf.write("\22\24\26\30\32\34\36 \"$&\2\6\4\2\23\24\26\26\4\2\23")
+        buf.write("\24\26\27\3\2\20\22\3\2\20\21\2\u0081\2(\3\2\2\2\4.\3")
+        buf.write("\2\2\2\6\62\3\2\2\2\b9\3\2\2\2\n@\3\2\2\2\fG\3\2\2\2\16")
+        buf.write("I\3\2\2\2\20R\3\2\2\2\22U\3\2\2\2\24Z\3\2\2\2\26`\3\2")
+        buf.write("\2\2\30h\3\2\2\2\32l\3\2\2\2\34p\3\2\2\2\36s\3\2\2\2 ")
+        buf.write("y\3\2\2\2\"\u0081\3\2\2\2$\u0083\3\2\2\2&\u0085\3\2\2")
+        buf.write("\2(*\5\4\3\2)+\5\6\4\2*)\3\2\2\2+,\3\2\2\2,*\3\2\2\2,")
+        buf.write("-\3\2\2\2-\3\3\2\2\2./\7\16\2\2/\60\7\26\2\2\60\61\7\17")
+        buf.write("\2\2\61\5\3\2\2\2\62\63\5\b\5\2\63\65\7\3\2\2\64\66\5")
+        buf.write("\n\6\2\65\64\3\2\2\2\65\66\3\2\2\2\66\67\3\2\2\2\678\7")
+        buf.write("\4\2\28\7\3\2\2\29:\7\5\2\2:;\7\26\2\2;<\5\24\13\2<=\7")
+        buf.write("\6\2\2=>\5$\23\2>\t\3\2\2\2?A\5\f\7\2@?\3\2\2\2AB\3\2")
+        buf.write("\2\2B@\3\2\2\2BC\3\2\2\2C\13\3\2\2\2DH\5\16\b\2EH\5\20")
+        buf.write("\t\2FH\5\22\n\2GD\3\2\2\2GE\3\2\2\2GF\3\2\2\2H\r\3\2\2")
+        buf.write("\2IN\7\7\2\2JO\7\24\2\2KO\7\23\2\2LO\5\34\17\2MO\7\26")
+        buf.write("\2\2NJ\3\2\2\2NK\3\2\2\2NL\3\2\2\2NM\3\2\2\2NO\3\2\2\2")
+        buf.write("OP\3\2\2\2PQ\7\17\2\2Q\17\3\2\2\2RS\5\34\17\2ST\7\17\2")
+        buf.write("\2T\21\3\2\2\2UV\7\26\2\2VW\7\b\2\2WX\t\2\2\2XY\7\17\2")
+        buf.write("\2Y\23\3\2\2\2Z\\\7\t\2\2[]\5\26\f\2\\[\3\2\2\2\\]\3\2")
+        buf.write("\2\2]^\3\2\2\2^_\7\n\2\2_\25\3\2\2\2`e\5\30\r\2ab\7\13")
+        buf.write("\2\2bd\5\30\r\2ca\3\2\2\2dg\3\2\2\2ec\3\2\2\2ef\3\2\2")
+        buf.write("\2f\27\3\2\2\2ge\3\2\2\2hi\7\26\2\2ij\7\f\2\2jk\5&\24")
+        buf.write("\2k\31\3\2\2\2lm\5\"\22\2mn\7\r\2\2no\5\"\22\2o\33\3\2")
+        buf.write("\2\2pq\7\26\2\2qr\5\36\20\2r\35\3\2\2\2su\7\t\2\2tv\5")
+        buf.write(" \21\2ut\3\2\2\2uv\3\2\2\2vw\3\2\2\2wx\7\n\2\2x\37\3\2")
+        buf.write("\2\2y~\5\"\22\2z{\7\13\2\2{}\5\"\22\2|z\3\2\2\2}\u0080")
+        buf.write("\3\2\2\2~|\3\2\2\2~\177\3\2\2\2\177!\3\2\2\2\u0080~\3")
+        buf.write("\2\2\2\u0081\u0082\t\3\2\2\u0082#\3\2\2\2\u0083\u0084")
+        buf.write("\t\4\2\2\u0084%\3\2\2\2\u0085\u0086\t\5\2\2\u0086\'\3")
+        buf.write("\2\2\2\13,\65BGN\\eu~")
         return buf.getvalue()
 
 
@@ -75,8 +75,8 @@ class MambaParser ( Parser ):
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "PACKAGE", "SEMICOLON", "KW_DOUBLE", "KW_INT", "VOID", 
-                      "DOUBLE", "INTEGER", "RETURN_TYPE", "NAME", "Newline", 
-                      "Whitespace" ]
+                      "DOUBLE", "INTEGER", "RETURN_TYPE", "NAME", "STRING", 
+                      "Newline", "Whitespace" ]
 
     RULE_program = 0
     RULE_package = 1
@@ -125,8 +125,9 @@ class MambaParser ( Parser ):
     INTEGER=18
     RETURN_TYPE=19
     NAME=20
-    Newline=21
-    Whitespace=22
+    STRING=21
+    Newline=22
+    Whitespace=23
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -957,7 +958,7 @@ class MambaParser ( Parser ):
             self.state = 115
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MambaParser.DOUBLE) | (1 << MambaParser.INTEGER) | (1 << MambaParser.NAME))) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MambaParser.DOUBLE) | (1 << MambaParser.INTEGER) | (1 << MambaParser.NAME) | (1 << MambaParser.STRING))) != 0):
                 self.state = 114
                 self.dataList()
 
@@ -1036,6 +1037,9 @@ class MambaParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
+        def STRING(self):
+            return self.getToken(MambaParser.STRING, 0)
+
         def NAME(self):
             return self.getToken(MambaParser.NAME, 0)
 
@@ -1068,7 +1072,7 @@ class MambaParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 127
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MambaParser.DOUBLE) | (1 << MambaParser.INTEGER) | (1 << MambaParser.NAME))) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MambaParser.DOUBLE) | (1 << MambaParser.INTEGER) | (1 << MambaParser.NAME) | (1 << MambaParser.STRING))) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)

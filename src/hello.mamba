@@ -3,7 +3,7 @@ package main;
 def main() -> int {
   xxx = 33;
   sum(1.2, 4.7) ;
-  print("foobar");
+  print('foo bar baz');
   return fib(7) ;
 }
 
