@@ -39,7 +39,7 @@ class __ExpressionHandler(BaseHandler):
                 builder.position_at_end(builder.block)
             builder.store(rhVal, state[name])
         else:
-            print("************** NO ASSIGN FOR YOU *******************")
+            sys.stderr.write("************** NO ASSIGN FOR YOU *******************")
 
     def handle_returnStmt(self, retStmt, builder, irFunc, state):
         if retStmt.INTEGER():

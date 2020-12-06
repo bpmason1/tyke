@@ -92,22 +92,22 @@ class MambaPrintListener(MambaListener):
         if stmtList:
             for exprCtx in stmtList.statement():
                 if exprCtx.funcCallStmt():
-                    print("........... Function Call Statement")
+                    sys.stderr.write("........... Function Call Statement")
                     stmtCtx = exprCtx.funcCallStmt()
                     ExpressionHandler.handle_funcCall(stmtCtx.funcCall(), builder)
 
                 elif exprCtx.returnStmt():
-                    print("........... Return Statement")
+                    sys.stderr.write("........... Return Statement")
                     retStmt = exprCtx.returnStmt()
                     ExpressionHandler.handle_returnStmt(retStmt, builder, irFunc, state)
 
                 elif exprCtx.assigmentStmt():
-                    print("........... Assignment Statement")
+                    sys.stderr.write("........... Assignment Statement")
                     assignCtx = exprCtx.assigmentStmt()
                     ExpressionHandler.handle_assigmentStmt(assignCtx, builder, irFunc, state)
 
                 else:
-                    print("........... WTF ?!?")
+                    sys.stderr.write("........... WTF ?!?")
 
 
 def main():
