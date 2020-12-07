@@ -109,13 +109,15 @@ class MambaPrintListener(MambaListener):
                 else:
                     sys.stderr.write("........... WTF ?!?")
 
+# def toLLVM(mambaStr):
 
-def main():
+
+def processCodeStr(srcCode: str):
     # these exist regardless of the program being compiled
     builtinFunctions()
 
-    # lexer = MambaLexer(StdinStream())
-    lexer = MambaLexer(FileStream('hello.mamba'))
+    # lexer = MambaLexer(FileStream('hello.mamba'))
+    lexer = MambaLexer(InputStream(srcCode))
     stream = CommonTokenStream(lexer)
     parser = MambaParser(stream)
     tree = parser.program()
@@ -130,5 +132,9 @@ def main():
     print(ProgramNode.getPackage('std'))
     print(ProgramNode.getPackage('main'))
 
+def processCodeFile(filename):
+    with open(filename, 'r') as fd:
+        processCodeStr(fd.read())
+
 if __name__ == '__main__':
-    main()
+    processCodeFile('./hello.mamba')
