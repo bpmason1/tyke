@@ -11,6 +11,7 @@ from keywords import *
 from builder.ProgramNode import ProgramNode
 
 class __ExpressionHandler(BaseHandler):
+    __printCnt = 0
 
     def handle_assigmentStmt(self, assignCtx, builder, irFunc, state):
         name = assignCtx.NAME()[0].getText()
@@ -124,7 +125,8 @@ class __ExpressionHandler(BaseHandler):
                                 bytearray(text))
 
         arrayType = ir.ArrayType(int8, len(text))
-        glbl = ir.GlobalVariable(package.llvmIR(), arrayType, "tmp_name_1")
+        glbl = ir.GlobalVariable(package.llvmIR(), arrayType, f"print_call_{self.__printCnt}")
+        self.__printCnt += 1
         glbl.initializer = c_fmt
 
         const = [ir.Constant(int32, x) for x in [0, 0]]
