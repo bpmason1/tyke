@@ -54,7 +54,7 @@ class __ExpressionHandler(BaseHandler):
             retVal = irFunc.return_value.type(val)
             builder.ret(retVal)
         elif retStmt.funcCall():
-            retVal = self.handle_funcCall(retStmt.funcCall(), builder)
+            retVal = self.handle_funcCall(retStmt.funcCall(), builder, state)
             builder.ret(retVal)
         elif retStmt.NAME():
             varName = retStmt.NAME().getText()
@@ -64,12 +64,12 @@ class __ExpressionHandler(BaseHandler):
         else:
             builder.ret_void()
 
-    def handle_funcCall(self, callCtx, builder):
+    def handle_funcCall(self, callCtx, builder, state):
             callName = callCtx.NAME().getText()
 
             # TODO - don't make me a special case
             if callName == 'print':
-                return self.handle_printFuncCall(callCtx, builder)
+                return self.handle_printFuncCall(callCtx, builder, state)
 
             dataListCtx = callCtx.funcCallDataList().dataList()
 
@@ -100,7 +100,7 @@ class __ExpressionHandler(BaseHandler):
             result = builder.call(callFn, callArgs)
             return result
 
-    def handle_printFuncCall(self, callCtx, builder):
+    def handle_printFuncCall(self, callCtx, builder, state):
         int8 = ir.IntType(8)
         int32 = ir.IntType(32)
 
@@ -111,11 +111,16 @@ class __ExpressionHandler(BaseHandler):
         assert(len(dataList) == 1) #  TODO - allow printf varargs
 
         if dataList[0].NAME():
-            text = str(dataList[0].NAME()) + '\n\0' #"foobar\n\0".encode('utf_8')
+            varName = dataList[0].NAME().getText()
+            # print(type(state['xxx']))
+            # print(dir(state['xxx']))
+            text = str(state[varName]) + '\n\0'
             text = text.encode('utf_8')
         elif dataList[0].STRING():
             text = str(dataList[0].STRING())[1:-1] + '\n\0' #"foobar\n\0".encode('utf_8')
             text = text.encode('utf_8')
+        else:
+            print(dir(dataList[0]))
 
         # text = dataList[0].encode('utf_8')
 

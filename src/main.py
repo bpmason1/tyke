@@ -94,7 +94,7 @@ class MambaPrintListener(MambaListener):
                 if exprCtx.funcCallStmt():
                     sys.stderr.write("........... Function Call Statement")
                     stmtCtx = exprCtx.funcCallStmt()
-                    ExpressionHandler.handle_funcCall(stmtCtx.funcCall(), builder)
+                    ExpressionHandler.handle_funcCall(stmtCtx.funcCall(), builder, state)
 
                 elif exprCtx.returnStmt():
                     sys.stderr.write("........... Return Statement")
