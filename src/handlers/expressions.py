@@ -1,6 +1,7 @@
 import antlr4
 from colorama import Fore, Style
 from llvmlite import ir
+import llvmlite
 import re
 import sys
 
@@ -15,6 +16,8 @@ class __ExpressionHandler(BaseHandler):
 
     def handle_assigmentStmt(self, assignCtx, builder, irFunc, state):
         name = assignCtx.NAME()[0].getText()
+
+        # if-else checks type of param for rhs of assignment
         if assignCtx.INTEGER():
             val = assignCtx.INTEGER().getText()
             intPrim = Primitive.int
@@ -31,12 +34,31 @@ class __ExpressionHandler(BaseHandler):
                 state[name] = builder.alloca(doublePrim, size=1, name=name)
                 builder.position_at_end(builder.block)
             builder.store(doublePrim(val), state[name])
-        elif assignCtx.NAME():
+        elif len(assignCtx.NAME()) > 1:
+            # the lhs of the assignment is a NAME so there is always at least 1 NAME regardless of rhs
             rhName = assignCtx.NAME()[1].getText()  # right hand var name
             rhVal = builder.load(state[rhName])
             if name not in state:
                 builder.position_at_start(builder.block)
                 state[name] = builder.alloca(rhVal.type, size=1, name=name)
+                builder.position_at_end(builder.block)
+            builder.store(rhVal, state[name])
+            # print("\n\nHELLO")
+            # print(state[name])
+            # print(type(state[name]))
+            # print(dir(state[name]))
+            # print(state[name]._get_reference())
+            # print("BYE-BYE\n")
+        elif assignCtx.funcCall():
+            rhVal = self.handle_funcCall(assignCtx.funcCall(), builder, state)
+            if name not in state:
+                builder.position_at_start(builder.block)
+                if isinstance(rhVal.type, llvmlite.ir.types.DoubleType):
+                    state[name] = builder.alloca(Primitive.double, size=1, name=name)
+                elif isinstance(rhVal.type, llvmlite.ir.types.IntType):
+                    state[name] = builder.alloca(Primitive.int, size=1, name=name)
+                else:
+                    sys.stderr.write(f"Unknown function return type {type(rhVal.type)} in assignment")
                 builder.position_at_end(builder.block)
             builder.store(rhVal, state[name])
         else:

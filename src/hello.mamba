@@ -2,11 +2,16 @@ package main;
 
 def main() -> int {
   xxx = 33;
-  total = sumI(3, 4) ;
+  total = 14 ;
   print('foo bar baz') ;
   print('hello world') ;
-  myFib = fib(7) ;
-  return total ;
+  newval = doAssign(4) ;
+  return newval ;
+}
+
+def doAssign(data: int) -> int {
+  newVal = data ;
+  return newVal ;
 }
 
 def sumI( first : int, second: int ) -> int {
@@ -15,18 +20,6 @@ def sumI( first : int, second: int ) -> int {
 
 def sumD( first : double, second: double ) -> double {
   return 10.10 ;
-}
-
-def fib( nth: int  ) -> int {
-  val = 7 ;
-  foobar = val ;
-  val = 9 ;
-  foobar = 42 ;
-  val = foobar ;
-  foobar = 43 ;
-  val = 41 ;
-  foobar = val ;
-  return foobar ;
 }
 
 def abyss(i: int, d: double) -> void {
