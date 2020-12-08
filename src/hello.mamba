@@ -25,3 +25,7 @@ def sumD( first : double, second: double ) -> double {
 def abyss(i: int, d: double) -> void {
   return;
 }
+
+def vanish(x: int, y: double) -> void {
+  return;
+}

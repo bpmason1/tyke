@@ -3,3 +3,12 @@ package main;
 def abyss() -> void {
   return;
 }
+
+def vanish(x: int, y: double) -> void {
+  return;
+}
+
+def doAssign(data: int) -> int {
+  newVal = data ;
+  return newVal ;
+}

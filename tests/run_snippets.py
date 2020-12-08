@@ -19,8 +19,8 @@ def runOne(file_name_no_ext):
     msg = f"Testing file {file_name_no_ext}.mamba"
     print(Fore.GREEN + msg + Style.RESET_ALL)
 
-    actual = getActual(file_name_no_ext)
-    expected = getExpected(file_name_no_ext)
+    actual = getActual(file_name_no_ext).strip()
+    expected = getExpected(file_name_no_ext).strip()
 
     assert_equal(actual, expected)
 
