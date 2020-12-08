@@ -14,14 +14,16 @@ statementList: statement+ ;
 statement: returnStmt | funcCallStmt | assigmentStmt;
 returnStmt: 'return' (INTEGER | DOUBLE | funcCall | NAME)?  SEMICOLON;
 funcCallStmt: funcCall SEMICOLON;
-assigmentStmt : NAME '=' (INTEGER | DOUBLE | NAME | funcCall) SEMICOLON ;
+assigmentStmt : NAME '=' (INTEGER | DOUBLE | NAME | funcCall | arthimeticExpr) SEMICOLON ;
 
 funcDefArgList : '(' typedArgList? ')' ;
 typedArgList: typedArg ( ',' typedArg )* ;
 typedArg: NAME ':' varType ;
 
-// arithmetic
-addition : data '+' data ;
+arthimeticExpr : simpleExpression (ARITHMETIC_OP simpleExpression)+ ;
+
+numeric : DOUBLE | INTEGER ;
+simpleExpression : (numeric | NAME | funcCall) ;
 
 funcCall: NAME funcCallDataList ;
 funcCallDataList: '(' dataList? ')' ;
@@ -41,6 +43,7 @@ SEMICOLON : ';' ;
 KW_DOUBLE: 'double' ;
 KW_INT: 'int' ;
 VOID: 'void';
+ARITHMETIC_OP : '+' | '-' | '/' | '*' ;
 
 DOUBLE: INTEGER '.' [0-9]+ ;
 INTEGER: '0' | NON_ZERO_INTEGER ;

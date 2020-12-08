@@ -116,12 +116,30 @@ class MambaListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by MambaParser#addition.
-    def enterAddition(self, ctx:MambaParser.AdditionContext):
+    # Enter a parse tree produced by MambaParser#arthimeticExpr.
+    def enterArthimeticExpr(self, ctx:MambaParser.ArthimeticExprContext):
         pass
 
-    # Exit a parse tree produced by MambaParser#addition.
-    def exitAddition(self, ctx:MambaParser.AdditionContext):
+    # Exit a parse tree produced by MambaParser#arthimeticExpr.
+    def exitArthimeticExpr(self, ctx:MambaParser.ArthimeticExprContext):
+        pass
+
+
+    # Enter a parse tree produced by MambaParser#numeric.
+    def enterNumeric(self, ctx:MambaParser.NumericContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#numeric.
+    def exitNumeric(self, ctx:MambaParser.NumericContext):
+        pass
+
+
+    # Enter a parse tree produced by MambaParser#simpleExpression.
+    def enterSimpleExpression(self, ctx:MambaParser.SimpleExpressionContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#simpleExpression.
+    def exitSimpleExpression(self, ctx:MambaParser.SimpleExpressionContext):
         pass
 
 
