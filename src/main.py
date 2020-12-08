@@ -92,29 +92,27 @@ class MambaPrintListener(MambaListener):
         if stmtList:
             for exprCtx in stmtList.statement():
                 if exprCtx.funcCallStmt():
-                    sys.stderr.write("........... Function Call Statement")
+                    # sys.stderr.write("........... Function Call Statement")
                     stmtCtx = exprCtx.funcCallStmt()
                     ExpressionHandler.handle_funcCall(stmtCtx.funcCall(), builder, state)
 
                 elif exprCtx.returnStmt():
-                    sys.stderr.write("........... Return Statement")
+                    # sys.stderr.write("........... Return Statement")
                     retStmt = exprCtx.returnStmt()
                     ExpressionHandler.handle_returnStmt(retStmt, builder, irFunc, state)
 
                 elif exprCtx.assigmentStmt():
-                    sys.stderr.write("........... Assignment Statement")
+                    # sys.stderr.write("........... Assignment Statement")
                     assignCtx = exprCtx.assigmentStmt()
                     ExpressionHandler.handle_assigmentStmt(assignCtx, builder, irFunc, state)
 
                 else:
                     sys.stderr.write("........... WTF ?!?")
-
-# def toLLVM(mambaStr):
-
+                    sys.exit(1)
 
 def processCodeStr(srcCode: str):
     # these exist regardless of the program being compiled
-    builtinFunctions()
+
 
     # lexer = MambaLexer(FileStream('hello.mamba'))
     lexer = MambaLexer(InputStream(srcCode))
@@ -129,12 +127,16 @@ def processCodeStr(srcCode: str):
     printer = MambaPrintListener()
     walker.walk(printer, tree)
 
-    print(ProgramNode.getPackage('std'))
-    print(ProgramNode.getPackage('main'))
+    # print(ProgramNode.getPackage('std'))
+    return {'main': ProgramNode.getPackage('main')}
 
 def processCodeFile(filename):
+    builtinFunctions()
+
     with open(filename, 'r') as fd:
-        processCodeStr(fd.read())
+        pacakgeMapLL = processCodeStr(fd.read())
+
+    print(pacakgeMapLL['main'])
 
 if __name__ == '__main__':
     processCodeFile('./hello.mamba')

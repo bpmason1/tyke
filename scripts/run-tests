@@ -1,0 +1,21 @@
+#! /usr/bin/env bash
+
+set -e
+
+SCRIPTS_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+PROJECT_DIR=$(cd $SCRIPTS_DIR/.. && pwd)
+VENV_DIR=$(echo $PROJECT_DIR/.venv)
+SRC_DIR=$(echo $PROJECT_DIR/src)
+TESTS_DIR=$(echo $PROJECT_DIR/tests)
+
+cd $PROJECT_DIR
+
+if [ ! -d $VENV_DIR ]; then
+  echo "No virtualenv directory: .venv"
+  exit 1
+fi
+
+. $VENV_DIR/bin/activate
+
+cd $TESTS_DIR
+PYTHONPATH=$SRC_DIR python run_snippets.py
