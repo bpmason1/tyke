@@ -31,6 +31,8 @@ class MambaFunctionTableBuilder(MambaListener):
     def enterFuncdef(self, ctx):
         '''
         Create an LLVM IR function based on `ctx.signature()`
+        This is to ensure function calls are defined before attempting to call them.
+        It allows functions to be written in any order in the source file.
         '''
         package = ProgramNode.getPackage('main')
 
