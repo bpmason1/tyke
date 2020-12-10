@@ -183,7 +183,9 @@ class __ExpressionHandler(BaseHandler):
             # avoids accidentally dropping the last term
             post_mult_div_simpExpList.append(simpExpList[-1])
 
-        result = None
+        if len(post_mult_div_opList) > 0:
+            result = None
+
         for idx, arithOp in enumerate(post_mult_div_opList):
             # handle these now
             if result:
