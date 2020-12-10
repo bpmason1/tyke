@@ -46,12 +46,6 @@ class __ExpressionHandler(BaseHandler):
                 state[name] = builder.alloca(rhVal.type, size=1, name=name)
                 builder.position_at_end(builder.block)
             builder.store(rhVal, state[name])
-            # print("\n\nHELLO")
-            # print(state[name])
-            # print(type(state[name]))
-            # print(dir(state[name]))
-            # print(state[name]._get_reference())
-            # print("BYE-BYE\n")
         elif assignCtx.funcCall():
             rhVal = self.handle_funcCall(assignCtx.funcCall(), builder, state)
             if name not in state:
@@ -80,10 +74,9 @@ class __ExpressionHandler(BaseHandler):
                 state[name] = builder.alloca(total.type, size=1, name=name)
                 builder.position_at_end(builder.block)
             builder.store(total, state[name])
-            # sys.stderr.write("BOO")
-            # sys.exit(2)
         else:
             sys.stderr.write("************** NO ASSIGN FOR YOU *******************")
+            sys.exit(7)
 
     def handle_returnStmt(self, retStmt, builder, irFunc, state):
         if retStmt.INTEGER():
@@ -102,8 +95,13 @@ class __ExpressionHandler(BaseHandler):
         elif retStmt.NAME():
             varName = retStmt.NAME().getText()
             varPtr = state[varName]
-            # result = builder.load(varPtr)
             return builder.ret( builder.load(varPtr) )
+        elif retStmt.multiArthimeticExpr():
+            # print("hola")
+            multiArithExpr = retStmt.multiArthimeticExpr()
+            total = self.handle_multiArthimeticExpr(multiArithExpr, builder, state)
+            return builder.ret(total)
+            # print('adios')
         else:
             builder.ret_void()
 

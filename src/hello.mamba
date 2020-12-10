@@ -5,18 +5,17 @@ def main() -> int {
   total = 14 ;
   print('foo bar baz') ;
   print('hello world') ;
-  newval = assignMultiGroup(4, 5) ;
+  newval = returnCalcResult(4, 5) ;
   return newval ;
 }
 
 def doAssign(data: int) -> int {
-  newVal = data ;
+  newVal = 2* (data + 1);
   return newVal ;
 }
 
-def assignMultiGroup(first : int, second : int) -> int {
-  calc = (first + 6) * (second + 5) + 1;
-  return calc ;
+def returnCalcResult(first : int, second : int) -> int {
+  return (first + 6) + 2 *(second + 5);
 }
 
 def sumD( first : double, second: double ) -> double {

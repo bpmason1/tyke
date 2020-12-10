@@ -56,3 +56,19 @@ entry:
   %".13" = load i64, i64* %"calc"
   ret i64 %".13"
 }
+
+define i64 @"returnCalcResult"(i64 %".1", i64 %".2") 
+{
+entry:
+  %"second" = alloca i64
+  %"first" = alloca i64
+  store i64 %".1", i64* %"first"
+  store i64 %".2", i64* %"second"
+  %".6" = load i64, i64* %"first"
+  %".7" = add i64 %".6", 6
+  %".8" = load i64, i64* %"second"
+  %".9" = add i64 %".8", 5
+  %".10" = mul i64 2, %".9"
+  %".11" = add i64 %".7", %".10"
+  ret i64 %".11"
+}
