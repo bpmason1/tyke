@@ -11,7 +11,7 @@ from primitive import Primitive
 from keywords import *
 
 from builder.ProgramNode import ProgramNode
-from .arithmetic import get_operator
+from .arithmetic import get_llvmlite_arithmetic_function
 
 class __ExpressionHandler(BaseHandler):
     __printCnt = 0
@@ -65,11 +65,11 @@ class __ExpressionHandler(BaseHandler):
             builder.store(rhVal, state[name])
         elif assignCtx.arthimeticExpr():
             arithExpr = assignCtx.arthimeticExpr()
+            total = self.handle_arthimeticExpr(arithExpr, builder, state)
             if name not in state:
                 builder.position_at_start(builder.block)
-                state[name] = builder.alloca(Primitive.int, size=1, name=name)
+                state[name] = builder.alloca(total.type, size=1, name=name)
                 builder.position_at_end(builder.block)
-            total = self.handle_arthimeticExpr(arithExpr, builder, state)
             builder.store(total, state[name])
         else:
             sys.stderr.write("************** NO ASSIGN FOR YOU *******************")
@@ -133,8 +133,6 @@ class __ExpressionHandler(BaseHandler):
             return result
 
     def handle_arthimeticExpr(self, arithExpr, builder, state):
-        sys.stderr.write("\n\nHOO HOO\n")
-        
         if arithExpr.simpleExpression():
             simpExpList = [token for token in arithExpr.simpleExpression()]
         else:
@@ -143,7 +141,6 @@ class __ExpressionHandler(BaseHandler):
 
         if arithExpr.arithmetic_op():
             aritchOpCtx = arithExpr.arithmetic_op()
-            # arithOpList = [get_operator(token) for token in aritchOpCtx]
             arithOpList = [token for token in aritchOpCtx]
         else:
             sys.stderr.write("arithmetic needs at least 1 arithmetic_op")
@@ -172,7 +169,7 @@ class __ExpressionHandler(BaseHandler):
                 else:
                     lhs = self.handle_simpleExpr(simpExpList[idx], builder, state)
                 rhs = self.handle_simpleExpr(simpExpList[idx+1], builder, state)
-                fn = builder.mul if arithOp.MULTIPLY() else builder.sdiv
+                fn = get_llvmlite_arithmetic_function(lhs.type, arithOp, builder)
 
                 result = fn(lhs, rhs)
                 post_mult_div_simpExpList.append(result)
@@ -195,7 +192,7 @@ class __ExpressionHandler(BaseHandler):
                 lhs = self.handle_simpleExpr(post_mult_div_simpExpList[idx], builder, state)
             rhs = self.handle_simpleExpr(post_mult_div_simpExpList[idx+1], builder, state)
 
-            fn = builder.add if arithOp.ADD() else builder.sub
+            fn = get_llvmlite_arithmetic_function(lhs.type, arithOp, builder)
             result = fn(lhs, rhs)
 
         # print(post_mult_div_simpExpList)

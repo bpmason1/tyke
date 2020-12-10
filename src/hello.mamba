@@ -20,7 +20,8 @@ def sumI(first : int, second : int) -> int {
 }
 
 def sumD( first : double, second: double ) -> double {
-  return 10.10 ;
+  flubber = first + second ;
+  return flubber;
 }
 
 def abyss(i: int, d: double) -> void {
