@@ -134,6 +134,15 @@ class MambaListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MambaParser#multiArthimeticExpr.
+    def enterMultiArthimeticExpr(self, ctx:MambaParser.MultiArthimeticExprContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#multiArthimeticExpr.
+    def exitMultiArthimeticExpr(self, ctx:MambaParser.MultiArthimeticExprContext):
+        pass
+
+
     # Enter a parse tree produced by MambaParser#numeric.
     def enterNumeric(self, ctx:MambaParser.NumericContext):
         pass

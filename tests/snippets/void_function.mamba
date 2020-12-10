@@ -18,3 +18,7 @@ def assignMultiply() -> int {
   return calc ;
 }
 
+def arithMultiGroup(first : int, second : int) -> int {
+  calc = (first + 6) * (second + 5) + 1;
+  return calc ;
+}

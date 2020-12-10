@@ -1,7 +1,8 @@
 import antlr4
 from colorama import Fore, Style
-from llvmlite.ir.instructions import Instruction
 from llvmlite import ir
+from llvmlite.ir.instructions import Instruction
+from llvmlite.ir.values import Constant
 import llvmlite
 import re
 import sys
@@ -71,6 +72,16 @@ class __ExpressionHandler(BaseHandler):
                 state[name] = builder.alloca(total.type, size=1, name=name)
                 builder.position_at_end(builder.block)
             builder.store(total, state[name])
+        elif assignCtx.multiArthimeticExpr():
+            multiArithExpr = assignCtx.multiArthimeticExpr()
+            total = self.handle_multiArthimeticExpr(multiArithExpr, builder, state)
+            if name not in state:
+                builder.position_at_start(builder.block)
+                state[name] = builder.alloca(total.type, size=1, name=name)
+                builder.position_at_end(builder.block)
+            builder.store(total, state[name])
+            # sys.stderr.write("BOO")
+            # sys.exit(2)
         else:
             sys.stderr.write("************** NO ASSIGN FOR YOU *******************")
 
@@ -132,6 +143,12 @@ class __ExpressionHandler(BaseHandler):
             result = builder.call(callFn, callArgs)
             return result
 
+    def handle_multiArthimeticExpr(self, multiArithExpr, builder, state):
+        simpleExpList = [self.handle_arthimeticExpr(expr, builder, state) for expr in multiArithExpr.arthimeticExpr()]
+        arithOpCtx = multiArithExpr.arithmetic_op()
+        arithOpList = [token for token in arithOpCtx]
+        return self._arith_from_op_and_term_lists(arithOpList, simpleExpList, builder, state)
+
     def handle_arthimeticExpr(self, arithExpr, builder, state):
         if arithExpr.simpleExpression():
             simpExpList = [token for token in arithExpr.simpleExpression()]
@@ -140,15 +157,22 @@ class __ExpressionHandler(BaseHandler):
             sys.exit(3)
 
         if arithExpr.arithmetic_op():
-            aritchOpCtx = arithExpr.arithmetic_op()
-            arithOpList = [token for token in aritchOpCtx]
+            arithOpCtx = arithExpr.arithmetic_op()
+            arithOpList = [token for token in arithOpCtx]
         else:
-            sys.stderr.write("arithmetic needs at least 1 arithmetic_op")
-            sys.exit(3)
+            arithOpList = []
+            # sys.stderr.write("arithmetic needs at least 1 arithmetic_op")
+            # sys.exit(3)
 
+        return self._arith_from_op_and_term_lists(arithOpList, simpExpList, builder, state)
+
+    def _arith_from_op_and_term_lists(self, arithOpList, simpExpList, builder, state):
         if (len(arithOpList) + 1) != len(simpExpList):
             sys.stderr.write(f'Malformed arithmetic expression: {len(arithOpList)} operator and {len(simpExpList)} terms')
             sys.exit(3)
+
+        if not arithOpList:
+            return self.handle_simpleExpr(simpExpList[0], builder, state)
 
         # do multiplication and division
         post_mult_div_simpExpList = []
@@ -212,6 +236,8 @@ class __ExpressionHandler(BaseHandler):
             return builder.load(stackPtr)
         elif isinstance(simpleExpr, Instruction):
             # TODO .... is this rule too generic to be useful
+            return simpleExpr
+        elif isinstance(simpleExpr, Constant):
             return simpleExpr
         else:
             sys.stderr.write('Unknown simpleExpression type for {simpleExpr.getText()}')
