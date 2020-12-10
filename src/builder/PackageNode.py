@@ -3,6 +3,8 @@ from llvmlite import ir
 from .AstNode import AstNode
 from .DeclarationNode import DeclarationNode
 from .FunctionNode import FunctionNode
+from colorama import Fore, Style
+import sys
 
 class PackageNode(AstNode):
     def __init__(self, name: str, parent: AstNode):
@@ -20,7 +22,8 @@ class PackageNode(AstNode):
         for node in self.children:
             if node.name == name:
                 return node
-        return None
+        sys.stderr.write(Fore.RED + f'Undefined function "{name}"' + Style.RESET_ALL + '\n')
+        sys.exit(1)
 
     def llvmIR(self):
         return self.__llvm

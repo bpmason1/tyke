@@ -5,7 +5,7 @@ def main() -> int {
   total = 14 ;
   print('foo bar baz') ;
   print('hello world') ;
-  newval = sumI(4, 5) ;
+  newval = assignMultiGroup(4, 5) ;
   return newval ;
 }
 
@@ -14,7 +14,7 @@ def doAssign(data: int) -> int {
   return newVal ;
 }
 
-def arithMultiGroup(first : int, second : int) -> int {
+def assignMultiGroup(first : int, second : int) -> int {
   calc = (first + 6) * (second + 5) + 1;
   return calc ;
 }
