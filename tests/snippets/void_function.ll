@@ -27,3 +27,14 @@ entry:
   %".6" = load i64, i64* %"newVal"
   ret i64 %".6"
 }
+
+define i64 @"assignMultiply"() 
+{
+entry:
+  %"calc" = alloca i64, i32 1
+  %".2" = mul i64 3, 9
+  store i64 %".2", i64* %"calc"
+  %".4" = load i64, i64* %"calc"
+  ret i64 %".4"
+}
+

@@ -116,6 +116,15 @@ class MambaListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MambaParser#arithmetic_op.
+    def enterArithmetic_op(self, ctx:MambaParser.Arithmetic_opContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#arithmetic_op.
+    def exitArithmetic_op(self, ctx:MambaParser.Arithmetic_opContext):
+        pass
+
+
     # Enter a parse tree produced by MambaParser#arthimeticExpr.
     def enterArthimeticExpr(self, ctx:MambaParser.ArthimeticExprContext):
         pass

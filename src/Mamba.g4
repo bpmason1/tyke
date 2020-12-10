@@ -20,7 +20,8 @@ funcDefArgList : '(' typedArgList? ')' ;
 typedArgList: typedArg ( ',' typedArg )* ;
 typedArg: NAME ':' varType ;
 
-arthimeticExpr : simpleExpression (ARITHMETIC_OP simpleExpression)+ ;
+arithmetic_op : ADD | SUBTRACT | MULTIPLY | DIVIDE ;
+arthimeticExpr : simpleExpression (arithmetic_op simpleExpression)+ ;
 
 numeric : DOUBLE | INTEGER ;
 simpleExpression : (numeric | NAME | funcCall) ;
@@ -43,7 +44,10 @@ SEMICOLON : ';' ;
 KW_DOUBLE: 'double' ;
 KW_INT: 'int' ;
 VOID: 'void';
-ARITHMETIC_OP : '+' | '-' | '/' | '*' ;
+ADD: '+' ;
+SUBTRACT: '-' ;
+MULTIPLY: '*' ;
+DIVIDE: '/' ;
 
 DOUBLE: INTEGER '.' [0-9]+ ;
 INTEGER: '0' | NON_ZERO_INTEGER ;

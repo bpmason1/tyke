@@ -5,7 +5,7 @@ def main() -> int {
   total = 14 ;
   print('foo bar baz') ;
   print('hello world') ;
-  newval = doAssign(4) ;
+  newval = sumI(4, 5) ;
   return newval ;
 }
 
@@ -14,8 +14,9 @@ def doAssign(data: int) -> int {
   return newVal ;
 }
 
-def sumI( first : int, second: int ) -> int {
-  return 9 ;
+def sumI(first : int, second : int) -> int {
+  calc =first + 6 * 4 / 3 - 1 + 1 - 3 * 2 + second;
+  return calc ;
 }
 
 def sumD( first : double, second: double ) -> double {
@@ -29,3 +30,4 @@ def abyss(i: int, d: double) -> void {
 def vanish(x: int, y: double) -> void {
   return;
 }
+

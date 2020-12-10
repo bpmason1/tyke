@@ -12,3 +12,9 @@ def doAssign(data: int) -> int {
   newVal = data ;
   return newVal ;
 }
+
+def assignMultiply() -> int {
+  calc = 3 * 9 ;
+  return calc ;
+}
+

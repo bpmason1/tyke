@@ -1,5 +1,6 @@
 import antlr4
 from colorama import Fore, Style
+from llvmlite.ir.instructions import Instruction
 from llvmlite import ir
 import llvmlite
 import re
@@ -10,6 +11,7 @@ from primitive import Primitive
 from keywords import *
 
 from builder.ProgramNode import ProgramNode
+from .arithmetic import get_operator
 
 class __ExpressionHandler(BaseHandler):
     __printCnt = 0
@@ -61,6 +63,14 @@ class __ExpressionHandler(BaseHandler):
                     sys.stderr.write(f"Unknown function return type {type(rhVal.type)} in assignment")
                 builder.position_at_end(builder.block)
             builder.store(rhVal, state[name])
+        elif assignCtx.arthimeticExpr():
+            arithExpr = assignCtx.arthimeticExpr()
+            if name not in state:
+                builder.position_at_start(builder.block)
+                state[name] = builder.alloca(Primitive.int, size=1, name=name)
+                builder.position_at_end(builder.block)
+            total = self.handle_arthimeticExpr(arithExpr, builder, state)
+            builder.store(total, state[name])
         else:
             sys.stderr.write("************** NO ASSIGN FOR YOU *******************")
 
@@ -121,6 +131,94 @@ class __ExpressionHandler(BaseHandler):
             callFn = package.getFunction(callName).llvmIR()
             result = builder.call(callFn, callArgs)
             return result
+
+    def handle_arthimeticExpr(self, arithExpr, builder, state):
+        sys.stderr.write("\n\nHOO HOO\n")
+        
+        if arithExpr.simpleExpression():
+            simpExpList = [token for token in arithExpr.simpleExpression()]
+        else:
+            sys.stderr.write("arithmetic needs at least 2 simpleExpression")
+            sys.exit(3)
+
+        if arithExpr.arithmetic_op():
+            aritchOpCtx = arithExpr.arithmetic_op()
+            # arithOpList = [get_operator(token) for token in aritchOpCtx]
+            arithOpList = [token for token in aritchOpCtx]
+        else:
+            sys.stderr.write("arithmetic needs at least 1 arithmetic_op")
+            sys.exit(3)
+
+        if (len(arithOpList) + 1) != len(simpExpList):
+            sys.stderr.write(f'Malformed arithmetic expression: {len(arithOpList)} operator and {len(simpExpList)} terms')
+            sys.exit(3)
+
+        # do multiplication and division
+        post_mult_div_simpExpList = []
+        post_mult_div_opList = []
+        last_op_mult_div = False
+        result = None
+        for idx, arithOp in enumerate(arithOpList):
+            if arithOp.ADD() or arithOp.SUBTRACT():
+                # don't do these yet
+                if not last_op_mult_div:
+                    post_mult_div_simpExpList.append(simpExpList[idx])
+                post_mult_div_opList.append(arithOp)
+                last_op_mult_div = False
+            elif arithOp.MULTIPLY() or arithOp.DIVIDE():
+                # handle these now
+                if last_op_mult_div:
+                    lhs = post_mult_div_simpExpList.pop()
+                else:
+                    lhs = self.handle_simpleExpr(simpExpList[idx], builder, state)
+                rhs = self.handle_simpleExpr(simpExpList[idx+1], builder, state)
+                fn = builder.mul if arithOp.MULTIPLY() else builder.sdiv
+
+                result = fn(lhs, rhs)
+                post_mult_div_simpExpList.append(result)
+
+                last_op_mult_div = True
+            else:
+                sys.stderr.write(f'Unknown arithmetic operator')
+                sys.exit(3)
+
+        if not last_op_mult_div:
+            # avoids accidentally dropping the last term
+            post_mult_div_simpExpList.append(simpExpList[-1])
+
+        result = None
+        for idx, arithOp in enumerate(post_mult_div_opList):
+            # handle these now
+            if result:
+                lhs = result
+            else:
+                lhs = self.handle_simpleExpr(post_mult_div_simpExpList[idx], builder, state)
+            rhs = self.handle_simpleExpr(post_mult_div_simpExpList[idx+1], builder, state)
+
+            fn = builder.add if arithOp.ADD() else builder.sub
+            result = fn(lhs, rhs)
+
+        # print(post_mult_div_simpExpList)
+        # print(post_mult_div_opList)llvmlite.ir.instructions.Instructio
+        return result
+
+    # handle a single term from a simpleExpression
+    def handle_simpleExpr(self, simpleExpr, builder, state):
+        if hasattr(simpleExpr, "funcCall") and simpleExpr.funcCall():
+            return self.handle_funcCall(simpleExpr.funcCall(), builder, state)
+        elif hasattr(simpleExpr, "numeric") and simpleExpr.numeric():
+            return ir.Constant(Primitive.int, simpleExpr.numeric().getText())
+        elif hasattr(simpleExpr, "NAME") and simpleExpr.NAME():
+            stackPtr = state[simpleExpr.getText()]
+            return builder.load(stackPtr)
+        elif isinstance(simpleExpr, Instruction):
+            # TODO .... is this rule too generic to be useful
+            return simpleExpr
+        else:
+            sys.stderr.write('Unknown simpleExpression type for {simpleExpr.getText()}')
+            sys.exit(3)
+
+        sys.stderr.write("handle_simpleExpr reached a point that should be unreachable")
 
     def handle_printFuncCall(self, callCtx, builder, state):
         int8 = ir.IntType(8)
