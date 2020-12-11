@@ -34,8 +34,8 @@ def serializedATN():
         buf.write("\n\27\3\27\3\27\3\30\3\30\3\30\7\30\u00d2\n\30\f\30\16")
         buf.write("\30\u00d5\13\30\3\31\3\31\3\32\3\32\3\33\3\33\3\33\2\2")
         buf.write("\34\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60")
-        buf.write("\62\64\2\t\3\2\33\36\3\2\r\22\3\2\23\24\3\2\37 \4\2\37")
-        buf.write(" \"#\3\2\30\32\3\2\30\31\2\u00df\2\66\3\2\2\2\4<\3\2\2")
+        buf.write("\62\64\2\t\3\2\34\37\3\2\r\22\3\2\23\24\3\2 !\3\2 #\4")
+        buf.write("\2\26\26\31\33\3\2\31\32\2\u00df\2\66\3\2\2\2\4<\3\2\2")
         buf.write("\2\6@\3\2\2\2\bG\3\2\2\2\nN\3\2\2\2\fU\3\2\2\2\16W\3\2")
         buf.write("\2\2\20a\3\2\2\2\22d\3\2\2\2\24q\3\2\2\2\26w\3\2\2\2\30")
         buf.write("\177\3\2\2\2\32\u0083\3\2\2\2\34\u009a\3\2\2\2\36\u009c")
@@ -43,24 +43,24 @@ def serializedATN():
         buf.write("&\u00be\3\2\2\2(\u00c3\3\2\2\2*\u00c5\3\2\2\2,\u00c8\3")
         buf.write("\2\2\2.\u00ce\3\2\2\2\60\u00d6\3\2\2\2\62\u00d8\3\2\2")
         buf.write("\2\64\u00da\3\2\2\2\668\5\4\3\2\679\5\6\4\28\67\3\2\2")
-        buf.write("\29:\3\2\2\2:8\3\2\2\2:;\3\2\2\2;\3\3\2\2\2<=\7\26\2\2")
-        buf.write("=>\7\"\2\2>?\7\27\2\2?\5\3\2\2\2@A\5\b\5\2AC\7\3\2\2B")
+        buf.write("\29:\3\2\2\2:8\3\2\2\2:;\3\2\2\2;\3\3\2\2\2<=\7\27\2\2")
+        buf.write("=>\7\"\2\2>?\7\30\2\2?\5\3\2\2\2@A\5\b\5\2AC\7\3\2\2B")
         buf.write("D\5\n\6\2CB\3\2\2\2CD\3\2\2\2DE\3\2\2\2EF\7\4\2\2F\7\3")
         buf.write("\2\2\2GH\7\5\2\2HI\7\"\2\2IJ\5\24\13\2JK\7\6\2\2KL\5\62")
         buf.write("\32\2L\t\3\2\2\2MO\5\f\7\2NM\3\2\2\2OP\3\2\2\2PN\3\2\2")
         buf.write("\2PQ\3\2\2\2Q\13\3\2\2\2RV\5\16\b\2SV\5\20\t\2TV\5\22")
         buf.write("\n\2UR\3\2\2\2US\3\2\2\2UT\3\2\2\2V\r\3\2\2\2W]\7\7\2")
-        buf.write("\2X^\7 \2\2Y^\7\37\2\2Z^\5*\26\2[^\7\"\2\2\\^\5\36\20")
-        buf.write("\2]X\3\2\2\2]Y\3\2\2\2]Z\3\2\2\2][\3\2\2\2]\\\3\2\2\2")
-        buf.write("]^\3\2\2\2^_\3\2\2\2_`\7\27\2\2`\17\3\2\2\2ab\5*\26\2")
-        buf.write("bc\7\27\2\2c\21\3\2\2\2de\7\"\2\2em\7\b\2\2fn\7 \2\2g")
-        buf.write("n\7\37\2\2hn\7\"\2\2in\5*\26\2jn\5\34\17\2kn\5\36\20\2")
-        buf.write("ln\5 \21\2mf\3\2\2\2mg\3\2\2\2mh\3\2\2\2mi\3\2\2\2mj\3")
-        buf.write("\2\2\2mk\3\2\2\2ml\3\2\2\2no\3\2\2\2op\7\27\2\2p\23\3")
-        buf.write("\2\2\2qs\7\t\2\2rt\5\26\f\2sr\3\2\2\2st\3\2\2\2tu\3\2")
-        buf.write("\2\2uv\7\n\2\2v\25\3\2\2\2w|\5\30\r\2xy\7\13\2\2y{\5\30")
-        buf.write("\r\2zx\3\2\2\2{~\3\2\2\2|z\3\2\2\2|}\3\2\2\2}\27\3\2\2")
-        buf.write("\2~|\3\2\2\2\177\u0080\7\"\2\2\u0080\u0081\7\f\2\2\u0081")
+        buf.write("\2X^\7!\2\2Y^\7 \2\2Z^\5*\26\2[^\7\"\2\2\\^\5\36\20\2")
+        buf.write("]X\3\2\2\2]Y\3\2\2\2]Z\3\2\2\2][\3\2\2\2]\\\3\2\2\2]^")
+        buf.write("\3\2\2\2^_\3\2\2\2_`\7\30\2\2`\17\3\2\2\2ab\5*\26\2bc")
+        buf.write("\7\30\2\2c\21\3\2\2\2de\7\"\2\2em\7\b\2\2fn\7!\2\2gn\7")
+        buf.write(" \2\2hn\7\"\2\2in\5*\26\2jn\5\34\17\2kn\5\36\20\2ln\5")
+        buf.write(" \21\2mf\3\2\2\2mg\3\2\2\2mh\3\2\2\2mi\3\2\2\2mj\3\2\2")
+        buf.write("\2mk\3\2\2\2ml\3\2\2\2no\3\2\2\2op\7\30\2\2p\23\3\2\2")
+        buf.write("\2qs\7\t\2\2rt\5\26\f\2sr\3\2\2\2st\3\2\2\2tu\3\2\2\2")
+        buf.write("uv\7\n\2\2v\25\3\2\2\2w|\5\30\r\2xy\7\13\2\2y{\5\30\r")
+        buf.write("\2zx\3\2\2\2{~\3\2\2\2|z\3\2\2\2|}\3\2\2\2}\27\3\2\2\2")
+        buf.write("~|\3\2\2\2\177\u0080\7\"\2\2\u0080\u0081\7\f\2\2\u0081")
         buf.write("\u0082\5\64\33\2\u0082\31\3\2\2\2\u0083\u0084\t\2\2\2")
         buf.write("\u0084\33\3\2\2\2\u0085\u008b\5(\25\2\u0086\u0087\5\32")
         buf.write("\16\2\u0087\u0088\5(\25\2\u0088\u008a\3\2\2\2\u0089\u0086")
@@ -115,17 +115,16 @@ class MambaParser ( Parser ):
     literalNames = [ "<INVALID>", "'{'", "'}'", "'def'", "'->'", "'return'", 
                      "'='", "'('", "')'", "','", "':'", "'=='", "'!='", 
                      "'<'", "'<='", "'>'", "'>='", "'true'", "'false'", 
-                     "'bool'", "'package'", "';'", "'double'", "'int'", 
+                     "'if'", "'bool'", "'package'", "';'", "'double'", "'int'", 
                      "'void'", "'+'", "'-'", "'*'", "'/'" ]
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "EQ", "NEQ", 
-                      "LT", "LTE", "GT", "GTE", "TRUE", "FALSE", "BOOL", 
+                      "LT", "LTE", "GT", "GTE", "TRUE", "FALSE", "IF", "BOOL", 
                       "PACKAGE", "SEMICOLON", "KW_DOUBLE", "KW_INT", "VOID", 
                       "ADD", "SUBTRACT", "MULTIPLY", "DIVIDE", "DOUBLE", 
-                      "INTEGER", "RETURN_TYPE", "NAME", "STRING", "Newline", 
-                      "Whitespace" ]
+                      "INTEGER", "NAME", "STRING", "Newline", "Whitespace" ]
 
     RULE_program = 0
     RULE_package = 1
@@ -181,19 +180,19 @@ class MambaParser ( Parser ):
     GTE=16
     TRUE=17
     FALSE=18
-    BOOL=19
-    PACKAGE=20
-    SEMICOLON=21
-    KW_DOUBLE=22
-    KW_INT=23
-    VOID=24
-    ADD=25
-    SUBTRACT=26
-    MULTIPLY=27
-    DIVIDE=28
-    DOUBLE=29
-    INTEGER=30
-    RETURN_TYPE=31
+    IF=19
+    BOOL=20
+    PACKAGE=21
+    SEMICOLON=22
+    KW_DOUBLE=23
+    KW_INT=24
+    VOID=25
+    ADD=26
+    SUBTRACT=27
+    MULTIPLY=28
+    DIVIDE=29
+    DOUBLE=30
+    INTEGER=31
     NAME=32
     STRING=33
     Newline=34
@@ -1712,6 +1711,9 @@ class MambaParser ( Parser ):
         def KW_DOUBLE(self):
             return self.getToken(MambaParser.KW_DOUBLE, 0)
 
+        def BOOL(self):
+            return self.getToken(MambaParser.BOOL, 0)
+
         def getRuleIndex(self):
             return MambaParser.RULE_returnType
 
@@ -1735,7 +1737,7 @@ class MambaParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 214
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MambaParser.KW_DOUBLE) | (1 << MambaParser.KW_INT) | (1 << MambaParser.VOID))) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MambaParser.BOOL) | (1 << MambaParser.KW_DOUBLE) | (1 << MambaParser.KW_INT) | (1 << MambaParser.VOID))) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)

@@ -26,3 +26,8 @@ def arithMultiGroup(first : int, second : int) -> int {
 def returnCalcResult(first : int, second : int) -> int {
   return (first + 6) + 2 *(second + 5);
 }
+
+def retBool(x : int, y : int) -> bool {
+  isLessThan = x < y;
+  return isLessThan;
+}

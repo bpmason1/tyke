@@ -9,6 +9,8 @@ package: PACKAGE NAME SEMICOLON;
 funcdef: signature '{' statementList? '}' ;
 signature: 'def' NAME funcDefArgList '->' returnType ;
 
+// ifStmt : IF comparisonExpr '{' statementList? '}' ;
+
 // statements
 statementList: statement+ ;
 statement: returnStmt | funcCallStmt | assigmentStmt;
@@ -39,7 +41,7 @@ funcCallDataList: '(' dataList? ')' ;
 dataList: data (',' data)* ;
 data: STRING | NAME | DOUBLE | INTEGER;
 
-returnType: ('void' | 'int' | 'double') ;
+returnType: ('void' | 'int' | 'double' | BOOL) ;
 varType : ('double' | 'int') ;
 
 
@@ -57,6 +59,7 @@ GTE : '>=' ;
 TRUE : 'true' ;
 FALSE : 'false' ;
 
+IF : 'if' ;
 BOOL : 'bool' ;
 PACKAGE : 'package' ;
 SEMICOLON : ';' ;
@@ -71,7 +74,7 @@ DIVIDE: '/' ;
 DOUBLE: INTEGER '.' [0-9]+ ;
 INTEGER: '0' | NON_ZERO_INTEGER ;
 
-RETURN_TYPE: VAR_TYPE | VOID ;
+// RETURN_TYPE: VAR_TYPE | VOID ;
 NAME: ID_START ID_CONTINUE*;
 STRING: SHORT_STRING ;
 
@@ -79,7 +82,7 @@ fragment ID_START : '_' | [A-Z] | [a-z] ;
 fragment ID_CONTINUE : ID_START | [0-9] ;
 fragment NON_ZERO_INTEGER: SIGN? POSITIVE_INTEGER  ;
 fragment POSITIVE_INTEGER: [1-9] [0-9]* ;
-fragment VAR_TYPE : (KW_DOUBLE | KW_INT) ;
+// fragment VAR_TYPE : (KW_DOUBLE | KW_INT) ;
 fragment SIGN: '+' | '-' ;
 
 fragment SHORT_STRING

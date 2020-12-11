@@ -12,6 +12,11 @@ def main() -> int {
   return newval ;
 }
 
+def retBool(x : int, y : int) -> bool {
+  isLessThan = x < y;
+  return isLessThan;
+}
+
 def doAssign(data: int) -> int {
   newVal = 2* (data + 1);
   return newVal ;

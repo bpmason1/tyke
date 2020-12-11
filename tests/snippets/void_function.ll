@@ -72,3 +72,19 @@ entry:
   %".11" = add i64 %".7", %".10"
   ret i64 %".11"
 }
+
+define i1 @"retBool"(i64 %".1", i64 %".2") 
+{
+entry:
+  %"isLessThan" = alloca i1, i32 1
+  %"y" = alloca i64
+  %"x" = alloca i64
+  store i64 %".1", i64* %"x"
+  store i64 %".2", i64* %"y"
+  %".6" = load i64, i64* %"x"
+  %".7" = load i64, i64* %"y"
+  %".8" = icmp slt i64 %".6", %".7"
+  store i1 %".8", i1* %"isLessThan"
+  %".10" = load i1, i1* %"isLessThan"
+  ret i1 %".10"
+}
