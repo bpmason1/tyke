@@ -12,7 +12,7 @@ from primitive import Primitive
 from keywords import *
 
 from builder.ProgramNode import ProgramNode
-from .arithmetic import get_llvmlite_arithmetic_function
+from .arithmetic import get_llvmlite_arithmetic_function, get_comparison_operator
 
 class __ExpressionHandler(BaseHandler):
     __printCnt = 0
@@ -23,7 +23,7 @@ class __ExpressionHandler(BaseHandler):
         # if-else checks type of param for rhs of assignment
         if assignCtx.INTEGER():
             val = assignCtx.INTEGER().getText()
-            intPrim = Primitive.int
+            intPrim = Primitive.integer
             if name not in state:
                 builder.position_at_start(builder.block)
                 state[name] = builder.alloca(intPrim, size=1, name=name)
@@ -53,7 +53,7 @@ class __ExpressionHandler(BaseHandler):
                 if isinstance(rhVal.type, llvmlite.ir.types.DoubleType):
                     state[name] = builder.alloca(Primitive.double, size=1, name=name)
                 elif isinstance(rhVal.type, llvmlite.ir.types.IntType):
-                    state[name] = builder.alloca(Primitive.int, size=1, name=name)
+                    state[name] = builder.alloca(Primitive.integer, size=1, name=name)
                 else:
                     sys.stderr.write(f"Unknown function return type {type(rhVal.type)} in assignment")
                 builder.position_at_end(builder.block)
@@ -74,6 +74,14 @@ class __ExpressionHandler(BaseHandler):
                 state[name] = builder.alloca(total.type, size=1, name=name)
                 builder.position_at_end(builder.block)
             builder.store(total, state[name])
+        elif assignCtx.comparisonExpr():
+            compExpr = assignCtx.comparisonExpr()
+            cmpVal = self.handle_comparisonExpr(compExpr, builder, state)
+            if name not in state:
+                builder.position_at_start(builder.block)
+                state[name] = builder.alloca(Primitive.boolean, size=1, name=name)
+                builder.position_at_end(builder.block)
+            builder.store(cmpVal, state[name])
         else:
             sys.stderr.write("************** NO ASSIGN FOR YOU *******************")
             sys.exit(7)
@@ -97,11 +105,9 @@ class __ExpressionHandler(BaseHandler):
             varPtr = state[varName]
             return builder.ret( builder.load(varPtr) )
         elif retStmt.multiArthimeticExpr():
-            # print("hola")
             multiArithExpr = retStmt.multiArthimeticExpr()
             total = self.handle_multiArthimeticExpr(multiArithExpr, builder, state)
             return builder.ret(total)
-            # print('adios')
         else:
             builder.ret_void()
 
@@ -228,7 +234,7 @@ class __ExpressionHandler(BaseHandler):
         if hasattr(simpleExpr, "funcCall") and simpleExpr.funcCall():
             return self.handle_funcCall(simpleExpr.funcCall(), builder, state)
         elif hasattr(simpleExpr, "numeric") and simpleExpr.numeric():
-            return ir.Constant(Primitive.int, simpleExpr.numeric().getText())
+            return ir.Constant(Primitive.integer, simpleExpr.numeric().getText())
         elif hasattr(simpleExpr, "NAME") and simpleExpr.NAME():
             stackPtr = state[simpleExpr.getText()]
             return builder.load(stackPtr)
@@ -242,6 +248,32 @@ class __ExpressionHandler(BaseHandler):
             sys.exit(3)
 
         sys.stderr.write("handle_simpleExpr reached a point that should be unreachable")
+
+    def handle_comparisonExpr(self, compExpr, builder, state):
+        if compExpr.simpleExpression():
+            simpExpList = [token for token in compExpr.simpleExpression()]
+        else:
+            sys.stderr.write("arithmetic needs at least 2 simpleExpression")
+            sys.exit(3)
+
+        if compExpr.bool_comparison_op():
+            compOpCtx = compExpr.bool_comparison_op()
+            compOpList = [token for token in compOpCtx]
+        else:
+            compOpList = []
+            # compOpList.stderr.write("comparison needs at least 1 bool_comparison_op")
+            # sys.exit(3)
+
+        if(len(compOpList) > 1):
+            sys.stderr.write(f'Need no more than 1 comparison operator but found {len(compOpList)}')
+        if(len(simpExpList) != len(compOpList) + 1):
+            sys.stderr.write(f'Need no more than 1 comparison term than operator')
+
+        lhs = self.handle_simpleExpr(simpExpList[0], builder, state)
+        rhs = self.handle_simpleExpr(simpExpList[1], builder, state)
+        cmp_op = get_comparison_operator(compOpList[0], builder)
+        result =  builder.icmp_signed(cmp_op, lhs, rhs)
+        return result
 
     def handle_printFuncCall(self, callCtx, builder, state):
         int8 = ir.IntType(8)

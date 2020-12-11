@@ -143,6 +143,33 @@ class MambaListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MambaParser#comparisonExpr.
+    def enterComparisonExpr(self, ctx:MambaParser.ComparisonExprContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#comparisonExpr.
+    def exitComparisonExpr(self, ctx:MambaParser.ComparisonExprContext):
+        pass
+
+
+    # Enter a parse tree produced by MambaParser#bool_comparison_op.
+    def enterBool_comparison_op(self, ctx:MambaParser.Bool_comparison_opContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#bool_comparison_op.
+    def exitBool_comparison_op(self, ctx:MambaParser.Bool_comparison_opContext):
+        pass
+
+
+    # Enter a parse tree produced by MambaParser#booleanLiteral.
+    def enterBooleanLiteral(self, ctx:MambaParser.BooleanLiteralContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#booleanLiteral.
+    def exitBooleanLiteral(self, ctx:MambaParser.BooleanLiteralContext):
+        pass
+
+
     # Enter a parse tree produced by MambaParser#numeric.
     def enterNumeric(self, ctx:MambaParser.NumericContext):
         pass

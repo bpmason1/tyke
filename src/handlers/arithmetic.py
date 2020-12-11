@@ -37,3 +37,20 @@ def get_integer_operator(opCtx: MambaParser.Arithmetic_opContext, builder):
     else:
         sys.stderr.write(f'Unknown integer operator: {opCtx.getText()}')
         sys.exit(2)
+
+def get_comparison_operator(opCtx, builder):
+    if opCtx.EQ():
+        return '=='
+    elif opCtx.NEQ():
+        return '!='
+    elif opCtx.GT():
+        return '>'
+    elif opCtx.GTE():
+        return '>='
+    elif opCtx.LT():
+        return '<'
+    elif opCtx.LTE():
+        return '<='
+
+    sys.stderr.write(f'Unknwon numerical comparison operator {opCtx.getText()}')
+    sys.exit(2)

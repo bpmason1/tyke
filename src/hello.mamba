@@ -5,6 +5,9 @@ def main() -> int {
   total = 14 ;
   print('foo bar baz') ;
   print('hello world') ;
+
+  myBool = 5 < 4 ;
+
   newval = returnCalcResult(4, 5) ;
   return newval ;
 }
@@ -17,6 +20,10 @@ def doAssign(data: int) -> int {
 def returnCalcResult(first : int, second : int) -> int {
   return (first + 6) + 2 *(second + 5);
 }
+
+// def returnDoubleCalcResult(x : double, y : double) -> double {
+//   return 3.0 * (x + 6.0);
+// }
 
 def sumD( first : double, second: double ) -> double {
   flubber = first + second ;

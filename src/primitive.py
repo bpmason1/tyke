@@ -4,13 +4,11 @@ from keywords import *
 
 class __Primitive:
     def __init__(self):
-        self._void = ir.VoidType()
-        self._integer = ir.IntType(64)
-        self._double = ir.DoubleType()
         self._type_map = {
-            VOID: self._void,
-            INT: self._integer,
-            DOUBLE: self._double
+            VOID: ir.VoidType(),
+            INT: ir.IntType(64),
+            DOUBLE: ir.DoubleType(),
+            BOOL: ir.IntType(1),
         }
 
     def get_type_by_name(self, var_type: str):
@@ -22,7 +20,11 @@ class __Primitive:
         return 'Unknown'
 
     @property
-    def int(self):
+    def boolean(self):
+        return self._type_map[BOOL]
+
+    @property
+    def integer(self):
         return self._type_map[INT]
 
     @property

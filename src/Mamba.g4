@@ -14,7 +14,7 @@ statementList: statement+ ;
 statement: returnStmt | funcCallStmt | assigmentStmt;
 returnStmt: 'return' (INTEGER | DOUBLE | funcCall | NAME | multiArthimeticExpr)?  SEMICOLON;
 funcCallStmt: funcCall SEMICOLON;
-assigmentStmt : NAME '=' (INTEGER | DOUBLE | NAME | funcCall | arthimeticExpr | multiArthimeticExpr) SEMICOLON ;
+assigmentStmt : NAME '=' (INTEGER | DOUBLE | NAME | funcCall | arthimeticExpr | multiArthimeticExpr | comparisonExpr) SEMICOLON ;
 
 funcDefArgList : '(' typedArgList? ')' ;
 typedArgList: typedArg ( ',' typedArg )* ;
@@ -24,6 +24,12 @@ arithmetic_op : ADD | SUBTRACT | MULTIPLY | DIVIDE ;
 arthimeticExpr : simpleExpression (arithmetic_op simpleExpression)* |
                 '(' simpleExpression (arithmetic_op simpleExpression)* ')' ;
 multiArthimeticExpr : arthimeticExpr ( arithmetic_op arthimeticExpr)* ;
+
+comparisonExpr: simpleExpression ( bool_comparison_op simpleExpression)+ |
+                '(' simpleExpression ( bool_comparison_op simpleExpression)+ ')' ;
+bool_comparison_op : EQ | NEQ | LT | LTE | GT | GTE ;
+booleanLiteral : TRUE | FALSE ;
+// simpleBooleanTerm : (booleanLiteral | numeric | NAME | funcCall) ;
 
 numeric : DOUBLE | INTEGER ;
 simpleExpression : (numeric | NAME | funcCall) ;
@@ -41,6 +47,17 @@ varType : ('double' | 'int') ;
 /*
  * lexer rules
  */
+EQ : '==' ;
+NEQ : '!=' ;
+LT : '<' ;
+LTE : '<=' ;
+GT : '>' ;
+GTE : '>=' ;
+
+TRUE : 'true' ;
+FALSE : 'false' ;
+
+BOOL : 'bool' ;
 PACKAGE : 'package' ;
 SEMICOLON : ';' ;
 KW_DOUBLE: 'double' ;
