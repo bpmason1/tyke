@@ -250,15 +250,14 @@ class __ExpressionHandler(BaseHandler):
         sys.stderr.write("handle_simpleExpr reached a point that should be unreachable")
 
     def handle_comparisonExpr(self, compExpr, builder, state):
-        if compExpr.simpleExpression():
-            simpExpList = [token for token in compExpr.simpleExpression()]
+        if compExpr.simpleExpression() and len(compExpr.simpleExpression()) == 2:
+            simpExpList = compExpr.simpleExpression()
         else:
             sys.stderr.write("arithmetic needs at least 2 simpleExpression")
             sys.exit(3)
 
         if compExpr.bool_comparison_op():
-            compOpCtx = compExpr.bool_comparison_op()
-            compOpList = [token for token in compOpCtx]
+            compOpList = [compExpr.bool_comparison_op()]
         else:
             compOpList = []
             # compOpList.stderr.write("comparison needs at least 1 bool_comparison_op")
