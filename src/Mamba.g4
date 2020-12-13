@@ -9,11 +9,11 @@ package: PACKAGE NAME SEMICOLON;
 funcdef: signature '{' statementList? '}' ;
 signature: 'def' NAME funcDefArgList '->' returnType ;
 
-// ifStmt : IF comparisonExpr '{' statementList? '}' ;
+ifStmt : IF comparisonExpr '{' statementList? '}' ;
 
 // statements
 statementList: statement+ ;
-statement: returnStmt | funcCallStmt | assigmentStmt;
+statement: returnStmt | funcCallStmt | assigmentStmt | ifStmt;
 returnStmt: 'return' (INTEGER | DOUBLE | funcCall | NAME | multiArthimeticExpr)?  SEMICOLON;
 funcCallStmt: funcCall SEMICOLON;
 assigmentStmt : NAME '=' (INTEGER | DOUBLE | NAME | funcCall | arthimeticExpr | multiArthimeticExpr | comparisonExpr) SEMICOLON ;

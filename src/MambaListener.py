@@ -44,6 +44,15 @@ class MambaListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MambaParser#ifStmt.
+    def enterIfStmt(self, ctx:MambaParser.IfStmtContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#ifStmt.
+    def exitIfStmt(self, ctx:MambaParser.IfStmtContext):
+        pass
+
+
     # Enter a parse tree produced by MambaParser#statementList.
     def enterStatementList(self, ctx:MambaParser.StatementListContext):
         pass

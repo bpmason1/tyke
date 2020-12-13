@@ -8,18 +8,21 @@ def main() -> int {
 
   myBool = 5 < 4 ;
 
-  newval = returnCalcResult(4, 5) ;
+  newval = fibonacci(7) ;
   return newval ;
+}
+
+def fibonacci( nth : int ) -> int {
+  if 1 <= 0 {
+    return 1 ;
+  }
+
+  return 6;
 }
 
 def retBool(x : int, y : int) -> bool {
   isLessThan = x < y;
   return isLessThan;
-}
-
-def doAssign(data: int) -> int {
-  newVal = 2* (data + 1);
-  return newVal ;
 }
 
 def returnCalcResult(first : int, second : int) -> int {
@@ -29,17 +32,3 @@ def returnCalcResult(first : int, second : int) -> int {
 // def returnDoubleCalcResult(x : double, y : double) -> double {
 //   return 3.0 * (x + 6.0);
 // }
-
-def sumD( first : double, second: double ) -> double {
-  flubber = first + second ;
-  return flubber;
-}
-
-def abyss(i: int, d: double) -> void {
-  return;
-}
-
-def vanish(x: int, y: double) -> void {
-  return;
-}
-

@@ -111,6 +111,13 @@ class __ExpressionHandler(BaseHandler):
         else:
             builder.ret_void()
 
+    def handle_ifStmt(self, ifCtx, builder, irFunc, state):
+        predicate = self.handle_comparisonExpr(ifCtx.comparisonExpr(), builder, state)
+        with builder.if_then(predicate): # as (then, otherwise):
+            #with then:
+                stmtList = ifCtx.statementList()
+                self.handele_statementList(stmtList, builder, irFunc, state)
+
     def handle_funcCall(self, callCtx, builder, state):
             callName = callCtx.NAME().getText()
 
@@ -169,6 +176,29 @@ class __ExpressionHandler(BaseHandler):
             # sys.exit(3)
 
         return self._arith_from_op_and_term_lists(arithOpList, simpExpList, builder, state)
+
+    def handele_statementList(self, stmtList, builder, irFunc, state):
+        for exprCtx in stmtList.statement():
+            if exprCtx.funcCallStmt():
+                # sys.stderr.write("........... Function Call Statement")
+                stmtCtx = exprCtx.funcCallStmt()
+                self.handle_funcCall(stmtCtx.funcCall(), builder, state)
+
+            elif exprCtx.returnStmt():
+                # sys.stderr.write("........... Return Statement")
+                retStmt = exprCtx.returnStmt()
+                self.handle_returnStmt(retStmt, builder, irFunc, state)
+
+            elif exprCtx.assigmentStmt():
+                # sys.stderr.write("........... Assignment Statement")
+                assignCtx = exprCtx.assigmentStmt()
+                self.handle_assigmentStmt(assignCtx, builder, irFunc, state)
+            elif exprCtx.ifStmt():
+                ifCtx = exprCtx.ifStmt()
+                self.handle_ifStmt(ifCtx, builder, irFunc, state)
+            else:
+                sys.stderr.write("........... WTF ?!?\n")
+                sys.exit(1)
 
     def _arith_from_op_and_term_lists(self, arithOpList, simpExpList, builder, state):
         if (len(arithOpList) + 1) != len(simpExpList):
