@@ -88,3 +88,9 @@ entry:
   %".10" = load i1, i1* %"isLessThan"
   ret i1 %".10"
 }
+
+define i64 @"one"() 
+{
+entry:
+  ret i64 1
+}

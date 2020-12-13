@@ -129,7 +129,7 @@ class __ExpressionHandler(BaseHandler):
 
             if not dataListCtx:
                 package = ProgramNode.getPackage('main')
-                callFN = package.getFunction(name).llvmIR()
+                callFn = package.getFunction(callName).llvmIR()
                 return builder.call(callFn, [])
 
             dataList = dataListCtx.data()

@@ -31,3 +31,7 @@ def retBool(x : int, y : int) -> bool {
   isLessThan = x < y;
   return isLessThan;
 }
+
+def one() -> int {
+  return 1;
+}
