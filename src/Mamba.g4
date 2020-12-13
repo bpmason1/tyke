@@ -14,7 +14,7 @@ ifStmt : IF comparisonExpr '{' statementList? '}' ;
 // statements
 statementList: statement+ ;
 statement: returnStmt | funcCallStmt | assigmentStmt | ifStmt;
-returnStmt: 'return' (INTEGER | DOUBLE | funcCall | NAME | multiArthimeticExpr)?  SEMICOLON;
+returnStmt: 'return' (simpleExpression | multiArthimeticExpr)?  SEMICOLON;
 funcCallStmt: funcCall SEMICOLON;
 assigmentStmt : NAME '=' (INTEGER | DOUBLE | NAME | funcCall | arthimeticExpr | multiArthimeticExpr | comparisonExpr) SEMICOLON ;
 

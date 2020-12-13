@@ -29,6 +29,11 @@ def returnCalcResult(first : int, second : int) -> int {
   return (first + 6) + 2 *(second + 5);
 }
 
+def assignMultiply() -> int {
+  calc = 3 * 9 ;
+  return calc ;
+}
+
 // def returnDoubleCalcResult(x : double, y : double) -> double {
 //   return 3.0 * (x + 6.0);
 // }

@@ -87,23 +87,10 @@ class __ExpressionHandler(BaseHandler):
             sys.exit(7)
 
     def handle_returnStmt(self, retStmt, builder, irFunc, state):
-        if retStmt.INTEGER():
-            val = retStmt.INTEGER().getText()
-            irFunc.return_value.type(val)
-            retVal = irFunc.return_value.type(val)
+        if retStmt.simpleExpression():
+            simpleExprCtx = retStmt.simpleExpression()
+            retVal = self.handle_simpleExpr(simpleExprCtx, builder, state)
             builder.ret(retVal)
-        elif retStmt.DOUBLE():
-            val = retStmt.DOUBLE().getText()
-            irFunc.return_value.type(val)
-            retVal = irFunc.return_value.type(val)
-            builder.ret(retVal)
-        elif retStmt.funcCall():
-            retVal = self.handle_funcCall(retStmt.funcCall(), builder, state)
-            builder.ret(retVal)
-        elif retStmt.NAME():
-            varName = retStmt.NAME().getText()
-            varPtr = state[varName]
-            return builder.ret( builder.load(varPtr) )
         elif retStmt.multiArthimeticExpr():
             multiArithExpr = retStmt.multiArthimeticExpr()
             total = self.handle_multiArthimeticExpr(multiArithExpr, builder, state)
