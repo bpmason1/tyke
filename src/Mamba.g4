@@ -13,14 +13,20 @@ ifStmt : IF comparisonExpr '{' statementList? '}' ;
 
 // statements
 statementList: statement+ ;
-statement: returnStmt | funcCallStmt | assigmentStmt | ifStmt;
+
+statement: returnStmt | funcCallStmt | assigmentStmt | declareAndAssignStmt | ifStmt;
 returnStmt: 'return' (simpleExpression | multiArthimeticExpr)?  SEMICOLON;
 funcCallStmt: funcCall SEMICOLON;
-assigmentStmt : NAME '=' (simpleExpression | arthimeticExpr | multiArthimeticExpr | comparisonExpr) SEMICOLON ;
+
+declareAndAssignStmt : varDeclare '=' (simpleExpression | arthimeticExpr | multiArthimeticExpr | comparisonExpr) SEMICOLON ;
+
+assigmentStmt : NAME '=' (simpleExpression | arthimeticExpr | multiArthimeticExpr | comparisonExpr | declareAndAssignStmt) SEMICOLON ;
 
 funcDefArgList : '(' typedArgList? ')' ;
 typedArgList: typedArg ( ',' typedArg )* ;
 typedArg: NAME ':' varType ;
+
+varDeclare: LET MUT? NAME ;
 
 arithmetic_op : ADD | SUBTRACT | MULTIPLY | DIVIDE ;
 arthimeticExpr : simpleExpression (arithmetic_op simpleExpression)* |
@@ -59,6 +65,8 @@ GTE : '>=' ;
 TRUE : 'true' ;
 FALSE : 'false' ;
 
+LET : 'let' ;
+MUT : 'mut' ;
 IF : 'if' ;
 BOOL : 'bool' ;
 PACKAGE : 'package' ;

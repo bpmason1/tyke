@@ -89,6 +89,15 @@ class MambaListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MambaParser#declareAndAssignStmt.
+    def enterDeclareAndAssignStmt(self, ctx:MambaParser.DeclareAndAssignStmtContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#declareAndAssignStmt.
+    def exitDeclareAndAssignStmt(self, ctx:MambaParser.DeclareAndAssignStmtContext):
+        pass
+
+
     # Enter a parse tree produced by MambaParser#assigmentStmt.
     def enterAssigmentStmt(self, ctx:MambaParser.AssigmentStmtContext):
         pass
@@ -122,6 +131,15 @@ class MambaListener(ParseTreeListener):
 
     # Exit a parse tree produced by MambaParser#typedArg.
     def exitTypedArg(self, ctx:MambaParser.TypedArgContext):
+        pass
+
+
+    # Enter a parse tree produced by MambaParser#varDeclare.
+    def enterVarDeclare(self, ctx:MambaParser.VarDeclareContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#varDeclare.
+    def exitVarDeclare(self, ctx:MambaParser.VarDeclareContext):
         pass
 
 

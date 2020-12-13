@@ -12,6 +12,7 @@ from handlers import ExpressionHandler
 from primitive import Primitive
 
 from builder.ProgramNode import ProgramNode
+from builder.State import State, new_scope
 
 package = ProgramNode.newPackage('main')
 
@@ -78,18 +79,18 @@ class MambaPrintListener(MambaListener):
 
         stmtList = ctx.statementList()
 
-        state = {}
+        state = State()
         irFunc = fnAst.llvmIR()
+        
         for idx in range(len(irFunc.args)):
             argName = funcArgs[idx].value
             argType = funcArgs[idx].type
 
-            builder.position_at_start(block)
-            state[argName] = builder.alloca(argType, name=argName)
-            builder.position_at_end(block)
+            # allocate space on the stack at the top of the function
+            state.allocate(argName, builder, argType, mutable=False)
 
-            # print( dir(irFunc.args[idx]) )
-            builder.store(irFunc.args[idx], state[argName])
+            # store the value on the stack after all stack space has been allocated
+            state.write(argName, irFunc.args[idx], builder)
 
         if stmtList:
             for exprCtx in stmtList.statement():
@@ -103,6 +104,9 @@ class MambaPrintListener(MambaListener):
                     retStmt = exprCtx.returnStmt()
                     ExpressionHandler.handle_returnStmt(retStmt, builder, irFunc, state)
 
+                elif exprCtx.declareAndAssignStmt():
+                    declAndAssign = exprCtx.declareAndAssignStmt()
+                    ExpressionHandler.handle_declareAndAssignStmt(declAndAssign, builder, irFunc, state)
                 elif exprCtx.assigmentStmt():
                     # sys.stderr.write("........... Assignment Statement")
                     assignCtx = exprCtx.assigmentStmt()

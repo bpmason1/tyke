@@ -17,71 +17,89 @@ from .arithmetic import get_llvmlite_arithmetic_function, get_comparison_operato
 class __ExpressionHandler(BaseHandler):
     __printCnt = 0
 
-    def handle_assigmentStmt(self, assignCtx, builder, irFunc, state):
-        name = assignCtx.NAME().getText()
+    def handle_varDeclare(varDeclareCtx, builder, newScopeObj):
+        print("Enter handle_varDeclare")
+        sys.stderr.write(f'ERROR - unimplemented handler {handle_varDeclare}')
+        sys.exit(6)
+        print("Exit handle_varDeclare")
 
-        # if-else checks type of param for rhs of assignment
-        if assignCtx.simpleExpression():
-            simpleExprCtx = assignCtx.simpleExpression()
-            result = self.handle_simpleExpr(simpleExprCtx, builder, state)
-            if name not in state:
-                builder.position_at_start(builder.block)
-                state[name] = builder.alloca(result.type, size=1, name=name)
-                builder.position_at_end(builder.block)
-            builder.store(result, state[name])
-        elif assignCtx.arthimeticExpr():
-            arithExpr = assignCtx.arthimeticExpr()
-            total = self.handle_arthimeticExpr(arithExpr, builder, state)
-            if name not in state:
-                builder.position_at_start(builder.block)
-                state[name] = builder.alloca(total.type, size=1, name=name)
-                builder.position_at_end(builder.block)
-            builder.store(total, state[name])
-        elif assignCtx.multiArthimeticExpr():
-            multiArithExpr = assignCtx.multiArthimeticExpr()
-            total = self.handle_multiArthimeticExpr(multiArithExpr, builder, state)
-            if name not in state:
-                builder.position_at_start(builder.block)
-                state[name] = builder.alloca(total.type, size=1, name=name)
-                builder.position_at_end(builder.block)
-            builder.store(total, state[name])
-        elif assignCtx.comparisonExpr():
-            compExpr = assignCtx.comparisonExpr()
-            cmpVal = self.handle_comparisonExpr(compExpr, builder, state)
-            if name not in state:
-                builder.position_at_start(builder.block)
-                state[name] = builder.alloca(Primitive.boolean, size=1, name=name)
-                builder.position_at_end(builder.block)
-            builder.store(cmpVal, state[name])
+    def handle_declareAndAssignStmt(self, declAndAssignCtx, builder, irFunc, newScopeObj):
+        varDeclareCtx = declAndAssignCtx.varDeclare()
+        name = varDeclareCtx.NAME().getText()
+        isMutable = (varDeclareCtx.MUT() != None)
+
+        if declAndAssignCtx.simpleExpression():
+            simpExp = declAndAssignCtx.simpleExpression()
+            result = self.handle_simpleExpr(simpExp, builder, newScopeObj)
+            newScopeObj.allocate(name, builder, result.type, mutable=isMutable)
+            newScopeObj.write(name, result, builder)
+        elif declAndAssignCtx.arthimeticExpr():
+            arithExpr = declAndAssignCtx.arthimeticExpr()
+            result = self.handle_arthimeticExpr(arithExpr, builder, newScopeObj)
+            newScopeObj.allocate(name, builder, result.type, mutable=isMutable)
+            newScopeObj.write(name, result, builder)
+        elif declAndAssignCtx.multiArthimeticExpr():
+            multiArithExpr = declAndAssignCtx.multiArthimeticExpr()
+            result = self.handle_multiArthimeticExpr(multiArithExpr, builder, newScopeObj)
+            newScopeObj.allocate(name, builder, result.type, mutable=isMutable)
+            newScopeObj.write(name, result, builder)
+        elif declAndAssignCtx.comparisonExpr():
+            compExpr = declAndAssignCtx.comparisonExpr()
+            result = self.handle_comparisonExpr(compExpr, builder, newScopeObj)
+            newScopeObj.allocate(name, builder, result.type, mutable=isMutable)
+            newScopeObj.write(name, result, builder)
         else:
-            sys.stderr.write("************** NO ASSIGN FOR YOU *******************")
+            sys.stderr.write("************** NO DECLARE AND ASSIGN FOR YOU *******************\n")
             sys.exit(7)
 
-    def handle_returnStmt(self, retStmt, builder, irFunc, state):
+    def handle_assigmentStmt(self, assignCtx, builder, irFunc, newScopeObj):
+        name = assignCtx.NAME().getText()
+
+        if assignCtx.simpleExpression():
+            simpExp = assignCtx.simpleExpression()
+            result = self.handle_simpleExpr(simpExp, builder, newScopeObj)
+            newScopeObj.write(name, result, builder)
+        elif assignCtx.arthimeticExpr():
+            arithExpr = assignCtx.arthimeticExpr()
+            result = self.handle_arthimeticExpr(arithExpr, builder, newScopeObj)
+            newScopeObj.write(name, result, builder)
+        elif assignCtx.multiArthimeticExpr():
+            multiArithExpr = assignCtx.multiArthimeticExpr()
+            result = self.handle_multiArthimeticExpr(multiArithExpr, builder, newScopeObj)
+            newScopeObj.write(name, result, builder)
+        elif assignCtx.comparisonExpr():
+            compExpr = assignCtx.comparisonExpr()
+            result = self.handle_comparisonExpr(compExpr, builder, newScopeObj)
+            newScopeObj.write(name, result, builder)
+        else:
+            sys.stderr.write("************** NO DECLARE AND ASSIGN FOR YOU *******************\n")
+            sys.exit(7)
+
+    def handle_returnStmt(self, retStmt, builder, irFunc, newScopeObj):
         if retStmt.simpleExpression():
             simpleExprCtx = retStmt.simpleExpression()
-            retVal = self.handle_simpleExpr(simpleExprCtx, builder, state)
+            retVal = self.handle_simpleExpr(simpleExprCtx, builder, newScopeObj)
             builder.ret(retVal)
         elif retStmt.multiArthimeticExpr():
             multiArithExpr = retStmt.multiArthimeticExpr()
-            total = self.handle_multiArthimeticExpr(multiArithExpr, builder, state)
+            total = self.handle_multiArthimeticExpr(multiArithExpr, builder, newScopeObj)
             return builder.ret(total)
         else:
             builder.ret_void()
 
-    def handle_ifStmt(self, ifCtx, builder, irFunc, state):
-        predicate = self.handle_comparisonExpr(ifCtx.comparisonExpr(), builder, state)
+    def handle_ifStmt(self, ifCtx, builder, irFunc, newScopeObj):
+        predicate = self.handle_comparisonExpr(ifCtx.comparisonExpr(), builder, newScopeObj)
         with builder.if_then(predicate): # as (then, otherwise):
             #with then:
                 stmtList = ifCtx.statementList()
-                self.handele_statementList(stmtList, builder, irFunc, state)
+                self.handele_statementList(stmtList, builder, irFunc, newScopeObj)
 
-    def handle_funcCall(self, callCtx, builder, state):
+    def handle_funcCall(self, callCtx, builder, newScopeObj):
             callName = callCtx.NAME().getText()
 
             # TODO - don't make me a special case
             if callName == 'print':
-                return self.handle_printFuncCall(callCtx, builder, state)
+                return self.handle_printFuncCall(callCtx, builder, newScopeObj)
 
             dataListCtx = callCtx.funcCallDataList().dataList()
 
@@ -112,13 +130,14 @@ class __ExpressionHandler(BaseHandler):
             result = builder.call(callFn, callArgs)
             return result
 
-    def handle_multiArthimeticExpr(self, multiArithExpr, builder, state):
-        simpleExpList = [self.handle_arthimeticExpr(expr, builder, state) for expr in multiArithExpr.arthimeticExpr()]
+    def handle_multiArthimeticExpr(self, multiArithExpr, builder, newScopeObj):
+        arthimeticExprList = [A for A in multiArithExpr.arthimeticExpr()]
+        simpleExpList = [self.handle_arthimeticExpr(expr, builder, newScopeObj) for expr in arthimeticExprList]
         arithOpCtx = multiArithExpr.arithmetic_op()
         arithOpList = [token for token in arithOpCtx]
-        return self._arith_from_op_and_term_lists(arithOpList, simpleExpList, builder, state)
+        return self._arith_from_op_and_term_lists(arithOpList, simpleExpList, builder, newScopeObj)
 
-    def handle_arthimeticExpr(self, arithExpr, builder, state):
+    def handle_arthimeticExpr(self, arithExpr, builder, newScopeObj):
         if arithExpr.simpleExpression():
             simpExpList = [token for token in arithExpr.simpleExpression()]
         else:
@@ -133,38 +152,38 @@ class __ExpressionHandler(BaseHandler):
             # sys.stderr.write("arithmetic needs at least 1 arithmetic_op")
             # sys.exit(3)
 
-        return self._arith_from_op_and_term_lists(arithOpList, simpExpList, builder, state)
+        return self._arith_from_op_and_term_lists(arithOpList, simpExpList, builder, newScopeObj)
 
-    def handele_statementList(self, stmtList, builder, irFunc, state):
+    def handele_statementList(self, stmtList, builder, irFunc, newScopeObj):
         for exprCtx in stmtList.statement():
             if exprCtx.funcCallStmt():
                 # sys.stderr.write("........... Function Call Statement")
                 stmtCtx = exprCtx.funcCallStmt()
-                self.handle_funcCall(stmtCtx.funcCall(), builder, state)
+                self.handle_funcCall(stmtCtx.funcCall(), builder, newScopeObj)
 
             elif exprCtx.returnStmt():
                 # sys.stderr.write("........... Return Statement")
                 retStmt = exprCtx.returnStmt()
-                self.handle_returnStmt(retStmt, builder, irFunc, state)
+                self.handle_returnStmt(retStmt, builder, irFunc, newScopeObj)
 
             elif exprCtx.assigmentStmt():
                 # sys.stderr.write("........... Assignment Statement")
                 assignCtx = exprCtx.assigmentStmt()
-                self.handle_assigmentStmt(assignCtx, builder, irFunc, state)
+                self.handle_assigmentStmt(assignCtx, builder, irFunc, newScopeObj)
             elif exprCtx.ifStmt():
                 ifCtx = exprCtx.ifStmt()
-                self.handle_ifStmt(ifCtx, builder, irFunc, state)
+                self.handle_ifStmt(ifCtx, builder, irFunc, newScopeObj)
             else:
                 sys.stderr.write("........... WTF ?!?\n")
                 sys.exit(1)
 
-    def _arith_from_op_and_term_lists(self, arithOpList, simpExpList, builder, state):
+    def _arith_from_op_and_term_lists(self, arithOpList, simpExpList, builder, newScopeObj):
         if (len(arithOpList) + 1) != len(simpExpList):
             sys.stderr.write(f'Malformed arithmetic expression: {len(arithOpList)} operator and {len(simpExpList)} terms')
             sys.exit(3)
 
         if not arithOpList:
-            return self.handle_simpleExpr(simpExpList[0], builder, state)
+            return self.handle_simpleExpr(simpExpList[0], builder, newScopeObj)
 
         # do multiplication and division
         post_mult_div_simpExpList = []
@@ -183,8 +202,8 @@ class __ExpressionHandler(BaseHandler):
                 if last_op_mult_div:
                     lhs = post_mult_div_simpExpList.pop()
                 else:
-                    lhs = self.handle_simpleExpr(simpExpList[idx], builder, state)
-                rhs = self.handle_simpleExpr(simpExpList[idx+1], builder, state)
+                    lhs = self.handle_simpleExpr(simpExpList[idx], builder, newScopeObj)
+                rhs = self.handle_simpleExpr(simpExpList[idx+1], builder, newScopeObj)
                 fn = get_llvmlite_arithmetic_function(lhs.type, arithOp, builder)
 
                 result = fn(lhs, rhs)
@@ -207,8 +226,8 @@ class __ExpressionHandler(BaseHandler):
             if result:
                 lhs = result
             else:
-                lhs = self.handle_simpleExpr(post_mult_div_simpExpList[idx], builder, state)
-            rhs = self.handle_simpleExpr(post_mult_div_simpExpList[idx+1], builder, state)
+                lhs = self.handle_simpleExpr(post_mult_div_simpExpList[idx], builder, newScopeObj)    # why is this returning a llvmlite.ir.types.PointerType
+            rhs = self.handle_simpleExpr(post_mult_div_simpExpList[idx+1], builder, newScopeObj)
 
             fn = get_llvmlite_arithmetic_function(lhs.type, arithOp, builder)
             result = fn(lhs, rhs)
@@ -218,14 +237,14 @@ class __ExpressionHandler(BaseHandler):
         return result
 
     # handle a single term from a simpleExpression
-    def handle_simpleExpr(self, simpleExpr, builder, state):
+    def handle_simpleExpr(self, simpleExpr, builder, newScopeObj):
         if hasattr(simpleExpr, "funcCall") and simpleExpr.funcCall():
-            return self.handle_funcCall(simpleExpr.funcCall(), builder, state)
+            return self.handle_funcCall(simpleExpr.funcCall(), builder, newScopeObj)
         elif hasattr(simpleExpr, "numeric") and simpleExpr.numeric():
-            return ir.Constant(Primitive.integer, simpleExpr.numeric().getText())
+            return ir.Constant(Primitive.integer, simpleExpr.numeric().getText())   # TODO - don't assume the numeric() is an Integer
         elif hasattr(simpleExpr, "NAME") and simpleExpr.NAME():
-            stackPtr = state[simpleExpr.getText()]
-            return builder.load(stackPtr)
+            varName = simpleExpr.getText()
+            return newScopeObj.read(varName, builder)
         elif isinstance(simpleExpr, Instruction):
             # TODO .... is this rule too generic to be useful
             return simpleExpr
@@ -237,7 +256,7 @@ class __ExpressionHandler(BaseHandler):
 
         sys.stderr.write("handle_simpleExpr reached a point that should be unreachable")
 
-    def handle_comparisonExpr(self, compExpr, builder, state):
+    def handle_comparisonExpr(self, compExpr, builder, newScopeObj):
         if compExpr.simpleExpression() and len(compExpr.simpleExpression()) == 2:
             simpExpList = compExpr.simpleExpression()
         else:
@@ -256,13 +275,13 @@ class __ExpressionHandler(BaseHandler):
         if(len(simpExpList) != len(compOpList) + 1):
             sys.stderr.write(f'Need no more than 1 comparison term than operator')
 
-        lhs = self.handle_simpleExpr(simpExpList[0], builder, state)
-        rhs = self.handle_simpleExpr(simpExpList[1], builder, state)
+        lhs = self.handle_simpleExpr(simpExpList[0], builder, newScopeObj)
+        rhs = self.handle_simpleExpr(simpExpList[1], builder, newScopeObj)
         cmp_op = get_comparison_operator(compOpList[0], builder)
         result =  builder.icmp_signed(cmp_op, lhs, rhs)
         return result
 
-    def handle_printFuncCall(self, callCtx, builder, state):
+    def handle_printFuncCall(self, callCtx, builder, newScopeObj):
         int8 = ir.IntType(8)
         int32 = ir.IntType(32)
 
@@ -274,9 +293,7 @@ class __ExpressionHandler(BaseHandler):
 
         if dataList[0].NAME():
             varName = dataList[0].NAME().getText()
-            # print(type(state['xxx']))
-            # print(dir(state['xxx']))
-            text = str(state[varName]) + '\n\0'
+            text = str(newScopeObj.read(varName, builder)) + '\n\0'
             text = text.encode('utf_8')
         elif dataList[0].STRING():
             text = str(dataList[0].STRING())[1:-1] + '\n\0' #"foobar\n\0".encode('utf_8')

@@ -9,8 +9,8 @@ entry:
 define void @"vanish"(i64 %".1", double %".2") 
 {
 entry:
-  %"y" = alloca double
-  %"x" = alloca i64
+  %"y" = alloca double, i32 1
+  %"x" = alloca i64, i32 1
   store i64 %".1", i64* %"x"
   store double %".2", double* %"y"
   ret void
@@ -20,7 +20,7 @@ define i64 @"doAssign"(i64 %".1")
 {
 entry:
   %"newVal" = alloca i64, i32 1
-  %"data" = alloca i64
+  %"data" = alloca i64, i32 1
   store i64 %".1", i64* %"data"
   %".4" = load i64, i64* %"data"
   store i64 %".4", i64* %"newVal"
@@ -42,8 +42,8 @@ define i64 @"arithMultiGroup"(i64 %".1", i64 %".2")
 {
 entry:
   %"calc" = alloca i64, i32 1
-  %"second" = alloca i64
-  %"first" = alloca i64
+  %"second" = alloca i64, i32 1
+  %"first" = alloca i64, i32 1
   store i64 %".1", i64* %"first"
   store i64 %".2", i64* %"second"
   %".6" = load i64, i64* %"first"
@@ -60,8 +60,8 @@ entry:
 define i64 @"returnCalcResult"(i64 %".1", i64 %".2") 
 {
 entry:
-  %"second" = alloca i64
-  %"first" = alloca i64
+  %"second" = alloca i64, i32 1
+  %"first" = alloca i64, i32 1
   store i64 %".1", i64* %"first"
   store i64 %".2", i64* %"second"
   %".6" = load i64, i64* %"first"
@@ -77,8 +77,8 @@ define i1 @"retBool"(i64 %".1", i64 %".2")
 {
 entry:
   %"isLessThan" = alloca i1, i32 1
-  %"y" = alloca i64
-  %"x" = alloca i64
+  %"y" = alloca i64, i32 1
+  %"x" = alloca i64, i32 1
   store i64 %".1", i64* %"x"
   store i64 %".2", i64* %"y"
   %".6" = load i64, i64* %"x"

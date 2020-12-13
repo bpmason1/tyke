@@ -9,17 +9,17 @@ def vanish(x: int, y: double) -> void {
 }
 
 def doAssign(data: int) -> int {
-  newVal = data ;
+  let newVal = data ;
   return newVal ;
 }
 
 def assignMultiply() -> int {
-  calc = 3 * 9 ;
+  let calc = 3 * 9 ;
   return calc ;
 }
 
 def arithMultiGroup(first : int, second : int) -> int {
-  calc = (first + 6) * (second + 5) + 1;
+  let calc = (first + 6) * (second + 5) + 1;
   return calc ;
 }
 
@@ -28,7 +28,7 @@ def returnCalcResult(first : int, second : int) -> int {
 }
 
 def retBool(x : int, y : int) -> bool {
-  isLessThan = x < y;
+  let isLessThan = x < y; 
   return isLessThan;
 }
 

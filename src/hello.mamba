@@ -1,39 +1,37 @@
 package main;
 
-def main() -> int {
-  xxx = 33;
-  total = 14 ;
-  print('foo bar baz') ;
-  print('hello world') ;
-
-  myBool = 5 < 4 ;
-
-  newval = fibonacci(7) ;
-  return newval ;
+def abyss() -> void {
+  return;
 }
 
-def fibonacci( nth : int ) -> int {
-  if 1 <= 0 {
-    return 1 ;
-  }
-
-  return 6;
+def vanish(x: int, y: double) -> void {
+  return;
 }
 
-def retBool(x : int, y : int) -> bool {
-  isLessThan = x < y;
-  return isLessThan;
+def doAssign(data: int) -> int {
+  let newVal = data ;
+  return newVal ;
+}
+
+def assignMultiply() -> int {
+  let calc = 3 * 9 ;
+  return calc ;
+}
+
+def arithMultiGroup(first : int, second : int) -> int {
+  let calc = (first + 6) * (second + 5) + 1;
+  return calc ;
 }
 
 def returnCalcResult(first : int, second : int) -> int {
   return (first + 6) + 2 *(second + 5);
 }
 
-def assignMultiply() -> int {
-  calc = 3 * 9 ;
-  return calc ;
+def retBool(x : int, y : int) -> bool {
+  let isLessThan = x < y; 
+  return isLessThan;
 }
 
-// def returnDoubleCalcResult(x : double, y : double) -> double {
-//   return 3.0 * (x + 6.0);
-// }
+def one() -> int {
+  return 1;
+}
