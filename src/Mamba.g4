@@ -16,7 +16,7 @@ statementList: statement+ ;
 statement: returnStmt | funcCallStmt | assigmentStmt | ifStmt;
 returnStmt: 'return' (simpleExpression | multiArthimeticExpr)?  SEMICOLON;
 funcCallStmt: funcCall SEMICOLON;
-assigmentStmt : NAME '=' (INTEGER | DOUBLE | NAME | funcCall | arthimeticExpr | multiArthimeticExpr | comparisonExpr) SEMICOLON ;
+assigmentStmt : NAME '=' (simpleExpression | arthimeticExpr | multiArthimeticExpr | comparisonExpr) SEMICOLON ;
 
 funcDefArgList : '(' typedArgList? ')' ;
 typedArgList: typedArg ( ',' typedArg )* ;

@@ -18,46 +18,17 @@ class __ExpressionHandler(BaseHandler):
     __printCnt = 0
 
     def handle_assigmentStmt(self, assignCtx, builder, irFunc, state):
-        name = assignCtx.NAME()[0].getText()
+        name = assignCtx.NAME().getText()
 
         # if-else checks type of param for rhs of assignment
-        if assignCtx.INTEGER():
-            val = assignCtx.INTEGER().getText()
-            intPrim = Primitive.integer
+        if assignCtx.simpleExpression():
+            simpleExprCtx = assignCtx.simpleExpression()
+            result = self.handle_simpleExpr(simpleExprCtx, builder, state)
             if name not in state:
                 builder.position_at_start(builder.block)
-                state[name] = builder.alloca(intPrim, size=1, name=name)
+                state[name] = builder.alloca(result.type, size=1, name=name)
                 builder.position_at_end(builder.block)
-            builder.store(intPrim(val), state[name])
-        elif assignCtx.DOUBLE():
-            val = assignCtx.DOUBLE().getText()
-            doublePrim = Primitive.double
-            if name not in state:
-                builder.position_at_start(builder.block)
-                state[name] = builder.alloca(doublePrim, size=1, name=name)
-                builder.position_at_end(builder.block)
-            builder.store(doublePrim(val), state[name])
-        elif len(assignCtx.NAME()) > 1:
-            # the lhs of the assignment is a NAME so there is always at least 1 NAME regardless of rhs
-            rhName = assignCtx.NAME()[1].getText()  # right hand var name
-            rhVal = builder.load(state[rhName])
-            if name not in state:
-                builder.position_at_start(builder.block)
-                state[name] = builder.alloca(rhVal.type, size=1, name=name)
-                builder.position_at_end(builder.block)
-            builder.store(rhVal, state[name])
-        elif assignCtx.funcCall():
-            rhVal = self.handle_funcCall(assignCtx.funcCall(), builder, state)
-            if name not in state:
-                builder.position_at_start(builder.block)
-                if isinstance(rhVal.type, llvmlite.ir.types.DoubleType):
-                    state[name] = builder.alloca(Primitive.double, size=1, name=name)
-                elif isinstance(rhVal.type, llvmlite.ir.types.IntType):
-                    state[name] = builder.alloca(Primitive.integer, size=1, name=name)
-                else:
-                    sys.stderr.write(f"Unknown function return type {type(rhVal.type)} in assignment")
-                builder.position_at_end(builder.block)
-            builder.store(rhVal, state[name])
+            builder.store(result, state[name])
         elif assignCtx.arthimeticExpr():
             arithExpr = assignCtx.arthimeticExpr()
             total = self.handle_arthimeticExpr(arithExpr, builder, state)
