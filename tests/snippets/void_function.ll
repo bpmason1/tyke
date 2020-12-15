@@ -126,8 +126,50 @@ entry.if:
   %".9" = load i64, i64* %"x"
   ret i64 %".9"
 entry.else:
-  %".11" = load i64, i64* %"x"
+  %".11" = load i64, i64* %"y"
   ret i64 %".11"
 entry.endif:
   ret i64 0
+}
+
+define i64 @"if_elif_else_chain"(i64 %".1", i64 %".2") 
+{
+entry:
+  %"y" = alloca i64, i32 1
+  %"x" = alloca i64, i32 1
+  store i64 %".1", i64* %"x"
+  store i64 %".2", i64* %"y"
+  %".6" = load i64, i64* %"x"
+  %".7" = icmp eq i64 %".6", 0
+  br i1 %".7", label %"entry.if", label %"entry.else"
+entry.if:
+  ret i64 1
+entry.else:
+  %".10" = load i64, i64* %"y"
+  %".11" = icmp eq i64 %".10", 0
+  br i1 %".11", label %"entry.else.if", label %"entry.else.else"
+entry.endif:
+  ret i64 0
+entry.else.if:
+  ret i64 2
+entry.else.else:
+  %".14" = load i64, i64* %"x"
+  %".15" = icmp sgt i64 %".14", 1
+  br i1 %".15", label %"entry.else.else.if", label %"entry.else.else.else"
+entry.else.endif:
+  br label %"entry.endif"
+entry.else.else.if:
+  ret i64 3
+entry.else.else.else:
+  %".18" = load i64, i64* %"y"
+  %".19" = icmp eq i64 %".18", 1
+  br i1 %".19", label %"entry.else.else.else.if", label %"entry.else.else.else.else"
+entry.else.else.endif:
+  br label %"entry.else.endif"
+entry.else.else.else.if:
+  ret i64 4
+entry.else.else.else.else:
+  ret i64 7
+entry.else.else.else.endif:
+  br label %"entry.else.else.endif"
 }

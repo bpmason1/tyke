@@ -95,6 +95,8 @@ class __ExpressionHandler(BaseHandler):
             self.handle_ifStmt(ifCtx, builder, irFunc, newScopeObj)
         elif not elifCtxList:
             self.handle_ifElseStmt(ifCtx, elseCtx, builder, irFunc, newScopeObj)
+        else:
+            self.handle_ifElifStmt(ifCtx, elifCtxList, elseCtx, builder, irFunc, newScopeObj)
 
     def handle_ifStmt(self, ifCtx, builder, irFunc, newScopeObj):
         predicate = self.handle_comparisonExpr(ifCtx.comparisonExpr(), builder, newScopeObj)
@@ -110,8 +112,27 @@ class __ExpressionHandler(BaseHandler):
                 stmtList = ifCtx.statementList()
                 self.handele_statementList(stmtList, builder, irFunc, newScopeObj)
             with otherwise:
-                elseStmt = elseCtx.statementList()
+                stmtList = elseCtx.statementList()
                 self.handele_statementList(stmtList, builder, irFunc, newScopeObj)
+
+    def handle_ifElifStmt(self, ifCtx, elifCtxList, elseCtx, builder, irFunc, newScopeObj):
+        if len(elifCtxList) > 0:
+            predicate = self.handle_comparisonExpr(ifCtx.comparisonExpr(), builder, newScopeObj)
+            # recursively calls handle_ifElifStmt inside the 'otherwise' contextmanager
+            with builder.if_else(predicate) as (then, otherwise):
+                with then:
+                    stmtList = ifCtx.statementList()
+                    self.handele_statementList(stmtList, builder, irFunc, newScopeObj)
+                with otherwise:
+                    new_ifCtx = elifCtxList[0]
+                    new_elifCtx = [x for (idx, x) in enumerate(elifCtxList) if idx > 0]  # all but the element at idx=0
+                    # elseStmt = elseCtx.statementList()
+                    self.handle_ifElifStmt(new_ifCtx, new_elifCtx, elseCtx, builder, irFunc, newScopeObj)
+        elif elseCtx:
+            # this is the base-case for the recursion
+            self.handle_ifElseStmt(ifCtx, elseCtx, builder, irFunc, newScopeObj)
+        else:
+            self.handle_ifStmt(ifCtx, builder, irFunc, newScopeObj)
 
     def handle_elifStmt(self, elifCtx, builder, irFunc, newScopeObj):
         predicate = self.handle_comparisonExpr(ifCtx.comparisonExpr(), builder, newScopeObj)
