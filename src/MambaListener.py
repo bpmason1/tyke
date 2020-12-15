@@ -53,6 +53,33 @@ class MambaListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MambaParser#elifStmt.
+    def enterElifStmt(self, ctx:MambaParser.ElifStmtContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#elifStmt.
+    def exitElifStmt(self, ctx:MambaParser.ElifStmtContext):
+        pass
+
+
+    # Enter a parse tree produced by MambaParser#elseStmt.
+    def enterElseStmt(self, ctx:MambaParser.ElseStmtContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#elseStmt.
+    def exitElseStmt(self, ctx:MambaParser.ElseStmtContext):
+        pass
+
+
+    # Enter a parse tree produced by MambaParser#conditionalStmt.
+    def enterConditionalStmt(self, ctx:MambaParser.ConditionalStmtContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#conditionalStmt.
+    def exitConditionalStmt(self, ctx:MambaParser.ConditionalStmtContext):
+        pass
+
+
     # Enter a parse tree produced by MambaParser#statementList.
     def enterStatementList(self, ctx:MambaParser.StatementListContext):
         pass

@@ -94,3 +94,40 @@ define i64 @"one"()
 entry:
   ret i64 1
 }
+
+define i64 @"floor_zero"(i64 %".1", i64 %".2") 
+{
+entry:
+  %"y" = alloca i64, i32 1
+  %"x" = alloca i64, i32 1
+  store i64 %".1", i64* %"x"
+  store i64 %".2", i64* %"y"
+  %".6" = load i64, i64* %"x"
+  %".7" = icmp slt i64 %".6", 0
+  br i1 %".7", label %"entry.if", label %"entry.endif"
+entry.if:
+  ret i64 0
+entry.endif:
+  %".10" = load i64, i64* %"x"
+  ret i64 %".10"
+}
+
+define i64 @"either_or"(i64 %".1", i64 %".2") 
+{
+entry:
+  %"y" = alloca i64, i32 1
+  %"x" = alloca i64, i32 1
+  store i64 %".1", i64* %"x"
+  store i64 %".2", i64* %"y"
+  %".6" = load i64, i64* %"x"
+  %".7" = icmp slt i64 %".6", 0
+  br i1 %".7", label %"entry.if", label %"entry.else"
+entry.if:
+  %".9" = load i64, i64* %"x"
+  ret i64 %".9"
+entry.else:
+  %".11" = load i64, i64* %"x"
+  ret i64 %".11"
+entry.endif:
+  ret i64 0
+}

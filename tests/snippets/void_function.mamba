@@ -35,3 +35,21 @@ def retBool(x : int, y : int) -> bool {
 def one() -> int {
   return 1;
 }
+
+def floor_zero(x : int, y : int) -> int {
+  if x < 0 {
+    return 0;
+  }
+
+  return x;
+}
+
+def either_or(x : int, y : int) -> int {
+  if x < 0 {
+    return x;
+  } else {
+    return y;
+  }
+
+  return 0;
+}

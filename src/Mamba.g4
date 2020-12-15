@@ -10,11 +10,14 @@ funcdef: signature '{' statementList? '}' ;
 signature: 'def' NAME funcDefArgList '->' returnType ;
 
 ifStmt : IF comparisonExpr '{' statementList? '}' ;
+elifStmt : ELIF comparisonExpr '{' statementList? '}' ;
+elseStmt : ELSE '{' statementList? '}' ;
+conditionalStmt : ifStmt elifStmt* elseStmt? ;
 
 // statements
 statementList: statement+ ;
 
-statement: returnStmt | funcCallStmt | assigmentStmt | declareAndAssignStmt | ifStmt;
+statement: returnStmt | funcCallStmt | assigmentStmt | declareAndAssignStmt | conditionalStmt;
 returnStmt: 'return' (simpleExpression | multiArthimeticExpr)?  SEMICOLON;
 funcCallStmt: funcCall SEMICOLON;
 
@@ -68,6 +71,8 @@ FALSE : 'false' ;
 LET : 'let' ;
 MUT : 'mut' ;
 IF : 'if' ;
+ELIF : 'elif' ;
+ELSE : 'else' ;
 BOOL : 'bool' ;
 PACKAGE : 'package' ;
 SEMICOLON : ';' ;

@@ -111,9 +111,11 @@ class MambaPrintListener(MambaListener):
                     # sys.stderr.write("........... Assignment Statement")
                     assignCtx = exprCtx.assigmentStmt()
                     ExpressionHandler.handle_assigmentStmt(assignCtx, builder, irFunc, state)
-                elif exprCtx.ifStmt():
-                    ifCtx = exprCtx.ifStmt()
-                    ExpressionHandler.handle_ifStmt(ifCtx, builder, irFunc, state)
+                elif exprCtx.conditionalStmt():
+                    conditionalCtx = exprCtx.conditionalStmt()
+                    ExpressionHandler.handle_conditionalStmt(conditionalCtx, builder, irFunc, state)
+                    # ifCtx = conditionalCtx.ifStmt()
+                    # ExpressionHandler.handle_ifStmt(ifCtx, builder, irFunc, state)
                 else:
                     sys.stderr.write("........... WTF ?!?\n")
                     sys.exit(1)

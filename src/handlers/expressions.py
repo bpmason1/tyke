@@ -87,7 +87,33 @@ class __ExpressionHandler(BaseHandler):
         else:
             builder.ret_void()
 
+    def handle_conditionalStmt(self, conditionalCtx, builder, irFunc, newScopeObj):
+        ifCtx = conditionalCtx.ifStmt()
+        elifCtxList = conditionalCtx.elifStmt()
+        elseCtx = conditionalCtx.elseStmt()
+        if not elifCtxList and not elseCtx:
+            self.handle_ifStmt(ifCtx, builder, irFunc, newScopeObj)
+        elif not elifCtxList:
+            self.handle_ifElseStmt(ifCtx, elseCtx, builder, irFunc, newScopeObj)
+
     def handle_ifStmt(self, ifCtx, builder, irFunc, newScopeObj):
+        predicate = self.handle_comparisonExpr(ifCtx.comparisonExpr(), builder, newScopeObj)
+        with builder.if_then(predicate): # as (then, otherwise):
+            #with then:
+                stmtList = ifCtx.statementList()
+                self.handele_statementList(stmtList, builder, irFunc, newScopeObj)
+
+    def handle_ifElseStmt(self, ifCtx, elseCtx, builder, irFunc, newScopeObj):
+        predicate = self.handle_comparisonExpr(ifCtx.comparisonExpr(), builder, newScopeObj)
+        with builder.if_else(predicate) as (then, otherwise):
+            with then:
+                stmtList = ifCtx.statementList()
+                self.handele_statementList(stmtList, builder, irFunc, newScopeObj)
+            with otherwise:
+                elseStmt = elseCtx.statementList()
+                self.handele_statementList(stmtList, builder, irFunc, newScopeObj)
+
+    def handle_elifStmt(self, elifCtx, builder, irFunc, newScopeObj):
         predicate = self.handle_comparisonExpr(ifCtx.comparisonExpr(), builder, newScopeObj)
         with builder.if_then(predicate): # as (then, otherwise):
             #with then:
@@ -170,7 +196,7 @@ class __ExpressionHandler(BaseHandler):
                 # sys.stderr.write("........... Assignment Statement")
                 assignCtx = exprCtx.assigmentStmt()
                 self.handle_assigmentStmt(assignCtx, builder, irFunc, newScopeObj)
-            elif exprCtx.ifStmt():
+            elif exprCtx.conditionalStmt():
                 ifCtx = exprCtx.ifStmt()
                 self.handle_ifStmt(ifCtx, builder, irFunc, newScopeObj)
             else:
