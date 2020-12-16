@@ -13,6 +13,7 @@ from primitive import Primitive
 from keywords import *
 
 from builder.ProgramNode import ProgramNode
+from builder.State import new_scope
 from .arithmetic import get_llvmlite_arithmetic_function, get_comparison_operator
 
 class __ExpressionHandler(BaseHandler):
@@ -108,9 +109,10 @@ class __ExpressionHandler(BaseHandler):
 
         # implement the loop logic here
         builder.position_at_start(entryBlock)
-        stmtList = whileCtx.statementList()
-        self.handele_statementList(stmtList, builder, irFunc, newScopeObj)
-        builder.branch(predicateBlock)
+        with new_scope(newScopeObj) as whileScope:
+            stmtList = whileCtx.statementList()
+            self.handele_statementList(stmtList, builder, irFunc, whileScope)
+            builder.branch(predicateBlock)
 
         # after loop 
         builder.position_at_start(exitBlock)
