@@ -1,5 +1,6 @@
 import antlr4
 from colorama import Fore, Style
+from hashlib import md5
 from llvmlite import ir
 from llvmlite.ir.instructions import Instruction
 from llvmlite.ir.values import Constant
@@ -86,6 +87,40 @@ class __ExpressionHandler(BaseHandler):
             return builder.ret(total)
         else:
             builder.ret_void()
+
+    def handle_whileStmt(self, whileCtx, builder, irFunc, newScopeObj):
+        uniqId = md5().digest().hex()
+        currBlock = builder.block
+        predBlockName = f'predicate.while.{uniqId}'
+        entryBlockName = f'entry.while.{uniqId}'
+        exitBlockName = f'exit.while.{uniqId}'
+        predicateBlock = builder.append_basic_block(name=predBlockName)
+        entryBlock = builder.append_basic_block(name=entryBlockName)
+        exitBlock = builder.append_basic_block(name=exitBlockName)
+
+        builder.position_at_end(currBlock)
+        builder.branch(predicateBlock)
+
+        # check the loop condition
+        builder.position_at_start(predicateBlock)
+        predicate = self.handle_comparisonExpr(whileCtx.comparisonExpr(), builder, newScopeObj)
+        builder.cbranch(predicate, entryBlock, exitBlock)
+
+        # implement the loop logic here
+        builder.position_at_start(entryBlock)
+        stmtList = whileCtx.statementList()
+        self.handele_statementList(stmtList, builder, irFunc, newScopeObj)
+        builder.branch(predicateBlock)
+
+        # after loop 
+        builder.position_at_start(exitBlock)
+
+    def handle_loopStmt(self, loopCtx, builder, irFunc, newScopeObj):
+        # print("Entering loop")
+        if loopCtx.whileStmt():
+            whileCtx = loopCtx.whileStmt()
+            self.handle_whileStmt(whileCtx, builder, irFunc, newScopeObj)
+        # print("Exitting loop")
 
     def handle_conditionalStmt(self, conditionalCtx, builder, irFunc, newScopeObj):
         ifCtx = conditionalCtx.ifStmt()

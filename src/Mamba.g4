@@ -14,10 +14,13 @@ elifStmt : ELIF comparisonExpr '{' statementList? '}' ;
 elseStmt : ELSE '{' statementList? '}' ;
 conditionalStmt : ifStmt elifStmt* elseStmt? ;
 
+whileStmt: WHILE comparisonExpr '{' statementList? '}' ;
+
+loopStmt: whileStmt;
 // statements
 statementList: statement+ ;
 
-statement: returnStmt | funcCallStmt | assigmentStmt | declareAndAssignStmt | conditionalStmt;
+statement: returnStmt | funcCallStmt | assigmentStmt | declareAndAssignStmt | conditionalStmt | loopStmt;
 returnStmt: 'return' (simpleExpression | multiArthimeticExpr)?  SEMICOLON;
 funcCallStmt: funcCall SEMICOLON;
 
@@ -76,6 +79,7 @@ ELSE : 'else' ;
 BOOL : 'bool' ;
 PACKAGE : 'package' ;
 SEMICOLON : ';' ;
+WHILE: 'while' ;
 KW_DOUBLE: 'double' ;
 KW_INT: 'int' ;
 VOID: 'void';

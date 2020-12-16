@@ -80,6 +80,24 @@ class MambaListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MambaParser#whileStmt.
+    def enterWhileStmt(self, ctx:MambaParser.WhileStmtContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#whileStmt.
+    def exitWhileStmt(self, ctx:MambaParser.WhileStmtContext):
+        pass
+
+
+    # Enter a parse tree produced by MambaParser#loopStmt.
+    def enterLoopStmt(self, ctx:MambaParser.LoopStmtContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#loopStmt.
+    def exitLoopStmt(self, ctx:MambaParser.LoopStmtContext):
+        pass
+
+
     # Enter a parse tree produced by MambaParser#statementList.
     def enterStatementList(self, ctx:MambaParser.StatementListContext):
         pass

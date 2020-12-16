@@ -2,7 +2,7 @@ package main;
 
 def main() -> int {
   let result = either_or(7, 10);
-  return result ;
+  return pow(4, 1) ;
 }
 
 def abyss() -> void {
@@ -65,4 +65,18 @@ def if_elif_else_chain(x : int, y : int) -> int {
   }
 
   return 0;
+}
+
+def pow(num : int, exp: int) -> int {
+  if exp == 0 {
+    return 1;
+  }
+
+  let mut total = 1;
+  let mut counter = exp;
+  while counter > 0 {
+    total = total * num;
+    counter = counter - 1;
+  }
+  return total;
 }
