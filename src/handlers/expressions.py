@@ -90,7 +90,7 @@ class __ExpressionHandler(BaseHandler):
             builder.ret_void()
 
     def handle_whileStmt(self, whileCtx, builder, irFunc, newScopeObj):
-        uniqId = md5().digest().hex()
+        uniqId = md5(str(ProgramNode.getPackage('main')).encode()).digest().hex()  # TODO - what if there are multiple packages ?!?
         currBlock = builder.block
         predBlockName = f'predicate.while.{uniqId}'
         entryBlockName = f'entry.while.{uniqId}'
