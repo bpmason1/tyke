@@ -28,6 +28,26 @@ def builtinFunctions():
     # funcNode = package.newFunction("print", returnType, argList)
     return
 
+class MambaTypedefBuilder(MambaListener):
+    def enterTypedef(self, ctx):
+        main = ProgramNode.getPackage('main')
+
+        typeName = ctx.NAME().getText()
+        if ctx.typedArgList():
+            typedArgList = ctx.typedArgList().typedArg()
+            structFieldTypeList = []
+            for typedArg in typedArgList:
+                varTypeName = typedArg.varType().getText()
+                llvmVarType = Primitive.get_type_by_name(varTypeName)
+                name = typedArg.NAME().getText()
+                structFieldTypeList.append(llvmVarType)
+        moduleCtx = main.llvmIR().context
+        identType = moduleCtx.get_identified_type(name=typeName)
+        identType.set_body(*structFieldTypeList)
+
+        # package.newVariableType(typeName, structFieldList, llvmTypeObj)
+        # sys.stderr.write("INFO - Exiting MambaTypedefBuilder\n")
+
 class MambaFunctionTableBuilder(MambaListener):
     def enterFuncdef(self, ctx):
         '''
@@ -133,6 +153,9 @@ def processCodeStr(srcCode: str):
     parser = MambaParser(stream)
     tree = parser.program()
     walker = ParseTreeWalker()
+
+    typeBuilder = MambaTypedefBuilder()
+    walker.walk(typeBuilder, tree)
 
     fnBuilder = MambaFunctionTableBuilder()
     walker.walk(fnBuilder, tree)

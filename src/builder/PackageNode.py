@@ -3,6 +3,7 @@ from llvmlite import ir
 from .AstNode import AstNode
 from .DeclarationNode import DeclarationNode
 from .FunctionNode import FunctionNode
+# from collections import OrderedDict
 from colorama import Fore, Style
 import sys
 
@@ -10,6 +11,7 @@ class PackageNode(AstNode):
     def __init__(self, name: str, parent: AstNode):
         super().__init__(name, parent=parent)
         self.__llvm = ir.Module(name=name)
+        self.__types = {}
 
     # funcArgs: TypedValue
     def newFunction(self, name: str, returnType, funcArgs):
@@ -17,6 +19,13 @@ class PackageNode(AstNode):
 
     def newDeclaration(self, name: str, returnType, funcArgs):
         return DeclarationNode(name, returnType, funcArgs, parent=self, hasVarArg=True)
+
+    def newVariableType(self, name, elemList, llvmType):
+        if name in self.__types:
+            msg = f'Error - type {name} already declared\n'
+            sys.stderr.write(msg)
+            sys.exit(5)
+        self.__types[name] = (elemList, llvmType)
 
     def getFunction(self, name):
         for node in self.children:

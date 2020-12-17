@@ -1,82 +1,15 @@
 package main;
 
+type struct { height: int, width: int } Rect ;
+
 def main() -> int {
-  let result = either_or(7, 10);
-  return pow(4, 1) ;
-}
-
-def abyss() -> void {
-  return;
-}
-
-def vanish(x: int, y: double) -> void {
-  return;
-}
-
-def doAssign(data: int) -> int {
-  let newVal = data ;
-  return newVal ;
-}
-
-def assignMultiply() -> int {
-  let calc = 3 * 9 ;
-  return calc ;
-}
-
-def arithMultiGroup(first : int, second : int) -> int {
-  let calc = (first + 6) * (second + 5) + 1;
-  return calc ;
+  return returnCalcResult(4, 9) ;
 }
 
 def returnCalcResult(first : int, second : int) -> int {
-  return (first + 6) + 2 *(second + 5);
-}
-
-def retBool(x : int, y : int) -> bool {
-  let isLessThan = x < y; 
-  return isLessThan;
+  return (first + 6) + 2 *(second + one());
 }
 
 def one() -> int {
   return 1;
-}
-
-def either_or(x : int, y : int) -> int {
-  if x < 0 {
-    return x;
-  } else {
-    return y;
-  }
-
-  return 0;
-}
-
-def if_elif_else_chain(x : int, y : int) -> int {
-  if x == 0 {
-    return 1;
-  } elif y == 0 {
-    return 2;
-  } elif x > 1 {
-    return 3;
-  } elif y == 1 {
-    return 4;
-  } else {
-    return 7;
-  }
-
-  return 0;
-}
-
-def pow(num : int, exp: int) -> int {
-  if exp == 0 {
-    return 1;
-  }
-
-  let mut total = 1;
-  let mut counter = exp;
-  while counter > 0 {
-    total = total * num;
-    counter = counter - 1;
-  }
-  return total;
 }

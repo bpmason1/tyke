@@ -3,9 +3,10 @@ grammar Mamba;
 /*
  * parser rules
  */
-program: package funcdef+ ;
+program: package typedef* funcdef+ ;
 
 package: PACKAGE NAME SEMICOLON;
+typedef: TYPE STRUCT '{' typedArgList? '}' NAME SEMICOLON;
 funcdef: signature '{' statementList? '}' ;
 signature: 'def' NAME funcDefArgList '->' returnType ;
 
@@ -80,6 +81,8 @@ ELSE : 'else' ;
 BOOL : 'bool' ;
 PACKAGE : 'package' ;
 SEMICOLON : ';' ;
+STRUCT: 'struct' ;
+TYPE: 'type' ;
 WHILE: 'while' ;
 KW_DOUBLE: 'double' ;
 KW_INT: 'int' ;
