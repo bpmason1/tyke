@@ -30,23 +30,24 @@ class __ExpressionHandler(BaseHandler):
         name = varDeclareCtx.NAME().getText()
         isMutable = (varDeclareCtx.MUT() != None)
 
-        if declAndAssignCtx.simpleExpression():
-            simpExp = declAndAssignCtx.simpleExpression()
+        currExprCtx = declAndAssignCtx.expression()
+        if currExprCtx.simpleExpression():
+            simpExp = currExprCtx.simpleExpression()
             result = self.handle_simpleExpr(simpExp, builder, newScopeObj)
             newScopeObj.allocate(name, builder, result.type, mutable=isMutable)
             newScopeObj.write(name, result, builder)
-        elif declAndAssignCtx.arthimeticExpr():
-            arithExpr = declAndAssignCtx.arthimeticExpr()
+        elif currExprCtx.arthimeticExpr():
+            arithExpr = currExprCtx.arthimeticExpr()
             result = self.handle_arthimeticExpr(arithExpr, builder, newScopeObj)
             newScopeObj.allocate(name, builder, result.type, mutable=isMutable)
             newScopeObj.write(name, result, builder)
-        elif declAndAssignCtx.multiArthimeticExpr():
-            multiArithExpr = declAndAssignCtx.multiArthimeticExpr()
+        elif currExprCtx.multiArthimeticExpr():
+            multiArithExpr = currExprCtx.multiArthimeticExpr()
             result = self.handle_multiArthimeticExpr(multiArithExpr, builder, newScopeObj)
             newScopeObj.allocate(name, builder, result.type, mutable=isMutable)
             newScopeObj.write(name, result, builder)
-        elif declAndAssignCtx.comparisonExpr():
-            compExpr = declAndAssignCtx.comparisonExpr()
+        elif currExprCtx.comparisonExpr():
+            compExpr = currExprCtx.comparisonExpr()
             result = self.handle_comparisonExpr(compExpr, builder, newScopeObj)
             newScopeObj.allocate(name, builder, result.type, mutable=isMutable)
             newScopeObj.write(name, result, builder)
@@ -57,20 +58,21 @@ class __ExpressionHandler(BaseHandler):
     def handle_assigmentStmt(self, assignCtx, builder, irFunc, newScopeObj):
         name = assignCtx.NAME().getText()
 
-        if assignCtx.simpleExpression():
-            simpExp = assignCtx.simpleExpression()
+        currExprCtx = assignCtx.expression()
+        if currExprCtx.simpleExpression():
+            simpExp = currExprCtx.simpleExpression()
             result = self.handle_simpleExpr(simpExp, builder, newScopeObj)
             newScopeObj.write(name, result, builder)
-        elif assignCtx.arthimeticExpr():
-            arithExpr = assignCtx.arthimeticExpr()
+        elif currExprCtx.arthimeticExpr():
+            arithExpr = currExprCtx.arthimeticExpr()
             result = self.handle_arthimeticExpr(arithExpr, builder, newScopeObj)
             newScopeObj.write(name, result, builder)
-        elif assignCtx.multiArthimeticExpr():
-            multiArithExpr = assignCtx.multiArthimeticExpr()
+        elif currExprCtx.multiArthimeticExpr():
+            multiArithExpr = currExprCtx.multiArthimeticExpr()
             result = self.handle_multiArthimeticExpr(multiArithExpr, builder, newScopeObj)
             newScopeObj.write(name, result, builder)
-        elif assignCtx.comparisonExpr():
-            compExpr = assignCtx.comparisonExpr()
+        elif currExprCtx.comparisonExpr():
+            compExpr = currExprCtx.comparisonExpr()
             result = self.handle_comparisonExpr(compExpr, builder, newScopeObj)
             newScopeObj.write(name, result, builder)
         else:

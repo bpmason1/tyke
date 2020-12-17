@@ -260,6 +260,15 @@ class MambaListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MambaParser#expression.
+    def enterExpression(self, ctx:MambaParser.ExpressionContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#expression.
+    def exitExpression(self, ctx:MambaParser.ExpressionContext):
+        pass
+
+
     # Enter a parse tree produced by MambaParser#funcCall.
     def enterFuncCall(self, ctx:MambaParser.FuncCallContext):
         pass

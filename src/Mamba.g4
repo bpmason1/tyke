@@ -24,9 +24,9 @@ statement: returnStmt | funcCallStmt | assigmentStmt | declareAndAssignStmt | co
 returnStmt: 'return' (simpleExpression | multiArthimeticExpr)?  SEMICOLON;
 funcCallStmt: funcCall SEMICOLON;
 
-declareAndAssignStmt : varDeclare '=' (simpleExpression | arthimeticExpr | multiArthimeticExpr | comparisonExpr) SEMICOLON ;
+declareAndAssignStmt : varDeclare '=' expression SEMICOLON ;
 
-assigmentStmt : NAME '=' (simpleExpression | arthimeticExpr | multiArthimeticExpr | comparisonExpr) SEMICOLON ;
+assigmentStmt : NAME '=' expression SEMICOLON ;
 
 funcDefArgList : '(' typedArgList? ')' ;
 typedArgList: typedArg ( ',' typedArg )* ;
@@ -47,6 +47,7 @@ booleanLiteral : TRUE | FALSE ;
 
 numeric : DOUBLE | INTEGER ;
 simpleExpression : (numeric | NAME | funcCall) ;
+expression : simpleExpression | arthimeticExpr | multiArthimeticExpr | comparisonExpr ;
 
 funcCall: NAME funcCallDataList ;
 funcCallDataList: '(' dataList? ')' ;
