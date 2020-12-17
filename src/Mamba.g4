@@ -26,7 +26,7 @@ funcCallStmt: funcCall SEMICOLON;
 
 declareAndAssignStmt : varDeclare '=' (simpleExpression | arthimeticExpr | multiArthimeticExpr | comparisonExpr) SEMICOLON ;
 
-assigmentStmt : NAME '=' (simpleExpression | arthimeticExpr | multiArthimeticExpr | comparisonExpr | declareAndAssignStmt) SEMICOLON ;
+assigmentStmt : NAME '=' (simpleExpression | arthimeticExpr | multiArthimeticExpr | comparisonExpr) SEMICOLON ;
 
 funcDefArgList : '(' typedArgList? ')' ;
 typedArgList: typedArg ( ',' typedArg )* ;
