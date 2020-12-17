@@ -69,3 +69,17 @@ def if_elif_else_chain(x : int, y : int) -> int {
 
   return 0;
 }
+
+def pow(num : int, exp: int) -> int {
+  if exp == 0 {
+    return 1;
+  }
+
+  let mut total = 1;
+  let mut counter = exp;
+  while counter > 0 {
+    total = total * num;
+    counter = counter - 1;
+  }
+  return total;
+}
