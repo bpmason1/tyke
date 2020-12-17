@@ -31,52 +31,32 @@ class __ExpressionHandler(BaseHandler):
         isMutable = (varDeclareCtx.MUT() != None)
 
         currExprCtx = declAndAssignCtx.expression()
-        if currExprCtx.simpleExpression():
-            simpExp = currExprCtx.simpleExpression()
-            result = self.handle_simpleExpr(simpExp, builder, newScopeObj)
-            newScopeObj.allocate(name, builder, result.type, mutable=isMutable)
-            newScopeObj.write(name, result, builder)
-        elif currExprCtx.arthimeticExpr():
-            arithExpr = currExprCtx.arthimeticExpr()
-            result = self.handle_arthimeticExpr(arithExpr, builder, newScopeObj)
-            newScopeObj.allocate(name, builder, result.type, mutable=isMutable)
-            newScopeObj.write(name, result, builder)
-        elif currExprCtx.multiArthimeticExpr():
-            multiArithExpr = currExprCtx.multiArthimeticExpr()
-            result = self.handle_multiArthimeticExpr(multiArithExpr, builder, newScopeObj)
-            newScopeObj.allocate(name, builder, result.type, mutable=isMutable)
-            newScopeObj.write(name, result, builder)
-        elif currExprCtx.comparisonExpr():
-            compExpr = currExprCtx.comparisonExpr()
-            result = self.handle_comparisonExpr(compExpr, builder, newScopeObj)
-            newScopeObj.allocate(name, builder, result.type, mutable=isMutable)
-            newScopeObj.write(name, result, builder)
-        else:
-            sys.stderr.write("************** NO DECLARE AND ASSIGN FOR YOU *******************\n")
-            sys.exit(7)
+        result = self.handle_expression(currExprCtx, builder, newScopeObj)
+        newScopeObj.allocate(name, builder, result.type, mutable=isMutable)
+        newScopeObj.write(name, result, builder)
 
     def handle_assigmentStmt(self, assignCtx, builder, irFunc, newScopeObj):
         name = assignCtx.NAME().getText()
 
         currExprCtx = assignCtx.expression()
+        result = self.handle_expression(currExprCtx, builder, newScopeObj)
+        newScopeObj.write(name, result, builder)
+
+    def handle_expression(self, currExprCtx, builder, newScopeObj):
         if currExprCtx.simpleExpression():
             simpExp = currExprCtx.simpleExpression()
-            result = self.handle_simpleExpr(simpExp, builder, newScopeObj)
-            newScopeObj.write(name, result, builder)
+            return self.handle_simpleExpr(simpExp, builder, newScopeObj)
         elif currExprCtx.arthimeticExpr():
             arithExpr = currExprCtx.arthimeticExpr()
-            result = self.handle_arthimeticExpr(arithExpr, builder, newScopeObj)
-            newScopeObj.write(name, result, builder)
+            return self.handle_arthimeticExpr(arithExpr, builder, newScopeObj)
         elif currExprCtx.multiArthimeticExpr():
             multiArithExpr = currExprCtx.multiArthimeticExpr()
-            result = self.handle_multiArthimeticExpr(multiArithExpr, builder, newScopeObj)
-            newScopeObj.write(name, result, builder)
+            return self.handle_multiArthimeticExpr(multiArithExpr, builder, newScopeObj)
         elif currExprCtx.comparisonExpr():
             compExpr = currExprCtx.comparisonExpr()
-            result = self.handle_comparisonExpr(compExpr, builder, newScopeObj)
-            newScopeObj.write(name, result, builder)
+            return self.handle_comparisonExpr(compExpr, builder, newScopeObj)
         else:
-            sys.stderr.write("************** NO DECLARE AND ASSIGN FOR YOU *******************\n")
+            sys.stderr.write("************** NO (DECLARE AND) ASSIGN FOR YOU *******************\n")
             sys.exit(7)
 
     def handle_returnStmt(self, retStmt, builder, irFunc, newScopeObj):
