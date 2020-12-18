@@ -11,5 +11,7 @@ def returnCalcResult(first : int, second : int) -> int {
 }
 
 def one() -> int {
-  return 1;
+  let mut val = 2;
+  val = 1;
+  return val;
 }

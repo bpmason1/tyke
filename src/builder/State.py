@@ -1,6 +1,12 @@
 from colorama import Fore, Style
 from contextlib import contextmanager
+from enum import Enum
 import sys
+
+class Mutability(Enum):
+    UNDEFINED = 0
+    MUTABLE = 1
+    IMMUTABLE = 2
 
 class StackPtr:
     def __init__(self, name, valType):
@@ -24,7 +30,7 @@ class State:
     def _add_scope(self):
         newScope = Scope()
         self._scopes.append(newScope)
-        self.print_num_scopes()
+        # self.print_num_scopes()
 
     def _del_scope(self):
         if self._scopes:
@@ -32,19 +38,19 @@ class State:
         else:
             sys.stderr.write('ERROR: no scopes remaining to pop\n')
             sys.exit(1)
-        self.print_num_scopes()
+        # self.print_num_scopes()
 
     def has(self, name):
         scopeIdx = self.num_scopes - 1
         while scopeIdx >= 0:
             if name in self._scopes[scopeIdx]._immutable:
-                return True
+                return (True, Mutability.IMMUTABLE)
 
             if name in self._scopes[scopeIdx]._mutable:
-                return True
+                return (True, Mutability.MUTABLE)
 
             scopeIdx -= 1
-        return False
+        return (False, Mutability.UNDEFINED)
 
     def allocate(self, name, builder, varType, size=1, mutable=False):
         if not isinstance(name, str):
@@ -52,7 +58,7 @@ class State:
             sys.stderr.write(Fore.RED + msg + Style.RESET_ALL)
             sys.exit(1)
 
-        if self.has(name):
+        if self.has(name)[0]:
             msg = f'ERROR: attempting to shadow variable {name}'
             sys.stderr.write(Fore.RED + msg + Style.RESET_ALL)
             sys.exit(1)
@@ -87,20 +93,26 @@ class State:
         sys.exit(1)
 
     def write(self, name, value, builder):
+        exists, mutability = self.has(name)
+        if not exists:
+            msg = f'Error: Variable "{name}" has not been declared\n'
+            sys.stderr.write(Fore.RED + msg + Style.RESET_ALL)
+            sys.exit(1)
+
+        # the variable has alredy been allocated on the stack
         if name in self._uninitialized:
             self._write_uninitialized(name, value, builder)
             return
-
-        # throw an error if the value is immutable
-        scopeIdx = self.num_scopes - 1
-        while scopeIdx >= 0:
-            if name in self._scopes[scopeIdx]._immutable:
-                msg = f'ERROR: trying to modify immutable variable {name}'
+        elif mutability == Mutability.IMMUTABLE:
+            # the variable has been initialized ... is it mutable???
+                msg = f'ERROR: trying to modify immutable variable "{name}"\n'
                 sys.stderr.write(Fore.RED + msg + Style.RESET_ALL)
                 sys.exit(1)
-            scopeIdx -= 1
 
-        # update the variable if it already exists
+        self._write_mutable( name, value, builder)
+
+    def _write_mutable(self, name, value, builder):
+        # update the variable ... assumes the variable has already been allocated on the stack
         scopeIdx = self.num_scopes - 1
         while scopeIdx >= 0:
             if name in self._scopes[scopeIdx]._mutable:
@@ -108,13 +120,6 @@ class State:
                 builder.store(value, stackPtr)   # generates the LLVM to store value on the stack
                 return
             scopeIdx -= 1
-
-        # add the variable to this scope if it wasn't found
-        msg = f'Error: Variable {name} has not been declared\n'
-        sys.stderr.write(Fore.RED + msg + Style.RESET_ALL)
-        sys.exit(1)
-        # stackPtr = self._scopes[-1]._immutable[name]
-        # builder.store(value, stackPtr)   # generates the LLVM to store value on the stack
 
     def _write_uninitialized(self, name, value, builder):
         stackPtr = None
