@@ -40,17 +40,17 @@ class State:
             sys.exit(1)
         # self.print_num_scopes()
 
-    def has(self, name):
+    def getStackPtr(self, name):
         scopeIdx = self.num_scopes - 1
         while scopeIdx >= 0:
             if name in self._scopes[scopeIdx]._immutable:
-                return (True, Mutability.IMMUTABLE)
+                return (self._scopes[scopeIdx]._immutable[name], Mutability.IMMUTABLE)
 
             if name in self._scopes[scopeIdx]._mutable:
-                return (True, Mutability.MUTABLE)
+                return (self._scopes[scopeIdx]._mutable[name], Mutability.MUTABLE)
 
             scopeIdx -= 1
-        return (False, Mutability.UNDEFINED)
+        return (None, Mutability.UNDEFINED)
 
     def allocate(self, name, builder, varType, size=1, mutable=False):
         if not isinstance(name, str):
@@ -58,7 +58,7 @@ class State:
             sys.stderr.write(Fore.RED + msg + Style.RESET_ALL)
             sys.exit(1)
 
-        if self.has(name)[0]:
+        if self.getStackPtr(name)[0]:
             msg = f'ERROR: attempting to shadow variable {name}'
             sys.stderr.write(Fore.RED + msg + Style.RESET_ALL)
             sys.exit(1)
@@ -76,32 +76,26 @@ class State:
         return stackPtr
 
     def read(self, name, builder):
-        scopeIdx = self.num_scopes - 1
-        while scopeIdx >= 0:
-            if name in self._scopes[scopeIdx]._immutable:
-                stackPtr = self._scopes[scopeIdx]._immutable[name]
-                return builder.load(stackPtr)
+        stackPtr, _ = self.getStackPtr(name)
 
-            if name in self._scopes[scopeIdx]._mutable:
-                stackPtr = self._scopes[scopeIdx]._mutable[name]
-                return builder.load(stackPtr)
+        if not stackPtr:
+            msg = f'ERROR: no such variable {name}'
+            sys.stderr.write(Fore.RED + msg + Style.RESET_ALL)
+            sys.exit(1)
 
-            scopeIdx -= 1
-
-        msg = f'ERROR: no such variable {name}'
-        sys.stderr.write(Fore.RED + msg + Style.RESET_ALL)
-        sys.exit(1)
+        return builder.load(stackPtr)
 
     def write(self, name, value, builder):
-        exists, mutability = self.has(name)
-        if not exists:
+        stackPtr, mutability = self.getStackPtr(name)
+        if not stackPtr:
             msg = f'Error: Variable "{name}" has not been declared\n'
             sys.stderr.write(Fore.RED + msg + Style.RESET_ALL)
             sys.exit(1)
 
         # the variable has alredy been allocated on the stack
         if name in self._uninitialized:
-            self._write_uninitialized(name, value, builder)
+            builder.store(value, stackPtr)
+            self._uninitialized.remove(name)
             return
         elif mutability == Mutability.IMMUTABLE:
             # the variable has been initialized ... is it mutable???
@@ -109,42 +103,7 @@ class State:
                 sys.stderr.write(Fore.RED + msg + Style.RESET_ALL)
                 sys.exit(1)
 
-        self._write_mutable( name, value, builder)
-
-    def _write_mutable(self, name, value, builder):
-        # update the variable ... assumes the variable has already been allocated on the stack
-        scopeIdx = self.num_scopes - 1
-        while scopeIdx >= 0:
-            if name in self._scopes[scopeIdx]._mutable:
-                stackPtr = self._scopes[scopeIdx]._mutable[name]
-                builder.store(value, stackPtr)   # generates the LLVM to store value on the stack
-                return
-            scopeIdx -= 1
-
-    def _write_uninitialized(self, name, value, builder):
-        stackPtr = None
-        scopeIdx = self.num_scopes - 1
-        while scopeIdx >= 0:
-            if name in self._scopes[scopeIdx]._immutable:
-                # check immutable varibales
-                stackPtr = self._scopes[scopeIdx]._immutable[name]
-            elif name in self._scopes[scopeIdx]._mutable:
-                # check mutable varibales
-                stackPtr = self._scopes[scopeIdx]._mutable[name]
-
-            if stackPtr:
-                builder.store(value, stackPtr)   # generates the LLVM to store value on the stack
-                # stackPtr = value   # update the stack data within this compiler State object
-
-                # remove `name` from set of uninitialized variables
-                self._uninitialized.remove(name)
-                return
-
-            # `name` not found in this scope ... check the next scope
-            scopeIdx -= 1
-
-        sys.stderr.write(f'Could not find uninitialize variable {name}')
-        sys.exit(1)
+        builder.store(value, stackPtr)   # generates the LLVM to store value on the stack
 
     @property
     def num_scopes(self):
