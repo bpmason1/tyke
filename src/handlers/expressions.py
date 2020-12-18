@@ -30,10 +30,39 @@ class __ExpressionHandler(BaseHandler):
         name = varDeclareCtx.NAME().getText()
         isMutable = (varDeclareCtx.MUT() != None)
 
+        package = ProgramNode.getPackage('main')
+
         currExprCtx = declAndAssignCtx.expression()
-        result = self.handle_expression(currExprCtx, builder, newScopeObj)
-        newScopeObj.allocate(name, builder, result.type, mutable=isMutable)
-        newScopeObj.write(name, result, builder)
+        if currExprCtx.makeStructExpr():
+            makeStructCtx = currExprCtx.makeStructExpr()
+            structName = makeStructCtx.NAME().getText()
+
+            knownStructDict = package.llvmIR().context.identified_types
+            if structName not in knownStructDict:
+                msg = f'Could not instantiate unknown type {structName}\n'
+                sys.stderr.write(Fore.RED + msg + Style.RESET_ALL)
+                sys.exit(3)
+
+            llvmType = knownStructDict[structName]
+            # elemList, llvmType = ProgramNode.getPackage('main').getTypeInfo(structName)
+            
+            newScopeObj.allocate(name, builder, llvmType, mutable=isMutable)
+
+            # *** TODO - add error handling to ensure all fields are set ***
+            fieldInitList = makeStructCtx.fieldInitList().fieldInit()
+            fieldResultList = []
+            for field in fieldInitList:
+                field_name = field.NAME().getText()
+                field_expr_ctx = field.expression()
+                field_result = self.handle_expression(field_expr_ctx, builder, newScopeObj)
+                fieldResultList.append(field_result)
+
+            ordElemDict, _ = package.getTypeInfo(structName)
+            newScopeObj.initialize_struct(name, fieldResultList, ordElemDict, builder)
+        else:
+            result = self.handle_expression(currExprCtx, builder, newScopeObj)
+            newScopeObj.allocate(name, builder, result.type, mutable=isMutable)
+            newScopeObj.write(name, result, builder)
 
     def handle_assigmentStmt(self, assignCtx, builder, irFunc, newScopeObj):
         name = assignCtx.NAME().getText()

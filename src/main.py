@@ -1,4 +1,5 @@
 from antlr4 import *
+from collections import OrderedDict
 from colorama import Fore, Style
 from llvmlite import ir
 from MambaLexer import MambaLexer
@@ -36,16 +37,19 @@ class MambaTypedefBuilder(MambaListener):
         if ctx.typedArgList():
             typedArgList = ctx.typedArgList().typedArg()
             structFieldTypeList = []
+            structFieldDict = OrderedDict()
             for typedArg in typedArgList:
                 varTypeName = typedArg.varType().getText()
                 llvmVarType = Primitive.get_type_by_name(varTypeName)
                 name = typedArg.NAME().getText()
                 structFieldTypeList.append(llvmVarType)
+                structFieldDict[name] = llvmVarType
         moduleCtx = main.llvmIR().context
         identType = moduleCtx.get_identified_type(name=typeName)
         identType.set_body(*structFieldTypeList)
+        # print(identType.get_declaration())
 
-        # package.newVariableType(typeName, structFieldList, llvmTypeObj)
+        package.newVariableType(typeName, structFieldDict, identType)
         # sys.stderr.write("INFO - Exiting MambaTypedefBuilder\n")
 
 class MambaFunctionTableBuilder(MambaListener):

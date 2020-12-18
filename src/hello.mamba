@@ -1,8 +1,9 @@
 package main;
 
-type struct { height: int, width: int } Rect ;
+type struct { height: int, width: int, depth: int } Rect ;
 
 def main() -> int {
+  let mut rect = Rect{ height: 4, width: 9, depth: 3 };
   return returnCalcResult(4, 9) ;
 }
 

@@ -15,6 +15,9 @@ elifStmt : ELIF comparisonExpr '{' statementList? '}' ;
 elseStmt : ELSE '{' statementList? '}' ;
 conditionalStmt : ifStmt elifStmt* elseStmt? ;
 
+fieldInit: NAME ':' expression ;
+fieldInitList: fieldInit (',' fieldInit)* ;
+makeStructExpr : NAME '{' fieldInitList? '}' ;
 whileStmt: WHILE comparisonExpr '{' statementList? '}' ;
 
 loopStmt: whileStmt;
@@ -48,7 +51,7 @@ booleanLiteral : TRUE | FALSE ;
 
 numeric : DOUBLE | INTEGER ;
 simpleExpression : (numeric | NAME | funcCall) ;
-expression : simpleExpression | arthimeticExpr | multiArthimeticExpr | comparisonExpr ;
+expression : simpleExpression | arthimeticExpr | multiArthimeticExpr | comparisonExpr | makeStructExpr;
 
 funcCall: NAME funcCallDataList ;
 funcCallDataList: '(' dataList? ')' ;

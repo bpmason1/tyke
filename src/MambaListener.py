@@ -89,6 +89,33 @@ class MambaListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MambaParser#fieldInit.
+    def enterFieldInit(self, ctx:MambaParser.FieldInitContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#fieldInit.
+    def exitFieldInit(self, ctx:MambaParser.FieldInitContext):
+        pass
+
+
+    # Enter a parse tree produced by MambaParser#fieldInitList.
+    def enterFieldInitList(self, ctx:MambaParser.FieldInitListContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#fieldInitList.
+    def exitFieldInitList(self, ctx:MambaParser.FieldInitListContext):
+        pass
+
+
+    # Enter a parse tree produced by MambaParser#makeStructExpr.
+    def enterMakeStructExpr(self, ctx:MambaParser.MakeStructExprContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#makeStructExpr.
+    def exitMakeStructExpr(self, ctx:MambaParser.MakeStructExprContext):
+        pass
+
+
     # Enter a parse tree produced by MambaParser#whileStmt.
     def enterWhileStmt(self, ctx:MambaParser.WhileStmtContext):
         pass

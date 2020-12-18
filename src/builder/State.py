@@ -1,7 +1,10 @@
+from collections import OrderedDict
 from colorama import Fore, Style
 from contextlib import contextmanager
 from enum import Enum
+from llvmlite import ir
 import sys
+from primitive import Primitive
 
 class Mutability(Enum):
     UNDEFINED = 0
@@ -84,6 +87,23 @@ class State:
             sys.exit(1)
 
         return builder.load(stackPtr)
+
+    def initialize_struct(self, name: str, values: list, ordFieldDict: OrderedDict, builder):
+        int32 = ir.IntType(32)
+        zero = int32(0)
+
+        stackPtr, mutability = self.getStackPtr(name)
+        if name in self._uninitialized:
+            self._uninitialized.remove(name)
+        elif mutability == Mutability.IMMUTABLE:
+            msg = f'ERROR: trying to modify immutable struct variable "{name}"\n'
+            sys.stderr.write(Fore.RED + msg + Style.RESET_ALL)
+            sys.exit(1)
+
+        for idx, (fieldName, fieldType) in enumerate(ordFieldDict.items()):
+            indices = [zero, int32(idx)]  # [start_idx, field_idx]
+            elemPtr = builder.gep(stackPtr, indices, inbounds=True)  # TODO: what the heck does the inbounds field do???
+            builder.store(values[idx], elemPtr)
 
     def write(self, name, value, builder):
         stackPtr, mutability = self.getStackPtr(name)

@@ -20,12 +20,15 @@ class PackageNode(AstNode):
     def newDeclaration(self, name: str, returnType, funcArgs):
         return DeclarationNode(name, returnType, funcArgs, parent=self, hasVarArg=True)
 
-    def newVariableType(self, name, elemList, llvmType):
+    def getTypeInfo(self, name):
+        return self.__types[name]
+
+    def newVariableType(self, name, ordElemDict, llvmType):
         if name in self.__types:
             msg = f'Error - type {name} already declared\n'
             sys.stderr.write(msg)
             sys.exit(5)
-        self.__types[name] = (elemList, llvmType)
+        self.__types[name] = (ordElemDict, llvmType)
 
     def getFunction(self, name):
         for node in self.children:
