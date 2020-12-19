@@ -44,11 +44,11 @@ def serializedATN():
         buf.write("%\3%\7%\u013b\n%\f%\16%\u013e\13%\3&\3&\3\'\3\'\3(\3(")
         buf.write("\3(\2\2)\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(")
         buf.write("*,.\60\62\64\668:<>@BDFHJLN\2\t\3\2#&\3\2\r\22\3\2\23")
-        buf.write("\24\3\2\'(\3\2\'*\4\2\32\32 \"\3\2 !\2\u0142\2P\3\2\2")
-        buf.write("\2\4\\\3\2\2\2\6`\3\2\2\2\bj\3\2\2\2\nq\3\2\2\2\fw\3\2")
-        buf.write("\2\2\16\177\3\2\2\2\20\u0087\3\2\2\2\22\u008e\3\2\2\2")
-        buf.write("\24\u0098\3\2\2\2\26\u009c\3\2\2\2\30\u00a4\3\2\2\2\32")
-        buf.write("\u00ab\3\2\2\2\34\u00b3\3\2\2\2\36\u00b6\3\2\2\2 \u00c0")
+        buf.write("\24\3\2\'(\3\2\'*\4\2\32\32 \"\4\2 !))\2\u0142\2P\3\2")
+        buf.write("\2\2\4\\\3\2\2\2\6`\3\2\2\2\bj\3\2\2\2\nq\3\2\2\2\fw\3")
+        buf.write("\2\2\2\16\177\3\2\2\2\20\u0087\3\2\2\2\22\u008e\3\2\2")
+        buf.write("\2\24\u0098\3\2\2\2\26\u009c\3\2\2\2\30\u00a4\3\2\2\2")
+        buf.write("\32\u00ab\3\2\2\2\34\u00b3\3\2\2\2\36\u00b6\3\2\2\2 \u00c0")
         buf.write("\3\2\2\2\"\u00c2\3\2\2\2$\u00c9\3\2\2\2&\u00cc\3\2\2\2")
         buf.write("(\u00d1\3\2\2\2*\u00d6\3\2\2\2,\u00dc\3\2\2\2.\u00e4\3")
         buf.write("\2\2\2\60\u00e8\3\2\2\2\62\u00ee\3\2\2\2\64\u0105\3\2")
@@ -2576,6 +2576,9 @@ class MambaParser ( Parser ):
         def KW_INT(self):
             return self.getToken(MambaParser.KW_INT, 0)
 
+        def NAME(self):
+            return self.getToken(MambaParser.NAME, 0)
+
         def getRuleIndex(self):
             return MambaParser.RULE_varType
 
@@ -2599,7 +2602,7 @@ class MambaParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 321
             _la = self._input.LA(1)
-            if not(_la==MambaParser.KW_DOUBLE or _la==MambaParser.KW_INT):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MambaParser.KW_DOUBLE) | (1 << MambaParser.KW_INT) | (1 << MambaParser.NAME))) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)

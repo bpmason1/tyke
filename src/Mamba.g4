@@ -59,7 +59,7 @@ dataList: data (',' data)* ;
 data: STRING | NAME | DOUBLE | INTEGER;
 
 returnType: ('void' | 'int' | 'double' | BOOL) ;
-varType : ('double' | 'int') ;
+varType : ('double' | 'int' | NAME) ;
 
 
 

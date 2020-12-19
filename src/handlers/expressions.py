@@ -198,8 +198,8 @@ class __ExpressionHandler(BaseHandler):
 
             dataListCtx = callCtx.funcCallDataList().dataList()
 
+            package = ProgramNode.getPackage('main')
             if not dataListCtx:
-                package = ProgramNode.getPackage('main')
                 callFn = package.getFunction(callName).llvmIR()
                 return builder.call(callFn, [])
 
@@ -208,11 +208,11 @@ class __ExpressionHandler(BaseHandler):
             for dataCtx in dataList:
 
                 if dataCtx.INTEGER():
-                    irInt = Primitive.get_type_by_name(INT)
+                    irInt = package.get_type_by_name(INT)
                     data = dataCtx.INTEGER().getText()
                     callArgs.append(irInt(data))
                 elif dataCtx.DOUBLE():
-                    irDbl = Primitive.get_type_by_name(DOUBLE)
+                    irDbl = package.get_type_by_name(DOUBLE)
                     data = dataCtx.DOUBLE().getText()
                     callArgs.append(irDbl(data))
                 else:

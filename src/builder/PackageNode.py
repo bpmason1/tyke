@@ -3,6 +3,8 @@ from llvmlite import ir
 from .AstNode import AstNode
 from .DeclarationNode import DeclarationNode
 from .FunctionNode import FunctionNode
+from primitive import Primitive
+
 # from collections import OrderedDict
 from colorama import Fore, Style
 import sys
@@ -12,6 +14,14 @@ class PackageNode(AstNode):
         super().__init__(name, parent=parent)
         self.__llvm = ir.Module(name=name)
         self.__types = {}
+
+    def get_type_by_name(self, var_type: str):
+        ctx = self.llvmIR().context
+        identTypeDict = ctx.identified_types
+        if var_type in identTypeDict:
+            return identTypeDict[var_type]
+
+        return Primitive.get_type_by_name(var_type)
 
     # funcArgs: TypedValue
     def newFunction(self, name: str, returnType, funcArgs):

@@ -7,6 +7,11 @@ def main() -> int {
   return returnCalcResult(4, 9) ;
 }
 
+def volume(rect: Rect) -> int {
+  let V = 1;
+  return V;
+}
+
 def returnCalcResult(first : int, second : int) -> int {
   return (first + 6) + 2 *(second + one());
 }

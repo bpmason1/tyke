@@ -40,7 +40,7 @@ class MambaTypedefBuilder(MambaListener):
             structFieldDict = OrderedDict()
             for typedArg in typedArgList:
                 varTypeName = typedArg.varType().getText()
-                llvmVarType = Primitive.get_type_by_name(varTypeName)
+                llvmVarType = main.get_type_by_name(varTypeName)
                 name = typedArg.NAME().getText()
                 structFieldTypeList.append(llvmVarType)
                 structFieldDict[name] = llvmVarType
@@ -63,7 +63,7 @@ class MambaFunctionTableBuilder(MambaListener):
 
         sigCtx = ctx.signature()
         name = sigCtx.NAME().getText()
-        returnType = Primitive.get_type_by_name( sigCtx.returnType().getText() )
+        returnType = package.get_type_by_name( sigCtx.returnType().getText() )
         typedArgList = sigCtx.funcDefArgList().typedArgList()
         # inputTypedValueList = inputArgs.typedValueList()
 
@@ -75,7 +75,7 @@ class MambaFunctionTableBuilder(MambaListener):
             for tv in typedArgList.typedArg():
                 # print( tv.NAME().getSymbol().text )
                 argName = tv.NAME().getText()
-                argType = Primitive.get_type_by_name(tv.varType().getText())
+                argType = package.get_type_by_name(tv.varType().getText())
                 arg = TypedValue(argName, argType)
                 argList.append( arg )
 
