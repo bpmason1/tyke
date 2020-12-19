@@ -3,12 +3,16 @@ package main;
 type struct { height: int, width: int, depth: int } Rect ;
 
 def main() -> int {
-  let mut rect = Rect{ height: 4, width: 9, depth: 3 };
-  return returnCalcResult(4, 9) ;
+  let mut rect = Rect{ height: 2, width: 4, depth: 3 };
+  let calc = returnCalcResult(4, 9) ;
+  let V = volume(rect);
+  return V;
 }
 
 def volume(rect: Rect) -> int {
-  let V = 1;
+  let mut V = rect.height;
+  V = V * rect.width;
+  V = V * rect.depth;
   return V;
 }
 

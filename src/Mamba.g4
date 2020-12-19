@@ -50,7 +50,8 @@ booleanLiteral : TRUE | FALSE ;
 // simpleBooleanTerm : (booleanLiteral | numeric | NAME | funcCall) ;
 
 numeric : DOUBLE | INTEGER ;
-simpleExpression : (numeric | NAME | funcCall) ;
+field : NAME FIELD_REF+ ;
+simpleExpression : (numeric | NAME | field | funcCall) ;
 expression : simpleExpression | arthimeticExpr | multiArthimeticExpr | comparisonExpr | makeStructExpr;
 
 funcCall: NAME funcCallDataList ;
@@ -97,6 +98,8 @@ DIVIDE: '/' ;
 
 DOUBLE: INTEGER '.' [0-9]+ ;
 INTEGER: '0' | NON_ZERO_INTEGER ;
+
+FIELD_REF : '.' NAME;
 
 // RETURN_TYPE: VAR_TYPE | VOID ;
 NAME: ID_START ID_CONTINUE*;

@@ -206,7 +206,6 @@ class __ExpressionHandler(BaseHandler):
             dataList = dataListCtx.data()
             callArgs = []
             for dataCtx in dataList:
-
                 if dataCtx.INTEGER():
                     irInt = package.get_type_by_name(INT)
                     data = dataCtx.INTEGER().getText()
@@ -215,6 +214,15 @@ class __ExpressionHandler(BaseHandler):
                     irDbl = package.get_type_by_name(DOUBLE)
                     data = dataCtx.DOUBLE().getText()
                     callArgs.append(irDbl(data))
+                elif dataCtx.NAME():
+                    paramName = dataCtx.NAME().getText()
+                    varTypeCtx = newScopeObj.get_type(paramName)
+                    # knownStructDict = package.llvmIR().context.identified_types
+                    # if varTypeCtx.name in knownStructDict:
+                    #     result = newScopeObj.read_struct
+                    #     return
+                    data = newScopeObj.read(paramName, builder)
+                    callArgs.append(data)
                 else:
                     msg = f'ERROR: dataCtx has unknown arg type'
                     print(Fore.RED + msg + Style.RESET_ALL)
@@ -340,6 +348,10 @@ class __ExpressionHandler(BaseHandler):
         elif hasattr(simpleExpr, "NAME") and simpleExpr.NAME():
             varName = simpleExpr.getText()
             return newScopeObj.read(varName, builder)
+        elif hasattr(simpleExpr, "field") and simpleExpr.field():
+            fieldCtx = simpleExpr.field()
+            result = self.handle_field(fieldCtx, builder, newScopeObj)
+            return result
         elif isinstance(simpleExpr, Instruction):
             # TODO .... is this rule too generic to be useful
             return simpleExpr
@@ -350,6 +362,17 @@ class __ExpressionHandler(BaseHandler):
             sys.exit(3)
 
         sys.stderr.write("handle_simpleExpr reached a point that should be unreachable")
+
+    def handle_field(self, fieldCtx, builder, newScopeObj):
+        rootVarName = fieldCtx.NAME().getText()
+
+        fieldNameList = [ rootVarName ]
+        for field_ref in fieldCtx.FIELD_REF():
+            fieldName = field_ref.getText().lstrip('.')
+            fieldNameList.append(fieldName)
+        
+        package = ProgramNode.getPackage('main')
+        return newScopeObj.read_struct(fieldNameList, builder, package)
 
     def handle_comparisonExpr(self, compExpr, builder, newScopeObj):
         if compExpr.simpleExpression() and len(compExpr.simpleExpression()) == 2:
