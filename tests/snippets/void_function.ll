@@ -1,5 +1,6 @@
 ; ModuleID = "main"
 
+%"Rect" = type {i64, i64, i64}
 define void @"abyss"() 
 {
 entry:
@@ -192,12 +193,12 @@ entry.endif:
   store i64 1, i64* %"total"
   %".11" = load i64, i64* %"exp"
   store i64 %".11", i64* %"counter"
-  br label %"predicate.while.3eabed1f33e7c3854d5bb530f0bfef9b"
-predicate.while.3eabed1f33e7c3854d5bb530f0bfef9b:
+  br label %"predicate.while.35b5f34229a4f8bda7b6f3e6b2434dc4"
+predicate.while.35b5f34229a4f8bda7b6f3e6b2434dc4:
   %".14" = load i64, i64* %"counter"
   %".15" = icmp sgt i64 %".14", 0
-  br i1 %".15", label %"entry.while.3eabed1f33e7c3854d5bb530f0bfef9b", label %"exit.while.3eabed1f33e7c3854d5bb530f0bfef9b"
-entry.while.3eabed1f33e7c3854d5bb530f0bfef9b:
+  br i1 %".15", label %"entry.while.35b5f34229a4f8bda7b6f3e6b2434dc4", label %"exit.while.35b5f34229a4f8bda7b6f3e6b2434dc4"
+entry.while.35b5f34229a4f8bda7b6f3e6b2434dc4:
   %".17" = load i64, i64* %"total"
   %".18" = load i64, i64* %"num"
   %".19" = mul i64 %".17", %".18"
@@ -205,8 +206,8 @@ entry.while.3eabed1f33e7c3854d5bb530f0bfef9b:
   %".21" = load i64, i64* %"counter"
   %".22" = sub i64 %".21", 1
   store i64 %".22", i64* %"counter"
-  br label %"predicate.while.3eabed1f33e7c3854d5bb530f0bfef9b"
-exit.while.3eabed1f33e7c3854d5bb530f0bfef9b:
+  br label %"predicate.while.35b5f34229a4f8bda7b6f3e6b2434dc4"
+exit.while.35b5f34229a4f8bda7b6f3e6b2434dc4:
   %".25" = load i64, i64* %"total"
   ret i64 %".25"
 }

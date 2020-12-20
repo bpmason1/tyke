@@ -1,5 +1,7 @@
 package main;
 
+type struct { height: int, width: int, depth: int } Rect ;
+
 def abyss() -> void {
   return;
 }
