@@ -5,9 +5,10 @@ type struct { pt1: Point, pt2: Point } Line;
 
 def main() -> int {
   let p1 = Point{ x: 3, y:  70};
-  let p2 = Point{ x: 5, y:  80};
-  let line = Line{pt1: p1, pt2: p2};
+  let line = Line{pt1: p1, pt2: Point{ x: 5, y:  80}};
+
   let result = rise(line);
+
   return result;
 }
 

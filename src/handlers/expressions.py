@@ -37,28 +37,13 @@ class __ExpressionHandler(BaseHandler):
             makeStructCtx = currExprCtx.makeStructExpr()
             structName = makeStructCtx.NAME().getText()
 
-            knownStructDict = package.llvmIR().context.identified_types
-            if structName not in knownStructDict:
-                msg = f'Could not instantiate unknown type {structName}\n'
-                sys.stderr.write(Fore.RED + msg + Style.RESET_ALL)
-                sys.exit(3)
-
-            llvmType = knownStructDict[structName]
-            # elemList, llvmType = ProgramNode.getPackage('main').getTypeInfo(structName)
-            
+            # knownStructDict = package.llvmIR().context.identified_types
+            # llvmType = knownStructDict[structName]
+            ordElemDict, llvmType = package.getTypeInfo(structName)            
             newScopeObj.allocate(name, builder, llvmType, mutable=isMutable)
 
-            # *** TODO - add error handling to ensure all fields are set ***
-            fieldInitList = makeStructCtx.fieldInitList().fieldInit()
-            fieldResultList = []
-            for field in fieldInitList:
-                field_name = field.NAME().getText()
-                field_expr_ctx = field.expression()
-                field_result = self.handle_expression(field_expr_ctx, builder, newScopeObj)
-                fieldResultList.append(field_result)
-
-            ordElemDict, _ = package.getTypeInfo(structName)
-            newScopeObj.initialize_struct(name, fieldResultList, ordElemDict, builder)
+            result = self.handle_makeStructExpr(makeStructCtx, builder, newScopeObj)
+            newScopeObj.initialize_struct(name, result, ordElemDict, builder)
         else:
             result = self.handle_expression(currExprCtx, builder, newScopeObj)
             newScopeObj.allocate(name, builder, result.type, mutable=isMutable)
@@ -84,6 +69,9 @@ class __ExpressionHandler(BaseHandler):
         elif currExprCtx.comparisonExpr():
             compExpr = currExprCtx.comparisonExpr()
             return self.handle_comparisonExpr(compExpr, builder, newScopeObj)
+        elif currExprCtx.makeStructExpr():
+            makeStructCtx = currExprCtx.makeStructExpr()
+            return self.handle_makeStructExpr(makeStructCtx, builder, newScopeObj)
         else:
             sys.stderr.write("************** NO (DECLARE AND) ASSIGN FOR YOU *******************\n")
             sys.exit(7)
@@ -99,6 +87,29 @@ class __ExpressionHandler(BaseHandler):
             return builder.ret(total)
         else:
             builder.ret_void()
+
+    def handle_makeStructExpr(self, makeStructCtx, builder, newScopeObj):
+        structName = makeStructCtx.NAME().getText()
+
+        package = ProgramNode.getPackage('main')
+        knownStructDict = package.llvmIR().context.identified_types
+
+        if structName not in knownStructDict:
+            msg = f'Could not instantiate unknown type {structName}\n'
+            sys.stderr.write(Fore.RED + msg + Style.RESET_ALL)
+            sys.exit(3)
+
+        fieldInitList = makeStructCtx.fieldInitList().fieldInit()
+        fieldResultList = []
+        for field in fieldInitList:
+            field_name = field.NAME().getText()
+            field_expr_ctx = field.expression()
+            field_result = self.handle_expression(field_expr_ctx, builder, newScopeObj)
+            fieldResultList.append(field_result)
+
+        llvmType = knownStructDict[structName]
+        result = llvmType(fieldResultList)
+        return result
 
     def handle_whileStmt(self, whileCtx, builder, irFunc, newScopeObj):
         uniqId = md5(str(ProgramNode.getPackage('main')).encode()).digest().hex()  # TODO - what if there are multiple packages ?!?

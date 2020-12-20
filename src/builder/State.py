@@ -114,7 +114,7 @@ class State:
 
         return builder.load(stackPtr)
 
-    def initialize_struct(self, name: str, values: list, ordFieldDict: OrderedDict, builder):
+    def initialize_struct(self, name: str, structData, ordFieldDict: OrderedDict, builder):
         int32 = ir.IntType(32)
         zero = int32(0)
 
@@ -126,10 +126,16 @@ class State:
             sys.stderr.write(Fore.RED + msg + Style.RESET_ALL)
             sys.exit(1)
 
-        for idx, (fieldName, fieldType) in enumerate(ordFieldDict.items()):
+
+        for idx, fieldCtx in enumerate(structData.constant):
             indices = [zero, int32(idx)]  # [start_idx, field_idx]
             elemPtr = builder.gep(stackPtr, indices, inbounds=True)  # TODO: what the heck does the inbounds field do???
-            builder.store(values[idx], elemPtr)
+            builder.store(fieldCtx, elemPtr)
+
+        # for idx, (fieldName, fieldType) in enumerate(ordFieldDict.items()):
+        #     indices = [zero, int32(idx)]  # [start_idx, field_idx]
+        #     elemPtr = builder.gep(stackPtr, indices, inbounds=True)  # TODO: what the heck does the inbounds field do???
+        #     builder.store(values[idx], elemPtr)
 
     def write(self, name, value, builder):
         stackPtr, mutability = self.getStackPtr(name)
