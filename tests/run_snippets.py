@@ -3,7 +3,7 @@ from colorama import Fore, Style
 import os
 from nose.tools import assert_equal
 
-# assert_equal.__self__.maxDiff = None
+assert_equal.__self__.maxDiff = None
 
 def getExpected(file_name_no_ext):
     with open(file_name_no_ext + '.ll', 'r') as fd:

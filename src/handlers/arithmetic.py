@@ -9,7 +9,7 @@ def get_llvmlite_arithmetic_function(valType, opCtx: MambaParser.Arithmetic_opCo
     elif isinstance(valType, DoubleType):
         return get_double_operator(opCtx, builder)
     else:
-        sys.stderr.write(f'Unknwon numeric type: {str(valType)}')
+        sys.stderr.write(f'Unknown numeric type: {str(valType)}')
         sys.exit(2)
 
 def get_double_operator(opCtx: MambaParser.Arithmetic_opContext, builder):

@@ -1,5 +1,7 @@
 ; ModuleID = "main"
 
+%"Point" = type {i64, i64}
+%"Line" = type {%"Point", %"Point"}
 %"Rect" = type {i64, i64, i64}
 define void @"abyss"() 
 {
@@ -193,12 +195,12 @@ entry.endif:
   store i64 1, i64* %"total"
   %".11" = load i64, i64* %"exp"
   store i64 %".11", i64* %"counter"
-  br label %"predicate.while.35b5f34229a4f8bda7b6f3e6b2434dc4"
-predicate.while.35b5f34229a4f8bda7b6f3e6b2434dc4:
+  br label %"predicate.while.0c15eca290c52bc9055be4753e75a0bf"
+predicate.while.0c15eca290c52bc9055be4753e75a0bf:
   %".14" = load i64, i64* %"counter"
   %".15" = icmp sgt i64 %".14", 0
-  br i1 %".15", label %"entry.while.35b5f34229a4f8bda7b6f3e6b2434dc4", label %"exit.while.35b5f34229a4f8bda7b6f3e6b2434dc4"
-entry.while.35b5f34229a4f8bda7b6f3e6b2434dc4:
+  br i1 %".15", label %"entry.while.0c15eca290c52bc9055be4753e75a0bf", label %"exit.while.0c15eca290c52bc9055be4753e75a0bf"
+entry.while.0c15eca290c52bc9055be4753e75a0bf:
   %".17" = load i64, i64* %"total"
   %".18" = load i64, i64* %"num"
   %".19" = mul i64 %".17", %".18"
@@ -206,8 +208,28 @@ entry.while.35b5f34229a4f8bda7b6f3e6b2434dc4:
   %".21" = load i64, i64* %"counter"
   %".22" = sub i64 %".21", 1
   store i64 %".22", i64* %"counter"
-  br label %"predicate.while.35b5f34229a4f8bda7b6f3e6b2434dc4"
-exit.while.35b5f34229a4f8bda7b6f3e6b2434dc4:
+  br label %"predicate.while.0c15eca290c52bc9055be4753e75a0bf"
+exit.while.0c15eca290c52bc9055be4753e75a0bf:
   %".25" = load i64, i64* %"total"
   ret i64 %".25"
 }
+
+define i64 @"rise"(%"Line" %".1") 
+{
+entry:
+  %"y2" = alloca i64, i32 1
+  %"y1" = alloca i64, i32 1
+  %"line" = alloca %"Line", i32 1
+  store %"Line" %".1", %"Line"* %"line"
+  %".4" = getelementptr inbounds %"Line", %"Line"* %"line", i32 0, i32 0, i32 1
+  %".5" = load i64, i64* %".4"
+  store i64 %".5", i64* %"y1"
+  %".7" = getelementptr inbounds %"Line", %"Line"* %"line", i32 0, i32 1, i32 1
+  %".8" = load i64, i64* %".7"
+  store i64 %".8", i64* %"y2"
+  %".10" = load i64, i64* %"y2"
+  %".11" = load i64, i64* %"y1"
+  %".12" = sub i64 %".10", %".11"
+  ret i64 %".12"
+}
+

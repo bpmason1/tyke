@@ -1,5 +1,7 @@
 package main;
 
+type struct { x: int, y: int } Point;
+type struct { pt1: Point, pt2: Point } Line;
 type struct { height: int, width: int, depth: int } Rect ;
 
 def abyss() -> void {
@@ -84,4 +86,10 @@ def pow(num : int, exp: int) -> int {
     counter = counter - 1;
   }
   return total;
+}
+
+def rise(line: Line) -> int {
+  let y1 = line.pt1.y;
+  let y2 = line.pt2.y;
+  return y2 - y1;
 }

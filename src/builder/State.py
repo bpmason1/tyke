@@ -86,19 +86,20 @@ class State:
         int32 = ir.IntType(32)
         zero = int32(0)
 
-        if len(fieldNameList) < 2:
+        if len(fieldNameList) <= 1:
             sys.stderr.write(f'Undefined call to State.read_struct with only {len(fieldNameList)} names in fieldNameList\n')
             sys.exit(1)
 
         stackPtr, _ = self.getStackPtr(fieldNameList[0])
         typeName = stackPtr.type.pointee.name
-        ordElemDict, _ = package.getTypeInfo(typeName)
 
-        indices = [zero, ]  # [start_idx, field_idx]
+        indices = [zero ]  # [start_idx, field_idx]
         for fieldName in fieldNameList[1:]:
+            ordElemDict, _ = package.getTypeInfo(typeName)
             for idx, (fieldNameFound, fieldTypeFound) in enumerate(ordElemDict.items()):
                 if fieldName == fieldNameFound:
                     indices.append(int32(idx))
+                    typeName = stackPtr.type.pointee.elements[idx].name
                     break
         elemPtr = builder.gep(stackPtr, indices, inbounds=True)  # TODO: what the heck does the inbounds field do???
         return builder.load(elemPtr)
