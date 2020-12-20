@@ -4,26 +4,13 @@ type struct { x: int, y: int } Point;
 type struct { pt1: Point, pt2: Point } Line;
 
 def main() -> int {
-  let p1 = Point{ x: 3, y:  70};
-  let line = Line{pt1: p1, pt2: Point{ x: 5, y:  80}};
-
-  let result = rise(line);
-
-  return result;
+  let line = newLine(2, 5, 6, 8);
+  return line.pt2.y;
 }
 
-def rise(line: Line) -> int {
-  let y1 = line.pt1.y;
-  let y2 = line.pt2.y;
-  return y2 - y1;
-}
-
-def returnCalcResult(first : int, second : int) -> int {
-  return (first + 6) + 2 *(second + one());
-}
-
-def one() -> int {
-  let mut val = 2;
-  val = 1;
-  return val;
+def newLine(x1: int, y1: int, x2: int, y2: int) -> Line {
+  let pt1 = Point{x: x1, y: y1};
+  let pt2 = Point{x: x2, y: y2};
+  let line = Line{pt1: pt1, pt2: pt2};
+  return line;
 }

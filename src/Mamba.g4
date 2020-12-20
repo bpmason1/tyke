@@ -59,7 +59,7 @@ funcCallDataList: '(' dataList? ')' ;
 dataList: data (',' data)* ;
 data: STRING | NAME | DOUBLE | INTEGER;
 
-returnType: ('void' | 'int' | 'double' | BOOL) ;
+returnType: ('void' | 'int' | 'double' | BOOL | NAME) ;
 varType : ('double' | 'int' | NAME) ;
 
 

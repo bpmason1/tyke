@@ -93,3 +93,10 @@ def rise(line: Line) -> int {
   let y2 = line.pt2.y;
   return y2 - y1;
 }
+
+def newLine(x1: int, y1: int, x2: int, y2: int) -> Line {
+  let pt1 = Point{x: x1, y: y1};
+  let pt2 = Point{x: x2, y: y2};
+  let line = Line{pt1: pt1, pt2: pt2};
+  return line;
+}

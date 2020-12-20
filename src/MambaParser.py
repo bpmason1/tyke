@@ -45,8 +45,8 @@ def serializedATN():
         buf.write("&\f&\16&\u0147\13&\3\'\3\'\3(\3(\3)\3)\3)\2\2*\2\4\6\b")
         buf.write("\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\668")
         buf.write(":<>@BDFHJLNP\2\t\3\2#&\3\2\r\22\3\2\23\24\3\2\'(\4\2\'")
-        buf.write("(*+\4\2\32\32 \"\4\2 !**\2\u014c\2R\3\2\2\2\4^\3\2\2\2")
-        buf.write("\6b\3\2\2\2\bl\3\2\2\2\ns\3\2\2\2\fy\3\2\2\2\16\u0081")
+        buf.write("(*+\5\2\32\32 \"**\4\2 !**\2\u014c\2R\3\2\2\2\4^\3\2\2")
+        buf.write("\2\6b\3\2\2\2\bl\3\2\2\2\ns\3\2\2\2\fy\3\2\2\2\16\u0081")
         buf.write("\3\2\2\2\20\u0089\3\2\2\2\22\u0090\3\2\2\2\24\u009a\3")
         buf.write("\2\2\2\26\u009e\3\2\2\2\30\u00a6\3\2\2\2\32\u00ad\3\2")
         buf.write("\2\2\34\u00b5\3\2\2\2\36\u00b8\3\2\2\2 \u00c2\3\2\2\2")
@@ -2603,6 +2603,9 @@ class MambaParser ( Parser ):
         def BOOL(self):
             return self.getToken(MambaParser.BOOL, 0)
 
+        def NAME(self):
+            return self.getToken(MambaParser.NAME, 0)
+
         def getRuleIndex(self):
             return MambaParser.RULE_returnType
 
@@ -2626,7 +2629,7 @@ class MambaParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 328
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MambaParser.BOOL) | (1 << MambaParser.KW_DOUBLE) | (1 << MambaParser.KW_INT) | (1 << MambaParser.VOID))) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MambaParser.BOOL) | (1 << MambaParser.KW_DOUBLE) | (1 << MambaParser.KW_INT) | (1 << MambaParser.VOID) | (1 << MambaParser.NAME))) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)

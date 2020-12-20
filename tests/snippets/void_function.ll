@@ -195,12 +195,12 @@ entry.endif:
   store i64 1, i64* %"total"
   %".11" = load i64, i64* %"exp"
   store i64 %".11", i64* %"counter"
-  br label %"predicate.while.0c15eca290c52bc9055be4753e75a0bf"
-predicate.while.0c15eca290c52bc9055be4753e75a0bf:
+  br label %"predicate.while.74482ac0d577b5c65708841f69a000df"
+predicate.while.74482ac0d577b5c65708841f69a000df:
   %".14" = load i64, i64* %"counter"
   %".15" = icmp sgt i64 %".14", 0
-  br i1 %".15", label %"entry.while.0c15eca290c52bc9055be4753e75a0bf", label %"exit.while.0c15eca290c52bc9055be4753e75a0bf"
-entry.while.0c15eca290c52bc9055be4753e75a0bf:
+  br i1 %".15", label %"entry.while.74482ac0d577b5c65708841f69a000df", label %"exit.while.74482ac0d577b5c65708841f69a000df"
+entry.while.74482ac0d577b5c65708841f69a000df:
   %".17" = load i64, i64* %"total"
   %".18" = load i64, i64* %"num"
   %".19" = mul i64 %".17", %".18"
@@ -208,8 +208,8 @@ entry.while.0c15eca290c52bc9055be4753e75a0bf:
   %".21" = load i64, i64* %"counter"
   %".22" = sub i64 %".21", 1
   store i64 %".22", i64* %"counter"
-  br label %"predicate.while.0c15eca290c52bc9055be4753e75a0bf"
-exit.while.0c15eca290c52bc9055be4753e75a0bf:
+  br label %"predicate.while.74482ac0d577b5c65708841f69a000df"
+exit.while.74482ac0d577b5c65708841f69a000df:
   %".25" = load i64, i64* %"total"
   ret i64 %".25"
 }
@@ -233,3 +233,38 @@ entry:
   ret i64 %".12"
 }
 
+define %"Line" @"newLine"(i64 %".1", i64 %".2", i64 %".3", i64 %".4") 
+{
+entry:
+  %"line" = alloca %"Line", i32 1
+  %"pt2" = alloca %"Point", i32 1
+  %"pt1" = alloca %"Point", i32 1
+  %"y2" = alloca i64, i32 1
+  %"x2" = alloca i64, i32 1
+  %"y1" = alloca i64, i32 1
+  %"x1" = alloca i64, i32 1
+  store i64 %".1", i64* %"x1"
+  store i64 %".2", i64* %"y1"
+  store i64 %".3", i64* %"x2"
+  store i64 %".4", i64* %"y2"
+  %".10" = load i64, i64* %"x1"
+  %".11" = load i64, i64* %"y1"
+  %".12" = getelementptr inbounds %"Point", %"Point"* %"pt1", i32 0, i32 0
+  store i64 %".10", i64* %".12"
+  %".14" = getelementptr inbounds %"Point", %"Point"* %"pt1", i32 0, i32 1
+  store i64 %".11", i64* %".14"
+  %".16" = load i64, i64* %"x2"
+  %".17" = load i64, i64* %"y2"
+  %".18" = getelementptr inbounds %"Point", %"Point"* %"pt2", i32 0, i32 0
+  store i64 %".16", i64* %".18"
+  %".20" = getelementptr inbounds %"Point", %"Point"* %"pt2", i32 0, i32 1
+  store i64 %".17", i64* %".20"
+  %".22" = load %"Point", %"Point"* %"pt1"
+  %".23" = load %"Point", %"Point"* %"pt2"
+  %".24" = getelementptr inbounds %"Line", %"Line"* %"line", i32 0, i32 0
+  store %"Point" %".22", %"Point"* %".24"
+  %".26" = getelementptr inbounds %"Line", %"Line"* %"line", i32 0, i32 1
+  store %"Point" %".23", %"Point"* %".26"
+  %".28" = load %"Line", %"Line"* %"line"
+  ret %"Line" %".28"
+}
