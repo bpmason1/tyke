@@ -3,6 +3,7 @@ from colorama import Fore, Style
 from contextlib import contextmanager
 from enum import Enum
 from llvmlite import ir
+from llvmlite.ir.instructions import LoadInstr
 import sys
 from primitive import Primitive
 
@@ -115,9 +116,6 @@ class State:
         return builder.load(stackPtr)
 
     def initialize_struct(self, name: str, structData, ordFieldDict: OrderedDict, builder):
-        int32 = ir.IntType(32)
-        zero = int32(0)
-
         stackPtr, mutability = self.getStackPtr(name)
         if name in self._uninitialized:
             self._uninitialized.remove(name)
@@ -126,16 +124,23 @@ class State:
             sys.stderr.write(Fore.RED + msg + Style.RESET_ALL)
             sys.exit(1)
 
+        self._write_internal_struct(stackPtr, structData, builder)
+
+    def _write_internal_struct(self, stackPtr, structData, builder):
+        int32 = ir.IntType(32)
+        zero = int32(0)
 
         for idx, fieldCtx in enumerate(structData.constant):
-            indices = [zero, int32(idx)]  # [start_idx, field_idx]
-            elemPtr = builder.gep(stackPtr, indices, inbounds=True)  # TODO: what the heck does the inbounds field do???
-            builder.store(fieldCtx, elemPtr)
+            if isinstance(fieldCtx, LoadInstr):
+                indices = [zero, int32(idx)]  # [start_idx, field_idx]
+                elemPtr = builder.gep(stackPtr, indices, inbounds=True)  # TODO: what the heck does the inbounds field do???
+                builder.store(fieldCtx, elemPtr)
+            else:
+                for eIdx, elemCtx in enumerate(fieldCtx.constant):
+                    indices = [zero, int32(idx), int32(eIdx)]
+                    elemPtr = builder.gep(stackPtr, indices, inbounds=True)  # TODO: what the heck does the inbounds field do???
+                    builder.store(elemCtx, elemPtr)
 
-        # for idx, (fieldName, fieldType) in enumerate(ordFieldDict.items()):
-        #     indices = [zero, int32(idx)]  # [start_idx, field_idx]
-        #     elemPtr = builder.gep(stackPtr, indices, inbounds=True)  # TODO: what the heck does the inbounds field do???
-        #     builder.store(values[idx], elemPtr)
 
     def write(self, name, value, builder):
         stackPtr, mutability = self.getStackPtr(name)

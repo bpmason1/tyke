@@ -9,8 +9,7 @@ def main() -> int {
 }
 
 def newLine(x1: int, y1: int, x2: int, y2: int) -> Line {
-  let pt1 = Point{x: x1, y: y1};
-  let pt2 = Point{x: x2, y: y2};
-  let line = Line{pt1: pt1, pt2: pt2};
+  let point2 = Point{x: x2, y: y2};
+  let line = Line{pt1: Point{x: x1, y: y1}, pt2: point2};
   return line;
 }

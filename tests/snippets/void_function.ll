@@ -237,8 +237,7 @@ define %"Line" @"newLine"(i64 %".1", i64 %".2", i64 %".3", i64 %".4")
 {
 entry:
   %"line" = alloca %"Line", i32 1
-  %"pt2" = alloca %"Point", i32 1
-  %"pt1" = alloca %"Point", i32 1
+  %"point2" = alloca %"Point", i32 1
   %"y2" = alloca i64, i32 1
   %"x2" = alloca i64, i32 1
   %"y1" = alloca i64, i32 1
@@ -247,24 +246,21 @@ entry:
   store i64 %".2", i64* %"y1"
   store i64 %".3", i64* %"x2"
   store i64 %".4", i64* %"y2"
-  %".10" = load i64, i64* %"x1"
-  %".11" = load i64, i64* %"y1"
-  %".12" = getelementptr inbounds %"Point", %"Point"* %"pt1", i32 0, i32 0
+  %".10" = load i64, i64* %"x2"
+  %".11" = load i64, i64* %"y2"
+  %".12" = getelementptr inbounds %"Point", %"Point"* %"point2", i32 0, i32 0
   store i64 %".10", i64* %".12"
-  %".14" = getelementptr inbounds %"Point", %"Point"* %"pt1", i32 0, i32 1
+  %".14" = getelementptr inbounds %"Point", %"Point"* %"point2", i32 0, i32 1
   store i64 %".11", i64* %".14"
-  %".16" = load i64, i64* %"x2"
-  %".17" = load i64, i64* %"y2"
-  %".18" = getelementptr inbounds %"Point", %"Point"* %"pt2", i32 0, i32 0
-  store i64 %".16", i64* %".18"
-  %".20" = getelementptr inbounds %"Point", %"Point"* %"pt2", i32 0, i32 1
-  store i64 %".17", i64* %".20"
-  %".22" = load %"Point", %"Point"* %"pt1"
-  %".23" = load %"Point", %"Point"* %"pt2"
-  %".24" = getelementptr inbounds %"Line", %"Line"* %"line", i32 0, i32 0
-  store %"Point" %".22", %"Point"* %".24"
-  %".26" = getelementptr inbounds %"Line", %"Line"* %"line", i32 0, i32 1
-  store %"Point" %".23", %"Point"* %".26"
-  %".28" = load %"Line", %"Line"* %"line"
-  ret %"Line" %".28"
+  %".16" = load i64, i64* %"x1"
+  %".17" = load i64, i64* %"y1"
+  %".18" = load %"Point", %"Point"* %"point2"
+  %".19" = getelementptr inbounds %"Line", %"Line"* %"line", i32 0, i32 0, i32 0
+  store i64 %".16", i64* %".19"
+  %".21" = getelementptr inbounds %"Line", %"Line"* %"line", i32 0, i32 0, i32 1
+  store i64 %".17", i64* %".21"
+  %".23" = getelementptr inbounds %"Line", %"Line"* %"line", i32 0, i32 1
+  store %"Point" %".18", %"Point"* %".23"
+  %".25" = load %"Line", %"Line"* %"line"
+  ret %"Line" %".25"
 }

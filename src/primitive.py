@@ -17,7 +17,7 @@ class __Primitive:
 
         msg = f'ERROR: Primitive.get_type_by_name unknown type {var_type}'
         print(Fore.RED + msg + Style.RESET_ALL)
-        return 'Unknown'
+        return None
 
     @property
     def boolean(self):
