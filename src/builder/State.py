@@ -133,15 +133,17 @@ class State:
         zero = int32(0)
 
         for idx, fieldCtx in enumerate(structData.constant):
+            indices = [zero, int32(idx)]  # [start_idx, field_idx]
+            elemPtr = builder.gep(stackPtr, indices, inbounds=True)  # TODO: what the heck does the inbounds field do???
+
             if isinstance(fieldCtx, LoadInstr):
-                indices = [zero, int32(idx)]  # [start_idx, field_idx]
-                elemPtr = builder.gep(stackPtr, indices, inbounds=True)  # TODO: what the heck does the inbounds field do???
                 builder.store(fieldCtx, elemPtr)
             else:
-                for eIdx, elemCtx in enumerate(fieldCtx.constant):
-                    indices = [zero, int32(idx), int32(eIdx)]
-                    elemPtr = builder.gep(stackPtr, indices, inbounds=True)  # TODO: what the heck does the inbounds field do???
-                    builder.store(elemCtx, elemPtr)
+                self._write_internal_struct(elemPtr, fieldCtx, builder)
+                # for eIdx, elemCtx in enumerate(fieldCtx.constant):
+                #     indices = [zero, int32(idx), int32(eIdx)]
+                #     elemPtr = builder.gep(stackPtr, indices, inbounds=True)  # TODO: what the heck does the inbounds field do???
+                #     builder.store(elemCtx, elemPtr)
 
 
     def write(self, name, value, builder):

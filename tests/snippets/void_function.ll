@@ -255,12 +255,13 @@ entry:
   %".16" = load i64, i64* %"x1"
   %".17" = load i64, i64* %"y1"
   %".18" = load %"Point", %"Point"* %"point2"
-  %".19" = getelementptr inbounds %"Line", %"Line"* %"line", i32 0, i32 0, i32 0
-  store i64 %".16", i64* %".19"
-  %".21" = getelementptr inbounds %"Line", %"Line"* %"line", i32 0, i32 0, i32 1
-  store i64 %".17", i64* %".21"
-  %".23" = getelementptr inbounds %"Line", %"Line"* %"line", i32 0, i32 1
-  store %"Point" %".18", %"Point"* %".23"
-  %".25" = load %"Line", %"Line"* %"line"
-  ret %"Line" %".25"
+  %".19" = getelementptr inbounds %"Line", %"Line"* %"line", i32 0, i32 0
+  %".20" = getelementptr inbounds %"Point", %"Point"* %".19", i32 0, i32 0
+  store i64 %".16", i64* %".20"
+  %".22" = getelementptr inbounds %"Point", %"Point"* %".19", i32 0, i32 1
+  store i64 %".17", i64* %".22"
+  %".24" = getelementptr inbounds %"Line", %"Line"* %"line", i32 0, i32 1
+  store %"Point" %".18", %"Point"* %".24"
+  %".26" = load %"Line", %"Line"* %"line"
+  ret %"Line" %".26"
 }
