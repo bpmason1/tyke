@@ -92,15 +92,17 @@ class State:
             sys.exit(1)
 
         stackPtr, _ = self.getStackPtr(fieldNameList[0])
-        typeName = stackPtr.type.pointee.name
+        pointee = stackPtr.type.pointee
 
         indices = [zero ]  # [start_idx, field_idx]
         for fieldName in fieldNameList[1:]:
+            typeName = pointee.name
             ordElemDict, _ = package.getTypeInfo(typeName)
             for idx, (fieldNameFound, fieldTypeFound) in enumerate(ordElemDict.items()):
                 if fieldName == fieldNameFound:
                     indices.append(int32(idx))
-                    typeName = stackPtr.type.pointee.elements[idx].name
+                    typeName = pointee.elements[idx]
+                    pointee = pointee.elements[idx]
                     break
         elemPtr = builder.gep(stackPtr, indices, inbounds=True)  # TODO: what the heck does the inbounds field do???
         return builder.load(elemPtr)
