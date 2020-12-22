@@ -50,11 +50,21 @@ class __ExpressionHandler(BaseHandler):
             newScopeObj.write(name, result, builder)
 
     def handle_assigmentStmt(self, assignCtx, builder, irFunc, newScopeObj):
-        name = assignCtx.NAME().getText()
-
         currExprCtx = assignCtx.expression()
         result = self.handle_expression(currExprCtx, builder, newScopeObj)
-        newScopeObj.write(name, result, builder)
+
+        if assignCtx.NAME():
+            name = assignCtx.NAME().getText()
+            newScopeObj.write(name, result, builder)
+        elif assignCtx.field():
+            fieldCtx = assignCtx.field()
+            package = ProgramNode.getPackage('main')
+            fieldNameList = self.get_field_list_for_struct(fieldCtx)
+            newScopeObj.write_struct(fieldNameList, result, builder, package)
+        else:
+            msg = "Could not determine left hand-side af assignment"
+            sys.stderr.write(Fore.RED + msg + Style.RESET_ALL + '\n')
+            sys.exit(5)
 
     def handle_expression(self, currExprCtx, builder, newScopeObj):
         if currExprCtx.simpleExpression():
@@ -374,15 +384,19 @@ class __ExpressionHandler(BaseHandler):
 
         sys.stderr.write("handle_simpleExpr reached a point that should be unreachable")
 
-    def handle_field(self, fieldCtx, builder, newScopeObj):
+    def get_field_list_for_struct(self, fieldCtx) -> list:
         rootVarName = fieldCtx.NAME().getText()
 
         fieldNameList = [ rootVarName ]
         for field_ref in fieldCtx.FIELD_REF():
             fieldName = field_ref.getText().lstrip('.')
             fieldNameList.append(fieldName)
-        
+
+        return fieldNameList
+
+    def handle_field(self, fieldCtx, builder, newScopeObj):
         package = ProgramNode.getPackage('main')
+        fieldNameList = self.get_field_list_for_struct(fieldCtx)
         return newScopeObj.read_struct(fieldNameList, builder, package)
 
     def handle_comparisonExpr(self, compExpr, builder, newScopeObj):

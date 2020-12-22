@@ -30,7 +30,7 @@ funcCallStmt: funcCall SEMICOLON;
 
 declareAndAssignStmt : varDeclare '=' expression SEMICOLON ;
 
-assigmentStmt : NAME '=' expression SEMICOLON ;
+assigmentStmt : (NAME | field) '=' expression SEMICOLON ;
 
 funcDefArgList : '(' typedArgList? ')' ;
 typedArgList: typedArg ( ',' typedArg )* ;

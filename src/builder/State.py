@@ -6,6 +6,7 @@ from llvmlite import ir
 from llvmlite.ir.instructions import LoadInstr
 import sys
 from primitive import Primitive
+from utils import fail_fast
 
 class Mutability(Enum):
     UNDEFINED = 0
@@ -58,14 +59,11 @@ class State:
 
     def allocate(self, name, builder, varType, size=1, mutable=False):
         if not isinstance(name, str):
-            msg = "Name must be of type 'str'\n"
-            sys.stderr.write(Fore.RED + msg + Style.RESET_ALL)
-            sys.exit(1)
+            fail_fast("Name must be of type 'str'", 1)
 
         if self.getStackPtr(name)[0]:
             msg = f'ERROR: attempting to shadow variable {name}'
-            sys.stderr.write(Fore.RED + msg + Style.RESET_ALL)
-            sys.exit(1)
+            fail_fast(msg, 1)
 
         builder.position_at_start(builder.block)
         scope = self._scopes[-1]
@@ -83,7 +81,7 @@ class State:
         stackPtr, _ = self.getStackPtr(name)
         return stackPtr.type.pointee
 
-    def read_struct(self, fieldNameList: list, builder, package):
+    def _getStructFieldPtr(self, fieldNameList: list, builder, package):
         int32 = ir.IntType(32)
         zero = int32(0)
 
@@ -105,6 +103,10 @@ class State:
                     pointee = pointee.elements[idx]
                     break
         elemPtr = builder.gep(stackPtr, indices, inbounds=True)  # TODO: what the heck does the inbounds field do???
+        return elemPtr
+
+    def read_struct(self, fieldNameList: list, builder, package):
+        elemPtr = self._getStructFieldPtr(fieldNameList, builder, package)
         return builder.load(elemPtr)
 
     def read(self, name, builder):
@@ -145,6 +147,9 @@ class State:
                 #     elemPtr = builder.gep(stackPtr, indices, inbounds=True)  # TODO: what the heck does the inbounds field do???
                 #     builder.store(elemCtx, elemPtr)
 
+    def write_struct(self, fieldNameList: list, value, builder, package):
+        elemPtr = self._getStructFieldPtr(fieldNameList, builder, package)
+        builder.store(value, elemPtr)
 
     def write(self, name, value, builder):
         stackPtr, mutability = self.getStackPtr(name)

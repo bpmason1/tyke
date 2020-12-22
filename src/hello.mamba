@@ -23,6 +23,6 @@ def newLine(x1: int, y1: int, x2: int, y2: int) -> Line {
          },
     pt2: point2
   };
+  line.pt2.y.data = 13;
   return line;
 }
-
