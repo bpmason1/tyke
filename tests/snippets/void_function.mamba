@@ -99,3 +99,16 @@ def newLine(x1: int, y1: int, x2: int, y2: int) -> Line {
   let line = Line{pt1: Point{x: x1, y: y1}, pt2: point2};
   return line;
 }
+
+def swap(pt: Point) -> Point {
+  let tmpX = pt.x;
+  pt.x = pt.y;
+  pt.y = tmpX;
+  return pt;
+}
+
+def make_point() -> int {
+  let point = Point{ x: 3, y: 5};
+
+  return point.y;
+}

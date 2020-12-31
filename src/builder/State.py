@@ -4,6 +4,7 @@ from contextlib import contextmanager
 from enum import Enum
 from llvmlite import ir
 from llvmlite.ir.instructions import LoadInstr
+from llvmlite.ir.values import Constant
 import sys
 from primitive import Primitive
 from utils import fail_fast
@@ -139,6 +140,8 @@ class State:
             elemPtr = builder.gep(stackPtr, indices, inbounds=True)  # TODO: what the heck does the inbounds field do???
 
             if isinstance(fieldCtx, LoadInstr):
+                builder.store(fieldCtx, elemPtr)
+            elif isinstance(fieldCtx, Constant) and isinstance(fieldCtx.type, type(Primitive.integer)):
                 builder.store(fieldCtx, elemPtr)
             else:
                 self._write_internal_struct(elemPtr, fieldCtx, builder)
