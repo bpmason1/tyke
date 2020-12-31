@@ -455,15 +455,25 @@ class __ExpressionHandler(BaseHandler):
         dataList = dataListCtx.data()
         assert(len(dataList) == 1) #  TODO - allow printf varargs
 
-        if dataList[0].NAME():
-            varName = dataList[0].NAME().getText()
+        dataCtx = dataList[0]
+        if dataCtx.NAME():
+            varName = dataCtx.NAME().getText()
+            # text = str(newScopeObj.read(varName, builder)) + '\n\0'
             text = str(newScopeObj.read(varName, builder)) + '\n\0'
             text = text.encode('utf_8')
-        elif dataList[0].STRING():
-            text = str(dataList[0].STRING())[1:-1] + '\n\0' #"foobar\n\0".encode('utf_8')
-            text = text.encode('utf_8')
+        elif dataCtx.primitive():
+            primitiveCtx = dataCtx.primitive()
+            if primitiveCtx.STRING():
+                text = str(primitiveCtx.STRING())[1:-1] + '\n\0' #"foobar\n\0".encode('utf_8')
+                text = text.encode('utf_8')
+            elif primitiveCtx.numeric():
+                numericCtx = primitiveCtx.numeric()
+                text = self.handle_numeric(numericCtx, builder, newScopeObj).get_reference() + '\n\0'
+                text = text.encode('utf_8')
+            else:
+                fail_fast('WTF - printout')
         else:
-            print(dir(dataList[0]))
+            fail_fast(f'failed print-statment for text "{dataCtx.getText()}"')
 
         # text = dataList[0].encode('utf_8')
 
