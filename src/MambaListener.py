@@ -287,6 +287,15 @@ class MambaListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MambaParser#primitive.
+    def enterPrimitive(self, ctx:MambaParser.PrimitiveContext):
+        pass
+
+    # Exit a parse tree produced by MambaParser#primitive.
+    def exitPrimitive(self, ctx:MambaParser.PrimitiveContext):
+        pass
+
+
     # Enter a parse tree produced by MambaParser#field.
     def enterField(self, ctx:MambaParser.FieldContext):
         pass

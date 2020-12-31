@@ -360,12 +360,20 @@ class __ExpressionHandler(BaseHandler):
         # print(post_mult_div_opList)llvmlite.ir.instructions.Instructio
         return result
 
+    def handle_primitive(self, primitiveCtx, builder, newScopeObj):
+        if hasattr(primitiveCtx, "numeric") and primitiveCtx.numeric():
+            return ir.Constant(Primitive.integer, primitiveCtx.numeric().getText())   # TODO - don't assume the numeric() is an Integer
+        else:
+            sys.stderr.write(f'Unknown simpleExpression type for {simpleExpr.getText()}')
+            sys.exit(3)
+
     # handle a single term from a simpleExpression
     def handle_simpleExpr(self, simpleExpr, builder, newScopeObj):
         if hasattr(simpleExpr, "funcCall") and simpleExpr.funcCall():
             return self.handle_funcCall(simpleExpr.funcCall(), builder, newScopeObj)
-        elif hasattr(simpleExpr, "numeric") and simpleExpr.numeric():
-            return ir.Constant(Primitive.integer, simpleExpr.numeric().getText())   # TODO - don't assume the numeric() is an Integer
+        elif hasattr(simpleExpr, "primitive") and simpleExpr.primitive():
+            primitiveCtx = simpleExpr.primitive()
+            return self.handle_primitive(primitiveCtx, builder, newScopeObj)
         elif hasattr(simpleExpr, "NAME") and simpleExpr.NAME():
             varName = simpleExpr.getText()
             return newScopeObj.read(varName, builder)
@@ -379,7 +387,7 @@ class __ExpressionHandler(BaseHandler):
         elif isinstance(simpleExpr, Constant):
             return simpleExpr
         else:
-            sys.stderr.write('Unknown simpleExpression type for {simpleExpr.getText()}')
+            sys.stderr.write(f'Unknown simpleExpression type for {simpleExpr.getText()}')
             sys.exit(3)
 
         sys.stderr.write("handle_simpleExpr reached a point that should be unreachable")

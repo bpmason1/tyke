@@ -50,8 +50,9 @@ booleanLiteral : TRUE | FALSE ;
 // simpleBooleanTerm : (booleanLiteral | numeric | NAME | funcCall) ;
 
 numeric : DOUBLE | INTEGER ;
+primitive : numeric | STRING ;
 field : NAME FIELD_REF+ ;
-simpleExpression : (numeric | NAME | field | funcCall) ;
+simpleExpression : (primitive | NAME | field | funcCall) ;
 expression : simpleExpression | arthimeticExpr | multiArthimeticExpr | comparisonExpr | makeStructExpr;
 
 funcCall: NAME funcCallDataList ;
