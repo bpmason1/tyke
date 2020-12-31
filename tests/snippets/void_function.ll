@@ -195,12 +195,12 @@ entry.endif:
   store i64 1, i64* %"total"
   %".11" = load i64, i64* %"exp"
   store i64 %".11", i64* %"counter"
-  br label %"predicate.while.f9002585f4e93c4d5643507998cc667f"
-predicate.while.f9002585f4e93c4d5643507998cc667f:
+  br label %"predicate.while.d792b4def50cb8a1df4e4469b151cfe9"
+predicate.while.d792b4def50cb8a1df4e4469b151cfe9:
   %".14" = load i64, i64* %"counter"
   %".15" = icmp sgt i64 %".14", 0
-  br i1 %".15", label %"entry.while.f9002585f4e93c4d5643507998cc667f", label %"exit.while.f9002585f4e93c4d5643507998cc667f"
-entry.while.f9002585f4e93c4d5643507998cc667f:
+  br i1 %".15", label %"entry.while.d792b4def50cb8a1df4e4469b151cfe9", label %"exit.while.d792b4def50cb8a1df4e4469b151cfe9"
+entry.while.d792b4def50cb8a1df4e4469b151cfe9:
   %".17" = load i64, i64* %"total"
   %".18" = load i64, i64* %"num"
   %".19" = mul i64 %".17", %".18"
@@ -208,8 +208,8 @@ entry.while.f9002585f4e93c4d5643507998cc667f:
   %".21" = load i64, i64* %"counter"
   %".22" = sub i64 %".21", 1
   store i64 %".22", i64* %"counter"
-  br label %"predicate.while.f9002585f4e93c4d5643507998cc667f"
-exit.while.f9002585f4e93c4d5643507998cc667f:
+  br label %"predicate.while.d792b4def50cb8a1df4e4469b151cfe9"
+exit.while.d792b4def50cb8a1df4e4469b151cfe9:
   %".25" = load i64, i64* %"total"
   ret i64 %".25"
 }
@@ -297,4 +297,31 @@ entry:
   %".6" = getelementptr inbounds %"Point", %"Point"* %"point", i32 0, i32 1
   %".7" = load i64, i64* %".6"
   ret i64 %".7"
+}
+
+define i64 @"fibonacci"(i64 %".1") 
+{
+entry:
+  %"n" = alloca i64, i32 1
+  store i64 %".1", i64* %"n"
+  %".4" = load i64, i64* %"n"
+  %".5" = icmp sle i64 %".4", 2
+  br i1 %".5", label %"entry.if", label %"entry.endif"
+entry.if:
+  ret i64 1
+entry.endif:
+  %"n_minus_2" = alloca i64, i32 1
+  %"n_minus_1" = alloca i64, i32 1
+  %".8" = load i64, i64* %"n"
+  %".9" = sub i64 %".8", 1
+  store i64 %".9", i64* %"n_minus_1"
+  %".11" = load i64, i64* %"n"
+  %".12" = sub i64 %".11", 2
+  store i64 %".12", i64* %"n_minus_2"
+  %".14" = load i64, i64* %"n_minus_1"
+  %".15" = call i64 @"fibonacci"(i64 %".14")
+  %".16" = load i64, i64* %"n_minus_2"
+  %".17" = call i64 @"fibonacci"(i64 %".16")
+  %".18" = add i64 %".15", %".17"
+  ret i64 %".18"
 }

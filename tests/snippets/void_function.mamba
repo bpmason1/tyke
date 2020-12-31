@@ -112,3 +112,14 @@ def make_point() -> int {
 
   return point.y;
 }
+
+def fibonacci(n: int) -> int {
+  if n <= 2 {
+    return 1;
+  }
+
+  let n_minus_1 = n - 1;
+  let n_minus_2 = n - 2;
+
+  return fibonacci(n_minus_1) + fibonacci(n_minus_2);
+}
