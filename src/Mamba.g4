@@ -58,7 +58,7 @@ expression : simpleExpression | arthimeticExpr | multiArthimeticExpr | compariso
 funcCall: NAME funcCallDataList ;
 funcCallDataList: '(' dataList? ')' ;
 dataList: data (',' data)* ;
-data: STRING | NAME | DOUBLE | INTEGER;
+data: primitive | NAME;
 
 returnType: ('void' | 'int' | 'double' | BOOL | NAME) ;
 varType : ('double' | 'int' | NAME) ;

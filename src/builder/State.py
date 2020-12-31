@@ -141,7 +141,7 @@ class State:
 
             if isinstance(fieldCtx, LoadInstr):
                 builder.store(fieldCtx, elemPtr)
-            elif isinstance(fieldCtx, Constant) and isinstance(fieldCtx.type, type(Primitive.integer)):
+            elif isinstance(fieldCtx, Constant) and Primitive.get_name_by_type(fieldCtx.type):
                 builder.store(fieldCtx, elemPtr)
             else:
                 self._write_internal_struct(elemPtr, fieldCtx, builder)

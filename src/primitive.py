@@ -19,6 +19,12 @@ class __Primitive:
         print(Fore.RED + msg + Style.RESET_ALL)
         return None
 
+    def get_name_by_type(self, var_type):
+        for name, typeObj in self._type_map.items():
+            if isinstance(var_type, type(typeObj)):
+                return name
+        return None
+
     @property
     def boolean(self):
         return self._type_map[BOOL]

@@ -7,7 +7,9 @@ type struct { pt1: Point, pt2: Point } Line;
 
 def main() -> int {
   let line = newLine(2, 5, 6, 18);
-  return line.pt2.y.data;
+
+  let digit = fibonacci(5);
+  return digit;
 }
 
 def newLine(x1: int, y1: int, x2: int, y2: int) -> Line {
@@ -25,4 +27,15 @@ def newLine(x1: int, y1: int, x2: int, y2: int) -> Line {
   };
   line.pt2.y.data = 13;
   return line;
+}
+
+def fibonacci(n: int) -> int {
+  if n <= 2 {
+    return 1;
+  }
+
+  let n_minus_1 = n - 1;
+  let n_minus_2 = n - 2;
+
+  return fibonacci(n_minus_1) + fibonacci(n_minus_2);
 }

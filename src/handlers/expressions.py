@@ -228,14 +228,10 @@ class __ExpressionHandler(BaseHandler):
             dataList = dataListCtx.data()
             callArgs = []
             for dataCtx in dataList:
-                if dataCtx.INTEGER():
-                    irInt = package.get_type_by_name(INT)
-                    data = dataCtx.INTEGER().getText()
-                    callArgs.append(irInt(data))
-                elif dataCtx.DOUBLE():
-                    irDbl = package.get_type_by_name(DOUBLE)
-                    data = dataCtx.DOUBLE().getText()
-                    callArgs.append(irDbl(data))
+                if dataCtx.primitive():
+                    primitiveCtx = dataCtx.primitive()
+                    result = self.handle_primitive(primitiveCtx, builder, newScopeObj)
+                    callArgs.append(result)
                 elif dataCtx.NAME():
                     paramName = dataCtx.NAME().getText()
                     varTypeCtx = newScopeObj.get_type(paramName)
