@@ -15,6 +15,7 @@ from keywords import *
 from builder.ProgramNode import ProgramNode
 from builder.State import new_scope
 from .arithmetic import get_llvmlite_arithmetic_function, get_comparison_operator
+from utils import fail_fast
 
 class __ExpressionHandler(BaseHandler):
     __printCnt = 0
@@ -362,10 +363,26 @@ class __ExpressionHandler(BaseHandler):
 
     def handle_primitive(self, primitiveCtx, builder, newScopeObj):
         if hasattr(primitiveCtx, "numeric") and primitiveCtx.numeric():
-            return ir.Constant(Primitive.integer, primitiveCtx.numeric().getText())   # TODO - don't assume the numeric() is an Integer
+            numericCtx = primitiveCtx.numeric()
+            return self.handle_numeric(numericCtx, builder, newScopeObj)
         else:
             sys.stderr.write(f'Unknown simpleExpression type for {simpleExpr.getText()}')
             sys.exit(3)
+
+    def handle_numeric(self, numericCtx, builder, newScopeObj):
+        package = ProgramNode.getPackage('main')
+
+        if numericCtx.INTEGER():
+            irInt = package.get_type_by_name(INT)
+            data = numericCtx.INTEGER().getText()
+            return irInt(data)
+            # return ir.Constant(Primitive.integer, numericCtx.getText())   # TODO - don't assume the numeric() is an Integer
+        if numericCtx.DOUBLE():
+            irDbl = package.get_type_by_name(DOUBLE)
+            data = numericCtx.DOUBLE().getText()
+            return irDbl(data)
+        else:
+            fail_fast(f'Unknown primitive {numericCtx.getText()}')
 
     # handle a single term from a simpleExpression
     def handle_simpleExpr(self, simpleExpr, builder, newScopeObj):
