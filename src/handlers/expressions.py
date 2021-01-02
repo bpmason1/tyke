@@ -456,10 +456,13 @@ class __ExpressionHandler(BaseHandler):
         assert(len(dataList) == 1) #  TODO - allow printf varargs
 
         dataCtx = dataList[0]
+        printf_args = []
         if dataCtx.NAME():
             varName = dataCtx.NAME().getText()
+            varArg = newScopeObj.read(varName, builder)
+            printf_args.append(varArg)
             # text = str(newScopeObj.read(varName, builder)) + '\n\0'
-            text = str(newScopeObj.read(varName, builder)) + '\n\0'
+            text = '%d\n\0'
             text = text.encode('utf_8')
         elif dataCtx.primitive():
             primitiveCtx = dataCtx.primitive()
@@ -491,7 +494,7 @@ class __ExpressionHandler(BaseHandler):
         elemPtr = builder.gep(glbl, const, inbounds=True, name='d')
         callFn = package.getFunction('printf').llvmIR()
 
-        result = builder.call(callFn, [elemPtr])
+        result = builder.call(callFn, [elemPtr] + printf_args)
 
 
 ExpressionHandler = __ExpressionHandler()
