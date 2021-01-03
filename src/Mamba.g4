@@ -58,7 +58,7 @@ expression : simpleExpression | arthimeticExpr | multiArthimeticExpr | compariso
 funcCall: NAME funcCallDataList ;
 funcCallDataList: '(' dataList? ')' ;
 dataList: data (',' data)* ;
-data: primitive | NAME;
+data: expression;
 
 returnType: ('void' | 'int' | 'double' | BOOL | NAME) ;
 varType : ('double' | 'int' | NAME) ;
@@ -108,10 +108,10 @@ STRING: SHORT_STRING ;
 
 fragment ID_START : '_' | [A-Z] | [a-z] ;
 fragment ID_CONTINUE : ID_START | [0-9] ;
-fragment NON_ZERO_INTEGER: SIGN? POSITIVE_INTEGER  ;
+fragment NON_ZERO_INTEGER: '-'? POSITIVE_INTEGER  ;
 fragment POSITIVE_INTEGER: [1-9] [0-9]* ;
 // fragment VAR_TYPE : (KW_DOUBLE | KW_INT) ;
-fragment SIGN: '+' | '-' ;
+// fragment SIGN: '+' | '-' ;
 
 fragment SHORT_STRING
  : '\'' ( ~[\\\r\n\f'] )* '\''

@@ -228,19 +228,19 @@ class __ExpressionHandler(BaseHandler):
             dataList = dataListCtx.data()
             callArgs = []
             for dataCtx in dataList:
-                if dataCtx.primitive():
-                    primitiveCtx = dataCtx.primitive()
-                    result = self.handle_primitive(primitiveCtx, builder, newScopeObj)
+                if dataCtx.expression():
+                    exprCtx = dataCtx.expression()
+                    result = self.handle_expression(exprCtx, builder, newScopeObj)
                     callArgs.append(result)
-                elif dataCtx.NAME():
-                    paramName = dataCtx.NAME().getText()
-                    varTypeCtx = newScopeObj.get_type(paramName)
-                    # knownStructDict = package.llvmIR().context.identified_types
-                    # if varTypeCtx.name in knownStructDict:
-                    #     result = newScopeObj.read_struct
-                    #     return
-                    data = newScopeObj.read(paramName, builder)
-                    callArgs.append(data)
+                # elif dataCtx.NAME():
+                #     paramName = dataCtx.NAME().getText()
+                #     varTypeCtx = newScopeObj.get_type(paramName)
+                #     # knownStructDict = package.llvmIR().context.identified_types
+                #     # if varTypeCtx.name in knownStructDict:
+                #     #     result = newScopeObj.read_struct
+                #     #     return
+                #     data = newScopeObj.read(paramName, builder)
+                #     callArgs.append(data)
                 else:
                     msg = f'ERROR: dataCtx has unknown arg type'
                     print(Fore.RED + msg + Style.RESET_ALL)
@@ -457,24 +457,26 @@ class __ExpressionHandler(BaseHandler):
 
         dataCtx = dataList[0]
         printf_args = []
-        if dataCtx.NAME():
-            varName = dataCtx.NAME().getText()
-            varArg = newScopeObj.read(varName, builder)
-            printf_args.append(varArg)
-            # text = str(newScopeObj.read(varName, builder)) + '\n\0'
-            text = '%d\n\0'
-            text = text.encode('utf_8')
-        elif dataCtx.primitive():
-            primitiveCtx = dataCtx.primitive()
-            if primitiveCtx.STRING():
-                text = str(primitiveCtx.STRING())[1:-1] + '\n\0' #"foobar\n\0".encode('utf_8')
+        if dataCtx.expression() and dataCtx.expression().simpleExpression():
+            simpExprCtx = dataCtx.expression().simpleExpression()
+            if simpExprCtx.NAME():
+                varName = simpExprCtx.NAME().getText()
+                varArg = newScopeObj.read(varName, builder)
+                printf_args.append(varArg)
+                # text = str(newScopeObj.read(varName, builder)) + '\n\0'
+                text = '%d\n\0'
                 text = text.encode('utf_8')
-            elif primitiveCtx.numeric():
-                numericCtx = primitiveCtx.numeric()
-                text = self.handle_numeric(numericCtx, builder, newScopeObj).get_reference() + '\n\0'
-                text = text.encode('utf_8')
-            else:
-                fail_fast('WTF - printout')
+            elif simpExprCtx.primitive():
+                primitiveCtx = simpExprCtx.primitive()
+                if primitiveCtx.STRING():
+                    text = str(primitiveCtx.STRING())[1:-1] + '\n\0' #"foobar\n\0".encode('utf_8')
+                    text = text.encode('utf_8')
+                elif primitiveCtx.numeric():
+                    numericCtx = primitiveCtx.numeric()
+                    text = self.handle_numeric(numericCtx, builder, newScopeObj).get_reference() + '\n\0'
+                    text = text.encode('utf_8')
+                else:
+                    fail_fast('WTF - printout')
         else:
             fail_fast(f'failed print-statment for text "{dataCtx.getText()}"')
 
