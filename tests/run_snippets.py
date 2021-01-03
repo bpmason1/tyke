@@ -31,12 +31,14 @@ def getBaseFileNameList(snippetDir):
     file_names_no_ext = []
     for fName in all_file_list:
         if fName.endswith('.mamba'):
-            file_names_no_ext.append(snippetDir + fName[:-6])
+            dir_name = os.path.join(snippetDir, fName[:-6])
+            file_names_no_ext.append(dir_name)
 
     return file_names_no_ext
 
 def runAll():
-    snippetDir = './snippets/'
+    cur_dir = os.path.dirname(__file__)
+    snippetDir = os.path.join(cur_dir, 'snippets')
 
     for fName in getBaseFileNameList(snippetDir):
         runOne(fName)
