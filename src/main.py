@@ -5,12 +5,14 @@ from llvmlite import ir
 from MambaLexer import MambaLexer
 from MambaListener import MambaListener
 from MambaParser import MambaParser
+import os
 import re
 import sys
 
 from typed_value import TypedValue
 from handlers import ExpressionHandler
 from primitive import Primitive
+from utils import fail_fast
 
 from builder.ProgramNode import ProgramNode
 from builder.State import State, new_scope
@@ -179,4 +181,12 @@ def processCodeFile(filename):
     print(pacakgeMapLL['main'])
 
 if __name__ == '__main__':
-    processCodeFile('./hello.mamba')
+    currDir = os.path.dirname(__file__)
+    appDir = os.path.join(currDir, '..', 'example', 'src')
+    all_file_list = os.listdir(appDir)
+
+    if len(all_file_list) == 1:
+        appFile = os.path.join(appDir, all_file_list[0])
+        processCodeFile(appFile)
+    else:
+        fail_fast('ERROR - cannot handle multi-file programs')
