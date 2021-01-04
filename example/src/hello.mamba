@@ -1,18 +1,5 @@
 package main;
 
-type struct { data: int } Number;
-type struct { x: Number, y: Number } Point;
-type struct { pt1: Point, pt2: Point } Line;
-
-
-def main() -> int {
-  let line = newLine(2, 5, 6, 18);
-
-  let digit = fibonacci(5);
-  print( digit );
-  return 0;
-}
-
 def newLine(x1: int, y1: int, x2: int, y2: int) -> Line {
   let point2 = Point{x: Number{data: x2}, y: Number{data: y2}};
   let line = Line{

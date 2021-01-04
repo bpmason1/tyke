@@ -3,6 +3,8 @@
 %"Point" = type {i64, i64}
 %"Line" = type {%"Point", %"Point"}
 %"Rect" = type {i64, i64, i64}
+declare i32 @"printf"(i8* %".1", ...) 
+
 define void @"abyss"() 
 {
 entry:
@@ -195,12 +197,12 @@ entry.endif:
   store i64 1, i64* %"total"
   %".11" = load i64, i64* %"exp"
   store i64 %".11", i64* %"counter"
-  br label %"predicate.while.d792b4def50cb8a1df4e4469b151cfe9"
-predicate.while.d792b4def50cb8a1df4e4469b151cfe9:
+  br label %"predicate.while.2c185b73965a07d55805e616d7ab4ce8"
+predicate.while.2c185b73965a07d55805e616d7ab4ce8:
   %".14" = load i64, i64* %"counter"
   %".15" = icmp sgt i64 %".14", 0
-  br i1 %".15", label %"entry.while.d792b4def50cb8a1df4e4469b151cfe9", label %"exit.while.d792b4def50cb8a1df4e4469b151cfe9"
-entry.while.d792b4def50cb8a1df4e4469b151cfe9:
+  br i1 %".15", label %"entry.while.2c185b73965a07d55805e616d7ab4ce8", label %"exit.while.2c185b73965a07d55805e616d7ab4ce8"
+entry.while.2c185b73965a07d55805e616d7ab4ce8:
   %".17" = load i64, i64* %"total"
   %".18" = load i64, i64* %"num"
   %".19" = mul i64 %".17", %".18"
@@ -208,8 +210,8 @@ entry.while.d792b4def50cb8a1df4e4469b151cfe9:
   %".21" = load i64, i64* %"counter"
   %".22" = sub i64 %".21", 1
   store i64 %".22", i64* %"counter"
-  br label %"predicate.while.d792b4def50cb8a1df4e4469b151cfe9"
-exit.while.d792b4def50cb8a1df4e4469b151cfe9:
+  br label %"predicate.while.2c185b73965a07d55805e616d7ab4ce8"
+exit.while.2c185b73965a07d55805e616d7ab4ce8:
   %".25" = load i64, i64* %"total"
   ret i64 %".25"
 }

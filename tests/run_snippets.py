@@ -1,4 +1,4 @@
-from main import processCodeStr
+from main import run as main_run
 from colorama import Fore, Style
 import os
 from nose.tools import assert_equal
@@ -10,11 +10,10 @@ def getExpected(file_name_no_ext):
         return fd.read()
 
 def getActual(file_name_no_ext):
-    with open(file_name_no_ext + '.mamba', 'r') as fd:
-        srcCode = fd.read()
-
-    packageDictLL = processCodeStr(srcCode)
+    mambaFileList = [file_name_no_ext + '.mamba']
+    packageDictLL = main_run(mambaFileList)
     mainLL = packageDictLL['main']
+    # print(mainLL)
     return str(mainLL)
 
 def runOne(file_name_no_ext):

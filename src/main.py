@@ -149,44 +149,49 @@ class MambaPrintListener(MambaListener):
                     sys.stderr.write("........... WTF ?!?\n")
                     sys.exit(1)
 
-def processCodeStr(srcCode: str):
-    # these exist regardless of the program being compiled
+def processCode(parsedFileDict):
+    for walker, tree in parsedFileDict.values():
+        typeBuilder = MambaTypedefBuilder()
+        walker.walk(typeBuilder, tree)
 
+    for walker, tree in parsedFileDict.values():
+        fnBuilder = MambaFunctionTableBuilder()
+        walker.walk(fnBuilder, tree)
 
-    # lexer = MambaLexer(FileStream('hello.mamba'))
-    lexer = MambaLexer(InputStream(srcCode))
-    stream = CommonTokenStream(lexer)
-    parser = MambaParser(stream)
-    tree = parser.program()
-    walker = ParseTreeWalker()
-
-    typeBuilder = MambaTypedefBuilder()
-    walker.walk(typeBuilder, tree)
-
-    fnBuilder = MambaFunctionTableBuilder()
-    walker.walk(fnBuilder, tree)
-
-    printer = MambaPrintListener()
-    walker.walk(printer, tree)
+    for walker, tree in parsedFileDict.values():
+        printer = MambaPrintListener()
+        walker.walk(printer, tree)
 
     # print(ProgramNode.getPackage('std'))
     return {'main': ProgramNode.getPackage('main')}
 
-def processCodeFile(filename):
+def parseFile(filename):
+    with open(filename, 'r') as fd:
+        srcCode = fd.read()
+        lexer = MambaLexer(InputStream(srcCode))
+        stream = CommonTokenStream(lexer)
+        parser = MambaParser(stream)
+        tree = parser.program()
+        walker = ParseTreeWalker()
+        return (walker, tree)
+
+def run(all_file_list):
+    # these exist regardless of the program being compiled
     builtinFunctions()
 
-    with open(filename, 'r') as fd:
-        pacakgeMapLL = processCodeStr(fd.read())
+    parsedFileDict = {}
+    for filename in all_file_list:
+        parsedFileDict[filename] = parseFile(filename)
 
-    print(pacakgeMapLL['main'])
+    return processCode(parsedFileDict)
 
 if __name__ == '__main__':
     currDir = os.path.dirname(__file__)
     appDir = os.path.join(currDir, '..', 'example', 'src')
-    all_file_list = os.listdir(appDir)
+    all_file_list = [os.path.join(appDir, f) for f in os.listdir(appDir)]
 
-    if len(all_file_list) == 1:
-        appFile = os.path.join(appDir, all_file_list[0])
-        processCodeFile(appFile)
+    if len(all_file_list) < 1:
+        fail_fast('ERROR - program must have at least 1 file')
     else:
-        fail_fast('ERROR - cannot handle multi-file programs')
+        pacakgeMapLL = run(all_file_list)
+        print(pacakgeMapLL['main'])
