@@ -1,4 +1,4 @@
-grammar Mamba;
+grammar Tyke;
 
 /*
  * parser rules

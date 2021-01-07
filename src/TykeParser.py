@@ -1,4 +1,4 @@
-# Generated from ./Mamba.g4 by ANTLR 4.9
+# Generated from ./Tyke.g4 by ANTLR 4.9
 # encoding: utf-8
 from antlr4 import *
 from io import StringIO
@@ -163,9 +163,9 @@ def serializedATN():
         return buf.getvalue()
 
 
-class MambaParser ( Parser ):
+class TykeParser ( Parser ):
 
-    grammarFileName = "Mamba.g4"
+    grammarFileName = "Tyke.g4"
 
     atn = ATNDeserializer().deserialize(serializedATN())
 
@@ -306,25 +306,25 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def package(self):
-            return self.getTypedRuleContext(MambaParser.PackageContext,0)
+            return self.getTypedRuleContext(TykeParser.PackageContext,0)
 
 
         def typedef(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(MambaParser.TypedefContext)
+                return self.getTypedRuleContexts(TykeParser.TypedefContext)
             else:
-                return self.getTypedRuleContext(MambaParser.TypedefContext,i)
+                return self.getTypedRuleContext(TykeParser.TypedefContext,i)
 
 
         def funcdef(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(MambaParser.FuncdefContext)
+                return self.getTypedRuleContexts(TykeParser.FuncdefContext)
             else:
-                return self.getTypedRuleContext(MambaParser.FuncdefContext,i)
+                return self.getTypedRuleContext(TykeParser.FuncdefContext,i)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_program
+            return TykeParser.RULE_program
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterProgram" ):
@@ -339,7 +339,7 @@ class MambaParser ( Parser ):
 
     def program(self):
 
-        localctx = MambaParser.ProgramContext(self, self._ctx, self.state)
+        localctx = TykeParser.ProgramContext(self, self._ctx, self.state)
         self.enterRule(localctx, 0, self.RULE_program)
         self._la = 0 # Token type
         try:
@@ -349,7 +349,7 @@ class MambaParser ( Parser ):
             self.state = 86
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==MambaParser.TYPE:
+            while _la==TykeParser.TYPE:
                 self.state = 83
                 self.typedef()
                 self.state = 88
@@ -365,7 +365,7 @@ class MambaParser ( Parser ):
                 self.state = 92 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==MambaParser.T__2):
+                if not (_la==TykeParser.T__2):
                     break
 
         except RecognitionException as re:
@@ -384,16 +384,16 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def PACKAGE(self):
-            return self.getToken(MambaParser.PACKAGE, 0)
+            return self.getToken(TykeParser.PACKAGE, 0)
 
         def NAME(self):
-            return self.getToken(MambaParser.NAME, 0)
+            return self.getToken(TykeParser.NAME, 0)
 
         def SEMICOLON(self):
-            return self.getToken(MambaParser.SEMICOLON, 0)
+            return self.getToken(TykeParser.SEMICOLON, 0)
 
         def getRuleIndex(self):
-            return MambaParser.RULE_package
+            return TykeParser.RULE_package
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterPackage" ):
@@ -408,16 +408,16 @@ class MambaParser ( Parser ):
 
     def package(self):
 
-        localctx = MambaParser.PackageContext(self, self._ctx, self.state)
+        localctx = TykeParser.PackageContext(self, self._ctx, self.state)
         self.enterRule(localctx, 2, self.RULE_package)
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 94
-            self.match(MambaParser.PACKAGE)
+            self.match(TykeParser.PACKAGE)
             self.state = 95
-            self.match(MambaParser.NAME)
+            self.match(TykeParser.NAME)
             self.state = 96
-            self.match(MambaParser.SEMICOLON)
+            self.match(TykeParser.SEMICOLON)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -434,23 +434,23 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def TYPE(self):
-            return self.getToken(MambaParser.TYPE, 0)
+            return self.getToken(TykeParser.TYPE, 0)
 
         def STRUCT(self):
-            return self.getToken(MambaParser.STRUCT, 0)
+            return self.getToken(TykeParser.STRUCT, 0)
 
         def NAME(self):
-            return self.getToken(MambaParser.NAME, 0)
+            return self.getToken(TykeParser.NAME, 0)
 
         def SEMICOLON(self):
-            return self.getToken(MambaParser.SEMICOLON, 0)
+            return self.getToken(TykeParser.SEMICOLON, 0)
 
         def typedArgList(self):
-            return self.getTypedRuleContext(MambaParser.TypedArgListContext,0)
+            return self.getTypedRuleContext(TykeParser.TypedArgListContext,0)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_typedef
+            return TykeParser.RULE_typedef
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterTypedef" ):
@@ -465,31 +465,31 @@ class MambaParser ( Parser ):
 
     def typedef(self):
 
-        localctx = MambaParser.TypedefContext(self, self._ctx, self.state)
+        localctx = TykeParser.TypedefContext(self, self._ctx, self.state)
         self.enterRule(localctx, 4, self.RULE_typedef)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 98
-            self.match(MambaParser.TYPE)
+            self.match(TykeParser.TYPE)
             self.state = 99
-            self.match(MambaParser.STRUCT)
+            self.match(TykeParser.STRUCT)
             self.state = 100
-            self.match(MambaParser.T__0)
+            self.match(TykeParser.T__0)
             self.state = 102
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==MambaParser.NAME:
+            if _la==TykeParser.NAME:
                 self.state = 101
                 self.typedArgList()
 
 
             self.state = 104
-            self.match(MambaParser.T__1)
+            self.match(TykeParser.T__1)
             self.state = 105
-            self.match(MambaParser.NAME)
+            self.match(TykeParser.NAME)
             self.state = 106
-            self.match(MambaParser.SEMICOLON)
+            self.match(TykeParser.SEMICOLON)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -506,15 +506,15 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def signature(self):
-            return self.getTypedRuleContext(MambaParser.SignatureContext,0)
+            return self.getTypedRuleContext(TykeParser.SignatureContext,0)
 
 
         def statementList(self):
-            return self.getTypedRuleContext(MambaParser.StatementListContext,0)
+            return self.getTypedRuleContext(TykeParser.StatementListContext,0)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_funcdef
+            return TykeParser.RULE_funcdef
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterFuncdef" ):
@@ -529,7 +529,7 @@ class MambaParser ( Parser ):
 
     def funcdef(self):
 
-        localctx = MambaParser.FuncdefContext(self, self._ctx, self.state)
+        localctx = TykeParser.FuncdefContext(self, self._ctx, self.state)
         self.enterRule(localctx, 6, self.RULE_funcdef)
         self._la = 0 # Token type
         try:
@@ -537,17 +537,17 @@ class MambaParser ( Parser ):
             self.state = 108
             self.signature()
             self.state = 109
-            self.match(MambaParser.T__0)
+            self.match(TykeParser.T__0)
             self.state = 111
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MambaParser.T__6) | (1 << MambaParser.LET) | (1 << MambaParser.IF) | (1 << MambaParser.WHILE) | (1 << MambaParser.NAME))) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.T__6) | (1 << TykeParser.LET) | (1 << TykeParser.IF) | (1 << TykeParser.WHILE) | (1 << TykeParser.NAME))) != 0):
                 self.state = 110
                 self.statementList()
 
 
             self.state = 113
-            self.match(MambaParser.T__1)
+            self.match(TykeParser.T__1)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -564,18 +564,18 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def NAME(self):
-            return self.getToken(MambaParser.NAME, 0)
+            return self.getToken(TykeParser.NAME, 0)
 
         def funcDefArgList(self):
-            return self.getTypedRuleContext(MambaParser.FuncDefArgListContext,0)
+            return self.getTypedRuleContext(TykeParser.FuncDefArgListContext,0)
 
 
         def returnType(self):
-            return self.getTypedRuleContext(MambaParser.ReturnTypeContext,0)
+            return self.getTypedRuleContext(TykeParser.ReturnTypeContext,0)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_signature
+            return TykeParser.RULE_signature
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterSignature" ):
@@ -590,18 +590,18 @@ class MambaParser ( Parser ):
 
     def signature(self):
 
-        localctx = MambaParser.SignatureContext(self, self._ctx, self.state)
+        localctx = TykeParser.SignatureContext(self, self._ctx, self.state)
         self.enterRule(localctx, 8, self.RULE_signature)
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 115
-            self.match(MambaParser.T__2)
+            self.match(TykeParser.T__2)
             self.state = 116
-            self.match(MambaParser.NAME)
+            self.match(TykeParser.NAME)
             self.state = 117
             self.funcDefArgList()
             self.state = 118
-            self.match(MambaParser.T__3)
+            self.match(TykeParser.T__3)
             self.state = 119
             self.returnType()
         except RecognitionException as re:
@@ -620,18 +620,18 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def IF(self):
-            return self.getToken(MambaParser.IF, 0)
+            return self.getToken(TykeParser.IF, 0)
 
         def comparisonExpr(self):
-            return self.getTypedRuleContext(MambaParser.ComparisonExprContext,0)
+            return self.getTypedRuleContext(TykeParser.ComparisonExprContext,0)
 
 
         def statementList(self):
-            return self.getTypedRuleContext(MambaParser.StatementListContext,0)
+            return self.getTypedRuleContext(TykeParser.StatementListContext,0)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_ifStmt
+            return TykeParser.RULE_ifStmt
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterIfStmt" ):
@@ -646,27 +646,27 @@ class MambaParser ( Parser ):
 
     def ifStmt(self):
 
-        localctx = MambaParser.IfStmtContext(self, self._ctx, self.state)
+        localctx = TykeParser.IfStmtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 10, self.RULE_ifStmt)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 121
-            self.match(MambaParser.IF)
+            self.match(TykeParser.IF)
             self.state = 122
             self.comparisonExpr()
             self.state = 123
-            self.match(MambaParser.T__0)
+            self.match(TykeParser.T__0)
             self.state = 125
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MambaParser.T__6) | (1 << MambaParser.LET) | (1 << MambaParser.IF) | (1 << MambaParser.WHILE) | (1 << MambaParser.NAME))) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.T__6) | (1 << TykeParser.LET) | (1 << TykeParser.IF) | (1 << TykeParser.WHILE) | (1 << TykeParser.NAME))) != 0):
                 self.state = 124
                 self.statementList()
 
 
             self.state = 127
-            self.match(MambaParser.T__1)
+            self.match(TykeParser.T__1)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -683,18 +683,18 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def ELIF(self):
-            return self.getToken(MambaParser.ELIF, 0)
+            return self.getToken(TykeParser.ELIF, 0)
 
         def comparisonExpr(self):
-            return self.getTypedRuleContext(MambaParser.ComparisonExprContext,0)
+            return self.getTypedRuleContext(TykeParser.ComparisonExprContext,0)
 
 
         def statementList(self):
-            return self.getTypedRuleContext(MambaParser.StatementListContext,0)
+            return self.getTypedRuleContext(TykeParser.StatementListContext,0)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_elifStmt
+            return TykeParser.RULE_elifStmt
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterElifStmt" ):
@@ -709,27 +709,27 @@ class MambaParser ( Parser ):
 
     def elifStmt(self):
 
-        localctx = MambaParser.ElifStmtContext(self, self._ctx, self.state)
+        localctx = TykeParser.ElifStmtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 12, self.RULE_elifStmt)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 129
-            self.match(MambaParser.ELIF)
+            self.match(TykeParser.ELIF)
             self.state = 130
             self.comparisonExpr()
             self.state = 131
-            self.match(MambaParser.T__0)
+            self.match(TykeParser.T__0)
             self.state = 133
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MambaParser.T__6) | (1 << MambaParser.LET) | (1 << MambaParser.IF) | (1 << MambaParser.WHILE) | (1 << MambaParser.NAME))) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.T__6) | (1 << TykeParser.LET) | (1 << TykeParser.IF) | (1 << TykeParser.WHILE) | (1 << TykeParser.NAME))) != 0):
                 self.state = 132
                 self.statementList()
 
 
             self.state = 135
-            self.match(MambaParser.T__1)
+            self.match(TykeParser.T__1)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -746,14 +746,14 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def ELSE(self):
-            return self.getToken(MambaParser.ELSE, 0)
+            return self.getToken(TykeParser.ELSE, 0)
 
         def statementList(self):
-            return self.getTypedRuleContext(MambaParser.StatementListContext,0)
+            return self.getTypedRuleContext(TykeParser.StatementListContext,0)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_elseStmt
+            return TykeParser.RULE_elseStmt
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterElseStmt" ):
@@ -768,25 +768,25 @@ class MambaParser ( Parser ):
 
     def elseStmt(self):
 
-        localctx = MambaParser.ElseStmtContext(self, self._ctx, self.state)
+        localctx = TykeParser.ElseStmtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 14, self.RULE_elseStmt)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 137
-            self.match(MambaParser.ELSE)
+            self.match(TykeParser.ELSE)
             self.state = 138
-            self.match(MambaParser.T__0)
+            self.match(TykeParser.T__0)
             self.state = 140
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MambaParser.T__6) | (1 << MambaParser.LET) | (1 << MambaParser.IF) | (1 << MambaParser.WHILE) | (1 << MambaParser.NAME))) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.T__6) | (1 << TykeParser.LET) | (1 << TykeParser.IF) | (1 << TykeParser.WHILE) | (1 << TykeParser.NAME))) != 0):
                 self.state = 139
                 self.statementList()
 
 
             self.state = 142
-            self.match(MambaParser.T__1)
+            self.match(TykeParser.T__1)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -803,22 +803,22 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def ifStmt(self):
-            return self.getTypedRuleContext(MambaParser.IfStmtContext,0)
+            return self.getTypedRuleContext(TykeParser.IfStmtContext,0)
 
 
         def elifStmt(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(MambaParser.ElifStmtContext)
+                return self.getTypedRuleContexts(TykeParser.ElifStmtContext)
             else:
-                return self.getTypedRuleContext(MambaParser.ElifStmtContext,i)
+                return self.getTypedRuleContext(TykeParser.ElifStmtContext,i)
 
 
         def elseStmt(self):
-            return self.getTypedRuleContext(MambaParser.ElseStmtContext,0)
+            return self.getTypedRuleContext(TykeParser.ElseStmtContext,0)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_conditionalStmt
+            return TykeParser.RULE_conditionalStmt
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterConditionalStmt" ):
@@ -833,7 +833,7 @@ class MambaParser ( Parser ):
 
     def conditionalStmt(self):
 
-        localctx = MambaParser.ConditionalStmtContext(self, self._ctx, self.state)
+        localctx = TykeParser.ConditionalStmtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 16, self.RULE_conditionalStmt)
         self._la = 0 # Token type
         try:
@@ -843,7 +843,7 @@ class MambaParser ( Parser ):
             self.state = 148
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==MambaParser.ELIF:
+            while _la==TykeParser.ELIF:
                 self.state = 145
                 self.elifStmt()
                 self.state = 150
@@ -853,7 +853,7 @@ class MambaParser ( Parser ):
             self.state = 152
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==MambaParser.ELSE:
+            if _la==TykeParser.ELSE:
                 self.state = 151
                 self.elseStmt()
 
@@ -874,14 +874,14 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def NAME(self):
-            return self.getToken(MambaParser.NAME, 0)
+            return self.getToken(TykeParser.NAME, 0)
 
         def expression(self):
-            return self.getTypedRuleContext(MambaParser.ExpressionContext,0)
+            return self.getTypedRuleContext(TykeParser.ExpressionContext,0)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_fieldInit
+            return TykeParser.RULE_fieldInit
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterFieldInit" ):
@@ -896,14 +896,14 @@ class MambaParser ( Parser ):
 
     def fieldInit(self):
 
-        localctx = MambaParser.FieldInitContext(self, self._ctx, self.state)
+        localctx = TykeParser.FieldInitContext(self, self._ctx, self.state)
         self.enterRule(localctx, 18, self.RULE_fieldInit)
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 154
-            self.match(MambaParser.NAME)
+            self.match(TykeParser.NAME)
             self.state = 155
-            self.match(MambaParser.T__4)
+            self.match(TykeParser.T__4)
             self.state = 156
             self.expression()
         except RecognitionException as re:
@@ -923,13 +923,13 @@ class MambaParser ( Parser ):
 
         def fieldInit(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(MambaParser.FieldInitContext)
+                return self.getTypedRuleContexts(TykeParser.FieldInitContext)
             else:
-                return self.getTypedRuleContext(MambaParser.FieldInitContext,i)
+                return self.getTypedRuleContext(TykeParser.FieldInitContext,i)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_fieldInitList
+            return TykeParser.RULE_fieldInitList
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterFieldInitList" ):
@@ -944,7 +944,7 @@ class MambaParser ( Parser ):
 
     def fieldInitList(self):
 
-        localctx = MambaParser.FieldInitListContext(self, self._ctx, self.state)
+        localctx = TykeParser.FieldInitListContext(self, self._ctx, self.state)
         self.enterRule(localctx, 20, self.RULE_fieldInitList)
         self._la = 0 # Token type
         try:
@@ -954,9 +954,9 @@ class MambaParser ( Parser ):
             self.state = 163
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==MambaParser.T__5:
+            while _la==TykeParser.T__5:
                 self.state = 159
-                self.match(MambaParser.T__5)
+                self.match(TykeParser.T__5)
                 self.state = 160
                 self.fieldInit()
                 self.state = 165
@@ -979,14 +979,14 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def NAME(self):
-            return self.getToken(MambaParser.NAME, 0)
+            return self.getToken(TykeParser.NAME, 0)
 
         def fieldInitList(self):
-            return self.getTypedRuleContext(MambaParser.FieldInitListContext,0)
+            return self.getTypedRuleContext(TykeParser.FieldInitListContext,0)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_makeStructExpr
+            return TykeParser.RULE_makeStructExpr
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterMakeStructExpr" ):
@@ -1001,25 +1001,25 @@ class MambaParser ( Parser ):
 
     def makeStructExpr(self):
 
-        localctx = MambaParser.MakeStructExprContext(self, self._ctx, self.state)
+        localctx = TykeParser.MakeStructExprContext(self, self._ctx, self.state)
         self.enterRule(localctx, 22, self.RULE_makeStructExpr)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 166
-            self.match(MambaParser.NAME)
+            self.match(TykeParser.NAME)
             self.state = 167
-            self.match(MambaParser.T__0)
+            self.match(TykeParser.T__0)
             self.state = 169
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==MambaParser.NAME:
+            if _la==TykeParser.NAME:
                 self.state = 168
                 self.fieldInitList()
 
 
             self.state = 171
-            self.match(MambaParser.T__1)
+            self.match(TykeParser.T__1)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1036,18 +1036,18 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def WHILE(self):
-            return self.getToken(MambaParser.WHILE, 0)
+            return self.getToken(TykeParser.WHILE, 0)
 
         def comparisonExpr(self):
-            return self.getTypedRuleContext(MambaParser.ComparisonExprContext,0)
+            return self.getTypedRuleContext(TykeParser.ComparisonExprContext,0)
 
 
         def statementList(self):
-            return self.getTypedRuleContext(MambaParser.StatementListContext,0)
+            return self.getTypedRuleContext(TykeParser.StatementListContext,0)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_whileStmt
+            return TykeParser.RULE_whileStmt
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterWhileStmt" ):
@@ -1062,27 +1062,27 @@ class MambaParser ( Parser ):
 
     def whileStmt(self):
 
-        localctx = MambaParser.WhileStmtContext(self, self._ctx, self.state)
+        localctx = TykeParser.WhileStmtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 24, self.RULE_whileStmt)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 173
-            self.match(MambaParser.WHILE)
+            self.match(TykeParser.WHILE)
             self.state = 174
             self.comparisonExpr()
             self.state = 175
-            self.match(MambaParser.T__0)
+            self.match(TykeParser.T__0)
             self.state = 177
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MambaParser.T__6) | (1 << MambaParser.LET) | (1 << MambaParser.IF) | (1 << MambaParser.WHILE) | (1 << MambaParser.NAME))) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.T__6) | (1 << TykeParser.LET) | (1 << TykeParser.IF) | (1 << TykeParser.WHILE) | (1 << TykeParser.NAME))) != 0):
                 self.state = 176
                 self.statementList()
 
 
             self.state = 179
-            self.match(MambaParser.T__1)
+            self.match(TykeParser.T__1)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1099,11 +1099,11 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def whileStmt(self):
-            return self.getTypedRuleContext(MambaParser.WhileStmtContext,0)
+            return self.getTypedRuleContext(TykeParser.WhileStmtContext,0)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_loopStmt
+            return TykeParser.RULE_loopStmt
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterLoopStmt" ):
@@ -1118,7 +1118,7 @@ class MambaParser ( Parser ):
 
     def loopStmt(self):
 
-        localctx = MambaParser.LoopStmtContext(self, self._ctx, self.state)
+        localctx = TykeParser.LoopStmtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 26, self.RULE_loopStmt)
         try:
             self.enterOuterAlt(localctx, 1)
@@ -1141,13 +1141,13 @@ class MambaParser ( Parser ):
 
         def statement(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(MambaParser.StatementContext)
+                return self.getTypedRuleContexts(TykeParser.StatementContext)
             else:
-                return self.getTypedRuleContext(MambaParser.StatementContext,i)
+                return self.getTypedRuleContext(TykeParser.StatementContext,i)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_statementList
+            return TykeParser.RULE_statementList
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterStatementList" ):
@@ -1162,7 +1162,7 @@ class MambaParser ( Parser ):
 
     def statementList(self):
 
-        localctx = MambaParser.StatementListContext(self, self._ctx, self.state)
+        localctx = TykeParser.StatementListContext(self, self._ctx, self.state)
         self.enterRule(localctx, 28, self.RULE_statementList)
         self._la = 0 # Token type
         try:
@@ -1176,7 +1176,7 @@ class MambaParser ( Parser ):
                 self.state = 186 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MambaParser.T__6) | (1 << MambaParser.LET) | (1 << MambaParser.IF) | (1 << MambaParser.WHILE) | (1 << MambaParser.NAME))) != 0)):
+                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.T__6) | (1 << TykeParser.LET) | (1 << TykeParser.IF) | (1 << TykeParser.WHILE) | (1 << TykeParser.NAME))) != 0)):
                     break
 
         except RecognitionException as re:
@@ -1195,31 +1195,31 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def returnStmt(self):
-            return self.getTypedRuleContext(MambaParser.ReturnStmtContext,0)
+            return self.getTypedRuleContext(TykeParser.ReturnStmtContext,0)
 
 
         def funcCallStmt(self):
-            return self.getTypedRuleContext(MambaParser.FuncCallStmtContext,0)
+            return self.getTypedRuleContext(TykeParser.FuncCallStmtContext,0)
 
 
         def assigmentStmt(self):
-            return self.getTypedRuleContext(MambaParser.AssigmentStmtContext,0)
+            return self.getTypedRuleContext(TykeParser.AssigmentStmtContext,0)
 
 
         def declareAndAssignStmt(self):
-            return self.getTypedRuleContext(MambaParser.DeclareAndAssignStmtContext,0)
+            return self.getTypedRuleContext(TykeParser.DeclareAndAssignStmtContext,0)
 
 
         def conditionalStmt(self):
-            return self.getTypedRuleContext(MambaParser.ConditionalStmtContext,0)
+            return self.getTypedRuleContext(TykeParser.ConditionalStmtContext,0)
 
 
         def loopStmt(self):
-            return self.getTypedRuleContext(MambaParser.LoopStmtContext,0)
+            return self.getTypedRuleContext(TykeParser.LoopStmtContext,0)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_statement
+            return TykeParser.RULE_statement
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterStatement" ):
@@ -1234,7 +1234,7 @@ class MambaParser ( Parser ):
 
     def statement(self):
 
-        localctx = MambaParser.StatementContext(self, self._ctx, self.state)
+        localctx = TykeParser.StatementContext(self, self._ctx, self.state)
         self.enterRule(localctx, 30, self.RULE_statement)
         try:
             self.state = 194
@@ -1293,18 +1293,18 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def SEMICOLON(self):
-            return self.getToken(MambaParser.SEMICOLON, 0)
+            return self.getToken(TykeParser.SEMICOLON, 0)
 
         def simpleExpression(self):
-            return self.getTypedRuleContext(MambaParser.SimpleExpressionContext,0)
+            return self.getTypedRuleContext(TykeParser.SimpleExpressionContext,0)
 
 
         def multiArthimeticExpr(self):
-            return self.getTypedRuleContext(MambaParser.MultiArthimeticExprContext,0)
+            return self.getTypedRuleContext(TykeParser.MultiArthimeticExprContext,0)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_returnStmt
+            return TykeParser.RULE_returnStmt
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterReturnStmt" ):
@@ -1319,12 +1319,12 @@ class MambaParser ( Parser ):
 
     def returnStmt(self):
 
-        localctx = MambaParser.ReturnStmtContext(self, self._ctx, self.state)
+        localctx = TykeParser.ReturnStmtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 32, self.RULE_returnStmt)
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 196
-            self.match(MambaParser.T__6)
+            self.match(TykeParser.T__6)
             self.state = 199
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,14,self._ctx)
@@ -1338,7 +1338,7 @@ class MambaParser ( Parser ):
 
 
             self.state = 201
-            self.match(MambaParser.SEMICOLON)
+            self.match(TykeParser.SEMICOLON)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1355,14 +1355,14 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def funcCall(self):
-            return self.getTypedRuleContext(MambaParser.FuncCallContext,0)
+            return self.getTypedRuleContext(TykeParser.FuncCallContext,0)
 
 
         def SEMICOLON(self):
-            return self.getToken(MambaParser.SEMICOLON, 0)
+            return self.getToken(TykeParser.SEMICOLON, 0)
 
         def getRuleIndex(self):
-            return MambaParser.RULE_funcCallStmt
+            return TykeParser.RULE_funcCallStmt
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterFuncCallStmt" ):
@@ -1377,14 +1377,14 @@ class MambaParser ( Parser ):
 
     def funcCallStmt(self):
 
-        localctx = MambaParser.FuncCallStmtContext(self, self._ctx, self.state)
+        localctx = TykeParser.FuncCallStmtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 34, self.RULE_funcCallStmt)
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 203
             self.funcCall()
             self.state = 204
-            self.match(MambaParser.SEMICOLON)
+            self.match(TykeParser.SEMICOLON)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1401,18 +1401,18 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def varDeclare(self):
-            return self.getTypedRuleContext(MambaParser.VarDeclareContext,0)
+            return self.getTypedRuleContext(TykeParser.VarDeclareContext,0)
 
 
         def expression(self):
-            return self.getTypedRuleContext(MambaParser.ExpressionContext,0)
+            return self.getTypedRuleContext(TykeParser.ExpressionContext,0)
 
 
         def SEMICOLON(self):
-            return self.getToken(MambaParser.SEMICOLON, 0)
+            return self.getToken(TykeParser.SEMICOLON, 0)
 
         def getRuleIndex(self):
-            return MambaParser.RULE_declareAndAssignStmt
+            return TykeParser.RULE_declareAndAssignStmt
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterDeclareAndAssignStmt" ):
@@ -1427,18 +1427,18 @@ class MambaParser ( Parser ):
 
     def declareAndAssignStmt(self):
 
-        localctx = MambaParser.DeclareAndAssignStmtContext(self, self._ctx, self.state)
+        localctx = TykeParser.DeclareAndAssignStmtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 36, self.RULE_declareAndAssignStmt)
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 206
             self.varDeclare()
             self.state = 207
-            self.match(MambaParser.T__7)
+            self.match(TykeParser.T__7)
             self.state = 208
             self.expression()
             self.state = 209
-            self.match(MambaParser.SEMICOLON)
+            self.match(TykeParser.SEMICOLON)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1455,21 +1455,21 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def expression(self):
-            return self.getTypedRuleContext(MambaParser.ExpressionContext,0)
+            return self.getTypedRuleContext(TykeParser.ExpressionContext,0)
 
 
         def SEMICOLON(self):
-            return self.getToken(MambaParser.SEMICOLON, 0)
+            return self.getToken(TykeParser.SEMICOLON, 0)
 
         def NAME(self):
-            return self.getToken(MambaParser.NAME, 0)
+            return self.getToken(TykeParser.NAME, 0)
 
         def field(self):
-            return self.getTypedRuleContext(MambaParser.FieldContext,0)
+            return self.getTypedRuleContext(TykeParser.FieldContext,0)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_assigmentStmt
+            return TykeParser.RULE_assigmentStmt
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterAssigmentStmt" ):
@@ -1484,7 +1484,7 @@ class MambaParser ( Parser ):
 
     def assigmentStmt(self):
 
-        localctx = MambaParser.AssigmentStmtContext(self, self._ctx, self.state)
+        localctx = TykeParser.AssigmentStmtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 38, self.RULE_assigmentStmt)
         try:
             self.enterOuterAlt(localctx, 1)
@@ -1493,7 +1493,7 @@ class MambaParser ( Parser ):
             la_ = self._interp.adaptivePredict(self._input,15,self._ctx)
             if la_ == 1:
                 self.state = 211
-                self.match(MambaParser.NAME)
+                self.match(TykeParser.NAME)
                 pass
 
             elif la_ == 2:
@@ -1503,11 +1503,11 @@ class MambaParser ( Parser ):
 
 
             self.state = 215
-            self.match(MambaParser.T__7)
+            self.match(TykeParser.T__7)
             self.state = 216
             self.expression()
             self.state = 217
-            self.match(MambaParser.SEMICOLON)
+            self.match(TykeParser.SEMICOLON)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1524,11 +1524,11 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def typedArgList(self):
-            return self.getTypedRuleContext(MambaParser.TypedArgListContext,0)
+            return self.getTypedRuleContext(TykeParser.TypedArgListContext,0)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_funcDefArgList
+            return TykeParser.RULE_funcDefArgList
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterFuncDefArgList" ):
@@ -1543,23 +1543,23 @@ class MambaParser ( Parser ):
 
     def funcDefArgList(self):
 
-        localctx = MambaParser.FuncDefArgListContext(self, self._ctx, self.state)
+        localctx = TykeParser.FuncDefArgListContext(self, self._ctx, self.state)
         self.enterRule(localctx, 40, self.RULE_funcDefArgList)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 219
-            self.match(MambaParser.T__8)
+            self.match(TykeParser.T__8)
             self.state = 221
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==MambaParser.NAME:
+            if _la==TykeParser.NAME:
                 self.state = 220
                 self.typedArgList()
 
 
             self.state = 223
-            self.match(MambaParser.T__9)
+            self.match(TykeParser.T__9)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1577,13 +1577,13 @@ class MambaParser ( Parser ):
 
         def typedArg(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(MambaParser.TypedArgContext)
+                return self.getTypedRuleContexts(TykeParser.TypedArgContext)
             else:
-                return self.getTypedRuleContext(MambaParser.TypedArgContext,i)
+                return self.getTypedRuleContext(TykeParser.TypedArgContext,i)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_typedArgList
+            return TykeParser.RULE_typedArgList
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterTypedArgList" ):
@@ -1598,7 +1598,7 @@ class MambaParser ( Parser ):
 
     def typedArgList(self):
 
-        localctx = MambaParser.TypedArgListContext(self, self._ctx, self.state)
+        localctx = TykeParser.TypedArgListContext(self, self._ctx, self.state)
         self.enterRule(localctx, 42, self.RULE_typedArgList)
         self._la = 0 # Token type
         try:
@@ -1608,9 +1608,9 @@ class MambaParser ( Parser ):
             self.state = 230
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==MambaParser.T__5:
+            while _la==TykeParser.T__5:
                 self.state = 226
-                self.match(MambaParser.T__5)
+                self.match(TykeParser.T__5)
                 self.state = 227
                 self.typedArg()
                 self.state = 232
@@ -1633,14 +1633,14 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def NAME(self):
-            return self.getToken(MambaParser.NAME, 0)
+            return self.getToken(TykeParser.NAME, 0)
 
         def varType(self):
-            return self.getTypedRuleContext(MambaParser.VarTypeContext,0)
+            return self.getTypedRuleContext(TykeParser.VarTypeContext,0)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_typedArg
+            return TykeParser.RULE_typedArg
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterTypedArg" ):
@@ -1655,14 +1655,14 @@ class MambaParser ( Parser ):
 
     def typedArg(self):
 
-        localctx = MambaParser.TypedArgContext(self, self._ctx, self.state)
+        localctx = TykeParser.TypedArgContext(self, self._ctx, self.state)
         self.enterRule(localctx, 44, self.RULE_typedArg)
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 233
-            self.match(MambaParser.NAME)
+            self.match(TykeParser.NAME)
             self.state = 234
-            self.match(MambaParser.T__4)
+            self.match(TykeParser.T__4)
             self.state = 235
             self.varType()
         except RecognitionException as re:
@@ -1681,16 +1681,16 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def LET(self):
-            return self.getToken(MambaParser.LET, 0)
+            return self.getToken(TykeParser.LET, 0)
 
         def NAME(self):
-            return self.getToken(MambaParser.NAME, 0)
+            return self.getToken(TykeParser.NAME, 0)
 
         def MUT(self):
-            return self.getToken(MambaParser.MUT, 0)
+            return self.getToken(TykeParser.MUT, 0)
 
         def getRuleIndex(self):
-            return MambaParser.RULE_varDeclare
+            return TykeParser.RULE_varDeclare
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterVarDeclare" ):
@@ -1705,23 +1705,23 @@ class MambaParser ( Parser ):
 
     def varDeclare(self):
 
-        localctx = MambaParser.VarDeclareContext(self, self._ctx, self.state)
+        localctx = TykeParser.VarDeclareContext(self, self._ctx, self.state)
         self.enterRule(localctx, 46, self.RULE_varDeclare)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 237
-            self.match(MambaParser.LET)
+            self.match(TykeParser.LET)
             self.state = 239
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==MambaParser.MUT:
+            if _la==TykeParser.MUT:
                 self.state = 238
-                self.match(MambaParser.MUT)
+                self.match(TykeParser.MUT)
 
 
             self.state = 241
-            self.match(MambaParser.NAME)
+            self.match(TykeParser.NAME)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1738,19 +1738,19 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def ADD(self):
-            return self.getToken(MambaParser.ADD, 0)
+            return self.getToken(TykeParser.ADD, 0)
 
         def SUBTRACT(self):
-            return self.getToken(MambaParser.SUBTRACT, 0)
+            return self.getToken(TykeParser.SUBTRACT, 0)
 
         def MULTIPLY(self):
-            return self.getToken(MambaParser.MULTIPLY, 0)
+            return self.getToken(TykeParser.MULTIPLY, 0)
 
         def DIVIDE(self):
-            return self.getToken(MambaParser.DIVIDE, 0)
+            return self.getToken(TykeParser.DIVIDE, 0)
 
         def getRuleIndex(self):
-            return MambaParser.RULE_arithmetic_op
+            return TykeParser.RULE_arithmetic_op
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterArithmetic_op" ):
@@ -1765,14 +1765,14 @@ class MambaParser ( Parser ):
 
     def arithmetic_op(self):
 
-        localctx = MambaParser.Arithmetic_opContext(self, self._ctx, self.state)
+        localctx = TykeParser.Arithmetic_opContext(self, self._ctx, self.state)
         self.enterRule(localctx, 48, self.RULE_arithmetic_op)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 243
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MambaParser.ADD) | (1 << MambaParser.SUBTRACT) | (1 << MambaParser.MULTIPLY) | (1 << MambaParser.DIVIDE))) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.ADD) | (1 << TykeParser.SUBTRACT) | (1 << TykeParser.MULTIPLY) | (1 << TykeParser.DIVIDE))) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -1794,20 +1794,20 @@ class MambaParser ( Parser ):
 
         def simpleExpression(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(MambaParser.SimpleExpressionContext)
+                return self.getTypedRuleContexts(TykeParser.SimpleExpressionContext)
             else:
-                return self.getTypedRuleContext(MambaParser.SimpleExpressionContext,i)
+                return self.getTypedRuleContext(TykeParser.SimpleExpressionContext,i)
 
 
         def arithmetic_op(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(MambaParser.Arithmetic_opContext)
+                return self.getTypedRuleContexts(TykeParser.Arithmetic_opContext)
             else:
-                return self.getTypedRuleContext(MambaParser.Arithmetic_opContext,i)
+                return self.getTypedRuleContext(TykeParser.Arithmetic_opContext,i)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_arthimeticExpr
+            return TykeParser.RULE_arthimeticExpr
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterArthimeticExpr" ):
@@ -1822,14 +1822,14 @@ class MambaParser ( Parser ):
 
     def arthimeticExpr(self):
 
-        localctx = MambaParser.ArthimeticExprContext(self, self._ctx, self.state)
+        localctx = TykeParser.ArthimeticExprContext(self, self._ctx, self.state)
         self.enterRule(localctx, 50, self.RULE_arthimeticExpr)
         self._la = 0 # Token type
         try:
             self.state = 266
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [MambaParser.DOUBLE, MambaParser.INTEGER, MambaParser.NAME, MambaParser.STRING]:
+            if token in [TykeParser.DOUBLE, TykeParser.INTEGER, TykeParser.NAME, TykeParser.STRING]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 245
                 self.simpleExpression()
@@ -1847,16 +1847,16 @@ class MambaParser ( Parser ):
                     _alt = self._interp.adaptivePredict(self._input,19,self._ctx)
 
                 pass
-            elif token in [MambaParser.T__8]:
+            elif token in [TykeParser.T__8]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 254
-                self.match(MambaParser.T__8)
+                self.match(TykeParser.T__8)
                 self.state = 255
                 self.simpleExpression()
                 self.state = 261
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MambaParser.ADD) | (1 << MambaParser.SUBTRACT) | (1 << MambaParser.MULTIPLY) | (1 << MambaParser.DIVIDE))) != 0):
+                while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.ADD) | (1 << TykeParser.SUBTRACT) | (1 << TykeParser.MULTIPLY) | (1 << TykeParser.DIVIDE))) != 0):
                     self.state = 256
                     self.arithmetic_op()
                     self.state = 257
@@ -1866,7 +1866,7 @@ class MambaParser ( Parser ):
                     _la = self._input.LA(1)
 
                 self.state = 264
-                self.match(MambaParser.T__9)
+                self.match(TykeParser.T__9)
                 pass
             else:
                 raise NoViableAltException(self)
@@ -1888,20 +1888,20 @@ class MambaParser ( Parser ):
 
         def arthimeticExpr(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(MambaParser.ArthimeticExprContext)
+                return self.getTypedRuleContexts(TykeParser.ArthimeticExprContext)
             else:
-                return self.getTypedRuleContext(MambaParser.ArthimeticExprContext,i)
+                return self.getTypedRuleContext(TykeParser.ArthimeticExprContext,i)
 
 
         def arithmetic_op(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(MambaParser.Arithmetic_opContext)
+                return self.getTypedRuleContexts(TykeParser.Arithmetic_opContext)
             else:
-                return self.getTypedRuleContext(MambaParser.Arithmetic_opContext,i)
+                return self.getTypedRuleContext(TykeParser.Arithmetic_opContext,i)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_multiArthimeticExpr
+            return TykeParser.RULE_multiArthimeticExpr
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterMultiArthimeticExpr" ):
@@ -1916,7 +1916,7 @@ class MambaParser ( Parser ):
 
     def multiArthimeticExpr(self):
 
-        localctx = MambaParser.MultiArthimeticExprContext(self, self._ctx, self.state)
+        localctx = TykeParser.MultiArthimeticExprContext(self, self._ctx, self.state)
         self.enterRule(localctx, 52, self.RULE_multiArthimeticExpr)
         self._la = 0 # Token type
         try:
@@ -1926,7 +1926,7 @@ class MambaParser ( Parser ):
             self.state = 274
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MambaParser.ADD) | (1 << MambaParser.SUBTRACT) | (1 << MambaParser.MULTIPLY) | (1 << MambaParser.DIVIDE))) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.ADD) | (1 << TykeParser.SUBTRACT) | (1 << TykeParser.MULTIPLY) | (1 << TykeParser.DIVIDE))) != 0):
                 self.state = 269
                 self.arithmetic_op()
                 self.state = 270
@@ -1952,17 +1952,17 @@ class MambaParser ( Parser ):
 
         def simpleExpression(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(MambaParser.SimpleExpressionContext)
+                return self.getTypedRuleContexts(TykeParser.SimpleExpressionContext)
             else:
-                return self.getTypedRuleContext(MambaParser.SimpleExpressionContext,i)
+                return self.getTypedRuleContext(TykeParser.SimpleExpressionContext,i)
 
 
         def bool_comparison_op(self):
-            return self.getTypedRuleContext(MambaParser.Bool_comparison_opContext,0)
+            return self.getTypedRuleContext(TykeParser.Bool_comparison_opContext,0)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_comparisonExpr
+            return TykeParser.RULE_comparisonExpr
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterComparisonExpr" ):
@@ -1977,13 +1977,13 @@ class MambaParser ( Parser ):
 
     def comparisonExpr(self):
 
-        localctx = MambaParser.ComparisonExprContext(self, self._ctx, self.state)
+        localctx = TykeParser.ComparisonExprContext(self, self._ctx, self.state)
         self.enterRule(localctx, 54, self.RULE_comparisonExpr)
         try:
             self.state = 287
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [MambaParser.DOUBLE, MambaParser.INTEGER, MambaParser.NAME, MambaParser.STRING]:
+            if token in [TykeParser.DOUBLE, TykeParser.INTEGER, TykeParser.NAME, TykeParser.STRING]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 277
                 self.simpleExpression()
@@ -1992,10 +1992,10 @@ class MambaParser ( Parser ):
                 self.state = 279
                 self.simpleExpression()
                 pass
-            elif token in [MambaParser.T__8]:
+            elif token in [TykeParser.T__8]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 281
-                self.match(MambaParser.T__8)
+                self.match(TykeParser.T__8)
                 self.state = 282
                 self.simpleExpression()
                 self.state = 283
@@ -2003,7 +2003,7 @@ class MambaParser ( Parser ):
                 self.state = 284
                 self.simpleExpression()
                 self.state = 285
-                self.match(MambaParser.T__9)
+                self.match(TykeParser.T__9)
                 pass
             else:
                 raise NoViableAltException(self)
@@ -2024,25 +2024,25 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def EQ(self):
-            return self.getToken(MambaParser.EQ, 0)
+            return self.getToken(TykeParser.EQ, 0)
 
         def NEQ(self):
-            return self.getToken(MambaParser.NEQ, 0)
+            return self.getToken(TykeParser.NEQ, 0)
 
         def LT(self):
-            return self.getToken(MambaParser.LT, 0)
+            return self.getToken(TykeParser.LT, 0)
 
         def LTE(self):
-            return self.getToken(MambaParser.LTE, 0)
+            return self.getToken(TykeParser.LTE, 0)
 
         def GT(self):
-            return self.getToken(MambaParser.GT, 0)
+            return self.getToken(TykeParser.GT, 0)
 
         def GTE(self):
-            return self.getToken(MambaParser.GTE, 0)
+            return self.getToken(TykeParser.GTE, 0)
 
         def getRuleIndex(self):
-            return MambaParser.RULE_bool_comparison_op
+            return TykeParser.RULE_bool_comparison_op
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterBool_comparison_op" ):
@@ -2057,14 +2057,14 @@ class MambaParser ( Parser ):
 
     def bool_comparison_op(self):
 
-        localctx = MambaParser.Bool_comparison_opContext(self, self._ctx, self.state)
+        localctx = TykeParser.Bool_comparison_opContext(self, self._ctx, self.state)
         self.enterRule(localctx, 56, self.RULE_bool_comparison_op)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 289
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MambaParser.EQ) | (1 << MambaParser.NEQ) | (1 << MambaParser.LT) | (1 << MambaParser.LTE) | (1 << MambaParser.GT) | (1 << MambaParser.GTE))) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.EQ) | (1 << TykeParser.NEQ) | (1 << TykeParser.LT) | (1 << TykeParser.LTE) | (1 << TykeParser.GT) | (1 << TykeParser.GTE))) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -2085,13 +2085,13 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def TRUE(self):
-            return self.getToken(MambaParser.TRUE, 0)
+            return self.getToken(TykeParser.TRUE, 0)
 
         def FALSE(self):
-            return self.getToken(MambaParser.FALSE, 0)
+            return self.getToken(TykeParser.FALSE, 0)
 
         def getRuleIndex(self):
-            return MambaParser.RULE_booleanLiteral
+            return TykeParser.RULE_booleanLiteral
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterBooleanLiteral" ):
@@ -2106,14 +2106,14 @@ class MambaParser ( Parser ):
 
     def booleanLiteral(self):
 
-        localctx = MambaParser.BooleanLiteralContext(self, self._ctx, self.state)
+        localctx = TykeParser.BooleanLiteralContext(self, self._ctx, self.state)
         self.enterRule(localctx, 58, self.RULE_booleanLiteral)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 291
             _la = self._input.LA(1)
-            if not(_la==MambaParser.TRUE or _la==MambaParser.FALSE):
+            if not(_la==TykeParser.TRUE or _la==TykeParser.FALSE):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -2134,13 +2134,13 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def DOUBLE(self):
-            return self.getToken(MambaParser.DOUBLE, 0)
+            return self.getToken(TykeParser.DOUBLE, 0)
 
         def INTEGER(self):
-            return self.getToken(MambaParser.INTEGER, 0)
+            return self.getToken(TykeParser.INTEGER, 0)
 
         def getRuleIndex(self):
-            return MambaParser.RULE_numeric
+            return TykeParser.RULE_numeric
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterNumeric" ):
@@ -2155,14 +2155,14 @@ class MambaParser ( Parser ):
 
     def numeric(self):
 
-        localctx = MambaParser.NumericContext(self, self._ctx, self.state)
+        localctx = TykeParser.NumericContext(self, self._ctx, self.state)
         self.enterRule(localctx, 60, self.RULE_numeric)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 293
             _la = self._input.LA(1)
-            if not(_la==MambaParser.DOUBLE or _la==MambaParser.INTEGER):
+            if not(_la==TykeParser.DOUBLE or _la==TykeParser.INTEGER):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -2183,14 +2183,14 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def numeric(self):
-            return self.getTypedRuleContext(MambaParser.NumericContext,0)
+            return self.getTypedRuleContext(TykeParser.NumericContext,0)
 
 
         def STRING(self):
-            return self.getToken(MambaParser.STRING, 0)
+            return self.getToken(TykeParser.STRING, 0)
 
         def getRuleIndex(self):
-            return MambaParser.RULE_primitive
+            return TykeParser.RULE_primitive
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterPrimitive" ):
@@ -2205,21 +2205,21 @@ class MambaParser ( Parser ):
 
     def primitive(self):
 
-        localctx = MambaParser.PrimitiveContext(self, self._ctx, self.state)
+        localctx = TykeParser.PrimitiveContext(self, self._ctx, self.state)
         self.enterRule(localctx, 62, self.RULE_primitive)
         try:
             self.state = 297
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [MambaParser.DOUBLE, MambaParser.INTEGER]:
+            if token in [TykeParser.DOUBLE, TykeParser.INTEGER]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 295
                 self.numeric()
                 pass
-            elif token in [MambaParser.STRING]:
+            elif token in [TykeParser.STRING]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 296
-                self.match(MambaParser.STRING)
+                self.match(TykeParser.STRING)
                 pass
             else:
                 raise NoViableAltException(self)
@@ -2240,16 +2240,16 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def NAME(self):
-            return self.getToken(MambaParser.NAME, 0)
+            return self.getToken(TykeParser.NAME, 0)
 
         def FIELD_REF(self, i:int=None):
             if i is None:
-                return self.getTokens(MambaParser.FIELD_REF)
+                return self.getTokens(TykeParser.FIELD_REF)
             else:
-                return self.getToken(MambaParser.FIELD_REF, i)
+                return self.getToken(TykeParser.FIELD_REF, i)
 
         def getRuleIndex(self):
-            return MambaParser.RULE_field
+            return TykeParser.RULE_field
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterField" ):
@@ -2264,23 +2264,23 @@ class MambaParser ( Parser ):
 
     def field(self):
 
-        localctx = MambaParser.FieldContext(self, self._ctx, self.state)
+        localctx = TykeParser.FieldContext(self, self._ctx, self.state)
         self.enterRule(localctx, 64, self.RULE_field)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 299
-            self.match(MambaParser.NAME)
+            self.match(TykeParser.NAME)
             self.state = 301 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 300
-                self.match(MambaParser.FIELD_REF)
+                self.match(TykeParser.FIELD_REF)
                 self.state = 303 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==MambaParser.FIELD_REF):
+                if not (_la==TykeParser.FIELD_REF):
                     break
 
         except RecognitionException as re:
@@ -2299,22 +2299,22 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def primitive(self):
-            return self.getTypedRuleContext(MambaParser.PrimitiveContext,0)
+            return self.getTypedRuleContext(TykeParser.PrimitiveContext,0)
 
 
         def NAME(self):
-            return self.getToken(MambaParser.NAME, 0)
+            return self.getToken(TykeParser.NAME, 0)
 
         def field(self):
-            return self.getTypedRuleContext(MambaParser.FieldContext,0)
+            return self.getTypedRuleContext(TykeParser.FieldContext,0)
 
 
         def funcCall(self):
-            return self.getTypedRuleContext(MambaParser.FuncCallContext,0)
+            return self.getTypedRuleContext(TykeParser.FuncCallContext,0)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_simpleExpression
+            return TykeParser.RULE_simpleExpression
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterSimpleExpression" ):
@@ -2329,7 +2329,7 @@ class MambaParser ( Parser ):
 
     def simpleExpression(self):
 
-        localctx = MambaParser.SimpleExpressionContext(self, self._ctx, self.state)
+        localctx = TykeParser.SimpleExpressionContext(self, self._ctx, self.state)
         self.enterRule(localctx, 66, self.RULE_simpleExpression)
         try:
             self.enterOuterAlt(localctx, 1)
@@ -2343,7 +2343,7 @@ class MambaParser ( Parser ):
 
             elif la_ == 2:
                 self.state = 306
-                self.match(MambaParser.NAME)
+                self.match(TykeParser.NAME)
                 pass
 
             elif la_ == 3:
@@ -2373,27 +2373,27 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def simpleExpression(self):
-            return self.getTypedRuleContext(MambaParser.SimpleExpressionContext,0)
+            return self.getTypedRuleContext(TykeParser.SimpleExpressionContext,0)
 
 
         def arthimeticExpr(self):
-            return self.getTypedRuleContext(MambaParser.ArthimeticExprContext,0)
+            return self.getTypedRuleContext(TykeParser.ArthimeticExprContext,0)
 
 
         def multiArthimeticExpr(self):
-            return self.getTypedRuleContext(MambaParser.MultiArthimeticExprContext,0)
+            return self.getTypedRuleContext(TykeParser.MultiArthimeticExprContext,0)
 
 
         def comparisonExpr(self):
-            return self.getTypedRuleContext(MambaParser.ComparisonExprContext,0)
+            return self.getTypedRuleContext(TykeParser.ComparisonExprContext,0)
 
 
         def makeStructExpr(self):
-            return self.getTypedRuleContext(MambaParser.MakeStructExprContext,0)
+            return self.getTypedRuleContext(TykeParser.MakeStructExprContext,0)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_expression
+            return TykeParser.RULE_expression
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterExpression" ):
@@ -2408,7 +2408,7 @@ class MambaParser ( Parser ):
 
     def expression(self):
 
-        localctx = MambaParser.ExpressionContext(self, self._ctx, self.state)
+        localctx = TykeParser.ExpressionContext(self, self._ctx, self.state)
         self.enterRule(localctx, 68, self.RULE_expression)
         try:
             self.state = 316
@@ -2461,14 +2461,14 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def NAME(self):
-            return self.getToken(MambaParser.NAME, 0)
+            return self.getToken(TykeParser.NAME, 0)
 
         def funcCallDataList(self):
-            return self.getTypedRuleContext(MambaParser.FuncCallDataListContext,0)
+            return self.getTypedRuleContext(TykeParser.FuncCallDataListContext,0)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_funcCall
+            return TykeParser.RULE_funcCall
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterFuncCall" ):
@@ -2483,12 +2483,12 @@ class MambaParser ( Parser ):
 
     def funcCall(self):
 
-        localctx = MambaParser.FuncCallContext(self, self._ctx, self.state)
+        localctx = TykeParser.FuncCallContext(self, self._ctx, self.state)
         self.enterRule(localctx, 70, self.RULE_funcCall)
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 318
-            self.match(MambaParser.NAME)
+            self.match(TykeParser.NAME)
             self.state = 319
             self.funcCallDataList()
         except RecognitionException as re:
@@ -2507,11 +2507,11 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def dataList(self):
-            return self.getTypedRuleContext(MambaParser.DataListContext,0)
+            return self.getTypedRuleContext(TykeParser.DataListContext,0)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_funcCallDataList
+            return TykeParser.RULE_funcCallDataList
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterFuncCallDataList" ):
@@ -2526,23 +2526,23 @@ class MambaParser ( Parser ):
 
     def funcCallDataList(self):
 
-        localctx = MambaParser.FuncCallDataListContext(self, self._ctx, self.state)
+        localctx = TykeParser.FuncCallDataListContext(self, self._ctx, self.state)
         self.enterRule(localctx, 72, self.RULE_funcCallDataList)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 321
-            self.match(MambaParser.T__8)
+            self.match(TykeParser.T__8)
             self.state = 323
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MambaParser.T__8) | (1 << MambaParser.DOUBLE) | (1 << MambaParser.INTEGER) | (1 << MambaParser.NAME) | (1 << MambaParser.STRING))) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.T__8) | (1 << TykeParser.DOUBLE) | (1 << TykeParser.INTEGER) | (1 << TykeParser.NAME) | (1 << TykeParser.STRING))) != 0):
                 self.state = 322
                 self.dataList()
 
 
             self.state = 325
-            self.match(MambaParser.T__9)
+            self.match(TykeParser.T__9)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -2560,13 +2560,13 @@ class MambaParser ( Parser ):
 
         def data(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(MambaParser.DataContext)
+                return self.getTypedRuleContexts(TykeParser.DataContext)
             else:
-                return self.getTypedRuleContext(MambaParser.DataContext,i)
+                return self.getTypedRuleContext(TykeParser.DataContext,i)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_dataList
+            return TykeParser.RULE_dataList
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterDataList" ):
@@ -2581,7 +2581,7 @@ class MambaParser ( Parser ):
 
     def dataList(self):
 
-        localctx = MambaParser.DataListContext(self, self._ctx, self.state)
+        localctx = TykeParser.DataListContext(self, self._ctx, self.state)
         self.enterRule(localctx, 74, self.RULE_dataList)
         self._la = 0 # Token type
         try:
@@ -2591,9 +2591,9 @@ class MambaParser ( Parser ):
             self.state = 332
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==MambaParser.T__5:
+            while _la==TykeParser.T__5:
                 self.state = 328
-                self.match(MambaParser.T__5)
+                self.match(TykeParser.T__5)
                 self.state = 329
                 self.data()
                 self.state = 334
@@ -2616,11 +2616,11 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def expression(self):
-            return self.getTypedRuleContext(MambaParser.ExpressionContext,0)
+            return self.getTypedRuleContext(TykeParser.ExpressionContext,0)
 
 
         def getRuleIndex(self):
-            return MambaParser.RULE_data
+            return TykeParser.RULE_data
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterData" ):
@@ -2635,7 +2635,7 @@ class MambaParser ( Parser ):
 
     def data(self):
 
-        localctx = MambaParser.DataContext(self, self._ctx, self.state)
+        localctx = TykeParser.DataContext(self, self._ctx, self.state)
         self.enterRule(localctx, 76, self.RULE_data)
         try:
             self.enterOuterAlt(localctx, 1)
@@ -2657,22 +2657,22 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def VOID(self):
-            return self.getToken(MambaParser.VOID, 0)
+            return self.getToken(TykeParser.VOID, 0)
 
         def KW_INT(self):
-            return self.getToken(MambaParser.KW_INT, 0)
+            return self.getToken(TykeParser.KW_INT, 0)
 
         def KW_DOUBLE(self):
-            return self.getToken(MambaParser.KW_DOUBLE, 0)
+            return self.getToken(TykeParser.KW_DOUBLE, 0)
 
         def BOOL(self):
-            return self.getToken(MambaParser.BOOL, 0)
+            return self.getToken(TykeParser.BOOL, 0)
 
         def NAME(self):
-            return self.getToken(MambaParser.NAME, 0)
+            return self.getToken(TykeParser.NAME, 0)
 
         def getRuleIndex(self):
-            return MambaParser.RULE_returnType
+            return TykeParser.RULE_returnType
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterReturnType" ):
@@ -2687,14 +2687,14 @@ class MambaParser ( Parser ):
 
     def returnType(self):
 
-        localctx = MambaParser.ReturnTypeContext(self, self._ctx, self.state)
+        localctx = TykeParser.ReturnTypeContext(self, self._ctx, self.state)
         self.enterRule(localctx, 78, self.RULE_returnType)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 337
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MambaParser.BOOL) | (1 << MambaParser.KW_DOUBLE) | (1 << MambaParser.KW_INT) | (1 << MambaParser.VOID) | (1 << MambaParser.NAME))) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.BOOL) | (1 << TykeParser.KW_DOUBLE) | (1 << TykeParser.KW_INT) | (1 << TykeParser.VOID) | (1 << TykeParser.NAME))) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -2715,16 +2715,16 @@ class MambaParser ( Parser ):
             self.parser = parser
 
         def KW_DOUBLE(self):
-            return self.getToken(MambaParser.KW_DOUBLE, 0)
+            return self.getToken(TykeParser.KW_DOUBLE, 0)
 
         def KW_INT(self):
-            return self.getToken(MambaParser.KW_INT, 0)
+            return self.getToken(TykeParser.KW_INT, 0)
 
         def NAME(self):
-            return self.getToken(MambaParser.NAME, 0)
+            return self.getToken(TykeParser.NAME, 0)
 
         def getRuleIndex(self):
-            return MambaParser.RULE_varType
+            return TykeParser.RULE_varType
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterVarType" ):
@@ -2739,14 +2739,14 @@ class MambaParser ( Parser ):
 
     def varType(self):
 
-        localctx = MambaParser.VarTypeContext(self, self._ctx, self.state)
+        localctx = TykeParser.VarTypeContext(self, self._ctx, self.state)
         self.enterRule(localctx, 80, self.RULE_varType)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 339
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MambaParser.KW_DOUBLE) | (1 << MambaParser.KW_INT) | (1 << MambaParser.NAME))) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.KW_DOUBLE) | (1 << TykeParser.KW_INT) | (1 << TykeParser.NAME))) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)

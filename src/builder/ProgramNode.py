@@ -3,7 +3,7 @@ from .PackageNode import PackageNode
 
 class __ProgramNode(AstNode):
     def __init__(self):
-        super().__init__('mamba')
+        super().__init__('tyke')
         std = self.newPackage('std')
 
     def llvmIR(self):

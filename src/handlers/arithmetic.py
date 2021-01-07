@@ -1,9 +1,9 @@
-from MambaParser import MambaParser
+from TykeParser import TykeParser
 from llvmlite.ir.types import DoubleType, IntType
 import sys
 
 
-def get_llvmlite_arithmetic_function(valType, opCtx: MambaParser.Arithmetic_opContext, builder):
+def get_llvmlite_arithmetic_function(valType, opCtx: TykeParser.Arithmetic_opContext, builder):
     if isinstance(valType, IntType):
         return get_integer_operator(opCtx, builder)
     elif isinstance(valType, DoubleType):
@@ -12,7 +12,7 @@ def get_llvmlite_arithmetic_function(valType, opCtx: MambaParser.Arithmetic_opCo
         sys.stderr.write(f'Unknown numeric type: {str(valType)}')
         sys.exit(2)
 
-def get_double_operator(opCtx: MambaParser.Arithmetic_opContext, builder):
+def get_double_operator(opCtx: TykeParser.Arithmetic_opContext, builder):
     if opCtx.ADD():
         return builder.fadd
     elif opCtx.SUBTRACT():
@@ -25,7 +25,7 @@ def get_double_operator(opCtx: MambaParser.Arithmetic_opContext, builder):
         sys.stderr.write(f'Unknown integer operator: {opCtx.getText()}')
         sys.exit(2)
 
-def get_integer_operator(opCtx: MambaParser.Arithmetic_opContext, builder):
+def get_integer_operator(opCtx: TykeParser.Arithmetic_opContext, builder):
     if opCtx.ADD():
         return builder.add
     elif opCtx.SUBTRACT():

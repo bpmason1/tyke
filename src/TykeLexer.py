@@ -1,4 +1,4 @@
-# Generated from ./Mamba.g4 by ANTLR 4.9
+# Generated from ./Tyke.g4 by ANTLR 4.9
 from antlr4 import *
 from io import StringIO
 from typing.io import TextIO
@@ -139,7 +139,7 @@ def serializedATN():
         return buf.getvalue()
 
 
-class MambaLexer(Lexer):
+class TykeLexer(Lexer):
 
     atn = ATNDeserializer().deserialize(serializedATN())
 
@@ -216,7 +216,7 @@ class MambaLexer(Lexer):
                   "ID_START", "ID_CONTINUE", "NON_ZERO_INTEGER", "POSITIVE_INTEGER", 
                   "SHORT_STRING", "Newline", "Whitespace" ]
 
-    grammarFileName = "Mamba.g4"
+    grammarFileName = "Tyke.g4"
 
     def __init__(self, input=None, output:TextIO = sys.stdout):
         super().__init__(input, output)

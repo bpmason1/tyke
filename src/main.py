@@ -2,9 +2,9 @@ from antlr4 import *
 from collections import OrderedDict
 from colorama import Fore, Style
 from llvmlite import ir
-from MambaLexer import MambaLexer
-from MambaListener import MambaListener
-from MambaParser import MambaParser
+from TykeLexer import TykeLexer
+from TykeListener import TykeListener
+from TykeParser import TykeParser
 import os
 import re
 import sys
@@ -31,7 +31,7 @@ def builtinFunctions():
     # funcNode = package.newFunction("print", returnType, argList)
     return
 
-class MambaTypedefBuilder(MambaListener):
+class TykeTypedefBuilder(TykeListener):
     def enterTypedef(self, ctx):
         main = ProgramNode.getPackage('main')
 
@@ -52,9 +52,9 @@ class MambaTypedefBuilder(MambaListener):
         # print(identType.get_declaration())
 
         package.newVariableType(typeName, structFieldDict, identType)
-        # sys.stderr.write("INFO - Exiting MambaTypedefBuilder\n")
+        # sys.stderr.write("INFO - Exiting TykeTypedefBuilder\n")
 
-class MambaFunctionTableBuilder(MambaListener):
+class TykeFunctionTableBuilder(TykeListener):
     def enterFuncdef(self, ctx):
         '''
         Create an LLVM IR function based on `ctx.signature()`
@@ -86,7 +86,7 @@ class MambaFunctionTableBuilder(MambaListener):
         # funcNode = package.newFunction(name, returnType, argList)
         package.newFunction(name, returnType, argList)
 
-class MambaPrintListener(MambaListener):
+class TykePrintListener(TykeListener):
     def exitFuncdef(self, ctx):
         # print( f'Exiting {id(ctx)}' )
         pass
@@ -151,15 +151,15 @@ class MambaPrintListener(MambaListener):
 
 def processCode(parsedFileDict):
     for walker, tree in parsedFileDict.values():
-        typeBuilder = MambaTypedefBuilder()
+        typeBuilder = TykeTypedefBuilder()
         walker.walk(typeBuilder, tree)
 
     for walker, tree in parsedFileDict.values():
-        fnBuilder = MambaFunctionTableBuilder()
+        fnBuilder = TykeFunctionTableBuilder()
         walker.walk(fnBuilder, tree)
 
     for walker, tree in parsedFileDict.values():
-        printer = MambaPrintListener()
+        printer = TykePrintListener()
         walker.walk(printer, tree)
 
     # print(ProgramNode.getPackage('std'))
@@ -168,9 +168,9 @@ def processCode(parsedFileDict):
 def parseFile(filename):
     with open(filename, 'r') as fd:
         srcCode = fd.read()
-        lexer = MambaLexer(InputStream(srcCode))
+        lexer = TykeLexer(InputStream(srcCode))
         stream = CommonTokenStream(lexer)
-        parser = MambaParser(stream)
+        parser = TykeParser(stream)
         tree = parser.program()
         walker = ParseTreeWalker()
         return (walker, tree)
