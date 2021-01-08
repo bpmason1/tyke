@@ -8,7 +8,6 @@ type struct { pt1: Point, pt2: Point } Line;
 def main() -> int {
   let line = newLine(2, 5, 6, 18);
 
-  let digit = fibonacci(5);
-  print( digit );
+  fib(6);
   return 0;
 }

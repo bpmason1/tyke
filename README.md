@@ -53,6 +53,41 @@ def add(x: int, y: int) -> int {
 print("Hello World!");
 ```
 
+### Example Program
+```
+package main;
+
+def main() -> int {
+  fibonacci(10);
+  return 0;
+}
+
+def fibonacci(n: int) -> void {
+  let mut n_minus_1 = 1;
+  let mut n_minus_2 = 1;
+
+  if n >= 1 {
+    print("1");
+  }
+
+  if n >= 2 {
+    print("1");
+  }
+
+  let mut cnt = 3;
+  while cnt <= n {
+    let tmp = n_minus_1 + n_minus_2;
+    print(tmp);
+    
+    n_minus_2 = n_minus_1;
+    n_minus_1 = tmp;
+    cnt = cnt + 1;
+  }
+
+  return;
+}
+```
+
 **TODO**
 - implement strings (excluding print statements)
 - enable declaring values on the heap

@@ -17,13 +17,21 @@ def newLine(x1: int, y1: int, x2: int, y2: int) -> Line {
   return line;
 }
 
-def fibonacci(n: int) -> int {
-  if n <= 2 {
-    return 1;
+def fib(n: int) -> int {
+
+  let mut n_minus_1 = 1;
+  let mut n_minus_2 = 1;
+  let mut result = 1;
+
+  let mut cnt = 3;
+  while cnt <= n {
+    let tmp = n_minus_1 + n_minus_2;
+    result = tmp;
+
+    n_minus_2 = n_minus_1;
+    n_minus_1 = tmp;
+    cnt = cnt + 1;
   }
 
-  let n_minus_1 = n - 1;
-  let n_minus_2 = n - 2;
-
-  return fibonacci(n_minus_1) + fibonacci(n_minus_2);
+  return result;
 }

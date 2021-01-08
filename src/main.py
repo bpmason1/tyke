@@ -146,7 +146,7 @@ class TykePrintListener(TykeListener):
                     loopCtx = exprCtx.loopStmt()
                     ExpressionHandler.handle_loopStmt(loopCtx, builder, irFunc, state)
                 else:
-                    sys.stderr.write("........... WTF ?!?\n")
+                    sys.stderr.write("........... WTF - main ?!?\n")
                     sys.exit(1)
 
 def processCode(parsedFileDict):

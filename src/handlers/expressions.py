@@ -287,13 +287,22 @@ class __ExpressionHandler(BaseHandler):
                 retStmt = exprCtx.returnStmt()
                 self.handle_returnStmt(retStmt, builder, irFunc, newScopeObj)
 
+            elif exprCtx.declareAndAssignStmt():
+                declareAndAssignCtx = exprCtx.declareAndAssignStmt()
+                self.handle_declareAndAssignStmt(declareAndAssignCtx, builder, irFunc, newScopeObj)
+
             elif exprCtx.assigmentStmt():
                 # sys.stderr.write("........... Assignment Statement")
                 assignCtx = exprCtx.assigmentStmt()
                 self.handle_assigmentStmt(assignCtx, builder, irFunc, newScopeObj)
+
             elif exprCtx.conditionalStmt():
                 ifCtx = exprCtx.ifStmt()
                 self.handle_ifStmt(ifCtx, builder, irFunc, newScopeObj)
+
+            elif exprCtx.loopStmt():
+                loopCtx = exprCtx.loopStmt()
+                self.handle_loopStmt(loopCtx, builder, irFunc, newScopeObj)
             else:
                 sys.stderr.write("........... WTF ?!?\n")
                 sys.exit(1)
