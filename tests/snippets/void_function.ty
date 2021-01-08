@@ -123,3 +123,22 @@ def fibonacci(n: int) -> int {
 
   return fibonacci(n_minus_1) + fibonacci(n_minus_2);
 }
+
+def fib_iter(n: int) -> int {
+
+  let mut n_minus_1 = 1;
+  let mut n_minus_2 = 1;
+  let mut result = 1;
+
+  let mut cnt = 3;
+  while cnt <= n {
+    let tmp = n_minus_1 + n_minus_2;
+    result = tmp;
+
+    n_minus_2 = n_minus_1;
+    n_minus_1 = tmp;
+    cnt = cnt + 1;
+  }
+
+  return result;
+}
