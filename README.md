@@ -4,13 +4,12 @@
 `cd ./src`
 `java -Xmx500M -cp ../lib/antlr-4.9-complete.jar org.antlr.v4.Tool -Dlanguage=Python3 ./Tyke.g4`
 
-### To run application
+### Commpile and run the example application
 ```
-mkdir ./tmp
-cd ./src
-python main.py 2> /dev/null > ../tmp/hello.ll
-cd ../tmp
-../scripts/build-llvm.sh hello
+cd ./example
+../scripts/typec  # compile the application
+cd ./bin
+./example  # run the application
 ```
 
 ### Language Rules

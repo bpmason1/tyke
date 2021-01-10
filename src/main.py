@@ -187,7 +187,13 @@ def run(all_file_list):
 
 if __name__ == '__main__':
     currDir = os.path.dirname(__file__)
-    appDir = os.path.join(currDir, '..', 'example', 'src')
+
+    if len(sys.argv) != 2:
+      fail_fast("ERROR - first (and only argument) should be the directory with tyke source code")
+      sys.exit(1)
+    appDir = sys.argv[1]
+    #appDir = path.join(currDir, '..', 'example', 'src')
+
     all_file_list = [os.path.join(appDir, f) for f in os.listdir(appDir)]
 
     if len(all_file_list) < 1:
@@ -195,3 +201,4 @@ if __name__ == '__main__':
     else:
         pacakgeMapLL = run(all_file_list)
         print(pacakgeMapLL['main'])
+
