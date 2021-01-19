@@ -10,15 +10,15 @@ typedef: TYPE STRUCT '{' typedArgList? '}' NAME SEMICOLON;
 funcdef: signature '{' statementList? '}' ;
 signature: 'def' NAME funcDefArgList '->' returnType ;
 
-ifStmt : IF comparisonExpr '{' statementList? '}' ;
-elifStmt : ELIF comparisonExpr '{' statementList? '}' ;
+ifStmt : IF booleanExpression '{' statementList? '}' ;
+elifStmt : ELIF booleanExpression '{' statementList? '}' ;
 elseStmt : ELSE '{' statementList? '}' ;
 conditionalStmt : ifStmt elifStmt* elseStmt? ;
 
 fieldInit: NAME ':' expression ;
 fieldInitList: fieldInit (',' fieldInit)* ;
 makeStructExpr : NAME '{' fieldInitList? '}' ;
-whileStmt: WHILE comparisonExpr '{' statementList? '}' ;
+whileStmt: WHILE booleanExpression '{' statementList? '}' ;
 
 loopStmt: whileStmt;
 // statements
@@ -45,15 +45,19 @@ multiArthimeticExpr : arthimeticExpr ( arithmetic_op arthimeticExpr)* ;
 
 comparisonExpr: simpleExpression numeric_comparison_op simpleExpression |
                 '(' simpleExpression numeric_comparison_op simpleExpression ')' ;
+
+simpleBooleanExpression : booleanLiteral | NAME | funcCall | comparisonExpr ;
+booleanExpression : simpleBooleanExpression;
+
+boolean_comparison_op : AND | OR | XOR ;
 numeric_comparison_op : EQ | NEQ | LT | LTE | GT | GTE ;
 booleanLiteral : TRUE | FALSE ;
-// simpleBooleanTerm : (booleanLiteral | numeric | NAME | funcCall) ;
 
 numeric : DOUBLE | INTEGER ;
 primitive : numeric | STRING ;
 field : NAME FIELD_REF+ ;
 simpleExpression : (primitive | NAME | field | funcCall) ;
-expression : simpleExpression | arthimeticExpr | multiArthimeticExpr | comparisonExpr | makeStructExpr;
+expression : simpleExpression | arthimeticExpr | multiArthimeticExpr | booleanExpression | makeStructExpr;
 
 funcCall: NAME funcCallDataList ;
 funcCallDataList: '(' dataList? ')' ;
@@ -74,6 +78,10 @@ LT : '<' ;
 LTE : '<=' ;
 GT : '>' ;
 GTE : '>=' ;
+
+AND : 'and';
+OR : 'or';
+XOR : 'xor';
 
 TRUE : 'true' ;
 FALSE : 'false' ;

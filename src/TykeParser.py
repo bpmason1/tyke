@@ -11,155 +11,162 @@ else:
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3-")
-        buf.write("\u0158\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\60")
+        buf.write("\u0168\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
         buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
         buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23\t\23")
         buf.write("\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31")
         buf.write("\t\31\4\32\t\32\4\33\t\33\4\34\t\34\4\35\t\35\4\36\t\36")
         buf.write("\4\37\t\37\4 \t \4!\t!\4\"\t\"\4#\t#\4$\t$\4%\t%\4&\t")
-        buf.write("&\4\'\t\'\4(\t(\4)\t)\4*\t*\3\2\3\2\7\2W\n\2\f\2\16\2")
-        buf.write("Z\13\2\3\2\6\2]\n\2\r\2\16\2^\3\3\3\3\3\3\3\3\3\4\3\4")
-        buf.write("\3\4\3\4\5\4i\n\4\3\4\3\4\3\4\3\4\3\5\3\5\3\5\5\5r\n\5")
-        buf.write("\3\5\3\5\3\6\3\6\3\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\5\7\u0080")
-        buf.write("\n\7\3\7\3\7\3\b\3\b\3\b\3\b\5\b\u0088\n\b\3\b\3\b\3\t")
-        buf.write("\3\t\3\t\5\t\u008f\n\t\3\t\3\t\3\n\3\n\7\n\u0095\n\n\f")
-        buf.write("\n\16\n\u0098\13\n\3\n\5\n\u009b\n\n\3\13\3\13\3\13\3")
-        buf.write("\13\3\f\3\f\3\f\7\f\u00a4\n\f\f\f\16\f\u00a7\13\f\3\r")
-        buf.write("\3\r\3\r\5\r\u00ac\n\r\3\r\3\r\3\16\3\16\3\16\3\16\5\16")
-        buf.write("\u00b4\n\16\3\16\3\16\3\17\3\17\3\20\6\20\u00bb\n\20\r")
-        buf.write("\20\16\20\u00bc\3\21\3\21\3\21\3\21\3\21\3\21\5\21\u00c5")
-        buf.write("\n\21\3\22\3\22\3\22\5\22\u00ca\n\22\3\22\3\22\3\23\3")
-        buf.write("\23\3\23\3\24\3\24\3\24\3\24\3\24\3\25\3\25\5\25\u00d8")
-        buf.write("\n\25\3\25\3\25\3\25\3\25\3\26\3\26\5\26\u00e0\n\26\3")
-        buf.write("\26\3\26\3\27\3\27\3\27\7\27\u00e7\n\27\f\27\16\27\u00ea")
-        buf.write("\13\27\3\30\3\30\3\30\3\30\3\31\3\31\5\31\u00f2\n\31\3")
-        buf.write("\31\3\31\3\32\3\32\3\33\3\33\3\33\3\33\7\33\u00fc\n\33")
-        buf.write("\f\33\16\33\u00ff\13\33\3\33\3\33\3\33\3\33\3\33\7\33")
-        buf.write("\u0106\n\33\f\33\16\33\u0109\13\33\3\33\3\33\5\33\u010d")
-        buf.write("\n\33\3\34\3\34\3\34\3\34\7\34\u0113\n\34\f\34\16\34\u0116")
-        buf.write("\13\34\3\35\3\35\3\35\3\35\3\35\3\35\3\35\3\35\3\35\3")
-        buf.write("\35\5\35\u0122\n\35\3\36\3\36\3\37\3\37\3 \3 \3!\3!\5")
-        buf.write("!\u012c\n!\3\"\3\"\6\"\u0130\n\"\r\"\16\"\u0131\3#\3#")
-        buf.write("\3#\3#\5#\u0138\n#\3$\3$\3$\3$\3$\5$\u013f\n$\3%\3%\3")
-        buf.write("%\3&\3&\5&\u0146\n&\3&\3&\3\'\3\'\3\'\7\'\u014d\n\'\f")
-        buf.write("\'\16\'\u0150\13\'\3(\3(\3)\3)\3*\3*\3*\2\2+\2\4\6\b\n")
-        buf.write("\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\668:<")
-        buf.write(">@BDFHJLNPR\2\b\3\2#&\3\2\r\22\3\2\23\24\3\2\'(\5\2\32")
-        buf.write("\32 \"**\4\2 !**\2\u0156\2T\3\2\2\2\4`\3\2\2\2\6d\3\2")
-        buf.write("\2\2\bn\3\2\2\2\nu\3\2\2\2\f{\3\2\2\2\16\u0083\3\2\2\2")
-        buf.write("\20\u008b\3\2\2\2\22\u0092\3\2\2\2\24\u009c\3\2\2\2\26")
-        buf.write("\u00a0\3\2\2\2\30\u00a8\3\2\2\2\32\u00af\3\2\2\2\34\u00b7")
-        buf.write("\3\2\2\2\36\u00ba\3\2\2\2 \u00c4\3\2\2\2\"\u00c6\3\2\2")
-        buf.write("\2$\u00cd\3\2\2\2&\u00d0\3\2\2\2(\u00d7\3\2\2\2*\u00dd")
-        buf.write("\3\2\2\2,\u00e3\3\2\2\2.\u00eb\3\2\2\2\60\u00ef\3\2\2")
-        buf.write("\2\62\u00f5\3\2\2\2\64\u010c\3\2\2\2\66\u010e\3\2\2\2")
-        buf.write("8\u0121\3\2\2\2:\u0123\3\2\2\2<\u0125\3\2\2\2>\u0127\3")
-        buf.write("\2\2\2@\u012b\3\2\2\2B\u012d\3\2\2\2D\u0137\3\2\2\2F\u013e")
-        buf.write("\3\2\2\2H\u0140\3\2\2\2J\u0143\3\2\2\2L\u0149\3\2\2\2")
-        buf.write("N\u0151\3\2\2\2P\u0153\3\2\2\2R\u0155\3\2\2\2TX\5\4\3")
-        buf.write("\2UW\5\6\4\2VU\3\2\2\2WZ\3\2\2\2XV\3\2\2\2XY\3\2\2\2Y")
-        buf.write("\\\3\2\2\2ZX\3\2\2\2[]\5\b\5\2\\[\3\2\2\2]^\3\2\2\2^\\")
-        buf.write("\3\2\2\2^_\3\2\2\2_\3\3\2\2\2`a\7\33\2\2ab\7*\2\2bc\7")
-        buf.write("\34\2\2c\5\3\2\2\2de\7\36\2\2ef\7\35\2\2fh\7\3\2\2gi\5")
-        buf.write(",\27\2hg\3\2\2\2hi\3\2\2\2ij\3\2\2\2jk\7\4\2\2kl\7*\2")
-        buf.write("\2lm\7\34\2\2m\7\3\2\2\2no\5\n\6\2oq\7\3\2\2pr\5\36\20")
-        buf.write("\2qp\3\2\2\2qr\3\2\2\2rs\3\2\2\2st\7\4\2\2t\t\3\2\2\2")
-        buf.write("uv\7\5\2\2vw\7*\2\2wx\5*\26\2xy\7\6\2\2yz\5P)\2z\13\3")
-        buf.write("\2\2\2{|\7\27\2\2|}\58\35\2}\177\7\3\2\2~\u0080\5\36\20")
-        buf.write("\2\177~\3\2\2\2\177\u0080\3\2\2\2\u0080\u0081\3\2\2\2")
-        buf.write("\u0081\u0082\7\4\2\2\u0082\r\3\2\2\2\u0083\u0084\7\30")
-        buf.write("\2\2\u0084\u0085\58\35\2\u0085\u0087\7\3\2\2\u0086\u0088")
-        buf.write("\5\36\20\2\u0087\u0086\3\2\2\2\u0087\u0088\3\2\2\2\u0088")
-        buf.write("\u0089\3\2\2\2\u0089\u008a\7\4\2\2\u008a\17\3\2\2\2\u008b")
-        buf.write("\u008c\7\31\2\2\u008c\u008e\7\3\2\2\u008d\u008f\5\36\20")
-        buf.write("\2\u008e\u008d\3\2\2\2\u008e\u008f\3\2\2\2\u008f\u0090")
-        buf.write("\3\2\2\2\u0090\u0091\7\4\2\2\u0091\21\3\2\2\2\u0092\u0096")
-        buf.write("\5\f\7\2\u0093\u0095\5\16\b\2\u0094\u0093\3\2\2\2\u0095")
-        buf.write("\u0098\3\2\2\2\u0096\u0094\3\2\2\2\u0096\u0097\3\2\2\2")
-        buf.write("\u0097\u009a\3\2\2\2\u0098\u0096\3\2\2\2\u0099\u009b\5")
-        buf.write("\20\t\2\u009a\u0099\3\2\2\2\u009a\u009b\3\2\2\2\u009b")
-        buf.write("\23\3\2\2\2\u009c\u009d\7*\2\2\u009d\u009e\7\7\2\2\u009e")
-        buf.write("\u009f\5F$\2\u009f\25\3\2\2\2\u00a0\u00a5\5\24\13\2\u00a1")
-        buf.write("\u00a2\7\b\2\2\u00a2\u00a4\5\24\13\2\u00a3\u00a1\3\2\2")
-        buf.write("\2\u00a4\u00a7\3\2\2\2\u00a5\u00a3\3\2\2\2\u00a5\u00a6")
-        buf.write("\3\2\2\2\u00a6\27\3\2\2\2\u00a7\u00a5\3\2\2\2\u00a8\u00a9")
-        buf.write("\7*\2\2\u00a9\u00ab\7\3\2\2\u00aa\u00ac\5\26\f\2\u00ab")
-        buf.write("\u00aa\3\2\2\2\u00ab\u00ac\3\2\2\2\u00ac\u00ad\3\2\2\2")
-        buf.write("\u00ad\u00ae\7\4\2\2\u00ae\31\3\2\2\2\u00af\u00b0\7\37")
-        buf.write("\2\2\u00b0\u00b1\58\35\2\u00b1\u00b3\7\3\2\2\u00b2\u00b4")
-        buf.write("\5\36\20\2\u00b3\u00b2\3\2\2\2\u00b3\u00b4\3\2\2\2\u00b4")
-        buf.write("\u00b5\3\2\2\2\u00b5\u00b6\7\4\2\2\u00b6\33\3\2\2\2\u00b7")
-        buf.write("\u00b8\5\32\16\2\u00b8\35\3\2\2\2\u00b9\u00bb\5 \21\2")
-        buf.write("\u00ba\u00b9\3\2\2\2\u00bb\u00bc\3\2\2\2\u00bc\u00ba\3")
-        buf.write("\2\2\2\u00bc\u00bd\3\2\2\2\u00bd\37\3\2\2\2\u00be\u00c5")
-        buf.write("\5\"\22\2\u00bf\u00c5\5$\23\2\u00c0\u00c5\5(\25\2\u00c1")
-        buf.write("\u00c5\5&\24\2\u00c2\u00c5\5\22\n\2\u00c3\u00c5\5\34\17")
-        buf.write("\2\u00c4\u00be\3\2\2\2\u00c4\u00bf\3\2\2\2\u00c4\u00c0")
-        buf.write("\3\2\2\2\u00c4\u00c1\3\2\2\2\u00c4\u00c2\3\2\2\2\u00c4")
-        buf.write("\u00c3\3\2\2\2\u00c5!\3\2\2\2\u00c6\u00c9\7\t\2\2\u00c7")
-        buf.write("\u00ca\5D#\2\u00c8\u00ca\5\66\34\2\u00c9\u00c7\3\2\2\2")
-        buf.write("\u00c9\u00c8\3\2\2\2\u00c9\u00ca\3\2\2\2\u00ca\u00cb\3")
-        buf.write("\2\2\2\u00cb\u00cc\7\34\2\2\u00cc#\3\2\2\2\u00cd\u00ce")
-        buf.write("\5H%\2\u00ce\u00cf\7\34\2\2\u00cf%\3\2\2\2\u00d0\u00d1")
-        buf.write("\5\60\31\2\u00d1\u00d2\7\n\2\2\u00d2\u00d3\5F$\2\u00d3")
-        buf.write("\u00d4\7\34\2\2\u00d4\'\3\2\2\2\u00d5\u00d8\7*\2\2\u00d6")
-        buf.write("\u00d8\5B\"\2\u00d7\u00d5\3\2\2\2\u00d7\u00d6\3\2\2\2")
-        buf.write("\u00d8\u00d9\3\2\2\2\u00d9\u00da\7\n\2\2\u00da\u00db\5")
-        buf.write("F$\2\u00db\u00dc\7\34\2\2\u00dc)\3\2\2\2\u00dd\u00df\7")
-        buf.write("\13\2\2\u00de\u00e0\5,\27\2\u00df\u00de\3\2\2\2\u00df")
-        buf.write("\u00e0\3\2\2\2\u00e0\u00e1\3\2\2\2\u00e1\u00e2\7\f\2\2")
-        buf.write("\u00e2+\3\2\2\2\u00e3\u00e8\5.\30\2\u00e4\u00e5\7\b\2")
-        buf.write("\2\u00e5\u00e7\5.\30\2\u00e6\u00e4\3\2\2\2\u00e7\u00ea")
-        buf.write("\3\2\2\2\u00e8\u00e6\3\2\2\2\u00e8\u00e9\3\2\2\2\u00e9")
-        buf.write("-\3\2\2\2\u00ea\u00e8\3\2\2\2\u00eb\u00ec\7*\2\2\u00ec")
-        buf.write("\u00ed\7\7\2\2\u00ed\u00ee\5R*\2\u00ee/\3\2\2\2\u00ef")
-        buf.write("\u00f1\7\25\2\2\u00f0\u00f2\7\26\2\2\u00f1\u00f0\3\2\2")
-        buf.write("\2\u00f1\u00f2\3\2\2\2\u00f2\u00f3\3\2\2\2\u00f3\u00f4")
-        buf.write("\7*\2\2\u00f4\61\3\2\2\2\u00f5\u00f6\t\2\2\2\u00f6\63")
-        buf.write("\3\2\2\2\u00f7\u00fd\5D#\2\u00f8\u00f9\5\62\32\2\u00f9")
-        buf.write("\u00fa\5D#\2\u00fa\u00fc\3\2\2\2\u00fb\u00f8\3\2\2\2\u00fc")
-        buf.write("\u00ff\3\2\2\2\u00fd\u00fb\3\2\2\2\u00fd\u00fe\3\2\2\2")
-        buf.write("\u00fe\u010d\3\2\2\2\u00ff\u00fd\3\2\2\2\u0100\u0101\7")
-        buf.write("\13\2\2\u0101\u0107\5D#\2\u0102\u0103\5\62\32\2\u0103")
-        buf.write("\u0104\5D#\2\u0104\u0106\3\2\2\2\u0105\u0102\3\2\2\2\u0106")
-        buf.write("\u0109\3\2\2\2\u0107\u0105\3\2\2\2\u0107\u0108\3\2\2\2")
-        buf.write("\u0108\u010a\3\2\2\2\u0109\u0107\3\2\2\2\u010a\u010b\7")
-        buf.write("\f\2\2\u010b\u010d\3\2\2\2\u010c\u00f7\3\2\2\2\u010c\u0100")
-        buf.write("\3\2\2\2\u010d\65\3\2\2\2\u010e\u0114\5\64\33\2\u010f")
-        buf.write("\u0110\5\62\32\2\u0110\u0111\5\64\33\2\u0111\u0113\3\2")
-        buf.write("\2\2\u0112\u010f\3\2\2\2\u0113\u0116\3\2\2\2\u0114\u0112")
-        buf.write("\3\2\2\2\u0114\u0115\3\2\2\2\u0115\67\3\2\2\2\u0116\u0114")
-        buf.write("\3\2\2\2\u0117\u0118\5D#\2\u0118\u0119\5:\36\2\u0119\u011a")
-        buf.write("\5D#\2\u011a\u0122\3\2\2\2\u011b\u011c\7\13\2\2\u011c")
-        buf.write("\u011d\5D#\2\u011d\u011e\5:\36\2\u011e\u011f\5D#\2\u011f")
-        buf.write("\u0120\7\f\2\2\u0120\u0122\3\2\2\2\u0121\u0117\3\2\2\2")
-        buf.write("\u0121\u011b\3\2\2\2\u01229\3\2\2\2\u0123\u0124\t\3\2")
-        buf.write("\2\u0124;\3\2\2\2\u0125\u0126\t\4\2\2\u0126=\3\2\2\2\u0127")
-        buf.write("\u0128\t\5\2\2\u0128?\3\2\2\2\u0129\u012c\5> \2\u012a")
-        buf.write("\u012c\7+\2\2\u012b\u0129\3\2\2\2\u012b\u012a\3\2\2\2")
-        buf.write("\u012cA\3\2\2\2\u012d\u012f\7*\2\2\u012e\u0130\7)\2\2")
-        buf.write("\u012f\u012e\3\2\2\2\u0130\u0131\3\2\2\2\u0131\u012f\3")
-        buf.write("\2\2\2\u0131\u0132\3\2\2\2\u0132C\3\2\2\2\u0133\u0138")
-        buf.write("\5@!\2\u0134\u0138\7*\2\2\u0135\u0138\5B\"\2\u0136\u0138")
-        buf.write("\5H%\2\u0137\u0133\3\2\2\2\u0137\u0134\3\2\2\2\u0137\u0135")
-        buf.write("\3\2\2\2\u0137\u0136\3\2\2\2\u0138E\3\2\2\2\u0139\u013f")
-        buf.write("\5D#\2\u013a\u013f\5\64\33\2\u013b\u013f\5\66\34\2\u013c")
-        buf.write("\u013f\58\35\2\u013d\u013f\5\30\r\2\u013e\u0139\3\2\2")
-        buf.write("\2\u013e\u013a\3\2\2\2\u013e\u013b\3\2\2\2\u013e\u013c")
-        buf.write("\3\2\2\2\u013e\u013d\3\2\2\2\u013fG\3\2\2\2\u0140\u0141")
-        buf.write("\7*\2\2\u0141\u0142\5J&\2\u0142I\3\2\2\2\u0143\u0145\7")
-        buf.write("\13\2\2\u0144\u0146\5L\'\2\u0145\u0144\3\2\2\2\u0145\u0146")
-        buf.write("\3\2\2\2\u0146\u0147\3\2\2\2\u0147\u0148\7\f\2\2\u0148")
-        buf.write("K\3\2\2\2\u0149\u014e\5N(\2\u014a\u014b\7\b\2\2\u014b")
-        buf.write("\u014d\5N(\2\u014c\u014a\3\2\2\2\u014d\u0150\3\2\2\2\u014e")
-        buf.write("\u014c\3\2\2\2\u014e\u014f\3\2\2\2\u014fM\3\2\2\2\u0150")
-        buf.write("\u014e\3\2\2\2\u0151\u0152\5F$\2\u0152O\3\2\2\2\u0153")
-        buf.write("\u0154\t\6\2\2\u0154Q\3\2\2\2\u0155\u0156\t\7\2\2\u0156")
-        buf.write("S\3\2\2\2 X^hq\177\u0087\u008e\u0096\u009a\u00a5\u00ab")
-        buf.write("\u00b3\u00bc\u00c4\u00c9\u00d7\u00df\u00e8\u00f1\u00fd")
-        buf.write("\u0107\u010c\u0114\u0121\u012b\u0131\u0137\u013e\u0145")
-        buf.write("\u014e")
+        buf.write("&\4\'\t\'\4(\t(\4)\t)\4*\t*\4+\t+\4,\t,\4-\t-\3\2\3\2")
+        buf.write("\7\2]\n\2\f\2\16\2`\13\2\3\2\6\2c\n\2\r\2\16\2d\3\3\3")
+        buf.write("\3\3\3\3\3\3\4\3\4\3\4\3\4\5\4o\n\4\3\4\3\4\3\4\3\4\3")
+        buf.write("\5\3\5\3\5\5\5x\n\5\3\5\3\5\3\6\3\6\3\6\3\6\3\6\3\6\3")
+        buf.write("\7\3\7\3\7\3\7\5\7\u0086\n\7\3\7\3\7\3\b\3\b\3\b\3\b\5")
+        buf.write("\b\u008e\n\b\3\b\3\b\3\t\3\t\3\t\5\t\u0095\n\t\3\t\3\t")
+        buf.write("\3\n\3\n\7\n\u009b\n\n\f\n\16\n\u009e\13\n\3\n\5\n\u00a1")
+        buf.write("\n\n\3\13\3\13\3\13\3\13\3\f\3\f\3\f\7\f\u00aa\n\f\f\f")
+        buf.write("\16\f\u00ad\13\f\3\r\3\r\3\r\5\r\u00b2\n\r\3\r\3\r\3\16")
+        buf.write("\3\16\3\16\3\16\5\16\u00ba\n\16\3\16\3\16\3\17\3\17\3")
+        buf.write("\20\6\20\u00c1\n\20\r\20\16\20\u00c2\3\21\3\21\3\21\3")
+        buf.write("\21\3\21\3\21\5\21\u00cb\n\21\3\22\3\22\3\22\5\22\u00d0")
+        buf.write("\n\22\3\22\3\22\3\23\3\23\3\23\3\24\3\24\3\24\3\24\3\24")
+        buf.write("\3\25\3\25\5\25\u00de\n\25\3\25\3\25\3\25\3\25\3\26\3")
+        buf.write("\26\5\26\u00e6\n\26\3\26\3\26\3\27\3\27\3\27\7\27\u00ed")
+        buf.write("\n\27\f\27\16\27\u00f0\13\27\3\30\3\30\3\30\3\30\3\31")
+        buf.write("\3\31\5\31\u00f8\n\31\3\31\3\31\3\32\3\32\3\33\3\33\3")
+        buf.write("\33\3\33\7\33\u0102\n\33\f\33\16\33\u0105\13\33\3\33\3")
+        buf.write("\33\3\33\3\33\3\33\7\33\u010c\n\33\f\33\16\33\u010f\13")
+        buf.write("\33\3\33\3\33\5\33\u0113\n\33\3\34\3\34\3\34\3\34\7\34")
+        buf.write("\u0119\n\34\f\34\16\34\u011c\13\34\3\35\3\35\3\35\3\35")
+        buf.write("\3\35\3\35\3\35\3\35\3\35\3\35\5\35\u0128\n\35\3\36\3")
+        buf.write("\36\3\36\3\36\5\36\u012e\n\36\3\37\3\37\3 \3 \3!\3!\3")
+        buf.write("\"\3\"\3#\3#\3$\3$\5$\u013c\n$\3%\3%\6%\u0140\n%\r%\16")
+        buf.write("%\u0141\3&\3&\3&\3&\5&\u0148\n&\3\'\3\'\3\'\3\'\3\'\5")
+        buf.write("\'\u014f\n\'\3(\3(\3(\3)\3)\5)\u0156\n)\3)\3)\3*\3*\3")
+        buf.write("*\7*\u015d\n*\f*\16*\u0160\13*\3+\3+\3,\3,\3-\3-\3-\2")
+        buf.write("\2.\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60")
+        buf.write("\62\64\668:<>@BDFHJLNPRTVX\2\t\3\2&)\3\2\23\25\3\2\r\22")
+        buf.write("\3\2\26\27\3\2*+\5\2\35\35#%--\4\2#$--\2\u0166\2Z\3\2")
+        buf.write("\2\2\4f\3\2\2\2\6j\3\2\2\2\bt\3\2\2\2\n{\3\2\2\2\f\u0081")
+        buf.write("\3\2\2\2\16\u0089\3\2\2\2\20\u0091\3\2\2\2\22\u0098\3")
+        buf.write("\2\2\2\24\u00a2\3\2\2\2\26\u00a6\3\2\2\2\30\u00ae\3\2")
+        buf.write("\2\2\32\u00b5\3\2\2\2\34\u00bd\3\2\2\2\36\u00c0\3\2\2")
+        buf.write("\2 \u00ca\3\2\2\2\"\u00cc\3\2\2\2$\u00d3\3\2\2\2&\u00d6")
+        buf.write("\3\2\2\2(\u00dd\3\2\2\2*\u00e3\3\2\2\2,\u00e9\3\2\2\2")
+        buf.write(".\u00f1\3\2\2\2\60\u00f5\3\2\2\2\62\u00fb\3\2\2\2\64\u0112")
+        buf.write("\3\2\2\2\66\u0114\3\2\2\28\u0127\3\2\2\2:\u012d\3\2\2")
+        buf.write("\2<\u012f\3\2\2\2>\u0131\3\2\2\2@\u0133\3\2\2\2B\u0135")
+        buf.write("\3\2\2\2D\u0137\3\2\2\2F\u013b\3\2\2\2H\u013d\3\2\2\2")
+        buf.write("J\u0147\3\2\2\2L\u014e\3\2\2\2N\u0150\3\2\2\2P\u0153\3")
+        buf.write("\2\2\2R\u0159\3\2\2\2T\u0161\3\2\2\2V\u0163\3\2\2\2X\u0165")
+        buf.write("\3\2\2\2Z^\5\4\3\2[]\5\6\4\2\\[\3\2\2\2]`\3\2\2\2^\\\3")
+        buf.write("\2\2\2^_\3\2\2\2_b\3\2\2\2`^\3\2\2\2ac\5\b\5\2ba\3\2\2")
+        buf.write("\2cd\3\2\2\2db\3\2\2\2de\3\2\2\2e\3\3\2\2\2fg\7\36\2\2")
+        buf.write("gh\7-\2\2hi\7\37\2\2i\5\3\2\2\2jk\7!\2\2kl\7 \2\2ln\7")
+        buf.write("\3\2\2mo\5,\27\2nm\3\2\2\2no\3\2\2\2op\3\2\2\2pq\7\4\2")
+        buf.write("\2qr\7-\2\2rs\7\37\2\2s\7\3\2\2\2tu\5\n\6\2uw\7\3\2\2")
+        buf.write("vx\5\36\20\2wv\3\2\2\2wx\3\2\2\2xy\3\2\2\2yz\7\4\2\2z")
+        buf.write("\t\3\2\2\2{|\7\5\2\2|}\7-\2\2}~\5*\26\2~\177\7\6\2\2\177")
+        buf.write("\u0080\5V,\2\u0080\13\3\2\2\2\u0081\u0082\7\32\2\2\u0082")
+        buf.write("\u0083\5<\37\2\u0083\u0085\7\3\2\2\u0084\u0086\5\36\20")
+        buf.write("\2\u0085\u0084\3\2\2\2\u0085\u0086\3\2\2\2\u0086\u0087")
+        buf.write("\3\2\2\2\u0087\u0088\7\4\2\2\u0088\r\3\2\2\2\u0089\u008a")
+        buf.write("\7\33\2\2\u008a\u008b\5<\37\2\u008b\u008d\7\3\2\2\u008c")
+        buf.write("\u008e\5\36\20\2\u008d\u008c\3\2\2\2\u008d\u008e\3\2\2")
+        buf.write("\2\u008e\u008f\3\2\2\2\u008f\u0090\7\4\2\2\u0090\17\3")
+        buf.write("\2\2\2\u0091\u0092\7\34\2\2\u0092\u0094\7\3\2\2\u0093")
+        buf.write("\u0095\5\36\20\2\u0094\u0093\3\2\2\2\u0094\u0095\3\2\2")
+        buf.write("\2\u0095\u0096\3\2\2\2\u0096\u0097\7\4\2\2\u0097\21\3")
+        buf.write("\2\2\2\u0098\u009c\5\f\7\2\u0099\u009b\5\16\b\2\u009a")
+        buf.write("\u0099\3\2\2\2\u009b\u009e\3\2\2\2\u009c\u009a\3\2\2\2")
+        buf.write("\u009c\u009d\3\2\2\2\u009d\u00a0\3\2\2\2\u009e\u009c\3")
+        buf.write("\2\2\2\u009f\u00a1\5\20\t\2\u00a0\u009f\3\2\2\2\u00a0")
+        buf.write("\u00a1\3\2\2\2\u00a1\23\3\2\2\2\u00a2\u00a3\7-\2\2\u00a3")
+        buf.write("\u00a4\7\7\2\2\u00a4\u00a5\5L\'\2\u00a5\25\3\2\2\2\u00a6")
+        buf.write("\u00ab\5\24\13\2\u00a7\u00a8\7\b\2\2\u00a8\u00aa\5\24")
+        buf.write("\13\2\u00a9\u00a7\3\2\2\2\u00aa\u00ad\3\2\2\2\u00ab\u00a9")
+        buf.write("\3\2\2\2\u00ab\u00ac\3\2\2\2\u00ac\27\3\2\2\2\u00ad\u00ab")
+        buf.write("\3\2\2\2\u00ae\u00af\7-\2\2\u00af\u00b1\7\3\2\2\u00b0")
+        buf.write("\u00b2\5\26\f\2\u00b1\u00b0\3\2\2\2\u00b1\u00b2\3\2\2")
+        buf.write("\2\u00b2\u00b3\3\2\2\2\u00b3\u00b4\7\4\2\2\u00b4\31\3")
+        buf.write("\2\2\2\u00b5\u00b6\7\"\2\2\u00b6\u00b7\5<\37\2\u00b7\u00b9")
+        buf.write("\7\3\2\2\u00b8\u00ba\5\36\20\2\u00b9\u00b8\3\2\2\2\u00b9")
+        buf.write("\u00ba\3\2\2\2\u00ba\u00bb\3\2\2\2\u00bb\u00bc\7\4\2\2")
+        buf.write("\u00bc\33\3\2\2\2\u00bd\u00be\5\32\16\2\u00be\35\3\2\2")
+        buf.write("\2\u00bf\u00c1\5 \21\2\u00c0\u00bf\3\2\2\2\u00c1\u00c2")
+        buf.write("\3\2\2\2\u00c2\u00c0\3\2\2\2\u00c2\u00c3\3\2\2\2\u00c3")
+        buf.write("\37\3\2\2\2\u00c4\u00cb\5\"\22\2\u00c5\u00cb\5$\23\2\u00c6")
+        buf.write("\u00cb\5(\25\2\u00c7\u00cb\5&\24\2\u00c8\u00cb\5\22\n")
+        buf.write("\2\u00c9\u00cb\5\34\17\2\u00ca\u00c4\3\2\2\2\u00ca\u00c5")
+        buf.write("\3\2\2\2\u00ca\u00c6\3\2\2\2\u00ca\u00c7\3\2\2\2\u00ca")
+        buf.write("\u00c8\3\2\2\2\u00ca\u00c9\3\2\2\2\u00cb!\3\2\2\2\u00cc")
+        buf.write("\u00cf\7\t\2\2\u00cd\u00d0\5J&\2\u00ce\u00d0\5\66\34\2")
+        buf.write("\u00cf\u00cd\3\2\2\2\u00cf\u00ce\3\2\2\2\u00cf\u00d0\3")
+        buf.write("\2\2\2\u00d0\u00d1\3\2\2\2\u00d1\u00d2\7\37\2\2\u00d2")
+        buf.write("#\3\2\2\2\u00d3\u00d4\5N(\2\u00d4\u00d5\7\37\2\2\u00d5")
+        buf.write("%\3\2\2\2\u00d6\u00d7\5\60\31\2\u00d7\u00d8\7\n\2\2\u00d8")
+        buf.write("\u00d9\5L\'\2\u00d9\u00da\7\37\2\2\u00da\'\3\2\2\2\u00db")
+        buf.write("\u00de\7-\2\2\u00dc\u00de\5H%\2\u00dd\u00db\3\2\2\2\u00dd")
+        buf.write("\u00dc\3\2\2\2\u00de\u00df\3\2\2\2\u00df\u00e0\7\n\2\2")
+        buf.write("\u00e0\u00e1\5L\'\2\u00e1\u00e2\7\37\2\2\u00e2)\3\2\2")
+        buf.write("\2\u00e3\u00e5\7\13\2\2\u00e4\u00e6\5,\27\2\u00e5\u00e4")
+        buf.write("\3\2\2\2\u00e5\u00e6\3\2\2\2\u00e6\u00e7\3\2\2\2\u00e7")
+        buf.write("\u00e8\7\f\2\2\u00e8+\3\2\2\2\u00e9\u00ee\5.\30\2\u00ea")
+        buf.write("\u00eb\7\b\2\2\u00eb\u00ed\5.\30\2\u00ec\u00ea\3\2\2\2")
+        buf.write("\u00ed\u00f0\3\2\2\2\u00ee\u00ec\3\2\2\2\u00ee\u00ef\3")
+        buf.write("\2\2\2\u00ef-\3\2\2\2\u00f0\u00ee\3\2\2\2\u00f1\u00f2")
+        buf.write("\7-\2\2\u00f2\u00f3\7\7\2\2\u00f3\u00f4\5X-\2\u00f4/\3")
+        buf.write("\2\2\2\u00f5\u00f7\7\30\2\2\u00f6\u00f8\7\31\2\2\u00f7")
+        buf.write("\u00f6\3\2\2\2\u00f7\u00f8\3\2\2\2\u00f8\u00f9\3\2\2\2")
+        buf.write("\u00f9\u00fa\7-\2\2\u00fa\61\3\2\2\2\u00fb\u00fc\t\2\2")
+        buf.write("\2\u00fc\63\3\2\2\2\u00fd\u0103\5J&\2\u00fe\u00ff\5\62")
+        buf.write("\32\2\u00ff\u0100\5J&\2\u0100\u0102\3\2\2\2\u0101\u00fe")
+        buf.write("\3\2\2\2\u0102\u0105\3\2\2\2\u0103\u0101\3\2\2\2\u0103")
+        buf.write("\u0104\3\2\2\2\u0104\u0113\3\2\2\2\u0105\u0103\3\2\2\2")
+        buf.write("\u0106\u0107\7\13\2\2\u0107\u010d\5J&\2\u0108\u0109\5")
+        buf.write("\62\32\2\u0109\u010a\5J&\2\u010a\u010c\3\2\2\2\u010b\u0108")
+        buf.write("\3\2\2\2\u010c\u010f\3\2\2\2\u010d\u010b\3\2\2\2\u010d")
+        buf.write("\u010e\3\2\2\2\u010e\u0110\3\2\2\2\u010f\u010d\3\2\2\2")
+        buf.write("\u0110\u0111\7\f\2\2\u0111\u0113\3\2\2\2\u0112\u00fd\3")
+        buf.write("\2\2\2\u0112\u0106\3\2\2\2\u0113\65\3\2\2\2\u0114\u011a")
+        buf.write("\5\64\33\2\u0115\u0116\5\62\32\2\u0116\u0117\5\64\33\2")
+        buf.write("\u0117\u0119\3\2\2\2\u0118\u0115\3\2\2\2\u0119\u011c\3")
+        buf.write("\2\2\2\u011a\u0118\3\2\2\2\u011a\u011b\3\2\2\2\u011b\67")
+        buf.write("\3\2\2\2\u011c\u011a\3\2\2\2\u011d\u011e\5J&\2\u011e\u011f")
+        buf.write("\5@!\2\u011f\u0120\5J&\2\u0120\u0128\3\2\2\2\u0121\u0122")
+        buf.write("\7\13\2\2\u0122\u0123\5J&\2\u0123\u0124\5@!\2\u0124\u0125")
+        buf.write("\5J&\2\u0125\u0126\7\f\2\2\u0126\u0128\3\2\2\2\u0127\u011d")
+        buf.write("\3\2\2\2\u0127\u0121\3\2\2\2\u01289\3\2\2\2\u0129\u012e")
+        buf.write("\5B\"\2\u012a\u012e\7-\2\2\u012b\u012e\5N(\2\u012c\u012e")
+        buf.write("\58\35\2\u012d\u0129\3\2\2\2\u012d\u012a\3\2\2\2\u012d")
+        buf.write("\u012b\3\2\2\2\u012d\u012c\3\2\2\2\u012e;\3\2\2\2\u012f")
+        buf.write("\u0130\5:\36\2\u0130=\3\2\2\2\u0131\u0132\t\3\2\2\u0132")
+        buf.write("?\3\2\2\2\u0133\u0134\t\4\2\2\u0134A\3\2\2\2\u0135\u0136")
+        buf.write("\t\5\2\2\u0136C\3\2\2\2\u0137\u0138\t\6\2\2\u0138E\3\2")
+        buf.write("\2\2\u0139\u013c\5D#\2\u013a\u013c\7.\2\2\u013b\u0139")
+        buf.write("\3\2\2\2\u013b\u013a\3\2\2\2\u013cG\3\2\2\2\u013d\u013f")
+        buf.write("\7-\2\2\u013e\u0140\7,\2\2\u013f\u013e\3\2\2\2\u0140\u0141")
+        buf.write("\3\2\2\2\u0141\u013f\3\2\2\2\u0141\u0142\3\2\2\2\u0142")
+        buf.write("I\3\2\2\2\u0143\u0148\5F$\2\u0144\u0148\7-\2\2\u0145\u0148")
+        buf.write("\5H%\2\u0146\u0148\5N(\2\u0147\u0143\3\2\2\2\u0147\u0144")
+        buf.write("\3\2\2\2\u0147\u0145\3\2\2\2\u0147\u0146\3\2\2\2\u0148")
+        buf.write("K\3\2\2\2\u0149\u014f\5J&\2\u014a\u014f\5\64\33\2\u014b")
+        buf.write("\u014f\5\66\34\2\u014c\u014f\5<\37\2\u014d\u014f\5\30")
+        buf.write("\r\2\u014e\u0149\3\2\2\2\u014e\u014a\3\2\2\2\u014e\u014b")
+        buf.write("\3\2\2\2\u014e\u014c\3\2\2\2\u014e\u014d\3\2\2\2\u014f")
+        buf.write("M\3\2\2\2\u0150\u0151\7-\2\2\u0151\u0152\5P)\2\u0152O")
+        buf.write("\3\2\2\2\u0153\u0155\7\13\2\2\u0154\u0156\5R*\2\u0155")
+        buf.write("\u0154\3\2\2\2\u0155\u0156\3\2\2\2\u0156\u0157\3\2\2\2")
+        buf.write("\u0157\u0158\7\f\2\2\u0158Q\3\2\2\2\u0159\u015e\5T+\2")
+        buf.write("\u015a\u015b\7\b\2\2\u015b\u015d\5T+\2\u015c\u015a\3\2")
+        buf.write("\2\2\u015d\u0160\3\2\2\2\u015e\u015c\3\2\2\2\u015e\u015f")
+        buf.write("\3\2\2\2\u015fS\3\2\2\2\u0160\u015e\3\2\2\2\u0161\u0162")
+        buf.write("\5L\'\2\u0162U\3\2\2\2\u0163\u0164\t\7\2\2\u0164W\3\2")
+        buf.write("\2\2\u0165\u0166\t\b\2\2\u0166Y\3\2\2\2!^dnw\u0085\u008d")
+        buf.write("\u0094\u009c\u00a0\u00ab\u00b1\u00b9\u00c2\u00ca\u00cf")
+        buf.write("\u00dd\u00e5\u00ee\u00f7\u0103\u010d\u0112\u011a\u0127")
+        buf.write("\u012d\u013b\u0141\u0147\u014e\u0155\u015e")
         return buf.getvalue()
 
 
@@ -175,21 +182,21 @@ class TykeParser ( Parser ):
 
     literalNames = [ "<INVALID>", "'{'", "'}'", "'def'", "'->'", "':'", 
                      "','", "'return'", "'='", "'('", "')'", "'=='", "'!='", 
-                     "'<'", "'<='", "'>'", "'>='", "'true'", "'false'", 
-                     "'let'", "'mut'", "'if'", "'elif'", "'else'", "'bool'", 
-                     "'package'", "';'", "'struct'", "'type'", "'while'", 
-                     "'double'", "'int'", "'void'", "'+'", "'-'", "'*'", 
-                     "'/'" ]
+                     "'<'", "'<='", "'>'", "'>='", "'and'", "'or'", "'xor'", 
+                     "'true'", "'false'", "'let'", "'mut'", "'if'", "'elif'", 
+                     "'else'", "'bool'", "'package'", "';'", "'struct'", 
+                     "'type'", "'while'", "'double'", "'int'", "'void'", 
+                     "'+'", "'-'", "'*'", "'/'" ]
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "EQ", "NEQ", 
-                      "LT", "LTE", "GT", "GTE", "TRUE", "FALSE", "LET", 
-                      "MUT", "IF", "ELIF", "ELSE", "BOOL", "PACKAGE", "SEMICOLON", 
-                      "STRUCT", "TYPE", "WHILE", "KW_DOUBLE", "KW_INT", 
-                      "VOID", "ADD", "SUBTRACT", "MULTIPLY", "DIVIDE", "DOUBLE", 
-                      "INTEGER", "FIELD_REF", "NAME", "STRING", "Newline", 
-                      "Whitespace" ]
+                      "LT", "LTE", "GT", "GTE", "AND", "OR", "XOR", "TRUE", 
+                      "FALSE", "LET", "MUT", "IF", "ELIF", "ELSE", "BOOL", 
+                      "PACKAGE", "SEMICOLON", "STRUCT", "TYPE", "WHILE", 
+                      "KW_DOUBLE", "KW_INT", "VOID", "ADD", "SUBTRACT", 
+                      "MULTIPLY", "DIVIDE", "DOUBLE", "INTEGER", "FIELD_REF", 
+                      "NAME", "STRING", "Newline", "Whitespace" ]
 
     RULE_program = 0
     RULE_package = 1
@@ -219,19 +226,22 @@ class TykeParser ( Parser ):
     RULE_arthimeticExpr = 25
     RULE_multiArthimeticExpr = 26
     RULE_comparisonExpr = 27
-    RULE_numeric_comparison_op = 28
-    RULE_booleanLiteral = 29
-    RULE_numeric = 30
-    RULE_primitive = 31
-    RULE_field = 32
-    RULE_simpleExpression = 33
-    RULE_expression = 34
-    RULE_funcCall = 35
-    RULE_funcCallDataList = 36
-    RULE_dataList = 37
-    RULE_data = 38
-    RULE_returnType = 39
-    RULE_varType = 40
+    RULE_simpleBooleanExpression = 28
+    RULE_booleanExpression = 29
+    RULE_boolean_comparison_op = 30
+    RULE_numeric_comparison_op = 31
+    RULE_booleanLiteral = 32
+    RULE_numeric = 33
+    RULE_primitive = 34
+    RULE_field = 35
+    RULE_simpleExpression = 36
+    RULE_expression = 37
+    RULE_funcCall = 38
+    RULE_funcCallDataList = 39
+    RULE_dataList = 40
+    RULE_data = 41
+    RULE_returnType = 42
+    RULE_varType = 43
 
     ruleNames =  [ "program", "package", "typedef", "funcdef", "signature", 
                    "ifStmt", "elifStmt", "elseStmt", "conditionalStmt", 
@@ -240,7 +250,8 @@ class TykeParser ( Parser ):
                    "funcCallStmt", "declareAndAssignStmt", "assigmentStmt", 
                    "funcDefArgList", "typedArgList", "typedArg", "varDeclare", 
                    "arithmetic_op", "arthimeticExpr", "multiArthimeticExpr", 
-                   "comparisonExpr", "numeric_comparison_op", "booleanLiteral", 
+                   "comparisonExpr", "simpleBooleanExpression", "booleanExpression", 
+                   "boolean_comparison_op", "numeric_comparison_op", "booleanLiteral", 
                    "numeric", "primitive", "field", "simpleExpression", 
                    "expression", "funcCall", "funcCallDataList", "dataList", 
                    "data", "returnType", "varType" ]
@@ -262,33 +273,36 @@ class TykeParser ( Parser ):
     LTE=14
     GT=15
     GTE=16
-    TRUE=17
-    FALSE=18
-    LET=19
-    MUT=20
-    IF=21
-    ELIF=22
-    ELSE=23
-    BOOL=24
-    PACKAGE=25
-    SEMICOLON=26
-    STRUCT=27
-    TYPE=28
-    WHILE=29
-    KW_DOUBLE=30
-    KW_INT=31
-    VOID=32
-    ADD=33
-    SUBTRACT=34
-    MULTIPLY=35
-    DIVIDE=36
-    DOUBLE=37
-    INTEGER=38
-    FIELD_REF=39
-    NAME=40
-    STRING=41
-    Newline=42
-    Whitespace=43
+    AND=17
+    OR=18
+    XOR=19
+    TRUE=20
+    FALSE=21
+    LET=22
+    MUT=23
+    IF=24
+    ELIF=25
+    ELSE=26
+    BOOL=27
+    PACKAGE=28
+    SEMICOLON=29
+    STRUCT=30
+    TYPE=31
+    WHILE=32
+    KW_DOUBLE=33
+    KW_INT=34
+    VOID=35
+    ADD=36
+    SUBTRACT=37
+    MULTIPLY=38
+    DIVIDE=39
+    DOUBLE=40
+    INTEGER=41
+    FIELD_REF=42
+    NAME=43
+    STRING=44
+    Newline=45
+    Whitespace=46
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -344,25 +358,25 @@ class TykeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 82
+            self.state = 88
             self.package()
-            self.state = 86
+            self.state = 92
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==TykeParser.TYPE:
-                self.state = 83
+                self.state = 89
                 self.typedef()
-                self.state = 88
+                self.state = 94
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
-            self.state = 90 
+            self.state = 96 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
-                self.state = 89
+                self.state = 95
                 self.funcdef()
-                self.state = 92 
+                self.state = 98 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 if not (_la==TykeParser.T__2):
@@ -412,11 +426,11 @@ class TykeParser ( Parser ):
         self.enterRule(localctx, 2, self.RULE_package)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 94
+            self.state = 100
             self.match(TykeParser.PACKAGE)
-            self.state = 95
+            self.state = 101
             self.match(TykeParser.NAME)
-            self.state = 96
+            self.state = 102
             self.match(TykeParser.SEMICOLON)
         except RecognitionException as re:
             localctx.exception = re
@@ -470,25 +484,25 @@ class TykeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 98
+            self.state = 104
             self.match(TykeParser.TYPE)
-            self.state = 99
+            self.state = 105
             self.match(TykeParser.STRUCT)
-            self.state = 100
+            self.state = 106
             self.match(TykeParser.T__0)
-            self.state = 102
+            self.state = 108
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==TykeParser.NAME:
-                self.state = 101
+                self.state = 107
                 self.typedArgList()
 
 
-            self.state = 104
+            self.state = 110
             self.match(TykeParser.T__1)
-            self.state = 105
+            self.state = 111
             self.match(TykeParser.NAME)
-            self.state = 106
+            self.state = 112
             self.match(TykeParser.SEMICOLON)
         except RecognitionException as re:
             localctx.exception = re
@@ -534,19 +548,19 @@ class TykeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 108
+            self.state = 114
             self.signature()
-            self.state = 109
+            self.state = 115
             self.match(TykeParser.T__0)
-            self.state = 111
+            self.state = 117
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.T__6) | (1 << TykeParser.LET) | (1 << TykeParser.IF) | (1 << TykeParser.WHILE) | (1 << TykeParser.NAME))) != 0):
-                self.state = 110
+                self.state = 116
                 self.statementList()
 
 
-            self.state = 113
+            self.state = 119
             self.match(TykeParser.T__1)
         except RecognitionException as re:
             localctx.exception = re
@@ -594,15 +608,15 @@ class TykeParser ( Parser ):
         self.enterRule(localctx, 8, self.RULE_signature)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 115
+            self.state = 121
             self.match(TykeParser.T__2)
-            self.state = 116
+            self.state = 122
             self.match(TykeParser.NAME)
-            self.state = 117
+            self.state = 123
             self.funcDefArgList()
-            self.state = 118
+            self.state = 124
             self.match(TykeParser.T__3)
-            self.state = 119
+            self.state = 125
             self.returnType()
         except RecognitionException as re:
             localctx.exception = re
@@ -622,8 +636,8 @@ class TykeParser ( Parser ):
         def IF(self):
             return self.getToken(TykeParser.IF, 0)
 
-        def comparisonExpr(self):
-            return self.getTypedRuleContext(TykeParser.ComparisonExprContext,0)
+        def booleanExpression(self):
+            return self.getTypedRuleContext(TykeParser.BooleanExpressionContext,0)
 
 
         def statementList(self):
@@ -651,21 +665,21 @@ class TykeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 121
+            self.state = 127
             self.match(TykeParser.IF)
-            self.state = 122
-            self.comparisonExpr()
-            self.state = 123
+            self.state = 128
+            self.booleanExpression()
+            self.state = 129
             self.match(TykeParser.T__0)
-            self.state = 125
+            self.state = 131
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.T__6) | (1 << TykeParser.LET) | (1 << TykeParser.IF) | (1 << TykeParser.WHILE) | (1 << TykeParser.NAME))) != 0):
-                self.state = 124
+                self.state = 130
                 self.statementList()
 
 
-            self.state = 127
+            self.state = 133
             self.match(TykeParser.T__1)
         except RecognitionException as re:
             localctx.exception = re
@@ -685,8 +699,8 @@ class TykeParser ( Parser ):
         def ELIF(self):
             return self.getToken(TykeParser.ELIF, 0)
 
-        def comparisonExpr(self):
-            return self.getTypedRuleContext(TykeParser.ComparisonExprContext,0)
+        def booleanExpression(self):
+            return self.getTypedRuleContext(TykeParser.BooleanExpressionContext,0)
 
 
         def statementList(self):
@@ -714,21 +728,21 @@ class TykeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 129
+            self.state = 135
             self.match(TykeParser.ELIF)
-            self.state = 130
-            self.comparisonExpr()
-            self.state = 131
+            self.state = 136
+            self.booleanExpression()
+            self.state = 137
             self.match(TykeParser.T__0)
-            self.state = 133
+            self.state = 139
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.T__6) | (1 << TykeParser.LET) | (1 << TykeParser.IF) | (1 << TykeParser.WHILE) | (1 << TykeParser.NAME))) != 0):
-                self.state = 132
+                self.state = 138
                 self.statementList()
 
 
-            self.state = 135
+            self.state = 141
             self.match(TykeParser.T__1)
         except RecognitionException as re:
             localctx.exception = re
@@ -773,19 +787,19 @@ class TykeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 137
+            self.state = 143
             self.match(TykeParser.ELSE)
-            self.state = 138
+            self.state = 144
             self.match(TykeParser.T__0)
-            self.state = 140
+            self.state = 146
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.T__6) | (1 << TykeParser.LET) | (1 << TykeParser.IF) | (1 << TykeParser.WHILE) | (1 << TykeParser.NAME))) != 0):
-                self.state = 139
+                self.state = 145
                 self.statementList()
 
 
-            self.state = 142
+            self.state = 148
             self.match(TykeParser.T__1)
         except RecognitionException as re:
             localctx.exception = re
@@ -838,23 +852,23 @@ class TykeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 144
+            self.state = 150
             self.ifStmt()
-            self.state = 148
+            self.state = 154
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==TykeParser.ELIF:
-                self.state = 145
+                self.state = 151
                 self.elifStmt()
-                self.state = 150
+                self.state = 156
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
-            self.state = 152
+            self.state = 158
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==TykeParser.ELSE:
-                self.state = 151
+                self.state = 157
                 self.elseStmt()
 
 
@@ -900,11 +914,11 @@ class TykeParser ( Parser ):
         self.enterRule(localctx, 18, self.RULE_fieldInit)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 154
+            self.state = 160
             self.match(TykeParser.NAME)
-            self.state = 155
+            self.state = 161
             self.match(TykeParser.T__4)
-            self.state = 156
+            self.state = 162
             self.expression()
         except RecognitionException as re:
             localctx.exception = re
@@ -949,17 +963,17 @@ class TykeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 158
+            self.state = 164
             self.fieldInit()
-            self.state = 163
+            self.state = 169
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==TykeParser.T__5:
-                self.state = 159
-                self.match(TykeParser.T__5)
-                self.state = 160
-                self.fieldInit()
                 self.state = 165
+                self.match(TykeParser.T__5)
+                self.state = 166
+                self.fieldInit()
+                self.state = 171
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -1006,19 +1020,19 @@ class TykeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 166
+            self.state = 172
             self.match(TykeParser.NAME)
-            self.state = 167
+            self.state = 173
             self.match(TykeParser.T__0)
-            self.state = 169
+            self.state = 175
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==TykeParser.NAME:
-                self.state = 168
+                self.state = 174
                 self.fieldInitList()
 
 
-            self.state = 171
+            self.state = 177
             self.match(TykeParser.T__1)
         except RecognitionException as re:
             localctx.exception = re
@@ -1038,8 +1052,8 @@ class TykeParser ( Parser ):
         def WHILE(self):
             return self.getToken(TykeParser.WHILE, 0)
 
-        def comparisonExpr(self):
-            return self.getTypedRuleContext(TykeParser.ComparisonExprContext,0)
+        def booleanExpression(self):
+            return self.getTypedRuleContext(TykeParser.BooleanExpressionContext,0)
 
 
         def statementList(self):
@@ -1067,21 +1081,21 @@ class TykeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 173
+            self.state = 179
             self.match(TykeParser.WHILE)
-            self.state = 174
-            self.comparisonExpr()
-            self.state = 175
+            self.state = 180
+            self.booleanExpression()
+            self.state = 181
             self.match(TykeParser.T__0)
-            self.state = 177
+            self.state = 183
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.T__6) | (1 << TykeParser.LET) | (1 << TykeParser.IF) | (1 << TykeParser.WHILE) | (1 << TykeParser.NAME))) != 0):
-                self.state = 176
+                self.state = 182
                 self.statementList()
 
 
-            self.state = 179
+            self.state = 185
             self.match(TykeParser.T__1)
         except RecognitionException as re:
             localctx.exception = re
@@ -1122,7 +1136,7 @@ class TykeParser ( Parser ):
         self.enterRule(localctx, 26, self.RULE_loopStmt)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 181
+            self.state = 187
             self.whileStmt()
         except RecognitionException as re:
             localctx.exception = re
@@ -1167,13 +1181,13 @@ class TykeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 184 
+            self.state = 190 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
-                self.state = 183
+                self.state = 189
                 self.statement()
-                self.state = 186 
+                self.state = 192 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.T__6) | (1 << TykeParser.LET) | (1 << TykeParser.IF) | (1 << TykeParser.WHILE) | (1 << TykeParser.NAME))) != 0)):
@@ -1237,42 +1251,42 @@ class TykeParser ( Parser ):
         localctx = TykeParser.StatementContext(self, self._ctx, self.state)
         self.enterRule(localctx, 30, self.RULE_statement)
         try:
-            self.state = 194
+            self.state = 200
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,13,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 188
+                self.state = 194
                 self.returnStmt()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 189
+                self.state = 195
                 self.funcCallStmt()
                 pass
 
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 190
+                self.state = 196
                 self.assigmentStmt()
                 pass
 
             elif la_ == 4:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 191
+                self.state = 197
                 self.declareAndAssignStmt()
                 pass
 
             elif la_ == 5:
                 self.enterOuterAlt(localctx, 5)
-                self.state = 192
+                self.state = 198
                 self.conditionalStmt()
                 pass
 
             elif la_ == 6:
                 self.enterOuterAlt(localctx, 6)
-                self.state = 193
+                self.state = 199
                 self.loopStmt()
                 pass
 
@@ -1323,21 +1337,21 @@ class TykeParser ( Parser ):
         self.enterRule(localctx, 32, self.RULE_returnStmt)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 196
+            self.state = 202
             self.match(TykeParser.T__6)
-            self.state = 199
+            self.state = 205
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,14,self._ctx)
             if la_ == 1:
-                self.state = 197
+                self.state = 203
                 self.simpleExpression()
 
             elif la_ == 2:
-                self.state = 198
+                self.state = 204
                 self.multiArthimeticExpr()
 
 
-            self.state = 201
+            self.state = 207
             self.match(TykeParser.SEMICOLON)
         except RecognitionException as re:
             localctx.exception = re
@@ -1381,9 +1395,9 @@ class TykeParser ( Parser ):
         self.enterRule(localctx, 34, self.RULE_funcCallStmt)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 203
+            self.state = 209
             self.funcCall()
-            self.state = 204
+            self.state = 210
             self.match(TykeParser.SEMICOLON)
         except RecognitionException as re:
             localctx.exception = re
@@ -1431,13 +1445,13 @@ class TykeParser ( Parser ):
         self.enterRule(localctx, 36, self.RULE_declareAndAssignStmt)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 206
+            self.state = 212
             self.varDeclare()
-            self.state = 207
+            self.state = 213
             self.match(TykeParser.T__7)
-            self.state = 208
+            self.state = 214
             self.expression()
-            self.state = 209
+            self.state = 215
             self.match(TykeParser.SEMICOLON)
         except RecognitionException as re:
             localctx.exception = re
@@ -1488,25 +1502,25 @@ class TykeParser ( Parser ):
         self.enterRule(localctx, 38, self.RULE_assigmentStmt)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 213
+            self.state = 219
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,15,self._ctx)
             if la_ == 1:
-                self.state = 211
+                self.state = 217
                 self.match(TykeParser.NAME)
                 pass
 
             elif la_ == 2:
-                self.state = 212
+                self.state = 218
                 self.field()
                 pass
 
 
-            self.state = 215
+            self.state = 221
             self.match(TykeParser.T__7)
-            self.state = 216
+            self.state = 222
             self.expression()
-            self.state = 217
+            self.state = 223
             self.match(TykeParser.SEMICOLON)
         except RecognitionException as re:
             localctx.exception = re
@@ -1548,17 +1562,17 @@ class TykeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 219
+            self.state = 225
             self.match(TykeParser.T__8)
-            self.state = 221
+            self.state = 227
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==TykeParser.NAME:
-                self.state = 220
+                self.state = 226
                 self.typedArgList()
 
 
-            self.state = 223
+            self.state = 229
             self.match(TykeParser.T__9)
         except RecognitionException as re:
             localctx.exception = re
@@ -1603,17 +1617,17 @@ class TykeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 225
+            self.state = 231
             self.typedArg()
-            self.state = 230
+            self.state = 236
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==TykeParser.T__5:
-                self.state = 226
-                self.match(TykeParser.T__5)
-                self.state = 227
-                self.typedArg()
                 self.state = 232
+                self.match(TykeParser.T__5)
+                self.state = 233
+                self.typedArg()
+                self.state = 238
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -1659,11 +1673,11 @@ class TykeParser ( Parser ):
         self.enterRule(localctx, 44, self.RULE_typedArg)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 233
+            self.state = 239
             self.match(TykeParser.NAME)
-            self.state = 234
+            self.state = 240
             self.match(TykeParser.T__4)
-            self.state = 235
+            self.state = 241
             self.varType()
         except RecognitionException as re:
             localctx.exception = re
@@ -1710,17 +1724,17 @@ class TykeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 237
+            self.state = 243
             self.match(TykeParser.LET)
-            self.state = 239
+            self.state = 245
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==TykeParser.MUT:
-                self.state = 238
+                self.state = 244
                 self.match(TykeParser.MUT)
 
 
-            self.state = 241
+            self.state = 247
             self.match(TykeParser.NAME)
         except RecognitionException as re:
             localctx.exception = re
@@ -1770,7 +1784,7 @@ class TykeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 243
+            self.state = 249
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.ADD) | (1 << TykeParser.SUBTRACT) | (1 << TykeParser.MULTIPLY) | (1 << TykeParser.DIVIDE))) != 0)):
                 self._errHandler.recoverInline(self)
@@ -1826,46 +1840,46 @@ class TykeParser ( Parser ):
         self.enterRule(localctx, 50, self.RULE_arthimeticExpr)
         self._la = 0 # Token type
         try:
-            self.state = 266
+            self.state = 272
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [TykeParser.DOUBLE, TykeParser.INTEGER, TykeParser.NAME, TykeParser.STRING]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 245
-                self.simpleExpression()
                 self.state = 251
+                self.simpleExpression()
+                self.state = 257
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,19,self._ctx)
                 while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                     if _alt==1:
-                        self.state = 246
+                        self.state = 252
                         self.arithmetic_op()
-                        self.state = 247
+                        self.state = 253
                         self.simpleExpression() 
-                    self.state = 253
+                    self.state = 259
                     self._errHandler.sync(self)
                     _alt = self._interp.adaptivePredict(self._input,19,self._ctx)
 
                 pass
             elif token in [TykeParser.T__8]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 254
+                self.state = 260
                 self.match(TykeParser.T__8)
-                self.state = 255
-                self.simpleExpression()
                 self.state = 261
+                self.simpleExpression()
+                self.state = 267
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.ADD) | (1 << TykeParser.SUBTRACT) | (1 << TykeParser.MULTIPLY) | (1 << TykeParser.DIVIDE))) != 0):
-                    self.state = 256
+                    self.state = 262
                     self.arithmetic_op()
-                    self.state = 257
-                    self.simpleExpression()
                     self.state = 263
+                    self.simpleExpression()
+                    self.state = 269
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
 
-                self.state = 264
+                self.state = 270
                 self.match(TykeParser.T__9)
                 pass
             else:
@@ -1921,17 +1935,17 @@ class TykeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 268
-            self.arthimeticExpr()
             self.state = 274
+            self.arthimeticExpr()
+            self.state = 280
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.ADD) | (1 << TykeParser.SUBTRACT) | (1 << TykeParser.MULTIPLY) | (1 << TykeParser.DIVIDE))) != 0):
-                self.state = 269
+                self.state = 275
                 self.arithmetic_op()
-                self.state = 270
-                self.arthimeticExpr()
                 self.state = 276
+                self.arthimeticExpr()
+                self.state = 282
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -1980,34 +1994,204 @@ class TykeParser ( Parser ):
         localctx = TykeParser.ComparisonExprContext(self, self._ctx, self.state)
         self.enterRule(localctx, 54, self.RULE_comparisonExpr)
         try:
-            self.state = 287
+            self.state = 293
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [TykeParser.DOUBLE, TykeParser.INTEGER, TykeParser.NAME, TykeParser.STRING]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 277
+                self.state = 283
                 self.simpleExpression()
-                self.state = 278
+                self.state = 284
                 self.numeric_comparison_op()
-                self.state = 279
+                self.state = 285
                 self.simpleExpression()
                 pass
             elif token in [TykeParser.T__8]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 281
+                self.state = 287
                 self.match(TykeParser.T__8)
-                self.state = 282
+                self.state = 288
                 self.simpleExpression()
-                self.state = 283
+                self.state = 289
                 self.numeric_comparison_op()
-                self.state = 284
+                self.state = 290
                 self.simpleExpression()
-                self.state = 285
+                self.state = 291
                 self.match(TykeParser.T__9)
                 pass
             else:
                 raise NoViableAltException(self)
 
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class SimpleBooleanExpressionContext(ParserRuleContext):
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def booleanLiteral(self):
+            return self.getTypedRuleContext(TykeParser.BooleanLiteralContext,0)
+
+
+        def NAME(self):
+            return self.getToken(TykeParser.NAME, 0)
+
+        def funcCall(self):
+            return self.getTypedRuleContext(TykeParser.FuncCallContext,0)
+
+
+        def comparisonExpr(self):
+            return self.getTypedRuleContext(TykeParser.ComparisonExprContext,0)
+
+
+        def getRuleIndex(self):
+            return TykeParser.RULE_simpleBooleanExpression
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterSimpleBooleanExpression" ):
+                listener.enterSimpleBooleanExpression(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitSimpleBooleanExpression" ):
+                listener.exitSimpleBooleanExpression(self)
+
+
+
+
+    def simpleBooleanExpression(self):
+
+        localctx = TykeParser.SimpleBooleanExpressionContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 56, self.RULE_simpleBooleanExpression)
+        try:
+            self.state = 299
+            self._errHandler.sync(self)
+            la_ = self._interp.adaptivePredict(self._input,24,self._ctx)
+            if la_ == 1:
+                self.enterOuterAlt(localctx, 1)
+                self.state = 295
+                self.booleanLiteral()
+                pass
+
+            elif la_ == 2:
+                self.enterOuterAlt(localctx, 2)
+                self.state = 296
+                self.match(TykeParser.NAME)
+                pass
+
+            elif la_ == 3:
+                self.enterOuterAlt(localctx, 3)
+                self.state = 297
+                self.funcCall()
+                pass
+
+            elif la_ == 4:
+                self.enterOuterAlt(localctx, 4)
+                self.state = 298
+                self.comparisonExpr()
+                pass
+
+
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class BooleanExpressionContext(ParserRuleContext):
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def simpleBooleanExpression(self):
+            return self.getTypedRuleContext(TykeParser.SimpleBooleanExpressionContext,0)
+
+
+        def getRuleIndex(self):
+            return TykeParser.RULE_booleanExpression
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterBooleanExpression" ):
+                listener.enterBooleanExpression(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitBooleanExpression" ):
+                listener.exitBooleanExpression(self)
+
+
+
+
+    def booleanExpression(self):
+
+        localctx = TykeParser.BooleanExpressionContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 58, self.RULE_booleanExpression)
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 301
+            self.simpleBooleanExpression()
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class Boolean_comparison_opContext(ParserRuleContext):
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def AND(self):
+            return self.getToken(TykeParser.AND, 0)
+
+        def OR(self):
+            return self.getToken(TykeParser.OR, 0)
+
+        def XOR(self):
+            return self.getToken(TykeParser.XOR, 0)
+
+        def getRuleIndex(self):
+            return TykeParser.RULE_boolean_comparison_op
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterBoolean_comparison_op" ):
+                listener.enterBoolean_comparison_op(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitBoolean_comparison_op" ):
+                listener.exitBoolean_comparison_op(self)
+
+
+
+
+    def boolean_comparison_op(self):
+
+        localctx = TykeParser.Boolean_comparison_opContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 60, self.RULE_boolean_comparison_op)
+        self._la = 0 # Token type
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 303
+            _la = self._input.LA(1)
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.AND) | (1 << TykeParser.OR) | (1 << TykeParser.XOR))) != 0)):
+                self._errHandler.recoverInline(self)
+            else:
+                self._errHandler.reportMatch(self)
+                self.consume()
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -2058,11 +2242,11 @@ class TykeParser ( Parser ):
     def numeric_comparison_op(self):
 
         localctx = TykeParser.Numeric_comparison_opContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 56, self.RULE_numeric_comparison_op)
+        self.enterRule(localctx, 62, self.RULE_numeric_comparison_op)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 289
+            self.state = 305
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.EQ) | (1 << TykeParser.NEQ) | (1 << TykeParser.LT) | (1 << TykeParser.LTE) | (1 << TykeParser.GT) | (1 << TykeParser.GTE))) != 0)):
                 self._errHandler.recoverInline(self)
@@ -2107,11 +2291,11 @@ class TykeParser ( Parser ):
     def booleanLiteral(self):
 
         localctx = TykeParser.BooleanLiteralContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 58, self.RULE_booleanLiteral)
+        self.enterRule(localctx, 64, self.RULE_booleanLiteral)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 291
+            self.state = 307
             _la = self._input.LA(1)
             if not(_la==TykeParser.TRUE or _la==TykeParser.FALSE):
                 self._errHandler.recoverInline(self)
@@ -2156,11 +2340,11 @@ class TykeParser ( Parser ):
     def numeric(self):
 
         localctx = TykeParser.NumericContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 60, self.RULE_numeric)
+        self.enterRule(localctx, 66, self.RULE_numeric)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 293
+            self.state = 309
             _la = self._input.LA(1)
             if not(_la==TykeParser.DOUBLE or _la==TykeParser.INTEGER):
                 self._errHandler.recoverInline(self)
@@ -2206,19 +2390,19 @@ class TykeParser ( Parser ):
     def primitive(self):
 
         localctx = TykeParser.PrimitiveContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 62, self.RULE_primitive)
+        self.enterRule(localctx, 68, self.RULE_primitive)
         try:
-            self.state = 297
+            self.state = 313
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [TykeParser.DOUBLE, TykeParser.INTEGER]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 295
+                self.state = 311
                 self.numeric()
                 pass
             elif token in [TykeParser.STRING]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 296
+                self.state = 312
                 self.match(TykeParser.STRING)
                 pass
             else:
@@ -2265,19 +2449,19 @@ class TykeParser ( Parser ):
     def field(self):
 
         localctx = TykeParser.FieldContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 64, self.RULE_field)
+        self.enterRule(localctx, 70, self.RULE_field)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 299
+            self.state = 315
             self.match(TykeParser.NAME)
-            self.state = 301 
+            self.state = 317 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
-                self.state = 300
+                self.state = 316
                 self.match(TykeParser.FIELD_REF)
-                self.state = 303 
+                self.state = 319 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 if not (_la==TykeParser.FIELD_REF):
@@ -2330,29 +2514,29 @@ class TykeParser ( Parser ):
     def simpleExpression(self):
 
         localctx = TykeParser.SimpleExpressionContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 66, self.RULE_simpleExpression)
+        self.enterRule(localctx, 72, self.RULE_simpleExpression)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 309
+            self.state = 325
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,26,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,27,self._ctx)
             if la_ == 1:
-                self.state = 305
+                self.state = 321
                 self.primitive()
                 pass
 
             elif la_ == 2:
-                self.state = 306
+                self.state = 322
                 self.match(TykeParser.NAME)
                 pass
 
             elif la_ == 3:
-                self.state = 307
+                self.state = 323
                 self.field()
                 pass
 
             elif la_ == 4:
-                self.state = 308
+                self.state = 324
                 self.funcCall()
                 pass
 
@@ -2384,8 +2568,8 @@ class TykeParser ( Parser ):
             return self.getTypedRuleContext(TykeParser.MultiArthimeticExprContext,0)
 
 
-        def comparisonExpr(self):
-            return self.getTypedRuleContext(TykeParser.ComparisonExprContext,0)
+        def booleanExpression(self):
+            return self.getTypedRuleContext(TykeParser.BooleanExpressionContext,0)
 
 
         def makeStructExpr(self):
@@ -2409,38 +2593,38 @@ class TykeParser ( Parser ):
     def expression(self):
 
         localctx = TykeParser.ExpressionContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 68, self.RULE_expression)
+        self.enterRule(localctx, 74, self.RULE_expression)
         try:
-            self.state = 316
+            self.state = 332
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,27,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,28,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 311
+                self.state = 327
                 self.simpleExpression()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 312
+                self.state = 328
                 self.arthimeticExpr()
                 pass
 
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 313
+                self.state = 329
                 self.multiArthimeticExpr()
                 pass
 
             elif la_ == 4:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 314
-                self.comparisonExpr()
+                self.state = 330
+                self.booleanExpression()
                 pass
 
             elif la_ == 5:
                 self.enterOuterAlt(localctx, 5)
-                self.state = 315
+                self.state = 331
                 self.makeStructExpr()
                 pass
 
@@ -2484,12 +2668,12 @@ class TykeParser ( Parser ):
     def funcCall(self):
 
         localctx = TykeParser.FuncCallContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 70, self.RULE_funcCall)
+        self.enterRule(localctx, 76, self.RULE_funcCall)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 318
+            self.state = 334
             self.match(TykeParser.NAME)
-            self.state = 319
+            self.state = 335
             self.funcCallDataList()
         except RecognitionException as re:
             localctx.exception = re
@@ -2527,21 +2711,21 @@ class TykeParser ( Parser ):
     def funcCallDataList(self):
 
         localctx = TykeParser.FuncCallDataListContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 72, self.RULE_funcCallDataList)
+        self.enterRule(localctx, 78, self.RULE_funcCallDataList)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 321
+            self.state = 337
             self.match(TykeParser.T__8)
-            self.state = 323
+            self.state = 339
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.T__8) | (1 << TykeParser.DOUBLE) | (1 << TykeParser.INTEGER) | (1 << TykeParser.NAME) | (1 << TykeParser.STRING))) != 0):
-                self.state = 322
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.T__8) | (1 << TykeParser.TRUE) | (1 << TykeParser.FALSE) | (1 << TykeParser.DOUBLE) | (1 << TykeParser.INTEGER) | (1 << TykeParser.NAME) | (1 << TykeParser.STRING))) != 0):
+                self.state = 338
                 self.dataList()
 
 
-            self.state = 325
+            self.state = 341
             self.match(TykeParser.T__9)
         except RecognitionException as re:
             localctx.exception = re
@@ -2582,21 +2766,21 @@ class TykeParser ( Parser ):
     def dataList(self):
 
         localctx = TykeParser.DataListContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 74, self.RULE_dataList)
+        self.enterRule(localctx, 80, self.RULE_dataList)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 327
+            self.state = 343
             self.data()
-            self.state = 332
+            self.state = 348
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==TykeParser.T__5:
-                self.state = 328
+                self.state = 344
                 self.match(TykeParser.T__5)
-                self.state = 329
+                self.state = 345
                 self.data()
-                self.state = 334
+                self.state = 350
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -2636,10 +2820,10 @@ class TykeParser ( Parser ):
     def data(self):
 
         localctx = TykeParser.DataContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 76, self.RULE_data)
+        self.enterRule(localctx, 82, self.RULE_data)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 335
+            self.state = 351
             self.expression()
         except RecognitionException as re:
             localctx.exception = re
@@ -2688,11 +2872,11 @@ class TykeParser ( Parser ):
     def returnType(self):
 
         localctx = TykeParser.ReturnTypeContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 78, self.RULE_returnType)
+        self.enterRule(localctx, 84, self.RULE_returnType)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 337
+            self.state = 353
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.BOOL) | (1 << TykeParser.KW_DOUBLE) | (1 << TykeParser.KW_INT) | (1 << TykeParser.VOID) | (1 << TykeParser.NAME))) != 0)):
                 self._errHandler.recoverInline(self)
@@ -2740,11 +2924,11 @@ class TykeParser ( Parser ):
     def varType(self):
 
         localctx = TykeParser.VarTypeContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 80, self.RULE_varType)
+        self.enterRule(localctx, 86, self.RULE_varType)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 339
+            self.state = 355
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.KW_DOUBLE) | (1 << TykeParser.KW_INT) | (1 << TykeParser.NAME))) != 0)):
                 self._errHandler.recoverInline(self)

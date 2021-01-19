@@ -77,9 +77,9 @@ class __ExpressionHandler(BaseHandler):
         elif currExprCtx.multiArthimeticExpr():
             multiArithExpr = currExprCtx.multiArthimeticExpr()
             return self.handle_multiArthimeticExpr(multiArithExpr, builder, newScopeObj)
-        elif currExprCtx.comparisonExpr():
-            compExpr = currExprCtx.comparisonExpr()
-            return self.handle_comparisonExpr(compExpr, builder, newScopeObj)
+        elif currExprCtx.booleanExpression():
+            boolExpr = currExprCtx.booleanExpression()
+            return self.handle_booleanExpression(boolExpr, builder, newScopeObj)
         elif currExprCtx.makeStructExpr():
             makeStructCtx = currExprCtx.makeStructExpr()
             return self.handle_makeStructExpr(makeStructCtx, builder, newScopeObj)
@@ -87,6 +87,18 @@ class __ExpressionHandler(BaseHandler):
             sys.stderr.write("************** NO (DECLARE AND) ASSIGN FOR YOU *******************\n")
             sys.exit(7)
 
+    def handle_booleanExpression(self, boolExprCtx, builder, newScopeObj):
+        if boolExprCtx.simpleBooleanExpression():
+            simpBoolCtx = boolExprCtx.simpleBooleanExpression()
+            return self.handle_simpleBooleanExpression(simpBoolCtx, builder, newScopeObj)
+        fail_fast("Invalid boolean expression")
+
+    def handle_simpleBooleanExpression(self, boolExprCtx, builder, newScopeObj):
+        if boolExprCtx.comparisonExpr():
+            compExpr = boolExprCtx.comparisonExpr()
+            return self.handle_comparisonExpr(compExpr, builder, newScopeObj)
+        fail_fast("Invalid simple boolean expression")
+      
     def handle_returnStmt(self, retStmt, builder, irFunc, newScopeObj):
         if retStmt.simpleExpression():
             simpleExprCtx = retStmt.simpleExpression()
@@ -137,7 +149,7 @@ class __ExpressionHandler(BaseHandler):
 
         # check the loop condition
         builder.position_at_start(predicateBlock)
-        predicate = self.handle_comparisonExpr(whileCtx.comparisonExpr(), builder, newScopeObj)
+        predicate = self.handle_booleanExpression(whileCtx.booleanExpression(), builder, newScopeObj)
         builder.cbranch(predicate, entryBlock, exitBlock)
 
         # implement the loop logic here
@@ -169,14 +181,14 @@ class __ExpressionHandler(BaseHandler):
             self.handle_ifElifStmt(ifCtx, elifCtxList, elseCtx, builder, irFunc, newScopeObj)
 
     def handle_ifStmt(self, ifCtx, builder, irFunc, newScopeObj):
-        predicate = self.handle_comparisonExpr(ifCtx.comparisonExpr(), builder, newScopeObj)
+        predicate = self.handle_booleanExpression(ifCtx.booleanExpression(), builder, newScopeObj)
         with builder.if_then(predicate): # as (then, otherwise):
             #with then:
                 stmtList = ifCtx.statementList()
                 self.handele_statementList(stmtList, builder, irFunc, newScopeObj)
 
     def handle_ifElseStmt(self, ifCtx, elseCtx, builder, irFunc, newScopeObj):
-        predicate = self.handle_comparisonExpr(ifCtx.comparisonExpr(), builder, newScopeObj)
+        predicate = self.handle_booleanExpression(ifCtx.booleanExpression(), builder, newScopeObj)
         with builder.if_else(predicate) as (then, otherwise):
             with then:
                 stmtList = ifCtx.statementList()
@@ -187,7 +199,7 @@ class __ExpressionHandler(BaseHandler):
 
     def handle_ifElifStmt(self, ifCtx, elifCtxList, elseCtx, builder, irFunc, newScopeObj):
         if len(elifCtxList) > 0:
-            predicate = self.handle_comparisonExpr(ifCtx.comparisonExpr(), builder, newScopeObj)
+            predicate = self.handle_booleanExpression(ifCtx.booleanExpression(), builder, newScopeObj)
             # recursively calls handle_ifElifStmt inside the 'otherwise' contextmanager
             with builder.if_else(predicate) as (then, otherwise):
                 with then:
@@ -205,7 +217,7 @@ class __ExpressionHandler(BaseHandler):
             self.handle_ifStmt(ifCtx, builder, irFunc, newScopeObj)
 
     def handle_elifStmt(self, elifCtx, builder, irFunc, newScopeObj):
-        predicate = self.handle_comparisonExpr(ifCtx.comparisonExpr(), builder, newScopeObj)
+        predicate = self.handle_booleanExpression(ifCtx.booleanExpression(), builder, newScopeObj)
         with builder.if_then(predicate): # as (then, otherwise):
             #with then:
                 stmtList = ifCtx.statementList()

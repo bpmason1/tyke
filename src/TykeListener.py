@@ -260,6 +260,33 @@ class TykeListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by TykeParser#simpleBooleanExpression.
+    def enterSimpleBooleanExpression(self, ctx:TykeParser.SimpleBooleanExpressionContext):
+        pass
+
+    # Exit a parse tree produced by TykeParser#simpleBooleanExpression.
+    def exitSimpleBooleanExpression(self, ctx:TykeParser.SimpleBooleanExpressionContext):
+        pass
+
+
+    # Enter a parse tree produced by TykeParser#booleanExpression.
+    def enterBooleanExpression(self, ctx:TykeParser.BooleanExpressionContext):
+        pass
+
+    # Exit a parse tree produced by TykeParser#booleanExpression.
+    def exitBooleanExpression(self, ctx:TykeParser.BooleanExpressionContext):
+        pass
+
+
+    # Enter a parse tree produced by TykeParser#boolean_comparison_op.
+    def enterBoolean_comparison_op(self, ctx:TykeParser.Boolean_comparison_opContext):
+        pass
+
+    # Exit a parse tree produced by TykeParser#boolean_comparison_op.
+    def exitBoolean_comparison_op(self, ctx:TykeParser.Boolean_comparison_opContext):
+        pass
+
+
     # Enter a parse tree produced by TykeParser#numeric_comparison_op.
     def enterNumeric_comparison_op(self, ctx:TykeParser.Numeric_comparison_opContext):
         pass
