@@ -119,7 +119,7 @@ arithmetic_op
 arthimeticExpr
 multiArthimeticExpr
 comparisonExpr
-bool_comparison_op
+numeric_comparison_op
 booleanLiteral
 numeric
 primitive

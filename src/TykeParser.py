@@ -219,7 +219,7 @@ class TykeParser ( Parser ):
     RULE_arthimeticExpr = 25
     RULE_multiArthimeticExpr = 26
     RULE_comparisonExpr = 27
-    RULE_bool_comparison_op = 28
+    RULE_numeric_comparison_op = 28
     RULE_booleanLiteral = 29
     RULE_numeric = 30
     RULE_primitive = 31
@@ -240,7 +240,7 @@ class TykeParser ( Parser ):
                    "funcCallStmt", "declareAndAssignStmt", "assigmentStmt", 
                    "funcDefArgList", "typedArgList", "typedArg", "varDeclare", 
                    "arithmetic_op", "arthimeticExpr", "multiArthimeticExpr", 
-                   "comparisonExpr", "bool_comparison_op", "booleanLiteral", 
+                   "comparisonExpr", "numeric_comparison_op", "booleanLiteral", 
                    "numeric", "primitive", "field", "simpleExpression", 
                    "expression", "funcCall", "funcCallDataList", "dataList", 
                    "data", "returnType", "varType" ]
@@ -1957,8 +1957,8 @@ class TykeParser ( Parser ):
                 return self.getTypedRuleContext(TykeParser.SimpleExpressionContext,i)
 
 
-        def bool_comparison_op(self):
-            return self.getTypedRuleContext(TykeParser.Bool_comparison_opContext,0)
+        def numeric_comparison_op(self):
+            return self.getTypedRuleContext(TykeParser.Numeric_comparison_opContext,0)
 
 
         def getRuleIndex(self):
@@ -1988,7 +1988,7 @@ class TykeParser ( Parser ):
                 self.state = 277
                 self.simpleExpression()
                 self.state = 278
-                self.bool_comparison_op()
+                self.numeric_comparison_op()
                 self.state = 279
                 self.simpleExpression()
                 pass
@@ -1999,7 +1999,7 @@ class TykeParser ( Parser ):
                 self.state = 282
                 self.simpleExpression()
                 self.state = 283
-                self.bool_comparison_op()
+                self.numeric_comparison_op()
                 self.state = 284
                 self.simpleExpression()
                 self.state = 285
@@ -2017,7 +2017,7 @@ class TykeParser ( Parser ):
         return localctx
 
 
-    class Bool_comparison_opContext(ParserRuleContext):
+    class Numeric_comparison_opContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2042,23 +2042,23 @@ class TykeParser ( Parser ):
             return self.getToken(TykeParser.GTE, 0)
 
         def getRuleIndex(self):
-            return TykeParser.RULE_bool_comparison_op
+            return TykeParser.RULE_numeric_comparison_op
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterBool_comparison_op" ):
-                listener.enterBool_comparison_op(self)
+            if hasattr( listener, "enterNumeric_comparison_op" ):
+                listener.enterNumeric_comparison_op(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitBool_comparison_op" ):
-                listener.exitBool_comparison_op(self)
+            if hasattr( listener, "exitNumeric_comparison_op" ):
+                listener.exitNumeric_comparison_op(self)
 
 
 
 
-    def bool_comparison_op(self):
+    def numeric_comparison_op(self):
 
-        localctx = TykeParser.Bool_comparison_opContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 56, self.RULE_bool_comparison_op)
+        localctx = TykeParser.Numeric_comparison_opContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 56, self.RULE_numeric_comparison_op)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)

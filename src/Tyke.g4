@@ -43,9 +43,9 @@ arthimeticExpr : simpleExpression (arithmetic_op simpleExpression)* |
                 '(' simpleExpression (arithmetic_op simpleExpression)* ')' ;
 multiArthimeticExpr : arthimeticExpr ( arithmetic_op arthimeticExpr)* ;
 
-comparisonExpr: simpleExpression bool_comparison_op simpleExpression |
-                '(' simpleExpression bool_comparison_op simpleExpression ')' ;
-bool_comparison_op : EQ | NEQ | LT | LTE | GT | GTE ;
+comparisonExpr: simpleExpression numeric_comparison_op simpleExpression |
+                '(' simpleExpression numeric_comparison_op simpleExpression ')' ;
+numeric_comparison_op : EQ | NEQ | LT | LTE | GT | GTE ;
 booleanLiteral : TRUE | FALSE ;
 // simpleBooleanTerm : (booleanLiteral | numeric | NAME | funcCall) ;
 

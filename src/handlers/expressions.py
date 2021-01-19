@@ -436,11 +436,11 @@ class __ExpressionHandler(BaseHandler):
             sys.stderr.write("arithmetic needs at least 2 simpleExpression")
             sys.exit(3)
 
-        if compExpr.bool_comparison_op():
-            compOpList = [compExpr.bool_comparison_op()]
+        if compExpr.numeric_comparison_op():
+            compOpList = [compExpr.numeric_comparison_op()]
         else:
             compOpList = []
-            # compOpList.stderr.write("comparison needs at least 1 bool_comparison_op")
+            # compOpList.stderr.write("comparison needs at least 1 numeric_comparison_op")
             # sys.exit(3)
 
         if(len(compOpList) > 1):

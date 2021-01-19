@@ -260,12 +260,12 @@ class TykeListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by TykeParser#bool_comparison_op.
-    def enterBool_comparison_op(self, ctx:TykeParser.Bool_comparison_opContext):
+    # Enter a parse tree produced by TykeParser#numeric_comparison_op.
+    def enterNumeric_comparison_op(self, ctx:TykeParser.Numeric_comparison_opContext):
         pass
 
-    # Exit a parse tree produced by TykeParser#bool_comparison_op.
-    def exitBool_comparison_op(self, ctx:TykeParser.Bool_comparison_opContext):
+    # Exit a parse tree produced by TykeParser#numeric_comparison_op.
+    def exitNumeric_comparison_op(self, ctx:TykeParser.Numeric_comparison_opContext):
         pass
 
 
