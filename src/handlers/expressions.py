@@ -89,9 +89,37 @@ class __ExpressionHandler(BaseHandler):
 
     def handle_booleanExpression(self, boolExprCtx, builder, newScopeObj):
         if boolExprCtx.simpleBooleanExpression():
-            simpBoolCtx = boolExprCtx.simpleBooleanExpression()
-            return self.handle_simpleBooleanExpression(simpBoolCtx, builder, newScopeObj)
+            simpBoolCtxList = boolExprCtx.simpleBooleanExpression()
+
+            termResultList = []
+            for simpBoolCtx in simpBoolCtxList:
+                termResult = self.handle_simpleBooleanExpression(simpBoolCtx, builder, newScopeObj)
+                termResultList.append(termResult)
+
+            revTermList = termResultList
+            revBoolOp = boolExprCtx.boolean_comparison_op()
+            revTermList.reverse()
+            revBoolOp.reverse()
+
+            while revBoolOp:
+                lhs = revTermList.pop()
+                rhs = revTermList.pop()
+                bool_op = revBoolOp.pop()
+                newTerm = self.resolve_boolean_comparison(lhs, rhs, bool_op, builder)
+                revTermList.append(newTerm)
+                # fail_fast("This is not implemented yet")
+            return revTermList[0]
         fail_fast("Invalid boolean expression")
+
+    def resolve_boolean_comparison(self, lhs, rhs, bool_op, builder):
+        if bool_op.AND():
+            return builder.and_(lhs, rhs)
+        elif bool_op.OR():
+            return builder.or_(lhs, rhs)
+        elif bool_op.XOR():
+            return builder.xor_(lhs, rhs)
+        else:
+            fail_fast(f'Unhandled boolean operator -> {bool_op.getText()}')
 
     def handle_simpleBooleanExpression(self, boolExprCtx, builder, newScopeObj):
         if boolExprCtx.comparisonExpr():

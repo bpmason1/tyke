@@ -47,7 +47,8 @@ comparisonExpr: simpleExpression numeric_comparison_op simpleExpression |
                 '(' simpleExpression numeric_comparison_op simpleExpression ')' ;
 
 simpleBooleanExpression : booleanLiteral | NAME | funcCall | comparisonExpr ;
-booleanExpression : simpleBooleanExpression;
+booleanExpression : simpleBooleanExpression (boolean_comparison_op simpleBooleanExpression)* |
+                    '(' simpleBooleanExpression (boolean_comparison_op simpleBooleanExpression)* ')';
 
 boolean_comparison_op : AND | OR | XOR ;
 numeric_comparison_op : EQ | NEQ | LT | LTE | GT | GTE ;
