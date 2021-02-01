@@ -38,10 +38,13 @@ typedArg: NAME ':' varType ;
 
 varDeclare: LET MUT? NAME ;
 
+arith_factor_op: MULTIPLY | DIVIDE ;
+arith_term_op: ADD | SUBTRACT ;
 arithmetic_op : ADD | SUBTRACT | MULTIPLY | DIVIDE ;
 factor: simpleExpression (KW_POWER simpleExpression)? | '(' factor ')';
-arthimeticExpr : factor (arithmetic_op factor)* |
-                '(' factor (arithmetic_op factor)* ')' ;
+term : factor (arith_factor_op factor)* | '(' term ')';
+arthimeticExpr : term (arith_term_op term)* |
+                '(' term (arith_term_op term)* ')' ;
 multiArthimeticExpr : arthimeticExpr ( arithmetic_op arthimeticExpr)* ;
 
 comparisonExpr: simpleExpression numeric_comparison_op simpleExpression |

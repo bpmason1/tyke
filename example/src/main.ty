@@ -9,5 +9,8 @@ def main() -> int {
   let line = newLine(2, 5, 6, 18);
 
   fib(12);
+
+  let x = 2 * 3 + 4 * 10;
+  print(x);
   return 0;
 }

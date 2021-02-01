@@ -309,19 +309,52 @@ class __ExpressionHandler(BaseHandler):
         else:
             fail_fast("the power function is malformed")
 
-    def handle_arthimeticExpr(self, arithExpr, builder, newScopeObj):
-        factorCtxList = arithExpr.factor()
-        factorList = [self.handle_factor(f, builder, newScopeObj) for f in factorCtxList]
+    def handle_term(self, termCtx, builder, newScopeObj):
+        numFactor = len(termCtx.factor())
+        numOp = len(termCtx.arith_factor_op())
+        if numFactor != (numOp + 1):
+            fail_fast("Malformed factor math: " + termCtx.getText())
 
-        if arithExpr.arithmetic_op():
-            arithOpCtx = arithExpr.arithmetic_op()
+        revArithOpList = termCtx.arith_factor_op()
+        revArithOpList.reverse()
+
+        revFactorList = [self.handle_factor(f, builder, newScopeObj) for f in termCtx.factor()]
+        revFactorList.reverse()
+
+        while revArithOpList:
+            lhs = revFactorList.pop()
+            rhs = revFactorList.pop()
+            arithOp = revArithOpList.pop()
+            fn = get_llvmlite_arithmetic_function(lhs.type, arithOp, builder)
+            result = fn(lhs, rhs)
+            revFactorList.append(result)
+
+        return revFactorList[0]
+
+    def handle_arthimeticExpr(self, arithExpr, builder, newScopeObj):
+        termCtxList = arithExpr.term()
+        termList = [self.handle_term(f, builder, newScopeObj) for f in termCtxList]
+
+        if arithExpr.arith_term_op():
+            arithOpCtx = arithExpr.arith_term_op()
             arithOpList = [token for token in arithOpCtx]
         else:
             arithOpList = []
-            # sys.stderr.write("arithmetic needs at least 1 arithmetic_op")
-            # sys.exit(3)
 
-        return self._arith_from_op_and_term_lists(arithOpList, factorList, builder, newScopeObj)
+        revTemList = [t for t in termList]
+        revTemList.reverse()
+
+        revArithOpList = [op for op in arithOpList]
+        revArithOpList.reverse()
+
+        while revArithOpList:
+            lhs = revTemList.pop()
+            rhs = revTemList.pop()
+            arithOp = revArithOpList.pop()
+            fn = get_llvmlite_arithmetic_function(lhs.type, arithOp, builder)
+            result = fn(lhs, rhs)
+            revTemList.append(result)
+        return revTemList[0]
 
     def handele_statementList(self, stmtList, builder, irFunc, newScopeObj):
         for exprCtx in stmtList.statement():

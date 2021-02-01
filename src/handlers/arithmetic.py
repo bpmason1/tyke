@@ -26,13 +26,13 @@ def get_double_operator(opCtx: TykeParser.Arithmetic_opContext, builder):
         sys.exit(2)
 
 def get_integer_operator(opCtx: TykeParser.Arithmetic_opContext, builder):
-    if opCtx.ADD():
+    if hasattr(opCtx, 'ADD') and opCtx.ADD():
         return builder.add
-    elif opCtx.SUBTRACT():
+    elif hasattr(opCtx, 'SUBTRACT') and opCtx.SUBTRACT():
         return builder.sub
-    elif opCtx.MULTIPLY():
+    elif hasattr(opCtx, 'MULTIPLY') and opCtx.MULTIPLY():
         return builder.mul
-    elif opCtx.DIVIDE():
+    elif hasattr(opCtx, 'DIVIDE') and opCtx.DIVIDE():
         return builder.sdiv
     else:
         sys.stderr.write(f'Unknown integer operator: {opCtx.getText()}')

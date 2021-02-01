@@ -224,6 +224,24 @@ class TykeListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by TykeParser#arith_factor_op.
+    def enterArith_factor_op(self, ctx:TykeParser.Arith_factor_opContext):
+        pass
+
+    # Exit a parse tree produced by TykeParser#arith_factor_op.
+    def exitArith_factor_op(self, ctx:TykeParser.Arith_factor_opContext):
+        pass
+
+
+    # Enter a parse tree produced by TykeParser#arith_term_op.
+    def enterArith_term_op(self, ctx:TykeParser.Arith_term_opContext):
+        pass
+
+    # Exit a parse tree produced by TykeParser#arith_term_op.
+    def exitArith_term_op(self, ctx:TykeParser.Arith_term_opContext):
+        pass
+
+
     # Enter a parse tree produced by TykeParser#arithmetic_op.
     def enterArithmetic_op(self, ctx:TykeParser.Arithmetic_opContext):
         pass
@@ -239,6 +257,15 @@ class TykeListener(ParseTreeListener):
 
     # Exit a parse tree produced by TykeParser#factor.
     def exitFactor(self, ctx:TykeParser.FactorContext):
+        pass
+
+
+    # Enter a parse tree produced by TykeParser#term.
+    def enterTerm(self, ctx:TykeParser.TermContext):
+        pass
+
+    # Exit a parse tree produced by TykeParser#term.
+    def exitTerm(self, ctx:TykeParser.TermContext):
         pass
 
 
