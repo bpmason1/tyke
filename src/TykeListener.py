@@ -233,6 +233,15 @@ class TykeListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by TykeParser#factor.
+    def enterFactor(self, ctx:TykeParser.FactorContext):
+        pass
+
+    # Exit a parse tree produced by TykeParser#factor.
+    def exitFactor(self, ctx:TykeParser.FactorContext):
+        pass
+
+
     # Enter a parse tree produced by TykeParser#arthimeticExpr.
     def enterArthimeticExpr(self, ctx:TykeParser.ArthimeticExprContext):
         pass

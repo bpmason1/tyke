@@ -298,12 +298,20 @@ class __ExpressionHandler(BaseHandler):
         arithOpList = [token for token in arithOpCtx]
         return self._arith_from_op_and_term_lists(arithOpList, simpleExpList, builder, newScopeObj)
 
-    def handle_arthimeticExpr(self, arithExpr, builder, newScopeObj):
-        if arithExpr.simpleExpression():
-            simpExpList = [token for token in arithExpr.simpleExpression()]
+    def handle_factor(self, factorCtx, builder, newScopeObj):
+        numValues = len(factorCtx.simpleExpression())
+        if numValues == 2 and factorCtx.KW_POWER():
+            fail_fast("TODO - finish me!!!")
+        elif numValues == 1 and factorCtx.KW_POWER() == None:
+            simpExprCtx = factorCtx.simpleExpression()[0]
+            result = self.handle_simpleExpr(simpExprCtx, builder, newScopeObj)
+            return result
         else:
-            sys.stderr.write("arithmetic needs at least 2 simpleExpression")
-            sys.exit(3)
+            fail_fast("the power function is malformed")
+
+    def handle_arthimeticExpr(self, arithExpr, builder, newScopeObj):
+        factorCtxList = arithExpr.factor()
+        factorList = [self.handle_factor(f, builder, newScopeObj) for f in factorCtxList]
 
         if arithExpr.arithmetic_op():
             arithOpCtx = arithExpr.arithmetic_op()
@@ -313,7 +321,7 @@ class __ExpressionHandler(BaseHandler):
             # sys.stderr.write("arithmetic needs at least 1 arithmetic_op")
             # sys.exit(3)
 
-        return self._arith_from_op_and_term_lists(arithOpList, simpExpList, builder, newScopeObj)
+        return self._arith_from_op_and_term_lists(arithOpList, factorList, builder, newScopeObj)
 
     def handele_statementList(self, stmtList, builder, irFunc, newScopeObj):
         for exprCtx in stmtList.statement():

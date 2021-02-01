@@ -39,8 +39,9 @@ typedArg: NAME ':' varType ;
 varDeclare: LET MUT? NAME ;
 
 arithmetic_op : ADD | SUBTRACT | MULTIPLY | DIVIDE ;
-arthimeticExpr : simpleExpression (arithmetic_op simpleExpression)* |
-                '(' simpleExpression (arithmetic_op simpleExpression)* ')' ;
+factor: simpleExpression (KW_POWER simpleExpression)? | '(' factor ')';
+arthimeticExpr : factor (arithmetic_op factor)* |
+                '(' factor (arithmetic_op factor)* ')' ;
 multiArthimeticExpr : arthimeticExpr ( arithmetic_op arthimeticExpr)* ;
 
 comparisonExpr: simpleExpression numeric_comparison_op simpleExpression |
@@ -105,7 +106,7 @@ ADD: '+' ;
 SUBTRACT: '-' ;
 MULTIPLY: '*' ;
 DIVIDE: '/' ;
-
+KW_POWER: '**';
 DOUBLE: INTEGER '.' [0-9]+ ;
 INTEGER: '0' | NON_ZERO_INTEGER ;
 
