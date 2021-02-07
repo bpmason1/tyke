@@ -71,9 +71,6 @@ class __ExpressionHandler(BaseHandler):
         if currExprCtx.simpleExpression():
             simpExp = currExprCtx.simpleExpression()
             return self.handle_simpleExpr(simpExp, builder, newScopeObj)
-        elif currExprCtx.arthimeticExpr():
-            arithExpr = currExprCtx.arthimeticExpr()
-            return self.handle_arthimeticExpr(arithExpr, builder, newScopeObj)
         elif currExprCtx.multiArthimeticExpr():
             multiArithExpr = currExprCtx.multiArthimeticExpr()
             return self.handle_multiArthimeticExpr(multiArithExpr, builder, newScopeObj)

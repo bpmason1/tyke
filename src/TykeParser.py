@@ -12,7 +12,7 @@ else:
 def serializedATN():
     with StringIO() as buf:
         buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\61")
-        buf.write("\u01b7\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
+        buf.write("\u01b6\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
         buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
         buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23\t\23")
         buf.write("\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31")
@@ -50,26 +50,26 @@ def serializedATN():
         buf.write("\3#\3#\3#\3#\3#\7#\u0178\n#\f#\16#\u017b\13#\3#\3#\5#")
         buf.write("\u017f\n#\3$\3$\3%\3%\3&\3&\3\'\3\'\3(\3(\5(\u018b\n(")
         buf.write("\3)\3)\6)\u018f\n)\r)\16)\u0190\3*\3*\3*\3*\5*\u0197\n")
-        buf.write("*\3+\3+\3+\3+\3+\5+\u019e\n+\3,\3,\3,\3-\3-\5-\u01a5\n")
-        buf.write("-\3-\3-\3.\3.\3.\7.\u01ac\n.\f.\16.\u01af\13.\3/\3/\3")
-        buf.write("\60\3\60\3\61\3\61\3\61\2\4:<\62\2\4\6\b\n\f\16\20\22")
-        buf.write("\24\26\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BDFHJLNPR")
-        buf.write("TVXZ\\^`\2\13\3\2()\3\2&\'\3\2&)\3\2\23\25\3\2\r\22\3")
-        buf.write("\2\26\27\3\2+,\5\2\35\35#%..\4\2#$..\2\u01bb\2b\3\2\2")
-        buf.write("\2\4n\3\2\2\2\6r\3\2\2\2\b|\3\2\2\2\n\u0083\3\2\2\2\f")
-        buf.write("\u0089\3\2\2\2\16\u0091\3\2\2\2\20\u0099\3\2\2\2\22\u00a0")
-        buf.write("\3\2\2\2\24\u00aa\3\2\2\2\26\u00ae\3\2\2\2\30\u00b6\3")
-        buf.write("\2\2\2\32\u00bd\3\2\2\2\34\u00c5\3\2\2\2\36\u00c8\3\2")
-        buf.write("\2\2 \u00d2\3\2\2\2\"\u00d4\3\2\2\2$\u00db\3\2\2\2&\u00de")
+        buf.write("*\3+\3+\3+\3+\5+\u019d\n+\3,\3,\3,\3-\3-\5-\u01a4\n-\3")
+        buf.write("-\3-\3.\3.\3.\7.\u01ab\n.\f.\16.\u01ae\13.\3/\3/\3\60")
+        buf.write("\3\60\3\61\3\61\3\61\2\4:<\62\2\4\6\b\n\f\16\20\22\24")
+        buf.write("\26\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BDFHJLNPRTVX")
+        buf.write("Z\\^`\2\13\3\2()\3\2&\'\3\2&)\3\2\23\25\3\2\r\22\3\2\26")
+        buf.write("\27\3\2+,\5\2\35\35#%..\4\2#$..\2\u01b9\2b\3\2\2\2\4n")
+        buf.write("\3\2\2\2\6r\3\2\2\2\b|\3\2\2\2\n\u0083\3\2\2\2\f\u0089")
+        buf.write("\3\2\2\2\16\u0091\3\2\2\2\20\u0099\3\2\2\2\22\u00a0\3")
+        buf.write("\2\2\2\24\u00aa\3\2\2\2\26\u00ae\3\2\2\2\30\u00b6\3\2")
+        buf.write("\2\2\32\u00bd\3\2\2\2\34\u00c5\3\2\2\2\36\u00c8\3\2\2")
+        buf.write("\2 \u00d2\3\2\2\2\"\u00d4\3\2\2\2$\u00db\3\2\2\2&\u00de")
         buf.write("\3\2\2\2(\u00e5\3\2\2\2*\u00eb\3\2\2\2,\u00f1\3\2\2\2")
         buf.write(".\u00f9\3\2\2\2\60\u00fd\3\2\2\2\62\u0103\3\2\2\2\64\u0105")
         buf.write("\3\2\2\2\66\u0107\3\2\2\28\u0112\3\2\2\2:\u0122\3\2\2")
         buf.write("\2<\u013f\3\2\2\2>\u014e\3\2\2\2@\u0161\3\2\2\2B\u0167")
         buf.write("\3\2\2\2D\u017e\3\2\2\2F\u0180\3\2\2\2H\u0182\3\2\2\2")
         buf.write("J\u0184\3\2\2\2L\u0186\3\2\2\2N\u018a\3\2\2\2P\u018c\3")
-        buf.write("\2\2\2R\u0196\3\2\2\2T\u019d\3\2\2\2V\u019f\3\2\2\2X\u01a2")
-        buf.write("\3\2\2\2Z\u01a8\3\2\2\2\\\u01b0\3\2\2\2^\u01b2\3\2\2\2")
-        buf.write("`\u01b4\3\2\2\2bf\5\4\3\2ce\5\6\4\2dc\3\2\2\2eh\3\2\2")
+        buf.write("\2\2\2R\u0196\3\2\2\2T\u019c\3\2\2\2V\u019e\3\2\2\2X\u01a1")
+        buf.write("\3\2\2\2Z\u01a7\3\2\2\2\\\u01af\3\2\2\2^\u01b1\3\2\2\2")
+        buf.write("`\u01b3\3\2\2\2bf\5\4\3\2ce\5\6\4\2dc\3\2\2\2eh\3\2\2")
         buf.write("\2fd\3\2\2\2fg\3\2\2\2gj\3\2\2\2hf\3\2\2\2ik\5\b\5\2j")
         buf.write("i\3\2\2\2kl\3\2\2\2lj\3\2\2\2lm\3\2\2\2m\3\3\2\2\2no\7")
         buf.write("\36\2\2op\7.\2\2pq\7\37\2\2q\5\3\2\2\2rs\7!\2\2st\7 \2")
@@ -191,23 +191,22 @@ def serializedATN():
         buf.write("\u0197\5N(\2\u0193\u0197\7.\2\2\u0194\u0197\5P)\2\u0195")
         buf.write("\u0197\5V,\2\u0196\u0192\3\2\2\2\u0196\u0193\3\2\2\2\u0196")
         buf.write("\u0194\3\2\2\2\u0196\u0195\3\2\2\2\u0197S\3\2\2\2\u0198")
-        buf.write("\u019e\5R*\2\u0199\u019e\5<\37\2\u019a\u019e\5> \2\u019b")
-        buf.write("\u019e\5D#\2\u019c\u019e\5\30\r\2\u019d\u0198\3\2\2\2")
-        buf.write("\u019d\u0199\3\2\2\2\u019d\u019a\3\2\2\2\u019d\u019b\3")
-        buf.write("\2\2\2\u019d\u019c\3\2\2\2\u019eU\3\2\2\2\u019f\u01a0")
-        buf.write("\7.\2\2\u01a0\u01a1\5X-\2\u01a1W\3\2\2\2\u01a2\u01a4\7")
-        buf.write("\13\2\2\u01a3\u01a5\5Z.\2\u01a4\u01a3\3\2\2\2\u01a4\u01a5")
-        buf.write("\3\2\2\2\u01a5\u01a6\3\2\2\2\u01a6\u01a7\7\f\2\2\u01a7")
-        buf.write("Y\3\2\2\2\u01a8\u01ad\5\\/\2\u01a9\u01aa\7\b\2\2\u01aa")
-        buf.write("\u01ac\5\\/\2\u01ab\u01a9\3\2\2\2\u01ac\u01af\3\2\2\2")
-        buf.write("\u01ad\u01ab\3\2\2\2\u01ad\u01ae\3\2\2\2\u01ae[\3\2\2")
-        buf.write("\2\u01af\u01ad\3\2\2\2\u01b0\u01b1\5T+\2\u01b1]\3\2\2")
-        buf.write("\2\u01b2\u01b3\t\t\2\2\u01b3_\3\2\2\2\u01b4\u01b5\t\n")
-        buf.write("\2\2\u01b5a\3\2\2\2+flv\177\u008d\u0095\u009c\u00a4\u00a8")
-        buf.write("\u00b3\u00b9\u00c1\u00ca\u00d2\u00d7\u00e5\u00ed\u00f6")
-        buf.write("\u00ff\u010c\u0112\u011b\u0122\u012a\u012e\u0138\u013f")
-        buf.write("\u0147\u014b\u0154\u0161\u0167\u016f\u0179\u017e\u018a")
-        buf.write("\u0190\u0196\u019d\u01a4\u01ad")
+        buf.write("\u019d\5R*\2\u0199\u019d\5> \2\u019a\u019d\5D#\2\u019b")
+        buf.write("\u019d\5\30\r\2\u019c\u0198\3\2\2\2\u019c\u0199\3\2\2")
+        buf.write("\2\u019c\u019a\3\2\2\2\u019c\u019b\3\2\2\2\u019dU\3\2")
+        buf.write("\2\2\u019e\u019f\7.\2\2\u019f\u01a0\5X-\2\u01a0W\3\2\2")
+        buf.write("\2\u01a1\u01a3\7\13\2\2\u01a2\u01a4\5Z.\2\u01a3\u01a2")
+        buf.write("\3\2\2\2\u01a3\u01a4\3\2\2\2\u01a4\u01a5\3\2\2\2\u01a5")
+        buf.write("\u01a6\7\f\2\2\u01a6Y\3\2\2\2\u01a7\u01ac\5\\/\2\u01a8")
+        buf.write("\u01a9\7\b\2\2\u01a9\u01ab\5\\/\2\u01aa\u01a8\3\2\2\2")
+        buf.write("\u01ab\u01ae\3\2\2\2\u01ac\u01aa\3\2\2\2\u01ac\u01ad\3")
+        buf.write("\2\2\2\u01ad[\3\2\2\2\u01ae\u01ac\3\2\2\2\u01af\u01b0")
+        buf.write("\5T+\2\u01b0]\3\2\2\2\u01b1\u01b2\t\t\2\2\u01b2_\3\2\2")
+        buf.write("\2\u01b3\u01b4\t\n\2\2\u01b4a\3\2\2\2+flv\177\u008d\u0095")
+        buf.write("\u009c\u00a4\u00a8\u00b3\u00b9\u00c1\u00ca\u00d2\u00d7")
+        buf.write("\u00e5\u00ed\u00f6\u00ff\u010c\u0112\u011b\u0122\u012a")
+        buf.write("\u012e\u0138\u013f\u0147\u014b\u0154\u0161\u0167\u016f")
+        buf.write("\u0179\u017e\u018a\u0190\u0196\u019c\u01a3\u01ac")
         return buf.getvalue()
 
 
@@ -2990,10 +2989,6 @@ class TykeParser ( Parser ):
             return self.getTypedRuleContext(TykeParser.SimpleExpressionContext,0)
 
 
-        def arthimeticExpr(self):
-            return self.getTypedRuleContext(TykeParser.ArthimeticExprContext,0)
-
-
         def multiArthimeticExpr(self):
             return self.getTypedRuleContext(TykeParser.MultiArthimeticExprContext,0)
 
@@ -3025,7 +3020,7 @@ class TykeParser ( Parser ):
         localctx = TykeParser.ExpressionContext(self, self._ctx, self.state)
         self.enterRule(localctx, 82, self.RULE_expression)
         try:
-            self.state = 411
+            self.state = 410
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,38,self._ctx)
             if la_ == 1:
@@ -3037,24 +3032,18 @@ class TykeParser ( Parser ):
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 407
-                self.arthimeticExpr(0)
+                self.multiArthimeticExpr()
                 pass
 
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
                 self.state = 408
-                self.multiArthimeticExpr()
+                self.booleanExpression()
                 pass
 
             elif la_ == 4:
                 self.enterOuterAlt(localctx, 4)
                 self.state = 409
-                self.booleanExpression()
-                pass
-
-            elif la_ == 5:
-                self.enterOuterAlt(localctx, 5)
-                self.state = 410
                 self.makeStructExpr()
                 pass
 
@@ -3101,9 +3090,9 @@ class TykeParser ( Parser ):
         self.enterRule(localctx, 84, self.RULE_funcCall)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 413
+            self.state = 412
             self.match(TykeParser.NAME)
-            self.state = 414
+            self.state = 413
             self.funcCallDataList()
         except RecognitionException as re:
             localctx.exception = re
@@ -3145,17 +3134,17 @@ class TykeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 416
+            self.state = 415
             self.match(TykeParser.T__8)
-            self.state = 418
+            self.state = 417
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.T__8) | (1 << TykeParser.TRUE) | (1 << TykeParser.FALSE) | (1 << TykeParser.DOUBLE) | (1 << TykeParser.INTEGER) | (1 << TykeParser.NAME) | (1 << TykeParser.STRING))) != 0):
-                self.state = 417
+                self.state = 416
                 self.dataList()
 
 
-            self.state = 420
+            self.state = 419
             self.match(TykeParser.T__9)
         except RecognitionException as re:
             localctx.exception = re
@@ -3200,17 +3189,17 @@ class TykeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 422
+            self.state = 421
             self.data()
-            self.state = 427
+            self.state = 426
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==TykeParser.T__5:
-                self.state = 423
+                self.state = 422
                 self.match(TykeParser.T__5)
-                self.state = 424
+                self.state = 423
                 self.data()
-                self.state = 429
+                self.state = 428
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -3253,7 +3242,7 @@ class TykeParser ( Parser ):
         self.enterRule(localctx, 90, self.RULE_data)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 430
+            self.state = 429
             self.expression()
         except RecognitionException as re:
             localctx.exception = re
@@ -3306,7 +3295,7 @@ class TykeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 432
+            self.state = 431
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.BOOL) | (1 << TykeParser.KW_DOUBLE) | (1 << TykeParser.KW_INT) | (1 << TykeParser.VOID) | (1 << TykeParser.NAME))) != 0)):
                 self._errHandler.recoverInline(self)
@@ -3358,7 +3347,7 @@ class TykeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 434
+            self.state = 433
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.KW_DOUBLE) | (1 << TykeParser.KW_INT) | (1 << TykeParser.NAME))) != 0)):
                 self._errHandler.recoverInline(self)

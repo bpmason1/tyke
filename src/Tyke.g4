@@ -63,7 +63,7 @@ numeric : DOUBLE | INTEGER ;
 primitive : numeric | STRING ;
 field : NAME FIELD_REF+ ;
 simpleExpression : (primitive | NAME | field | funcCall) ;
-expression : simpleExpression | arthimeticExpr | multiArthimeticExpr | booleanExpression | makeStructExpr;
+expression : simpleExpression | multiArthimeticExpr | booleanExpression | makeStructExpr;
 
 funcCall: NAME funcCallDataList ;
 funcCallDataList: '(' dataList? ')' ;
