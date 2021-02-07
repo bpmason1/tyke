@@ -400,8 +400,8 @@ class __ExpressionHandler(BaseHandler):
 
     def _arith_from_op_and_term_lists(self, arithOpList, simpExpList, builder, newScopeObj):
         if (len(arithOpList) + 1) != len(simpExpList):
-            sys.stderr.write(f'Malformed arithmetic expression: {len(arithOpList)} operator and {len(simpExpList)} terms')
-            sys.exit(3)
+            msg = f'Malformed arithmetic expression: {len(arithOpList)} operator and {len(simpExpList)} terms'
+            fail_fast(msg)
 
         if not arithOpList:
             return self.handle_simpleExpr(simpExpList[0], builder, newScopeObj)
@@ -432,8 +432,8 @@ class __ExpressionHandler(BaseHandler):
 
                 last_op_mult_div = True
             else:
-                sys.stderr.write(f'Unknown arithmetic operator')
-                sys.exit(3)
+                msg = 'Unknown arithmetic operator'
+                fail_fast(msg)
 
         if not last_op_mult_div:
             # avoids accidentally dropping the last term
