@@ -42,9 +42,10 @@ arith_factor_op: MULTIPLY | DIVIDE ;
 arith_term_op: ADD | SUBTRACT ;
 arithmetic_op : ADD | SUBTRACT | MULTIPLY | DIVIDE ;
 factor: simpleExpression (KW_POWER simpleExpression)? | '(' factor ')';
-term : factor (arith_factor_op factor)* | '(' term ')';
+term : factor (arith_factor_op factor)* | '(' term ')' | term (arith_factor_op term)+;
 arthimeticExpr : term (arith_term_op term)* |
-                '(' term (arith_term_op term)* ')' ;
+                '(' arthimeticExpr ')' |
+                arthimeticExpr (arith_term_op arthimeticExpr)+;
 multiArthimeticExpr : arthimeticExpr ( arithmetic_op arthimeticExpr)* ;
 
 comparisonExpr: simpleExpression numeric_comparison_op simpleExpression |

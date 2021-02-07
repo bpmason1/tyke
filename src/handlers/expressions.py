@@ -310,15 +310,20 @@ class __ExpressionHandler(BaseHandler):
             fail_fast("the power function is malformed")
 
     def handle_term(self, termCtx, builder, newScopeObj):
-        numFactor = len(termCtx.factor())
-        numOp = len(termCtx.arith_factor_op())
-        if numFactor != (numOp + 1):
-            fail_fast("Malformed factor math: " + termCtx.getText())
+        # numFactor = len(termCtx.factor())
+        # numOp = len(termCtx.arith_factor_op())
+        # if numFactor != (numOp + 1):
+        #     fail_fast("Malformed factor math: " + termCtx.getText())
 
         revArithOpList = termCtx.arith_factor_op()
         revArithOpList.reverse()
 
-        revFactorList = [self.handle_factor(f, builder, newScopeObj) for f in termCtx.factor()]
+        subtermList = termCtx.term()
+        revFactorList = []
+        if subtermList:
+            revFactorList = [self.handle_term(tc, builder, newScopeObj) for tc in subtermList]
+        else:
+            revFactorList = [self.handle_factor(f, builder, newScopeObj) for f in termCtx.factor()]
         revFactorList.reverse()
 
         while revArithOpList:
@@ -331,21 +336,26 @@ class __ExpressionHandler(BaseHandler):
 
         return revFactorList[0]
 
-    def handle_arthimeticExpr(self, arithExpr, builder, newScopeObj):
-        termCtxList = arithExpr.term()
-        termList = [self.handle_term(f, builder, newScopeObj) for f in termCtxList]
+    def handle_arthimeticExpr(self, arithExprCtx, builder, newScopeObj):
+        # termCtxList = arithExprCtx.term()
+        # termList = [self.handle_term(f, builder, newScopeObj) for f in termCtxList]
 
-        if arithExpr.arith_term_op():
-            arithOpCtx = arithExpr.arith_term_op()
-            arithOpList = [token for token in arithOpCtx]
-        else:
-            arithOpList = []
+        # if arithExprCtx.arith_term_op():
+        #     arithOpCtx = arithExprCtx.arith_term_op()
+        #     arithOpList = [token for token in arithOpCtx]
+        # else:
+        #     arithOpList = []
 
-        revTemList = [t for t in termList]
-        revTemList.reverse()
-
-        revArithOpList = [op for op in arithOpList]
+        revArithOpList = arithExprCtx.arith_term_op()
         revArithOpList.reverse()
+
+        revTemList = []
+        subArithList = arithExprCtx.arthimeticExpr()
+        if subArithList:
+            revTemList = [self.handle_arthimeticExpr(ar, builder, newScopeObj) for ar in subArithList]
+        else:
+            revTemList = [self.handle_term(t, builder, newScopeObj) for t in arithExprCtx.term()]
+        revTemList.reverse()
 
         while revArithOpList:
             lhs = revTemList.pop()
