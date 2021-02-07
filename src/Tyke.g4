@@ -46,7 +46,8 @@ term : factor (arith_factor_op factor)* | '(' term ')' | term (arith_factor_op t
 arthimeticExpr : term (arith_term_op term)* |
                 '(' arthimeticExpr ')' |
                 arthimeticExpr (arith_term_op arthimeticExpr)+;
-multiArthimeticExpr : arthimeticExpr ( arithmetic_op arthimeticExpr)* ;
+multiArthimeticExpr : arthimeticExpr ( arithmetic_op arthimeticExpr)* |
+                      '(' multiArthimeticExpr ')';
 
 comparisonExpr: simpleExpression numeric_comparison_op simpleExpression |
                 '(' simpleExpression numeric_comparison_op simpleExpression ')' ;

@@ -289,6 +289,9 @@ class __ExpressionHandler(BaseHandler):
             return result
 
     def handle_multiArthimeticExpr(self, multiArithExpr, builder, newScopeObj):
+        if multiArithExpr.multiArthimeticExpr():
+            subMultArithExpr = multiArithExpr.multiArthimeticExpr()
+            return self.handle_multiArthimeticExpr(subMultArithExpr, builder, newScopeObj)
         arthimeticExprList = [A for A in multiArithExpr.arthimeticExpr()]
         simpleExpList = [self.handle_arthimeticExpr(expr, builder, newScopeObj) for expr in arthimeticExprList]
         arithOpCtx = multiArithExpr.arithmetic_op()

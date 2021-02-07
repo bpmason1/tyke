@@ -143,7 +143,12 @@ def fib_iter(n: int) -> int {
   return result;
 }
 
-def nested_arith_parens(y: int) -> int {
-  let x = (3 + (1 + 1))*(y + (3*2));
+def nested_arith_parens_1(y: int) -> int {
+  let x = (3 + (1 + 1))*(y + (3*2)) / 2;
+  return x;
+}
+
+def nested_arith_parens_2(y: int) -> int {
+  let x =  (( ( (3 + (1 + 1))*(y + (3*2)) / 2 ) ));
   return x;
 }
