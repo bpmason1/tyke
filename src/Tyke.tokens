@@ -45,6 +45,7 @@ NAME=44
 STRING=45
 Newline=46
 Whitespace=47
+LineComment=48
 '{'=1
 '}'=2
 'def'=3

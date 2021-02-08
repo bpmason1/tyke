@@ -148,3 +148,8 @@ Whitespace
     :   [ \t]+
         -> skip
     ;
+
+LineComment
+    :   '#' ~[\r\n]*
+        -> skip
+    ;
