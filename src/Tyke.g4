@@ -25,7 +25,7 @@ loopStmt: whileStmt;
 statementList: statement+ ;
 
 statement: returnStmt | funcCallStmt | assigmentStmt | declareAndAssignStmt | conditionalStmt | loopStmt;
-returnStmt: 'return' (simpleExpression | multiArthimeticExpr)?  SEMICOLON;
+returnStmt: 'return' (simpleExpression | arthimeticExpr)?  SEMICOLON;
 funcCallStmt: funcCall SEMICOLON;
 
 declareAndAssignStmt : varDeclare '=' expression SEMICOLON ;
@@ -41,13 +41,11 @@ varDeclare: LET MUT? NAME ;
 arith_factor_op: MULTIPLY | DIVIDE ;
 arith_term_op: ADD | SUBTRACT ;
 arithmetic_op : ADD | SUBTRACT | MULTIPLY | DIVIDE ;
-factor: simpleExpression (KW_POWER simpleExpression)? | '(' factor ')';
-term : factor (arith_factor_op factor)* | '(' term ')' | term (arith_factor_op term)+;
-arthimeticExpr : term (arith_term_op term)* |
-                '(' arthimeticExpr ')' |
-                arthimeticExpr (arith_term_op arthimeticExpr)+;
-multiArthimeticExpr : arthimeticExpr ( arithmetic_op arthimeticExpr)* |
-                      '(' multiArthimeticExpr ')';
+arith_atom: simpleExpression | '(' arthimeticExpr ')';
+power: arith_atom (KW_POWER arith_atom)*;
+factor: power (arith_factor_op power)*;
+term : factor (arith_term_op factor)*;
+arthimeticExpr : term;
 
 comparisonExpr: simpleExpression numeric_comparison_op simpleExpression |
                 '(' simpleExpression numeric_comparison_op simpleExpression ')' ;
@@ -64,7 +62,7 @@ numeric : DOUBLE | INTEGER ;
 primitive : numeric | STRING ;
 field : NAME FIELD_REF+ ;
 simpleExpression : (primitive | NAME | field | funcCall) ;
-expression : simpleExpression | multiArthimeticExpr | booleanExpression | makeStructExpr;
+expression : simpleExpression | arthimeticExpr | booleanExpression | makeStructExpr;
 
 funcCall: NAME funcCallDataList ;
 funcCallDataList: '(' dataList? ')' ;

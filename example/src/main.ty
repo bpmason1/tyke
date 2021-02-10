@@ -14,6 +14,7 @@ def main() -> int {
 }
 
 def nested_arith_parens(y: int) -> int {
-  let x = ( (3 + (1 + 1))*(y + (3*2)) / 2 );
+  let x = (y + ((9 - 2*(1+2))*2)) + (3 + (1 + 1)) * ((7+1)/4);
+  # x = 10 + 5 * 2
   return x;
 }

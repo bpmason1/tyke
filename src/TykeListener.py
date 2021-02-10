@@ -251,6 +251,24 @@ class TykeListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by TykeParser#arith_atom.
+    def enterArith_atom(self, ctx:TykeParser.Arith_atomContext):
+        pass
+
+    # Exit a parse tree produced by TykeParser#arith_atom.
+    def exitArith_atom(self, ctx:TykeParser.Arith_atomContext):
+        pass
+
+
+    # Enter a parse tree produced by TykeParser#power.
+    def enterPower(self, ctx:TykeParser.PowerContext):
+        pass
+
+    # Exit a parse tree produced by TykeParser#power.
+    def exitPower(self, ctx:TykeParser.PowerContext):
+        pass
+
+
     # Enter a parse tree produced by TykeParser#factor.
     def enterFactor(self, ctx:TykeParser.FactorContext):
         pass
@@ -275,15 +293,6 @@ class TykeListener(ParseTreeListener):
 
     # Exit a parse tree produced by TykeParser#arthimeticExpr.
     def exitArthimeticExpr(self, ctx:TykeParser.ArthimeticExprContext):
-        pass
-
-
-    # Enter a parse tree produced by TykeParser#multiArthimeticExpr.
-    def enterMultiArthimeticExpr(self, ctx:TykeParser.MultiArthimeticExprContext):
-        pass
-
-    # Exit a parse tree produced by TykeParser#multiArthimeticExpr.
-    def exitMultiArthimeticExpr(self, ctx:TykeParser.MultiArthimeticExprContext):
         pass
 
 

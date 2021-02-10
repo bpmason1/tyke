@@ -71,9 +71,9 @@ class __ExpressionHandler(BaseHandler):
         if currExprCtx.simpleExpression():
             simpExp = currExprCtx.simpleExpression()
             return self.handle_simpleExpr(simpExp, builder, newScopeObj)
-        elif currExprCtx.multiArthimeticExpr():
-            multiArithExpr = currExprCtx.multiArthimeticExpr()
-            return self.handle_multiArthimeticExpr(multiArithExpr, builder, newScopeObj)
+        elif currExprCtx.arthimeticExpr():
+            arthimeticExprCtx = currExprCtx.arthimeticExpr()
+            return self.handle_arthimeticExpr(arthimeticExprCtx, builder, newScopeObj)
         elif currExprCtx.booleanExpression():
             boolExpr = currExprCtx.booleanExpression()
             return self.handle_booleanExpression(boolExpr, builder, newScopeObj)
@@ -129,9 +129,9 @@ class __ExpressionHandler(BaseHandler):
             simpleExprCtx = retStmt.simpleExpression()
             retVal = self.handle_simpleExpr(simpleExprCtx, builder, newScopeObj)
             builder.ret(retVal)
-        elif retStmt.multiArthimeticExpr():
-            multiArithExpr = retStmt.multiArthimeticExpr()
-            total = self.handle_multiArthimeticExpr(multiArithExpr, builder, newScopeObj)
+        elif retStmt.arthimeticExpr():
+            arthimeticExpr = retStmt.arthimeticExpr()
+            total = self.handle_arthimeticExpr(arthimeticExpr, builder, newScopeObj)
             return builder.ret(total)
         else:
             builder.ret_void()
@@ -288,43 +288,82 @@ class __ExpressionHandler(BaseHandler):
             result = builder.call(callFn, callArgs)
             return result
 
-    def handle_multiArthimeticExpr(self, multiArithExpr, builder, newScopeObj):
-        if multiArithExpr.multiArthimeticExpr():
-            subMultArithExpr = multiArithExpr.multiArthimeticExpr()
-            return self.handle_multiArthimeticExpr(subMultArithExpr, builder, newScopeObj)
-        arthimeticExprList = [A for A in multiArithExpr.arthimeticExpr()]
-        simpleExpList = [self.handle_arthimeticExpr(expr, builder, newScopeObj) for expr in arthimeticExprList]
-        arithOpCtx = multiArithExpr.arithmetic_op()
-        arithOpList = [token for token in arithOpCtx]
-        return self._arith_from_op_and_term_lists(arithOpList, simpleExpList, builder, newScopeObj)
+    # def handle_multiArthimeticExpr(self, multiArithExpr, builder, newScopeObj):
+    #     if multiArithExpr.multiArthimeticExpr():
+    #         subMultArithExpr = multiArithExpr.multiArthimeticExpr()
+    #         return self.handle_multiArthimeticExpr(subMultArithExpr, builder, newScopeObj)
+    #     arthimeticExprList = [A for A in multiArithExpr.arthimeticExpr()]
+    #     simpleExpList = [self.handle_arthimeticExpr(expr, builder, newScopeObj) for expr in arthimeticExprList]
+    #     arithOpCtx = multiArithExpr.arithmetic_op()
+    #     arithOpList = [token for token in arithOpCtx]
+    #     return self._arith_from_op_and_term_lists(arithOpList, simpleExpList, builder, newScopeObj)
 
-    def handle_factor(self, factorCtx, builder, newScopeObj):
-        numValues = len(factorCtx.simpleExpression())
-        if numValues == 2 and factorCtx.KW_POWER():
-            fail_fast("TODO - finish me!!!")
-        elif numValues == 1 and factorCtx.KW_POWER() == None:
-            simpExprCtx = factorCtx.simpleExpression()[0]
-            result = self.handle_simpleExpr(simpExprCtx, builder, newScopeObj)
-            return result
-        else:
-            fail_fast("the power function is malformed")
+    def handle_arith_atom(self, arithAtomCtx, builder, newScopeObj):
+        if arithAtomCtx.simpleExpression():
+            simpleExprCtx = arithAtomCtx.simpleExpression()
+            return self.handle_simpleExpr(simpleExprCtx, builder, newScopeObj)
+        elif arithAtomCtx.arthimeticExpr():
+            arithExprCtx = arithAtomCtx.arthimeticExpr()
+            return self.handle_arthimeticExpr(arithExprCtx, builder, newScopeObj)
+        fail_fast("unknown error in handle_arith_atom")
 
-    def handle_term(self, termCtx, builder, newScopeObj):
-        # numFactor = len(termCtx.factor())
-        # numOp = len(termCtx.arith_factor_op())
-        # if numFactor != (numOp + 1):
-        #     fail_fast("Malformed factor math: " + termCtx.getText())
-
-        revArithOpList = termCtx.arith_factor_op()
+    def handle_power(self, powerCtx, builder, newScopeObj):
+        revArithOpList = powerCtx.KW_POWER()
         revArithOpList.reverse()
 
-        subtermList = termCtx.term()
-        revFactorList = []
-        if subtermList:
-            revFactorList = [self.handle_term(tc, builder, newScopeObj) for tc in subtermList]
-        else:
-            revFactorList = [self.handle_factor(f, builder, newScopeObj) for f in termCtx.factor()]
+        revAtomList = [self.handle_arith_atom(f, builder, newScopeObj) for f in powerCtx.arith_atom()]
+        revAtomList.reverse()
+
+        if len(revAtomList) != (1 + len(revArithOpList)):
+            fail_fast("wrong number of factors in handle_term")
+
+        while revArithOpList:
+            fail_fast("TODO - handle KW_POWER field in handle_power")
+        return revAtomList[0]
+
+    def handle_factor(self, factorCtx, builder, newScopeObj):
+        revArithOpList = factorCtx.arith_factor_op()
+        revArithOpList.reverse()
+
+        revPowerList = [self.handle_power(f, builder, newScopeObj) for f in factorCtx.power()]
+        revPowerList.reverse()
+
+        if len(revPowerList) != (1 + len(revArithOpList)):
+            fail_fast("wrong number of factors in handle_term")
+
+        while revArithOpList:
+            lhs = revPowerList.pop()
+            rhs = revPowerList.pop()
+            arithOp = revArithOpList.pop()
+            fn = get_llvmlite_arithmetic_function(lhs.type, arithOp, builder)
+            result = fn(lhs, rhs)
+            revPowerList.append(result)
+
+        return revPowerList[0]
+
+        # arithAtomCtx = factorCtx.arith_atom()
+        # if arithAtomCtx:
+        #     return self.handle_arith_atom(arithAtomCtx, builder, newScopeObj)
+
+        # numValues = len(factorCtx.simpleExpression())
+        # if numValues == 2 and factorCtx.KW_POWER():
+        #     fail_fast("TODO - finish me!!!")
+        # elif numValues == 1 and factorCtx.KW_POWER() == None:
+        #     simpExprCtx = factorCtx.simpleExpression()[0]
+        #     result = self.handle_simpleExpr(simpExprCtx, builder, newScopeObj)
+        #     return result
+        # else:
+        #     fail_fast("the power function is malformed")
+
+    def handle_term(self, termCtx, builder, newScopeObj):
+        revArithOpList = termCtx.arith_term_op()
+        revArithOpList.reverse()
+
+        revFactorList = [self.handle_factor(f, builder, newScopeObj) for f in termCtx.factor()]
         revFactorList.reverse()
+
+        if len(revFactorList) != (1 + len(revArithOpList)):
+            fail_fast("wrong number of factors in handle_term")
 
         while revArithOpList:
             lhs = revFactorList.pop()
@@ -337,34 +376,27 @@ class __ExpressionHandler(BaseHandler):
         return revFactorList[0]
 
     def handle_arthimeticExpr(self, arithExprCtx, builder, newScopeObj):
-        # termCtxList = arithExprCtx.term()
-        # termList = [self.handle_term(f, builder, newScopeObj) for f in termCtxList]
+        termCtx = arithExprCtx.term()
+        return self.handle_term(termCtx, builder, newScopeObj)
 
-        # if arithExprCtx.arith_term_op():
-        #     arithOpCtx = arithExprCtx.arith_term_op()
-        #     arithOpList = [token for token in arithOpCtx]
+        # revArithOpList.reverse()
+
+        # revTemList = []
+        # subArithList = arithExprCtx.arthimeticExpr()
+        # if subArithList:
+        #     revTemList = [self.handle_arthimeticExpr(ar, builder, newScopeObj) for ar in subArithList]
         # else:
-        #     arithOpList = []
+        #     revTemList = [self.handle_term(t, builder, newScopeObj) for t in arithExprCtx.term()]
+        # revTemList.reverse()
 
-        revArithOpList = arithExprCtx.arith_term_op()
-        revArithOpList.reverse()
-
-        revTemList = []
-        subArithList = arithExprCtx.arthimeticExpr()
-        if subArithList:
-            revTemList = [self.handle_arthimeticExpr(ar, builder, newScopeObj) for ar in subArithList]
-        else:
-            revTemList = [self.handle_term(t, builder, newScopeObj) for t in arithExprCtx.term()]
-        revTemList.reverse()
-
-        while revArithOpList:
-            lhs = revTemList.pop()
-            rhs = revTemList.pop()
-            arithOp = revArithOpList.pop()
-            fn = get_llvmlite_arithmetic_function(lhs.type, arithOp, builder)
-            result = fn(lhs, rhs)
-            revTemList.append(result)
-        return revTemList[0]
+        # while revArithOpList:
+        #     lhs = revTemList.pop()
+        #     rhs = revTemList.pop()
+        #     arithOp = revArithOpList.pop()
+        #     fn = get_llvmlite_arithmetic_function(lhs.type, arithOp, builder)
+        #     result = fn(lhs, rhs)
+        #     revTemList.append(result)
+        # return revTemList[0]
 
     def handele_statementList(self, stmtList, builder, irFunc, newScopeObj):
         for exprCtx in stmtList.statement():

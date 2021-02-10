@@ -55,8 +55,8 @@ entry:
   %".7" = add i64 %".6", 6
   %".8" = load i64, i64* %"second"
   %".9" = add i64 %".8", 5
-  %".10" = add i64 %".9", 1
-  %".11" = mul i64 %".7", %".10"
+  %".10" = mul i64 %".7", %".9"
+  %".11" = add i64 %".10", 1
   store i64 %".11", i64* %"calc"
   %".13" = load i64, i64* %"calc"
   ret i64 %".13"
@@ -71,10 +71,10 @@ entry:
   store i64 %".2", i64* %"second"
   %".6" = load i64, i64* %"first"
   %".7" = add i64 %".6", 6
-  %".8" = add i64 %".7", 2
-  %".9" = load i64, i64* %"second"
-  %".10" = add i64 %".9", 5
-  %".11" = mul i64 %".8", %".10"
+  %".8" = load i64, i64* %"second"
+  %".9" = add i64 %".8", 5
+  %".10" = mul i64 2, %".9"
+  %".11" = add i64 %".7", %".10"
   ret i64 %".11"
 }
 
@@ -197,12 +197,12 @@ entry.endif:
   store i64 1, i64* %"total"
   %".11" = load i64, i64* %"exp"
   store i64 %".11", i64* %"counter"
-  br label %"predicate.while.a5733e34641c86a52a12cd39affb5e91"
-predicate.while.a5733e34641c86a52a12cd39affb5e91:
+  br label %"predicate.while.c7af445a14078911adc318a2122467a6"
+predicate.while.c7af445a14078911adc318a2122467a6:
   %".14" = load i64, i64* %"counter"
   %".15" = icmp sgt i64 %".14", 0
-  br i1 %".15", label %"entry.while.a5733e34641c86a52a12cd39affb5e91", label %"exit.while.a5733e34641c86a52a12cd39affb5e91"
-entry.while.a5733e34641c86a52a12cd39affb5e91:
+  br i1 %".15", label %"entry.while.c7af445a14078911adc318a2122467a6", label %"exit.while.c7af445a14078911adc318a2122467a6"
+entry.while.c7af445a14078911adc318a2122467a6:
   %".17" = load i64, i64* %"total"
   %".18" = load i64, i64* %"num"
   %".19" = mul i64 %".17", %".18"
@@ -210,8 +210,8 @@ entry.while.a5733e34641c86a52a12cd39affb5e91:
   %".21" = load i64, i64* %"counter"
   %".22" = sub i64 %".21", 1
   store i64 %".22", i64* %"counter"
-  br label %"predicate.while.a5733e34641c86a52a12cd39affb5e91"
-exit.while.a5733e34641c86a52a12cd39affb5e91:
+  br label %"predicate.while.c7af445a14078911adc318a2122467a6"
+exit.while.c7af445a14078911adc318a2122467a6:
   %".25" = load i64, i64* %"total"
   ret i64 %".25"
 }
@@ -341,13 +341,13 @@ entry:
   store i64 1, i64* %"n_minus_2"
   store i64 1, i64* %"result"
   store i64 3, i64* %"cnt"
-  br label %"predicate.while.79aa87febb2ffe4fad821c71d04e67ae"
-predicate.while.79aa87febb2ffe4fad821c71d04e67ae:
+  br label %"predicate.while.96a1da1db64b03e3492c9cfd50f31347"
+predicate.while.96a1da1db64b03e3492c9cfd50f31347:
   %".9" = load i64, i64* %"cnt"
   %".10" = load i64, i64* %"n"
   %".11" = icmp sle i64 %".9", %".10"
-  br i1 %".11", label %"entry.while.79aa87febb2ffe4fad821c71d04e67ae", label %"exit.while.79aa87febb2ffe4fad821c71d04e67ae"
-entry.while.79aa87febb2ffe4fad821c71d04e67ae:
+  br i1 %".11", label %"entry.while.96a1da1db64b03e3492c9cfd50f31347", label %"exit.while.96a1da1db64b03e3492c9cfd50f31347"
+entry.while.96a1da1db64b03e3492c9cfd50f31347:
   %"tmp" = alloca i64, i32 1
   %".13" = load i64, i64* %"n_minus_1"
   %".14" = load i64, i64* %"n_minus_2"
@@ -362,8 +362,8 @@ entry.while.79aa87febb2ffe4fad821c71d04e67ae:
   %".23" = load i64, i64* %"cnt"
   %".24" = add i64 %".23", 1
   store i64 %".24", i64* %"cnt"
-  br label %"predicate.while.79aa87febb2ffe4fad821c71d04e67ae"
-exit.while.79aa87febb2ffe4fad821c71d04e67ae:
+  br label %"predicate.while.96a1da1db64b03e3492c9cfd50f31347"
+exit.while.96a1da1db64b03e3492c9cfd50f31347:
   %".27" = load i64, i64* %"result"
   ret i64 %".27"
 }

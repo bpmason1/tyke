@@ -37,7 +37,6 @@ type  struct Line{
 let mut x = (1 + 2) * 3;
 x = (x - 1) / 2;
 ```
-*Note: at present parenthesis cannot be nested*
 
 **Functions**
 ```
