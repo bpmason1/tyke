@@ -314,6 +314,33 @@ class TykeListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by TykeParser#bool_atom.
+    def enterBool_atom(self, ctx:TykeParser.Bool_atomContext):
+        pass
+
+    # Exit a parse tree produced by TykeParser#bool_atom.
+    def exitBool_atom(self, ctx:TykeParser.Bool_atomContext):
+        pass
+
+
+    # Enter a parse tree produced by TykeParser#andBooleanExpression.
+    def enterAndBooleanExpression(self, ctx:TykeParser.AndBooleanExpressionContext):
+        pass
+
+    # Exit a parse tree produced by TykeParser#andBooleanExpression.
+    def exitAndBooleanExpression(self, ctx:TykeParser.AndBooleanExpressionContext):
+        pass
+
+
+    # Enter a parse tree produced by TykeParser#orBooleanExpression.
+    def enterOrBooleanExpression(self, ctx:TykeParser.OrBooleanExpressionContext):
+        pass
+
+    # Exit a parse tree produced by TykeParser#orBooleanExpression.
+    def exitOrBooleanExpression(self, ctx:TykeParser.OrBooleanExpressionContext):
+        pass
+
+
     # Enter a parse tree produced by TykeParser#booleanExpression.
     def enterBooleanExpression(self, ctx:TykeParser.BooleanExpressionContext):
         pass

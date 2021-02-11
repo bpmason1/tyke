@@ -84,29 +84,65 @@ class __ExpressionHandler(BaseHandler):
             sys.stderr.write("************** NO (DECLARE AND) ASSIGN FOR YOU *******************\n")
             sys.exit(7)
 
+    def handle_bool_atom(self, boolAtomCtx, builder, newScopeObj):
+        if boolAtomCtx.simpleBooleanExpression():
+            simpBoolExpr = boolAtomCtx.simpleBooleanExpression()
+            return self.handle_simpleBooleanExpression(simpBoolExpr, builder, newScopeObj)
+        elif boolAtomCtx.booleanExpression():
+            boolExpr = boolAtomCtx.booleanExpression()
+            return self.handle_booleanExpression(boolExpr, builder, newScopeObj)
+        fail_fast("Critical error in handle_bool_atom")
+
+    def handle_andBooleanExpression(self, andBoolCtx, builder, newScopeObj):
+        andBooleExprList = andBoolCtx.bool_atom()
+        revAtomBoolList = [self.handle_bool_atom(A, builder, newScopeObj) for A in andBooleExprList]
+        revAtomBoolList.reverse()
+
+        while len(revAtomBoolList) > 1:
+            lhs = revAtomBoolList.pop()
+            rhs = revAtomBoolList.pop()
+            result = builder.and_(lhs, rhs)
+            revAtomBoolList.append(result)
+        return revAtomBoolList[0]
+
+    def handle_orBooleanExpression(self, orBoolCtx, builder, newScopeObj):
+        andBooleExprList = orBoolCtx.andBooleanExpression()
+        revAndBoolList = [self.handle_andBooleanExpression(A, builder, newScopeObj) for A in andBooleExprList]
+        revAndBoolList.reverse()
+
+        while len(revAndBoolList) > 1:
+            lhs = revAndBoolList.pop()
+            rhs = revAndBoolList.pop()
+            result = builder.or_(lhs, rhs)
+            revAndBoolList.append(result)
+        return revAndBoolList[0]
+
     def handle_booleanExpression(self, boolExprCtx, builder, newScopeObj):
-        if boolExprCtx.simpleBooleanExpression():
-            simpBoolCtxList = boolExprCtx.simpleBooleanExpression()
+        orCtx = boolExprCtx.orBooleanExpression()
+        return self.handle_orBooleanExpression(orCtx, builder, newScopeObj)
 
-            termResultList = []
-            for simpBoolCtx in simpBoolCtxList:
-                termResult = self.handle_simpleBooleanExpression(simpBoolCtx, builder, newScopeObj)
-                termResultList.append(termResult)
+        # if boolExprCtx.simpleBooleanExpression():
+        #     simpBoolCtxList = boolExprCtx.simpleBooleanExpression()
 
-            revTermList = termResultList
-            revBoolOp = boolExprCtx.boolean_comparison_op()
-            revTermList.reverse()
-            revBoolOp.reverse()
+        #     termResultList = []
+        #     for simpBoolCtx in simpBoolCtxList:
+        #         termResult = self.handle_simpleBooleanExpression(simpBoolCtx, builder, newScopeObj)
+        #         termResultList.append(termResult)
 
-            while revBoolOp:
-                lhs = revTermList.pop()
-                rhs = revTermList.pop()
-                bool_op = revBoolOp.pop()
-                newTerm = self.resolve_boolean_comparison(lhs, rhs, bool_op, builder)
-                revTermList.append(newTerm)
-                # fail_fast("This is not implemented yet")
-            return revTermList[0]
-        fail_fast("Invalid boolean expression")
+        #     revTermList = termResultList
+        #     revBoolOp = boolExprCtx.boolean_comparison_op()
+        #     revTermList.reverse()
+        #     revBoolOp.reverse()
+
+        #     while revBoolOp:
+        #         lhs = revTermList.pop()
+        #         rhs = revTermList.pop()
+        #         bool_op = revBoolOp.pop()
+        #         newTerm = self.resolve_boolean_comparison(lhs, rhs, bool_op, builder)
+        #         revTermList.append(newTerm)
+        #         # fail_fast("This is not implemented yet")
+        #     return revTermList[0]
+        # fail_fast("Invalid boolean expression")
 
     def resolve_boolean_comparison(self, lhs, rhs, bool_op, builder):
         if bool_op.AND():
