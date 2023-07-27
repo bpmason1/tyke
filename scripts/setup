@@ -7,6 +7,10 @@ PROJECT_DIR=$(cd $SCRIPTS_DIR/.. && pwd)
 VENV_DIR=$(echo $PROJECT_DIR/.venv)
 LIB_DIR=$(echo $PROJECT_DIR/lib)
 
+if [ ! -f '/usr/bin/llvm-config-11' ]; then
+  sudo apt-get install -y llvm-11 clang
+fi
+
 cd $PROJECT_DIR
 
 if [ ! -d $VENV_DIR ]; then
@@ -27,9 +31,9 @@ done
 if [ ! -d $LIB_DIR ]; then 
   mkdir $LIB_DIR
 fi
-if [ ! -f $LIB_DIR/antlr-4.9-complete.jar ]; then
+if [ ! -f $LIB_DIR/antlr-4.13.0-complete.jar ]; then
   pushd $LIB_DIR
-  wget http://www.antlr.org/download/antlr-4.9-complete.jar
+  wget https://www.antlr.org/download/antlr-4.13.0-complete.jar
   popd
 fi
 

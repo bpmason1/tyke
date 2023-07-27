@@ -1,4 +1,4 @@
-# Generated from ./Tyke.g4 by ANTLR 4.9
+# Generated from ./Tyke.g4 by ANTLR 4.13.0
 # encoding: utf-8
 from antlr4 import *
 from io import StringIO
@@ -8,188 +8,147 @@ if sys.version_info[1] > 5:
 else:
 	from typing.io import TextIO
 
-
 def serializedATN():
-    with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\62")
-        buf.write("\u0195\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
-        buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
-        buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23\t\23")
-        buf.write("\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31")
-        buf.write("\t\31\4\32\t\32\4\33\t\33\4\34\t\34\4\35\t\35\4\36\t\36")
-        buf.write("\4\37\t\37\4 \t \4!\t!\4\"\t\"\4#\t#\4$\t$\4%\t%\4&\t")
-        buf.write("&\4\'\t\'\4(\t(\4)\t)\4*\t*\4+\t+\4,\t,\4-\t-\4.\t.\4")
-        buf.write("/\t/\4\60\t\60\4\61\t\61\4\62\t\62\4\63\t\63\4\64\t\64")
-        buf.write("\4\65\t\65\3\2\3\2\7\2m\n\2\f\2\16\2p\13\2\3\2\6\2s\n")
-        buf.write("\2\r\2\16\2t\3\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\5\4\177\n")
-        buf.write("\4\3\4\3\4\3\4\3\4\3\5\3\5\3\5\5\5\u0088\n\5\3\5\3\5\3")
-        buf.write("\6\3\6\3\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\5\7\u0096\n\7\3")
-        buf.write("\7\3\7\3\b\3\b\3\b\3\b\5\b\u009e\n\b\3\b\3\b\3\t\3\t\3")
-        buf.write("\t\5\t\u00a5\n\t\3\t\3\t\3\n\3\n\7\n\u00ab\n\n\f\n\16")
-        buf.write("\n\u00ae\13\n\3\n\5\n\u00b1\n\n\3\13\3\13\3\13\3\13\3")
-        buf.write("\f\3\f\3\f\7\f\u00ba\n\f\f\f\16\f\u00bd\13\f\3\r\3\r\3")
-        buf.write("\r\5\r\u00c2\n\r\3\r\3\r\3\16\3\16\3\16\3\16\5\16\u00ca")
-        buf.write("\n\16\3\16\3\16\3\17\3\17\3\20\6\20\u00d1\n\20\r\20\16")
-        buf.write("\20\u00d2\3\21\3\21\3\21\3\21\3\21\3\21\5\21\u00db\n\21")
-        buf.write("\3\22\3\22\3\22\5\22\u00e0\n\22\3\22\3\22\3\23\3\23\3")
-        buf.write("\23\3\24\3\24\3\24\3\24\3\24\3\25\3\25\5\25\u00ee\n\25")
-        buf.write("\3\25\3\25\3\25\3\25\3\26\3\26\5\26\u00f6\n\26\3\26\3")
-        buf.write("\26\3\27\3\27\3\27\7\27\u00fd\n\27\f\27\16\27\u0100\13")
-        buf.write("\27\3\30\3\30\3\30\3\30\3\31\3\31\5\31\u0108\n\31\3\31")
-        buf.write("\3\31\3\32\3\32\3\33\3\33\3\34\3\34\3\35\3\35\3\35\3\35")
-        buf.write("\3\35\5\35\u0117\n\35\3\36\3\36\3\36\7\36\u011c\n\36\f")
-        buf.write("\36\16\36\u011f\13\36\3\37\3\37\3\37\3\37\7\37\u0125\n")
-        buf.write("\37\f\37\16\37\u0128\13\37\3 \3 \3 \3 \7 \u012e\n \f ")
-        buf.write("\16 \u0131\13 \3!\3!\3\"\3\"\3\"\3\"\3\"\3\"\3\"\3\"\3")
-        buf.write("\"\3\"\5\"\u013f\n\"\3#\3#\3#\3#\5#\u0145\n#\3$\3$\3$")
-        buf.write("\3$\3$\5$\u014c\n$\3%\3%\3%\7%\u0151\n%\f%\16%\u0154\13")
-        buf.write("%\3&\3&\3&\7&\u0159\n&\f&\16&\u015c\13&\3\'\3\'\3(\3(")
-        buf.write("\3)\3)\3*\3*\3+\3+\3,\3,\5,\u016a\n,\3-\3-\6-\u016e\n")
-        buf.write("-\r-\16-\u016f\3.\3.\3.\3.\5.\u0176\n.\3/\3/\3/\3/\5/")
-        buf.write("\u017c\n/\3\60\3\60\3\60\3\61\3\61\5\61\u0183\n\61\3\61")
-        buf.write("\3\61\3\62\3\62\3\62\7\62\u018a\n\62\f\62\16\62\u018d")
-        buf.write("\13\62\3\63\3\63\3\64\3\64\3\65\3\65\3\65\2\2\66\2\4\6")
-        buf.write("\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\66")
-        buf.write("8:<>@BDFHJLNPRTVXZ\\^`bdfh\2\13\3\2()\3\2&\'\3\2&)\3\2")
-        buf.write("\23\25\3\2\r\22\3\2\26\27\3\2+,\5\2\35\35#%..\4\2#$..")
-        buf.write("\2\u018d\2j\3\2\2\2\4v\3\2\2\2\6z\3\2\2\2\b\u0084\3\2")
-        buf.write("\2\2\n\u008b\3\2\2\2\f\u0091\3\2\2\2\16\u0099\3\2\2\2")
-        buf.write("\20\u00a1\3\2\2\2\22\u00a8\3\2\2\2\24\u00b2\3\2\2\2\26")
-        buf.write("\u00b6\3\2\2\2\30\u00be\3\2\2\2\32\u00c5\3\2\2\2\34\u00cd")
-        buf.write("\3\2\2\2\36\u00d0\3\2\2\2 \u00da\3\2\2\2\"\u00dc\3\2\2")
-        buf.write("\2$\u00e3\3\2\2\2&\u00e6\3\2\2\2(\u00ed\3\2\2\2*\u00f3")
-        buf.write("\3\2\2\2,\u00f9\3\2\2\2.\u0101\3\2\2\2\60\u0105\3\2\2")
-        buf.write("\2\62\u010b\3\2\2\2\64\u010d\3\2\2\2\66\u010f\3\2\2\2")
-        buf.write("8\u0116\3\2\2\2:\u0118\3\2\2\2<\u0120\3\2\2\2>\u0129\3")
-        buf.write("\2\2\2@\u0132\3\2\2\2B\u013e\3\2\2\2D\u0144\3\2\2\2F\u014b")
-        buf.write("\3\2\2\2H\u014d\3\2\2\2J\u0155\3\2\2\2L\u015d\3\2\2\2")
-        buf.write("N\u015f\3\2\2\2P\u0161\3\2\2\2R\u0163\3\2\2\2T\u0165\3")
-        buf.write("\2\2\2V\u0169\3\2\2\2X\u016b\3\2\2\2Z\u0175\3\2\2\2\\")
-        buf.write("\u017b\3\2\2\2^\u017d\3\2\2\2`\u0180\3\2\2\2b\u0186\3")
-        buf.write("\2\2\2d\u018e\3\2\2\2f\u0190\3\2\2\2h\u0192\3\2\2\2jn")
-        buf.write("\5\4\3\2km\5\6\4\2lk\3\2\2\2mp\3\2\2\2nl\3\2\2\2no\3\2")
-        buf.write("\2\2or\3\2\2\2pn\3\2\2\2qs\5\b\5\2rq\3\2\2\2st\3\2\2\2")
-        buf.write("tr\3\2\2\2tu\3\2\2\2u\3\3\2\2\2vw\7\36\2\2wx\7.\2\2xy")
-        buf.write("\7\37\2\2y\5\3\2\2\2z{\7!\2\2{|\7 \2\2|~\7\3\2\2}\177")
-        buf.write("\5,\27\2~}\3\2\2\2~\177\3\2\2\2\177\u0080\3\2\2\2\u0080")
-        buf.write("\u0081\7\4\2\2\u0081\u0082\7.\2\2\u0082\u0083\7\37\2\2")
-        buf.write("\u0083\7\3\2\2\2\u0084\u0085\5\n\6\2\u0085\u0087\7\3\2")
-        buf.write("\2\u0086\u0088\5\36\20\2\u0087\u0086\3\2\2\2\u0087\u0088")
-        buf.write("\3\2\2\2\u0088\u0089\3\2\2\2\u0089\u008a\7\4\2\2\u008a")
-        buf.write("\t\3\2\2\2\u008b\u008c\7\5\2\2\u008c\u008d\7.\2\2\u008d")
-        buf.write("\u008e\5*\26\2\u008e\u008f\7\6\2\2\u008f\u0090\5f\64\2")
-        buf.write("\u0090\13\3\2\2\2\u0091\u0092\7\32\2\2\u0092\u0093\5L")
-        buf.write("\'\2\u0093\u0095\7\3\2\2\u0094\u0096\5\36\20\2\u0095\u0094")
-        buf.write("\3\2\2\2\u0095\u0096\3\2\2\2\u0096\u0097\3\2\2\2\u0097")
-        buf.write("\u0098\7\4\2\2\u0098\r\3\2\2\2\u0099\u009a\7\33\2\2\u009a")
-        buf.write("\u009b\5L\'\2\u009b\u009d\7\3\2\2\u009c\u009e\5\36\20")
-        buf.write("\2\u009d\u009c\3\2\2\2\u009d\u009e\3\2\2\2\u009e\u009f")
-        buf.write("\3\2\2\2\u009f\u00a0\7\4\2\2\u00a0\17\3\2\2\2\u00a1\u00a2")
-        buf.write("\7\34\2\2\u00a2\u00a4\7\3\2\2\u00a3\u00a5\5\36\20\2\u00a4")
-        buf.write("\u00a3\3\2\2\2\u00a4\u00a5\3\2\2\2\u00a5\u00a6\3\2\2\2")
-        buf.write("\u00a6\u00a7\7\4\2\2\u00a7\21\3\2\2\2\u00a8\u00ac\5\f")
-        buf.write("\7\2\u00a9\u00ab\5\16\b\2\u00aa\u00a9\3\2\2\2\u00ab\u00ae")
-        buf.write("\3\2\2\2\u00ac\u00aa\3\2\2\2\u00ac\u00ad\3\2\2\2\u00ad")
-        buf.write("\u00b0\3\2\2\2\u00ae\u00ac\3\2\2\2\u00af\u00b1\5\20\t")
-        buf.write("\2\u00b0\u00af\3\2\2\2\u00b0\u00b1\3\2\2\2\u00b1\23\3")
-        buf.write("\2\2\2\u00b2\u00b3\7.\2\2\u00b3\u00b4\7\7\2\2\u00b4\u00b5")
-        buf.write("\5\\/\2\u00b5\25\3\2\2\2\u00b6\u00bb\5\24\13\2\u00b7\u00b8")
-        buf.write("\7\b\2\2\u00b8\u00ba\5\24\13\2\u00b9\u00b7\3\2\2\2\u00ba")
-        buf.write("\u00bd\3\2\2\2\u00bb\u00b9\3\2\2\2\u00bb\u00bc\3\2\2\2")
-        buf.write("\u00bc\27\3\2\2\2\u00bd\u00bb\3\2\2\2\u00be\u00bf\7.\2")
-        buf.write("\2\u00bf\u00c1\7\3\2\2\u00c0\u00c2\5\26\f\2\u00c1\u00c0")
-        buf.write("\3\2\2\2\u00c1\u00c2\3\2\2\2\u00c2\u00c3\3\2\2\2\u00c3")
-        buf.write("\u00c4\7\4\2\2\u00c4\31\3\2\2\2\u00c5\u00c6\7\"\2\2\u00c6")
-        buf.write("\u00c7\5L\'\2\u00c7\u00c9\7\3\2\2\u00c8\u00ca\5\36\20")
-        buf.write("\2\u00c9\u00c8\3\2\2\2\u00c9\u00ca\3\2\2\2\u00ca\u00cb")
-        buf.write("\3\2\2\2\u00cb\u00cc\7\4\2\2\u00cc\33\3\2\2\2\u00cd\u00ce")
-        buf.write("\5\32\16\2\u00ce\35\3\2\2\2\u00cf\u00d1\5 \21\2\u00d0")
-        buf.write("\u00cf\3\2\2\2\u00d1\u00d2\3\2\2\2\u00d2\u00d0\3\2\2\2")
-        buf.write("\u00d2\u00d3\3\2\2\2\u00d3\37\3\2\2\2\u00d4\u00db\5\"")
-        buf.write("\22\2\u00d5\u00db\5$\23\2\u00d6\u00db\5(\25\2\u00d7\u00db")
-        buf.write("\5&\24\2\u00d8\u00db\5\22\n\2\u00d9\u00db\5\34\17\2\u00da")
-        buf.write("\u00d4\3\2\2\2\u00da\u00d5\3\2\2\2\u00da\u00d6\3\2\2\2")
-        buf.write("\u00da\u00d7\3\2\2\2\u00da\u00d8\3\2\2\2\u00da\u00d9\3")
-        buf.write("\2\2\2\u00db!\3\2\2\2\u00dc\u00df\7\t\2\2\u00dd\u00e0")
-        buf.write("\5Z.\2\u00de\u00e0\5@!\2\u00df\u00dd\3\2\2\2\u00df\u00de")
-        buf.write("\3\2\2\2\u00df\u00e0\3\2\2\2\u00e0\u00e1\3\2\2\2\u00e1")
-        buf.write("\u00e2\7\37\2\2\u00e2#\3\2\2\2\u00e3\u00e4\5^\60\2\u00e4")
-        buf.write("\u00e5\7\37\2\2\u00e5%\3\2\2\2\u00e6\u00e7\5\60\31\2\u00e7")
-        buf.write("\u00e8\7\n\2\2\u00e8\u00e9\5\\/\2\u00e9\u00ea\7\37\2\2")
-        buf.write("\u00ea\'\3\2\2\2\u00eb\u00ee\7.\2\2\u00ec\u00ee\5X-\2")
-        buf.write("\u00ed\u00eb\3\2\2\2\u00ed\u00ec\3\2\2\2\u00ee\u00ef\3")
-        buf.write("\2\2\2\u00ef\u00f0\7\n\2\2\u00f0\u00f1\5\\/\2\u00f1\u00f2")
-        buf.write("\7\37\2\2\u00f2)\3\2\2\2\u00f3\u00f5\7\13\2\2\u00f4\u00f6")
-        buf.write("\5,\27\2\u00f5\u00f4\3\2\2\2\u00f5\u00f6\3\2\2\2\u00f6")
-        buf.write("\u00f7\3\2\2\2\u00f7\u00f8\7\f\2\2\u00f8+\3\2\2\2\u00f9")
-        buf.write("\u00fe\5.\30\2\u00fa\u00fb\7\b\2\2\u00fb\u00fd\5.\30\2")
-        buf.write("\u00fc\u00fa\3\2\2\2\u00fd\u0100\3\2\2\2\u00fe\u00fc\3")
-        buf.write("\2\2\2\u00fe\u00ff\3\2\2\2\u00ff-\3\2\2\2\u0100\u00fe")
-        buf.write("\3\2\2\2\u0101\u0102\7.\2\2\u0102\u0103\7\7\2\2\u0103")
-        buf.write("\u0104\5h\65\2\u0104/\3\2\2\2\u0105\u0107\7\30\2\2\u0106")
-        buf.write("\u0108\7\31\2\2\u0107\u0106\3\2\2\2\u0107\u0108\3\2\2")
-        buf.write("\2\u0108\u0109\3\2\2\2\u0109\u010a\7.\2\2\u010a\61\3\2")
-        buf.write("\2\2\u010b\u010c\t\2\2\2\u010c\63\3\2\2\2\u010d\u010e")
-        buf.write("\t\3\2\2\u010e\65\3\2\2\2\u010f\u0110\t\4\2\2\u0110\67")
-        buf.write("\3\2\2\2\u0111\u0117\5Z.\2\u0112\u0113\7\13\2\2\u0113")
-        buf.write("\u0114\5@!\2\u0114\u0115\7\f\2\2\u0115\u0117\3\2\2\2\u0116")
-        buf.write("\u0111\3\2\2\2\u0116\u0112\3\2\2\2\u01179\3\2\2\2\u0118")
-        buf.write("\u011d\58\35\2\u0119\u011a\7*\2\2\u011a\u011c\58\35\2")
-        buf.write("\u011b\u0119\3\2\2\2\u011c\u011f\3\2\2\2\u011d\u011b\3")
-        buf.write("\2\2\2\u011d\u011e\3\2\2\2\u011e;\3\2\2\2\u011f\u011d")
-        buf.write("\3\2\2\2\u0120\u0126\5:\36\2\u0121\u0122\5\62\32\2\u0122")
-        buf.write("\u0123\5:\36\2\u0123\u0125\3\2\2\2\u0124\u0121\3\2\2\2")
-        buf.write("\u0125\u0128\3\2\2\2\u0126\u0124\3\2\2\2\u0126\u0127\3")
-        buf.write("\2\2\2\u0127=\3\2\2\2\u0128\u0126\3\2\2\2\u0129\u012f")
-        buf.write("\5<\37\2\u012a\u012b\5\64\33\2\u012b\u012c\5<\37\2\u012c")
-        buf.write("\u012e\3\2\2\2\u012d\u012a\3\2\2\2\u012e\u0131\3\2\2\2")
-        buf.write("\u012f\u012d\3\2\2\2\u012f\u0130\3\2\2\2\u0130?\3\2\2")
-        buf.write("\2\u0131\u012f\3\2\2\2\u0132\u0133\5> \2\u0133A\3\2\2")
-        buf.write("\2\u0134\u0135\5Z.\2\u0135\u0136\5P)\2\u0136\u0137\5Z")
-        buf.write(".\2\u0137\u013f\3\2\2\2\u0138\u0139\7\13\2\2\u0139\u013a")
-        buf.write("\5Z.\2\u013a\u013b\5P)\2\u013b\u013c\5Z.\2\u013c\u013d")
-        buf.write("\7\f\2\2\u013d\u013f\3\2\2\2\u013e\u0134\3\2\2\2\u013e")
-        buf.write("\u0138\3\2\2\2\u013fC\3\2\2\2\u0140\u0145\5R*\2\u0141")
-        buf.write("\u0145\7.\2\2\u0142\u0145\5^\60\2\u0143\u0145\5B\"\2\u0144")
-        buf.write("\u0140\3\2\2\2\u0144\u0141\3\2\2\2\u0144\u0142\3\2\2\2")
-        buf.write("\u0144\u0143\3\2\2\2\u0145E\3\2\2\2\u0146\u014c\5D#\2")
-        buf.write("\u0147\u0148\7\13\2\2\u0148\u0149\5L\'\2\u0149\u014a\7")
-        buf.write("\f\2\2\u014a\u014c\3\2\2\2\u014b\u0146\3\2\2\2\u014b\u0147")
-        buf.write("\3\2\2\2\u014cG\3\2\2\2\u014d\u0152\5F$\2\u014e\u014f")
-        buf.write("\7\23\2\2\u014f\u0151\5F$\2\u0150\u014e\3\2\2\2\u0151")
-        buf.write("\u0154\3\2\2\2\u0152\u0150\3\2\2\2\u0152\u0153\3\2\2\2")
-        buf.write("\u0153I\3\2\2\2\u0154\u0152\3\2\2\2\u0155\u015a\5H%\2")
-        buf.write("\u0156\u0157\7\24\2\2\u0157\u0159\5H%\2\u0158\u0156\3")
-        buf.write("\2\2\2\u0159\u015c\3\2\2\2\u015a\u0158\3\2\2\2\u015a\u015b")
-        buf.write("\3\2\2\2\u015bK\3\2\2\2\u015c\u015a\3\2\2\2\u015d\u015e")
-        buf.write("\5J&\2\u015eM\3\2\2\2\u015f\u0160\t\5\2\2\u0160O\3\2\2")
-        buf.write("\2\u0161\u0162\t\6\2\2\u0162Q\3\2\2\2\u0163\u0164\t\7")
-        buf.write("\2\2\u0164S\3\2\2\2\u0165\u0166\t\b\2\2\u0166U\3\2\2\2")
-        buf.write("\u0167\u016a\5T+\2\u0168\u016a\7/\2\2\u0169\u0167\3\2")
-        buf.write("\2\2\u0169\u0168\3\2\2\2\u016aW\3\2\2\2\u016b\u016d\7")
-        buf.write(".\2\2\u016c\u016e\7-\2\2\u016d\u016c\3\2\2\2\u016e\u016f")
-        buf.write("\3\2\2\2\u016f\u016d\3\2\2\2\u016f\u0170\3\2\2\2\u0170")
-        buf.write("Y\3\2\2\2\u0171\u0176\5V,\2\u0172\u0176\7.\2\2\u0173\u0176")
-        buf.write("\5X-\2\u0174\u0176\5^\60\2\u0175\u0171\3\2\2\2\u0175\u0172")
-        buf.write("\3\2\2\2\u0175\u0173\3\2\2\2\u0175\u0174\3\2\2\2\u0176")
-        buf.write("[\3\2\2\2\u0177\u017c\5Z.\2\u0178\u017c\5@!\2\u0179\u017c")
-        buf.write("\5L\'\2\u017a\u017c\5\30\r\2\u017b\u0177\3\2\2\2\u017b")
-        buf.write("\u0178\3\2\2\2\u017b\u0179\3\2\2\2\u017b\u017a\3\2\2\2")
-        buf.write("\u017c]\3\2\2\2\u017d\u017e\7.\2\2\u017e\u017f\5`\61\2")
-        buf.write("\u017f_\3\2\2\2\u0180\u0182\7\13\2\2\u0181\u0183\5b\62")
-        buf.write("\2\u0182\u0181\3\2\2\2\u0182\u0183\3\2\2\2\u0183\u0184")
-        buf.write("\3\2\2\2\u0184\u0185\7\f\2\2\u0185a\3\2\2\2\u0186\u018b")
-        buf.write("\5d\63\2\u0187\u0188\7\b\2\2\u0188\u018a\5d\63\2\u0189")
-        buf.write("\u0187\3\2\2\2\u018a\u018d\3\2\2\2\u018b\u0189\3\2\2\2")
-        buf.write("\u018b\u018c\3\2\2\2\u018cc\3\2\2\2\u018d\u018b\3\2\2")
-        buf.write("\2\u018e\u018f\5\\/\2\u018fe\3\2\2\2\u0190\u0191\t\t\2")
-        buf.write("\2\u0191g\3\2\2\2\u0192\u0193\t\n\2\2\u0193i\3\2\2\2$")
-        buf.write("nt~\u0087\u0095\u009d\u00a4\u00ac\u00b0\u00bb\u00c1\u00c9")
-        buf.write("\u00d2\u00da\u00df\u00ed\u00f5\u00fe\u0107\u0116\u011d")
-        buf.write("\u0126\u012f\u013e\u0144\u014b\u0152\u015a\u0169\u016f")
-        buf.write("\u0175\u017b\u0182\u018b")
-        return buf.getvalue()
-
+    return [
+        4,1,48,403,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,
+        2,14,7,14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,
+        7,20,2,21,7,21,2,22,7,22,2,23,7,23,2,24,7,24,2,25,7,25,2,26,7,26,
+        2,27,7,27,2,28,7,28,2,29,7,29,2,30,7,30,2,31,7,31,2,32,7,32,2,33,
+        7,33,2,34,7,34,2,35,7,35,2,36,7,36,2,37,7,37,2,38,7,38,2,39,7,39,
+        2,40,7,40,2,41,7,41,2,42,7,42,2,43,7,43,2,44,7,44,2,45,7,45,2,46,
+        7,46,2,47,7,47,2,48,7,48,2,49,7,49,2,50,7,50,2,51,7,51,1,0,1,0,5,
+        0,107,8,0,10,0,12,0,110,9,0,1,0,4,0,113,8,0,11,0,12,0,114,1,1,1,
+        1,1,1,1,1,1,2,1,2,1,2,1,2,3,2,125,8,2,1,2,1,2,1,2,1,2,1,3,1,3,1,
+        3,3,3,134,8,3,1,3,1,3,1,4,1,4,1,4,1,4,1,4,1,4,1,5,1,5,1,5,1,5,3,
+        5,148,8,5,1,5,1,5,1,6,1,6,1,6,1,6,3,6,156,8,6,1,6,1,6,1,7,1,7,1,
+        7,3,7,163,8,7,1,7,1,7,1,8,1,8,5,8,169,8,8,10,8,12,8,172,9,8,1,8,
+        3,8,175,8,8,1,9,1,9,1,9,1,9,1,10,1,10,1,10,5,10,184,8,10,10,10,12,
+        10,187,9,10,1,11,1,11,1,11,3,11,192,8,11,1,11,1,11,1,12,1,12,1,12,
+        1,12,3,12,200,8,12,1,12,1,12,1,13,1,13,1,14,4,14,207,8,14,11,14,
+        12,14,208,1,15,1,15,1,15,1,15,1,15,1,15,3,15,217,8,15,1,16,1,16,
+        1,16,3,16,222,8,16,1,16,1,16,1,17,1,17,1,17,1,18,1,18,1,18,1,18,
+        1,18,1,19,1,19,3,19,236,8,19,1,19,1,19,1,19,1,19,1,20,1,20,3,20,
+        244,8,20,1,20,1,20,1,21,1,21,1,21,5,21,251,8,21,10,21,12,21,254,
+        9,21,1,22,1,22,1,22,1,22,1,23,1,23,3,23,262,8,23,1,23,1,23,1,24,
+        1,24,1,25,1,25,1,26,1,26,1,27,1,27,1,27,1,27,1,27,3,27,277,8,27,
+        1,28,1,28,1,28,5,28,282,8,28,10,28,12,28,285,9,28,1,29,1,29,1,29,
+        1,29,5,29,291,8,29,10,29,12,29,294,9,29,1,30,1,30,1,30,1,30,5,30,
+        300,8,30,10,30,12,30,303,9,30,1,31,1,31,1,32,1,32,1,32,1,32,1,32,
+        1,32,1,32,1,32,1,32,1,32,3,32,317,8,32,1,33,1,33,1,33,1,33,3,33,
+        323,8,33,1,34,1,34,1,34,1,34,1,34,3,34,330,8,34,1,35,1,35,1,35,5,
+        35,335,8,35,10,35,12,35,338,9,35,1,36,1,36,1,36,5,36,343,8,36,10,
+        36,12,36,346,9,36,1,37,1,37,1,38,1,38,1,39,1,39,1,40,1,40,1,41,1,
+        41,1,42,1,42,3,42,360,8,42,1,43,1,43,4,43,364,8,43,11,43,12,43,365,
+        1,44,1,44,1,44,1,44,3,44,372,8,44,1,45,1,45,1,45,1,45,3,45,378,8,
+        45,1,46,1,46,1,46,1,47,1,47,3,47,385,8,47,1,47,1,47,1,48,1,48,1,
+        48,5,48,392,8,48,10,48,12,48,395,9,48,1,49,1,49,1,50,1,50,1,51,1,
+        51,1,51,0,0,52,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,
+        36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,
+        80,82,84,86,88,90,92,94,96,98,100,102,0,9,1,0,38,39,1,0,36,37,1,
+        0,36,39,1,0,17,19,1,0,11,16,1,0,20,21,1,0,41,42,3,0,27,27,33,35,
+        44,44,2,0,33,34,44,44,395,0,104,1,0,0,0,2,116,1,0,0,0,4,120,1,0,
+        0,0,6,130,1,0,0,0,8,137,1,0,0,0,10,143,1,0,0,0,12,151,1,0,0,0,14,
+        159,1,0,0,0,16,166,1,0,0,0,18,176,1,0,0,0,20,180,1,0,0,0,22,188,
+        1,0,0,0,24,195,1,0,0,0,26,203,1,0,0,0,28,206,1,0,0,0,30,216,1,0,
+        0,0,32,218,1,0,0,0,34,225,1,0,0,0,36,228,1,0,0,0,38,235,1,0,0,0,
+        40,241,1,0,0,0,42,247,1,0,0,0,44,255,1,0,0,0,46,259,1,0,0,0,48,265,
+        1,0,0,0,50,267,1,0,0,0,52,269,1,0,0,0,54,276,1,0,0,0,56,278,1,0,
+        0,0,58,286,1,0,0,0,60,295,1,0,0,0,62,304,1,0,0,0,64,316,1,0,0,0,
+        66,322,1,0,0,0,68,329,1,0,0,0,70,331,1,0,0,0,72,339,1,0,0,0,74,347,
+        1,0,0,0,76,349,1,0,0,0,78,351,1,0,0,0,80,353,1,0,0,0,82,355,1,0,
+        0,0,84,359,1,0,0,0,86,361,1,0,0,0,88,371,1,0,0,0,90,377,1,0,0,0,
+        92,379,1,0,0,0,94,382,1,0,0,0,96,388,1,0,0,0,98,396,1,0,0,0,100,
+        398,1,0,0,0,102,400,1,0,0,0,104,108,3,2,1,0,105,107,3,4,2,0,106,
+        105,1,0,0,0,107,110,1,0,0,0,108,106,1,0,0,0,108,109,1,0,0,0,109,
+        112,1,0,0,0,110,108,1,0,0,0,111,113,3,6,3,0,112,111,1,0,0,0,113,
+        114,1,0,0,0,114,112,1,0,0,0,114,115,1,0,0,0,115,1,1,0,0,0,116,117,
+        5,28,0,0,117,118,5,44,0,0,118,119,5,29,0,0,119,3,1,0,0,0,120,121,
+        5,31,0,0,121,122,5,30,0,0,122,124,5,1,0,0,123,125,3,42,21,0,124,
+        123,1,0,0,0,124,125,1,0,0,0,125,126,1,0,0,0,126,127,5,2,0,0,127,
+        128,5,44,0,0,128,129,5,29,0,0,129,5,1,0,0,0,130,131,3,8,4,0,131,
+        133,5,1,0,0,132,134,3,28,14,0,133,132,1,0,0,0,133,134,1,0,0,0,134,
+        135,1,0,0,0,135,136,5,2,0,0,136,7,1,0,0,0,137,138,5,3,0,0,138,139,
+        5,44,0,0,139,140,3,40,20,0,140,141,5,4,0,0,141,142,3,100,50,0,142,
+        9,1,0,0,0,143,144,5,24,0,0,144,145,3,74,37,0,145,147,5,1,0,0,146,
+        148,3,28,14,0,147,146,1,0,0,0,147,148,1,0,0,0,148,149,1,0,0,0,149,
+        150,5,2,0,0,150,11,1,0,0,0,151,152,5,25,0,0,152,153,3,74,37,0,153,
+        155,5,1,0,0,154,156,3,28,14,0,155,154,1,0,0,0,155,156,1,0,0,0,156,
+        157,1,0,0,0,157,158,5,2,0,0,158,13,1,0,0,0,159,160,5,26,0,0,160,
+        162,5,1,0,0,161,163,3,28,14,0,162,161,1,0,0,0,162,163,1,0,0,0,163,
+        164,1,0,0,0,164,165,5,2,0,0,165,15,1,0,0,0,166,170,3,10,5,0,167,
+        169,3,12,6,0,168,167,1,0,0,0,169,172,1,0,0,0,170,168,1,0,0,0,170,
+        171,1,0,0,0,171,174,1,0,0,0,172,170,1,0,0,0,173,175,3,14,7,0,174,
+        173,1,0,0,0,174,175,1,0,0,0,175,17,1,0,0,0,176,177,5,44,0,0,177,
+        178,5,5,0,0,178,179,3,90,45,0,179,19,1,0,0,0,180,185,3,18,9,0,181,
+        182,5,6,0,0,182,184,3,18,9,0,183,181,1,0,0,0,184,187,1,0,0,0,185,
+        183,1,0,0,0,185,186,1,0,0,0,186,21,1,0,0,0,187,185,1,0,0,0,188,189,
+        5,44,0,0,189,191,5,1,0,0,190,192,3,20,10,0,191,190,1,0,0,0,191,192,
+        1,0,0,0,192,193,1,0,0,0,193,194,5,2,0,0,194,23,1,0,0,0,195,196,5,
+        32,0,0,196,197,3,74,37,0,197,199,5,1,0,0,198,200,3,28,14,0,199,198,
+        1,0,0,0,199,200,1,0,0,0,200,201,1,0,0,0,201,202,5,2,0,0,202,25,1,
+        0,0,0,203,204,3,24,12,0,204,27,1,0,0,0,205,207,3,30,15,0,206,205,
+        1,0,0,0,207,208,1,0,0,0,208,206,1,0,0,0,208,209,1,0,0,0,209,29,1,
+        0,0,0,210,217,3,32,16,0,211,217,3,34,17,0,212,217,3,38,19,0,213,
+        217,3,36,18,0,214,217,3,16,8,0,215,217,3,26,13,0,216,210,1,0,0,0,
+        216,211,1,0,0,0,216,212,1,0,0,0,216,213,1,0,0,0,216,214,1,0,0,0,
+        216,215,1,0,0,0,217,31,1,0,0,0,218,221,5,7,0,0,219,222,3,88,44,0,
+        220,222,3,62,31,0,221,219,1,0,0,0,221,220,1,0,0,0,221,222,1,0,0,
+        0,222,223,1,0,0,0,223,224,5,29,0,0,224,33,1,0,0,0,225,226,3,92,46,
+        0,226,227,5,29,0,0,227,35,1,0,0,0,228,229,3,46,23,0,229,230,5,8,
+        0,0,230,231,3,90,45,0,231,232,5,29,0,0,232,37,1,0,0,0,233,236,5,
+        44,0,0,234,236,3,86,43,0,235,233,1,0,0,0,235,234,1,0,0,0,236,237,
+        1,0,0,0,237,238,5,8,0,0,238,239,3,90,45,0,239,240,5,29,0,0,240,39,
+        1,0,0,0,241,243,5,9,0,0,242,244,3,42,21,0,243,242,1,0,0,0,243,244,
+        1,0,0,0,244,245,1,0,0,0,245,246,5,10,0,0,246,41,1,0,0,0,247,252,
+        3,44,22,0,248,249,5,6,0,0,249,251,3,44,22,0,250,248,1,0,0,0,251,
+        254,1,0,0,0,252,250,1,0,0,0,252,253,1,0,0,0,253,43,1,0,0,0,254,252,
+        1,0,0,0,255,256,5,44,0,0,256,257,5,5,0,0,257,258,3,102,51,0,258,
+        45,1,0,0,0,259,261,5,22,0,0,260,262,5,23,0,0,261,260,1,0,0,0,261,
+        262,1,0,0,0,262,263,1,0,0,0,263,264,5,44,0,0,264,47,1,0,0,0,265,
+        266,7,0,0,0,266,49,1,0,0,0,267,268,7,1,0,0,268,51,1,0,0,0,269,270,
+        7,2,0,0,270,53,1,0,0,0,271,277,3,88,44,0,272,273,5,9,0,0,273,274,
+        3,62,31,0,274,275,5,10,0,0,275,277,1,0,0,0,276,271,1,0,0,0,276,272,
+        1,0,0,0,277,55,1,0,0,0,278,283,3,54,27,0,279,280,5,40,0,0,280,282,
+        3,54,27,0,281,279,1,0,0,0,282,285,1,0,0,0,283,281,1,0,0,0,283,284,
+        1,0,0,0,284,57,1,0,0,0,285,283,1,0,0,0,286,292,3,56,28,0,287,288,
+        3,48,24,0,288,289,3,56,28,0,289,291,1,0,0,0,290,287,1,0,0,0,291,
+        294,1,0,0,0,292,290,1,0,0,0,292,293,1,0,0,0,293,59,1,0,0,0,294,292,
+        1,0,0,0,295,301,3,58,29,0,296,297,3,50,25,0,297,298,3,58,29,0,298,
+        300,1,0,0,0,299,296,1,0,0,0,300,303,1,0,0,0,301,299,1,0,0,0,301,
+        302,1,0,0,0,302,61,1,0,0,0,303,301,1,0,0,0,304,305,3,60,30,0,305,
+        63,1,0,0,0,306,307,3,88,44,0,307,308,3,78,39,0,308,309,3,88,44,0,
+        309,317,1,0,0,0,310,311,5,9,0,0,311,312,3,88,44,0,312,313,3,78,39,
+        0,313,314,3,88,44,0,314,315,5,10,0,0,315,317,1,0,0,0,316,306,1,0,
+        0,0,316,310,1,0,0,0,317,65,1,0,0,0,318,323,3,80,40,0,319,323,5,44,
+        0,0,320,323,3,92,46,0,321,323,3,64,32,0,322,318,1,0,0,0,322,319,
+        1,0,0,0,322,320,1,0,0,0,322,321,1,0,0,0,323,67,1,0,0,0,324,330,3,
+        66,33,0,325,326,5,9,0,0,326,327,3,74,37,0,327,328,5,10,0,0,328,330,
+        1,0,0,0,329,324,1,0,0,0,329,325,1,0,0,0,330,69,1,0,0,0,331,336,3,
+        68,34,0,332,333,5,17,0,0,333,335,3,68,34,0,334,332,1,0,0,0,335,338,
+        1,0,0,0,336,334,1,0,0,0,336,337,1,0,0,0,337,71,1,0,0,0,338,336,1,
+        0,0,0,339,344,3,70,35,0,340,341,5,18,0,0,341,343,3,70,35,0,342,340,
+        1,0,0,0,343,346,1,0,0,0,344,342,1,0,0,0,344,345,1,0,0,0,345,73,1,
+        0,0,0,346,344,1,0,0,0,347,348,3,72,36,0,348,75,1,0,0,0,349,350,7,
+        3,0,0,350,77,1,0,0,0,351,352,7,4,0,0,352,79,1,0,0,0,353,354,7,5,
+        0,0,354,81,1,0,0,0,355,356,7,6,0,0,356,83,1,0,0,0,357,360,3,82,41,
+        0,358,360,5,45,0,0,359,357,1,0,0,0,359,358,1,0,0,0,360,85,1,0,0,
+        0,361,363,5,44,0,0,362,364,5,43,0,0,363,362,1,0,0,0,364,365,1,0,
+        0,0,365,363,1,0,0,0,365,366,1,0,0,0,366,87,1,0,0,0,367,372,3,84,
+        42,0,368,372,5,44,0,0,369,372,3,86,43,0,370,372,3,92,46,0,371,367,
+        1,0,0,0,371,368,1,0,0,0,371,369,1,0,0,0,371,370,1,0,0,0,372,89,1,
+        0,0,0,373,378,3,88,44,0,374,378,3,62,31,0,375,378,3,74,37,0,376,
+        378,3,22,11,0,377,373,1,0,0,0,377,374,1,0,0,0,377,375,1,0,0,0,377,
+        376,1,0,0,0,378,91,1,0,0,0,379,380,5,44,0,0,380,381,3,94,47,0,381,
+        93,1,0,0,0,382,384,5,9,0,0,383,385,3,96,48,0,384,383,1,0,0,0,384,
+        385,1,0,0,0,385,386,1,0,0,0,386,387,5,10,0,0,387,95,1,0,0,0,388,
+        393,3,98,49,0,389,390,5,6,0,0,390,392,3,98,49,0,391,389,1,0,0,0,
+        392,395,1,0,0,0,393,391,1,0,0,0,393,394,1,0,0,0,394,97,1,0,0,0,395,
+        393,1,0,0,0,396,397,3,90,45,0,397,99,1,0,0,0,398,399,7,7,0,0,399,
+        101,1,0,0,0,400,401,7,8,0,0,401,103,1,0,0,0,34,108,114,124,133,147,
+        155,162,170,174,185,191,199,208,216,221,235,243,252,261,276,283,
+        292,301,316,322,329,336,344,359,365,371,377,384,393
+    ]
 
 class TykeParser ( Parser ):
 
@@ -340,7 +299,7 @@ class TykeParser ( Parser ):
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
-        self.checkVersion("4.9")
+        self.checkVersion("4.13.0")
         self._interp = ParserATNSimulator(self, self.atn, self.decisionsToDFA, self.sharedContextCache)
         self._predicates = None
 
@@ -348,6 +307,7 @@ class TykeParser ( Parser ):
 
 
     class ProgramContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -397,7 +357,7 @@ class TykeParser ( Parser ):
             self.state = 108
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==TykeParser.TYPE:
+            while _la==31:
                 self.state = 105
                 self.typedef()
                 self.state = 110
@@ -413,7 +373,7 @@ class TykeParser ( Parser ):
                 self.state = 114 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==TykeParser.T__2):
+                if not (_la==3):
                     break
 
         except RecognitionException as re:
@@ -426,6 +386,7 @@ class TykeParser ( Parser ):
 
 
     class PackageContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -476,6 +437,7 @@ class TykeParser ( Parser ):
 
 
     class TypedefContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -527,7 +489,7 @@ class TykeParser ( Parser ):
             self.state = 124
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==TykeParser.NAME:
+            if _la==44:
                 self.state = 123
                 self.typedArgList()
 
@@ -548,6 +510,7 @@ class TykeParser ( Parser ):
 
 
     class FuncdefContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -589,7 +552,7 @@ class TykeParser ( Parser ):
             self.state = 133
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.T__6) | (1 << TykeParser.LET) | (1 << TykeParser.IF) | (1 << TykeParser.WHILE) | (1 << TykeParser.NAME))) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 17596501983360) != 0):
                 self.state = 132
                 self.statementList()
 
@@ -606,6 +569,7 @@ class TykeParser ( Parser ):
 
 
     class SignatureContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -662,6 +626,7 @@ class TykeParser ( Parser ):
 
 
     class IfStmtContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -708,7 +673,7 @@ class TykeParser ( Parser ):
             self.state = 147
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.T__6) | (1 << TykeParser.LET) | (1 << TykeParser.IF) | (1 << TykeParser.WHILE) | (1 << TykeParser.NAME))) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 17596501983360) != 0):
                 self.state = 146
                 self.statementList()
 
@@ -725,6 +690,7 @@ class TykeParser ( Parser ):
 
 
     class ElifStmtContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -771,7 +737,7 @@ class TykeParser ( Parser ):
             self.state = 155
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.T__6) | (1 << TykeParser.LET) | (1 << TykeParser.IF) | (1 << TykeParser.WHILE) | (1 << TykeParser.NAME))) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 17596501983360) != 0):
                 self.state = 154
                 self.statementList()
 
@@ -788,6 +754,7 @@ class TykeParser ( Parser ):
 
 
     class ElseStmtContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -828,7 +795,7 @@ class TykeParser ( Parser ):
             self.state = 162
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.T__6) | (1 << TykeParser.LET) | (1 << TykeParser.IF) | (1 << TykeParser.WHILE) | (1 << TykeParser.NAME))) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 17596501983360) != 0):
                 self.state = 161
                 self.statementList()
 
@@ -845,6 +812,7 @@ class TykeParser ( Parser ):
 
 
     class ConditionalStmtContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -891,7 +859,7 @@ class TykeParser ( Parser ):
             self.state = 170
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==TykeParser.ELIF:
+            while _la==25:
                 self.state = 167
                 self.elifStmt()
                 self.state = 172
@@ -901,7 +869,7 @@ class TykeParser ( Parser ):
             self.state = 174
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==TykeParser.ELSE:
+            if _la==26:
                 self.state = 173
                 self.elseStmt()
 
@@ -916,6 +884,7 @@ class TykeParser ( Parser ):
 
 
     class FieldInitContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -964,6 +933,7 @@ class TykeParser ( Parser ):
 
 
     class FieldInitListContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1002,7 +972,7 @@ class TykeParser ( Parser ):
             self.state = 185
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==TykeParser.T__5:
+            while _la==6:
                 self.state = 181
                 self.match(TykeParser.T__5)
                 self.state = 182
@@ -1021,6 +991,7 @@ class TykeParser ( Parser ):
 
 
     class MakeStructExprContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1061,7 +1032,7 @@ class TykeParser ( Parser ):
             self.state = 191
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==TykeParser.NAME:
+            if _la==44:
                 self.state = 190
                 self.fieldInitList()
 
@@ -1078,6 +1049,7 @@ class TykeParser ( Parser ):
 
 
     class WhileStmtContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1124,7 +1096,7 @@ class TykeParser ( Parser ):
             self.state = 199
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.T__6) | (1 << TykeParser.LET) | (1 << TykeParser.IF) | (1 << TykeParser.WHILE) | (1 << TykeParser.NAME))) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 17596501983360) != 0):
                 self.state = 198
                 self.statementList()
 
@@ -1141,6 +1113,7 @@ class TykeParser ( Parser ):
 
 
     class LoopStmtContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1182,6 +1155,7 @@ class TykeParser ( Parser ):
 
 
     class StatementListContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1224,7 +1198,7 @@ class TykeParser ( Parser ):
                 self.state = 208 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.T__6) | (1 << TykeParser.LET) | (1 << TykeParser.IF) | (1 << TykeParser.WHILE) | (1 << TykeParser.NAME))) != 0)):
+                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & 17596501983360) != 0)):
                     break
 
         except RecognitionException as re:
@@ -1237,6 +1211,7 @@ class TykeParser ( Parser ):
 
 
     class StatementContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1335,6 +1310,7 @@ class TykeParser ( Parser ):
 
 
     class ReturnStmtContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1397,6 +1373,7 @@ class TykeParser ( Parser ):
 
 
     class FuncCallStmtContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1443,6 +1420,7 @@ class TykeParser ( Parser ):
 
 
     class DeclareAndAssignStmtContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1497,6 +1475,7 @@ class TykeParser ( Parser ):
 
 
     class AssigmentStmtContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1566,6 +1545,7 @@ class TykeParser ( Parser ):
 
 
     class FuncDefArgListContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1601,7 +1581,7 @@ class TykeParser ( Parser ):
             self.state = 243
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==TykeParser.NAME:
+            if _la==44:
                 self.state = 242
                 self.typedArgList()
 
@@ -1618,6 +1598,7 @@ class TykeParser ( Parser ):
 
 
     class TypedArgListContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1656,7 +1637,7 @@ class TykeParser ( Parser ):
             self.state = 252
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==TykeParser.T__5:
+            while _la==6:
                 self.state = 248
                 self.match(TykeParser.T__5)
                 self.state = 249
@@ -1675,6 +1656,7 @@ class TykeParser ( Parser ):
 
 
     class TypedArgContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1723,6 +1705,7 @@ class TykeParser ( Parser ):
 
 
     class VarDeclareContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1763,7 +1746,7 @@ class TykeParser ( Parser ):
             self.state = 261
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==TykeParser.MUT:
+            if _la==23:
                 self.state = 260
                 self.match(TykeParser.MUT)
 
@@ -1780,6 +1763,7 @@ class TykeParser ( Parser ):
 
 
     class Arith_factor_opContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1814,7 +1798,7 @@ class TykeParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 265
             _la = self._input.LA(1)
-            if not(_la==TykeParser.MULTIPLY or _la==TykeParser.DIVIDE):
+            if not(_la==38 or _la==39):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -1829,6 +1813,7 @@ class TykeParser ( Parser ):
 
 
     class Arith_term_opContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1863,7 +1848,7 @@ class TykeParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 267
             _la = self._input.LA(1)
-            if not(_la==TykeParser.ADD or _la==TykeParser.SUBTRACT):
+            if not(_la==36 or _la==37):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -1878,6 +1863,7 @@ class TykeParser ( Parser ):
 
 
     class Arithmetic_opContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1918,7 +1904,7 @@ class TykeParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 269
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.ADD) | (1 << TykeParser.SUBTRACT) | (1 << TykeParser.MULTIPLY) | (1 << TykeParser.DIVIDE))) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 1030792151040) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -1933,6 +1919,7 @@ class TykeParser ( Parser ):
 
 
     class Arith_atomContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1968,12 +1955,12 @@ class TykeParser ( Parser ):
             self.state = 276
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [TykeParser.DOUBLE, TykeParser.INTEGER, TykeParser.NAME, TykeParser.STRING]:
+            if token in [41, 42, 44, 45]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 271
                 self.simpleExpression()
                 pass
-            elif token in [TykeParser.T__8]:
+            elif token in [9]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 272
                 self.match(TykeParser.T__8)
@@ -1995,6 +1982,7 @@ class TykeParser ( Parser ):
 
 
     class PowerContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2039,7 +2027,7 @@ class TykeParser ( Parser ):
             self.state = 283
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==TykeParser.KW_POWER:
+            while _la==40:
                 self.state = 279
                 self.match(TykeParser.KW_POWER)
                 self.state = 280
@@ -2058,6 +2046,7 @@ class TykeParser ( Parser ):
 
 
     class FactorContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2103,7 +2092,7 @@ class TykeParser ( Parser ):
             self.state = 292
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==TykeParser.MULTIPLY or _la==TykeParser.DIVIDE:
+            while _la==38 or _la==39:
                 self.state = 287
                 self.arith_factor_op()
                 self.state = 288
@@ -2122,6 +2111,7 @@ class TykeParser ( Parser ):
 
 
     class TermContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2167,7 +2157,7 @@ class TykeParser ( Parser ):
             self.state = 301
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==TykeParser.ADD or _la==TykeParser.SUBTRACT:
+            while _la==36 or _la==37:
                 self.state = 296
                 self.arith_term_op()
                 self.state = 297
@@ -2186,6 +2176,7 @@ class TykeParser ( Parser ):
 
 
     class ArthimeticExprContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2227,6 +2218,7 @@ class TykeParser ( Parser ):
 
 
     class ComparisonExprContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2265,7 +2257,7 @@ class TykeParser ( Parser ):
             self.state = 316
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [TykeParser.DOUBLE, TykeParser.INTEGER, TykeParser.NAME, TykeParser.STRING]:
+            if token in [41, 42, 44, 45]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 306
                 self.simpleExpression()
@@ -2274,7 +2266,7 @@ class TykeParser ( Parser ):
                 self.state = 308
                 self.simpleExpression()
                 pass
-            elif token in [TykeParser.T__8]:
+            elif token in [9]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 310
                 self.match(TykeParser.T__8)
@@ -2300,6 +2292,7 @@ class TykeParser ( Parser ):
 
 
     class SimpleBooleanExpressionContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2377,6 +2370,7 @@ class TykeParser ( Parser ):
 
 
     class Bool_atomContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2439,6 +2433,7 @@ class TykeParser ( Parser ):
 
 
     class AndBooleanExpressionContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2483,7 +2478,7 @@ class TykeParser ( Parser ):
             self.state = 336
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==TykeParser.AND:
+            while _la==17:
                 self.state = 332
                 self.match(TykeParser.AND)
                 self.state = 333
@@ -2502,6 +2497,7 @@ class TykeParser ( Parser ):
 
 
     class OrBooleanExpressionContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2546,7 +2542,7 @@ class TykeParser ( Parser ):
             self.state = 344
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==TykeParser.OR:
+            while _la==18:
                 self.state = 340
                 self.match(TykeParser.OR)
                 self.state = 341
@@ -2565,6 +2561,7 @@ class TykeParser ( Parser ):
 
 
     class BooleanExpressionContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2606,6 +2603,7 @@ class TykeParser ( Parser ):
 
 
     class Boolean_comparison_opContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2643,7 +2641,7 @@ class TykeParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 349
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.AND) | (1 << TykeParser.OR) | (1 << TykeParser.XOR))) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 917504) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -2658,6 +2656,7 @@ class TykeParser ( Parser ):
 
 
     class Numeric_comparison_opContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2704,7 +2703,7 @@ class TykeParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 351
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.EQ) | (1 << TykeParser.NEQ) | (1 << TykeParser.LT) | (1 << TykeParser.LTE) | (1 << TykeParser.GT) | (1 << TykeParser.GTE))) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 129024) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -2719,6 +2718,7 @@ class TykeParser ( Parser ):
 
 
     class BooleanLiteralContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2753,7 +2753,7 @@ class TykeParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 353
             _la = self._input.LA(1)
-            if not(_la==TykeParser.TRUE or _la==TykeParser.FALSE):
+            if not(_la==20 or _la==21):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -2768,6 +2768,7 @@ class TykeParser ( Parser ):
 
 
     class NumericContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2802,7 +2803,7 @@ class TykeParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 355
             _la = self._input.LA(1)
-            if not(_la==TykeParser.DOUBLE or _la==TykeParser.INTEGER):
+            if not(_la==41 or _la==42):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -2817,6 +2818,7 @@ class TykeParser ( Parser ):
 
 
     class PrimitiveContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2851,12 +2853,12 @@ class TykeParser ( Parser ):
             self.state = 359
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [TykeParser.DOUBLE, TykeParser.INTEGER]:
+            if token in [41, 42]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 357
                 self.numeric()
                 pass
-            elif token in [TykeParser.STRING]:
+            elif token in [45]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 358
                 self.match(TykeParser.STRING)
@@ -2874,6 +2876,7 @@ class TykeParser ( Parser ):
 
 
     class FieldContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2920,7 +2923,7 @@ class TykeParser ( Parser ):
                 self.state = 365 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==TykeParser.FIELD_REF):
+                if not (_la==43):
                     break
 
         except RecognitionException as re:
@@ -2933,6 +2936,7 @@ class TykeParser ( Parser ):
 
 
     class SimpleExpressionContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -3007,6 +3011,7 @@ class TykeParser ( Parser ):
 
 
     class ExpressionContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -3085,6 +3090,7 @@ class TykeParser ( Parser ):
 
 
     class FuncCallContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -3131,6 +3137,7 @@ class TykeParser ( Parser ):
 
 
     class FuncCallDataListContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -3166,7 +3173,7 @@ class TykeParser ( Parser ):
             self.state = 384
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.T__8) | (1 << TykeParser.TRUE) | (1 << TykeParser.FALSE) | (1 << TykeParser.DOUBLE) | (1 << TykeParser.INTEGER) | (1 << TykeParser.NAME) | (1 << TykeParser.STRING))) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 59373631046144) != 0):
                 self.state = 383
                 self.dataList()
 
@@ -3183,6 +3190,7 @@ class TykeParser ( Parser ):
 
 
     class DataListContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -3221,7 +3229,7 @@ class TykeParser ( Parser ):
             self.state = 393
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==TykeParser.T__5:
+            while _la==6:
                 self.state = 389
                 self.match(TykeParser.T__5)
                 self.state = 390
@@ -3240,6 +3248,7 @@ class TykeParser ( Parser ):
 
 
     class DataContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -3281,6 +3290,7 @@ class TykeParser ( Parser ):
 
 
     class ReturnTypeContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -3324,7 +3334,7 @@ class TykeParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 398
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.BOOL) | (1 << TykeParser.KW_DOUBLE) | (1 << TykeParser.KW_INT) | (1 << TykeParser.VOID) | (1 << TykeParser.NAME))) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 17652449804288) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -3339,6 +3349,7 @@ class TykeParser ( Parser ):
 
 
     class VarTypeContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -3376,7 +3387,7 @@ class TykeParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 400
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TykeParser.KW_DOUBLE) | (1 << TykeParser.KW_INT) | (1 << TykeParser.NAME))) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 17617955848192) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
