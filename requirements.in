@@ -1,6 +1,4 @@
 antlr4-python3-runtime
-colorama
-llvmlite==0.34.0
-
-# these are missing dependencies of other libs (not libs I use myself)
 anytree
+colorama
+llvmlite==0.40.1

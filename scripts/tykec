@@ -11,7 +11,9 @@ APP_NAME=$(basename $PWD)
 
 
 if [ ! -d $VENV_DIR ]; then
+  tput setaf 1
   echo "No virtualenv directory: .venv"
+  tput sgr0
   exit 1
 fi
 
@@ -21,14 +23,14 @@ if [ ! -d $BIN_DIR ]; then
   mkdir -p $BIN_DIR
 fi
 
-TMP_LLVM_IR=$(mktemp)
+TMP_LLVM_DIR=$(mktemp -d)
+# echo "TEMP DIR:  $TMP_LLVM_DIR"
 function cleanup {
-  rm -f ${TMP_LLVM_IR}.*
+  rm -fr ${TMP_LLVM_DIR}
 }
 trap cleanup EXIT
 
-python $SRC_DIR/main.py $PWD/src > ${TMP_LLVM_IR}.ll
+python3 $SRC_DIR/main.py $PWD/src > ${TMP_LLVM_DIR}/main.ll
 
-$SCRIPTS_DIR/build-llvm.sh $TMP_LLVM_IR
-mv $TMP_LLVM_IR $BIN_DIR/$APP_NAME
-
+$SCRIPTS_DIR/build-llvm.sh $TMP_LLVM_DIR main
+mv $TMP_LLVM_DIR/main $BIN_DIR/$APP_NAME

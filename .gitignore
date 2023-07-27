@@ -9,3 +9,6 @@ venv/
 
 *.ipynb
 example/bin
+
+.vscode/
+.antlr/

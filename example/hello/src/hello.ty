@@ -1,0 +1,5 @@
+package main;
+
+def main() -> int {
+    return 2;
+}
