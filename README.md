@@ -12,6 +12,9 @@ cd ./bin
 ./example  # run the application
 ```
 
+### Run pytest
+`PYTHONPATH=$PWD/src pytests`
+
 ### Compiler high-level flow
 TODO
 
