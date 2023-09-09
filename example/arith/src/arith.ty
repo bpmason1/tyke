@@ -1,0 +1,8 @@
+package main;
+
+def main() -> int {
+    let a = 1 + 2 * 3;
+    let b = 20 - 10 / 2;
+    let c = ( b - 12 ) * ( a + 1 ) ;
+    return c;
+}
