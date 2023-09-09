@@ -13,7 +13,7 @@ cd ./bin
 ```
 
 ### Run pytest
-`PYTHONPATH=$PWD/src pytests`
+`PYTHONPATH=$PWD/src pytest`
 
 ### Compiler high-level flow
 TODO
