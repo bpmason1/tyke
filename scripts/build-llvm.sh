@@ -27,5 +27,5 @@ if [ -f $APP_NAME ]; then
     rm -f ./$APP_NAME
 fi
 
-clang -o $APP_NAME -O4 $NAME.s
+clang -o $APP_NAME -O4 -no-pie $NAME.s
 
