@@ -7,7 +7,7 @@ PROJECT_DIR=$(cd $SCRIPTS_DIR/.. && pwd)
 VENV_DIR=$(echo $PROJECT_DIR/.venv)
 SRC_DIR=$(echo $PROJECT_DIR/src)
 BIN_DIR='./bin'
-APP_NAME=$(basename $PWD)
+APP_NAME=${1:-$(basename $PWD)}
 
 
 if [ ! -d $VENV_DIR ]; then
@@ -31,6 +31,7 @@ function cleanup {
 trap cleanup EXIT
 
 python3 $SRC_DIR/main.py $PWD/src > ${TMP_LLVM_DIR}/main.ll
+# cat ${TMP_LLVM_DIR}/main.ll
 
 $SCRIPTS_DIR/build-llvm.sh $TMP_LLVM_DIR main
 mv $TMP_LLVM_DIR/main $BIN_DIR/$APP_NAME

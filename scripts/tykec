@@ -7,8 +7,7 @@ PROJECT_DIR=$(cd $SCRIPTS_DIR/.. && pwd)
 VENV_DIR=$(echo $PROJECT_DIR/.venv)
 SRC_DIR=$(echo $PROJECT_DIR/src)
 BIN_DIR='./bin'
-APP_NAME=$(basename $PWD)
-
+APP_NAME=${1:-$(basename $PWD)}
 
 if [ ! -d $VENV_DIR ]; then
   tput setaf 1

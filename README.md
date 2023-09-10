@@ -7,9 +7,8 @@
 ### Commpile and run the example application
 ```
 cd ./example/hello
-../../scripts/tykec  # compile the application
-cd ./bin
-./example  # run the application
+../../scripts/tykec my-app  # compile the application into an executable named 'my-app'
+./bin/my-app  # run the application
 ```
 
 ### Run pytest
