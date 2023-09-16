@@ -1,6 +1,7 @@
 #! /usr/bin/env bash
 
-set -e
+# don't exit the script on error
+# set -e
 
 SCRIPTS_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 PROJECT_DIR=$(cd $SCRIPTS_DIR/.. && pwd)
@@ -8,12 +9,22 @@ VENV_DIR=$(echo $PROJECT_DIR/.venv)
 SRC_DIR=$(echo $PROJECT_DIR/src)
 EXAMPLE_DIR=$(echo $PROJECT_DIR/example)
 
+function print_red {
+  tput setaf 1
+  echo $1
+  tput sgr0
+}
+
+function print_green {
+  tput setaf 2
+  echo $1
+  tput sgr0
+}
+
 cd $PROJECT_DIR
 
 if [ ! -d $VENV_DIR ]; then
-  tput setaf 1
-  echo "No virtualenv directory: .venv"
-  tput sgr0
+  print_red "No virtualenv directory: .venv"
   exit 1
 fi
 
@@ -46,7 +57,12 @@ for dName in $DIR_LIST; do
   # cat ${TMP_LLVM_DIR}/main.ll
 
 
-  echo "Testing: ${dName}" 
-  diff ${TMP_LLVM_DIR}/main.ll ./ll/main.ll
+  diff ${TMP_LLVM_DIR}/main.ll ./ll/main.ll > /dev/null
+  RESULT=$?
+  if [ $RESULT -eq 0 ]; then
+    print_green "Passed: ${dName}" 
+  else
+    print_red "Failed: ${dName}" 
+  fi
   # git add ./ll/main.ll
 done
