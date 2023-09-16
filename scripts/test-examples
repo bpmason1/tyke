@@ -6,9 +6,9 @@ SCRIPTS_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 PROJECT_DIR=$(cd $SCRIPTS_DIR/.. && pwd)
 VENV_DIR=$(echo $PROJECT_DIR/.venv)
 SRC_DIR=$(echo $PROJECT_DIR/src)
-BIN_DIR='./bin'
-APP_NAME=${1:-$(basename $PWD)}
+EXAMPLE_DIR=$(echo $PROJECT_DIR/example)
 
+cd $PROJECT_DIR
 
 if [ ! -d $VENV_DIR ]; then
   tput setaf 1
@@ -19,19 +19,34 @@ fi
 
 . $VENV_DIR/bin/activate
 
-if [ ! -d $BIN_DIR ]; then
-  mkdir -p $BIN_DIR
-fi
-
-TMP_LLVM_DIR=$(mktemp -d)
-# echo "TEMP DIR:  $TMP_LLVM_DIR"
-function cleanup {
-  rm -fr ${TMP_LLVM_DIR}
+# delete the temp directory that will be created later
+declare -a TMP_DIR_ARRAY
+function cleanup_tmp_dirs {
+  for tmpDir in "${TMP_DIR_ARRAY[@]}"; do
+    if [ -d $tmpDir ]; then
+      rm -fr $tmpDir
+    fi
+  done
 }
-trap cleanup EXIT
+trap cleanup_tmp_dirs EXIT
 
-python3 $SRC_DIR/main.py $PWD/src > ${TMP_LLVM_DIR}/main.ll
-# cat ${TMP_LLVM_DIR}/main.ll
+cd $EXAMPLE_DIR
+DIR_LIST=$(ls)
 
-$SCRIPTS_DIR/build-llvm.sh $TMP_LLVM_DIR main
-mv $TMP_LLVM_DIR/main $BIN_DIR/$APP_NAME
+for dName in $DIR_LIST; do
+  cd ${EXAMPLE_DIR}/$dName
+
+  mkdir -p ./ll
+
+
+  TMP_LLVM_DIR=$(mktemp -d)
+  TMP_DIR_ARRAY+=( $TMP_LLVM_DIR )
+
+  python3 $SRC_DIR/main.py $PWD/src > ${TMP_LLVM_DIR}/main.ll
+  # cat ${TMP_LLVM_DIR}/main.ll
+
+
+  echo "Testing: ${dName}" 
+  diff ${TMP_LLVM_DIR}/main.ll ./ll/main.ll
+  # git add ./ll/main.ll
+done

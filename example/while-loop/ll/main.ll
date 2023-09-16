@@ -25,3 +25,4 @@ exit.while.28ae19aa907f5f42160d0d2db098015e:
 }
 
 @"print_call_0" = global [4 x i8] c"%d\0a\00"
+
