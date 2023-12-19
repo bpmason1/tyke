@@ -1,5 +1,9 @@
 # Tyke
 
+### Initial setup of the project (only needs to be performed once)
+Install python3.11 (project prerequisite)
+`./scripts/setup`
+
 ### To run antlr
 `cd ./src`
 `java -Xmx500M -cp ../lib/antlr-4.13.0-complete.jar org.antlr.v4.Tool -Dlanguage=Python3 ./Tyke.g4`
