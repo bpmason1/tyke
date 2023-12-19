@@ -1,7 +1,10 @@
 # Tyke
 
+### Project prerequisites
+* Install python3.11
+* Install java JDK (tested on JDK 17)
+
 ### Initial setup of the project (only needs to be performed once)
-Install python3.11 (project prerequisite)
 `./scripts/setup`
 
 ### To run antlr
