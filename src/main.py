@@ -1,6 +1,5 @@
 from antlr4 import *
 from collections import OrderedDict
-from colorama import Fore, Style
 from llvmlite import ir
 from TykeLexer import TykeLexer
 from TykeListener import TykeListener
@@ -12,7 +11,7 @@ import sys
 from typed_value import TypedValue
 from handlers import ExpressionHandler
 from primitive import Primitive
-from utils import fail_fast
+from utils import fail_fast, warn
 
 from builder.ProgramNode import ProgramNode
 from builder.State import State, new_scope
@@ -194,7 +193,7 @@ if __name__ == '__main__':
     appDir = sys.argv[1]
     #appDir = path.join(currDir, '..', 'example', 'src')
 
-    all_file_list = [os.path.join(appDir, f) for f in os.listdir(appDir)]
+    all_file_list = [os.path.join(appDir, f) for f in os.listdir(appDir) if f.endswith('.ty')]
 
     if len(all_file_list) < 1:
         fail_fast('ERROR - program must have at least 1 file')

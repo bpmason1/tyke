@@ -1,8 +1,9 @@
+from colorama import Fore, Style
 import sys
 
-_RED = '\x1b[31m'
-_RESET_ALL = '\x1b[0m'
+def warn(msg):
+    print(Fore.YELLOW + Style.BRIGHT + msg + Style.RESET_ALL)
 
 def fail_fast(msg, exit_code=66):
-    sys.stderr.write(_RED + msg + _RESET_ALL + '\n')
+    sys.stderr.write(Fore.Red + msg + Style.RESET_ALL + '\n')
     sys.exit(exit_code)
