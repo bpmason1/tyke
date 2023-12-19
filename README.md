@@ -10,12 +10,17 @@ Install python3.11 (project prerequisite)
 
 ### Commpile and run the example application
 ```
-cd ./example/hello
-../../scripts/tykec my-app  # compile the application into an executable named 'my-app'
-./bin/my-app  # run the application
+`cd ./example/print_hello`
+`../../scripts/tykec  # compile the application rooted in the current directory`
+./bin/print_hello  # run the application
 ```
+### Test the example programs
+This test verifies that the LLVM code output during compilation hasn't changed.
+The test is useful tool to test for regressions.
+`./scripts/test-examples`
 
 ### Run pytest
+source .venv/bin/activate
 `PYTHONPATH=$PWD/src pytest`
 
 ### Compiler high-level flow
