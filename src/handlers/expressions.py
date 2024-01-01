@@ -217,7 +217,7 @@ class __ExpressionHandler(BaseHandler):
         builder.position_at_start(entryBlock)
         with new_scope(newScopeObj) as whileScope:
             stmtList = whileCtx.statementList()
-            self.handele_statementList(stmtList, builder, irFunc, whileScope)
+            self.handle_statementList(stmtList, builder, irFunc, whileScope)
             builder.branch(predicateBlock)
 
         # after loop 
@@ -246,17 +246,17 @@ class __ExpressionHandler(BaseHandler):
         with builder.if_then(predicate): # as (then, otherwise):
             #with then:
                 stmtList = ifCtx.statementList()
-                self.handele_statementList(stmtList, builder, irFunc, newScopeObj)
+                self.handle_statementList(stmtList, builder, irFunc, newScopeObj)
 
     def handle_ifElseStmt(self, ifCtx, elseCtx, builder, irFunc, newScopeObj):
         predicate = self.handle_booleanExpression(ifCtx.booleanExpression(), builder, newScopeObj)
         with builder.if_else(predicate) as (then, otherwise):
             with then:
                 stmtList = ifCtx.statementList()
-                self.handele_statementList(stmtList, builder, irFunc, newScopeObj)
+                self.handle_statementList(stmtList, builder, irFunc, newScopeObj)
             with otherwise:
                 stmtList = elseCtx.statementList()
-                self.handele_statementList(stmtList, builder, irFunc, newScopeObj)
+                self.handle_statementList(stmtList, builder, irFunc, newScopeObj)
 
     def handle_ifElifStmt(self, ifCtx, elifCtxList, elseCtx, builder, irFunc, newScopeObj):
         if len(elifCtxList) > 0:
@@ -265,7 +265,7 @@ class __ExpressionHandler(BaseHandler):
             with builder.if_else(predicate) as (then, otherwise):
                 with then:
                     stmtList = ifCtx.statementList()
-                    self.handele_statementList(stmtList, builder, irFunc, newScopeObj)
+                    self.handle_statementList(stmtList, builder, irFunc, newScopeObj)
                 with otherwise:
                     new_ifCtx = elifCtxList[0]
                     new_elifCtx = [x for (idx, x) in enumerate(elifCtxList) if idx > 0]  # all but the element at idx=0
@@ -282,7 +282,7 @@ class __ExpressionHandler(BaseHandler):
         with builder.if_then(predicate): # as (then, otherwise):
             #with then:
                 stmtList = ifCtx.statementList()
-                self.handele_statementList(stmtList, builder, irFunc, newScopeObj)
+                self.handle_statementList(stmtList, builder, irFunc, newScopeObj)
 
     def handle_funcCall(self, callCtx, builder, newScopeObj):
             callName = callCtx.NAME().getText()
@@ -434,7 +434,7 @@ class __ExpressionHandler(BaseHandler):
         #     revTemList.append(result)
         # return revTemList[0]
 
-    def handele_statementList(self, stmtList, builder, irFunc, newScopeObj):
+    def handle_statementList(self, stmtList, builder, irFunc, newScopeObj):
         for exprCtx in stmtList.statement():
             if exprCtx.funcCallStmt():
                 # sys.stderr.write("........... Function Call Statement")
