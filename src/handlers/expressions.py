@@ -434,41 +434,43 @@ class __ExpressionHandler(BaseHandler):
         #     revTemList.append(result)
         # return revTemList[0]
 
+    def handle_statement(self, stmtCtx, builder, irFunc, newScopeObj):
+        if stmtCtx.funcCallStmt():
+            # sys.stderr.write("........... Function Call Statement")
+            stmtCtx = stmtCtx.funcCallStmt()
+            self.handle_funcCall(stmtCtx.funcCall(), builder, newScopeObj)
+
+        elif stmtCtx.returnStmt():
+            # sys.stderr.write("........... Return Statement")
+            retStmt = stmtCtx.returnStmt()
+            self.handle_returnStmt(retStmt, builder, irFunc, newScopeObj)
+
+        elif stmtCtx.declareAndAssignStmt():
+            declareAndAssignCtx = stmtCtx.declareAndAssignStmt()
+            self.handle_declareAndAssignStmt(declareAndAssignCtx, builder, irFunc, newScopeObj)
+
+        elif stmtCtx.assigmentStmt():
+            # sys.stderr.write("........... Assignment Statement")
+            assignCtx = stmtCtx.assigmentStmt()
+            self.handle_assigmentStmt(assignCtx, builder, irFunc, newScopeObj)
+
+        elif stmtCtx.conditionalStmt():
+            conditionalCtx = stmtCtx.conditionalStmt()
+            ExpressionHandler.handle_conditionalStmt(conditionalCtx, builder, irFunc, newScopeObj)
+
+        # elif exprCtx.ifStmt():
+        #     ifCtx = exprCtx.ifStmt()
+        #     self.handle_ifStmt(ifCtx, builder, irFunc, newScopeObj)
+
+        elif stmtCtx.loopStmt():
+            loopCtx = stmtCtx.loopStmt()
+            self.handle_loopStmt(loopCtx, builder, irFunc, newScopeObj)
+        else:
+            sys.stderr.write("........... WTF ?!?\n")
+            sys.exit(1)
     def handle_statementList(self, stmtList, builder, irFunc, newScopeObj):
-        for exprCtx in stmtList.statement():
-            if exprCtx.funcCallStmt():
-                # sys.stderr.write("........... Function Call Statement")
-                stmtCtx = exprCtx.funcCallStmt()
-                self.handle_funcCall(stmtCtx.funcCall(), builder, newScopeObj)
-
-            elif exprCtx.returnStmt():
-                # sys.stderr.write("........... Return Statement")
-                retStmt = exprCtx.returnStmt()
-                self.handle_returnStmt(retStmt, builder, irFunc, newScopeObj)
-
-            elif exprCtx.declareAndAssignStmt():
-                declareAndAssignCtx = exprCtx.declareAndAssignStmt()
-                self.handle_declareAndAssignStmt(declareAndAssignCtx, builder, irFunc, newScopeObj)
-
-            elif exprCtx.assigmentStmt():
-                # sys.stderr.write("........... Assignment Statement")
-                assignCtx = exprCtx.assigmentStmt()
-                self.handle_assigmentStmt(assignCtx, builder, irFunc, newScopeObj)
-
-            elif exprCtx.conditionalStmt():
-                conditionalCtx = exprCtx.conditionalStmt()
-                ExpressionHandler.handle_conditionalStmt(conditionalCtx, builder, irFunc, newScopeObj)
-
-            # elif exprCtx.ifStmt():
-            #     ifCtx = exprCtx.ifStmt()
-            #     self.handle_ifStmt(ifCtx, builder, irFunc, newScopeObj)
-
-            elif exprCtx.loopStmt():
-                loopCtx = exprCtx.loopStmt()
-                self.handle_loopStmt(loopCtx, builder, irFunc, newScopeObj)
-            else:
-                sys.stderr.write("........... WTF ?!?\n")
-                sys.exit(1)
+        for stmtCtx in stmtList.statement():
+            self.handle_statement(stmtCtx, builder, irFunc, newScopeObj)
 
     def _arith_from_op_and_term_lists(self, arithOpList, simpExpList, builder, newScopeObj):
         if (len(arithOpList) + 1) != len(simpExpList):
