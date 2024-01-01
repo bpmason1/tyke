@@ -118,35 +118,7 @@ class TykePrintListener(TykeListener):
             state.write(argName, irFunc.args[idx], builder)
 
         if stmtList:
-            for exprCtx in stmtList.statement():
-                if exprCtx.funcCallStmt():
-                    # sys.stderr.write("........... Function Call Statement")
-                    stmtCtx = exprCtx.funcCallStmt()
-                    ExpressionHandler.handle_funcCall(stmtCtx.funcCall(), builder, state)
-
-                elif exprCtx.returnStmt():
-                    # sys.stderr.write("........... Return Statement")
-                    retStmt = exprCtx.returnStmt()
-                    ExpressionHandler.handle_returnStmt(retStmt, builder, irFunc, state)
-
-                elif exprCtx.declareAndAssignStmt():
-                    declAndAssign = exprCtx.declareAndAssignStmt()
-                    ExpressionHandler.handle_declareAndAssignStmt(declAndAssign, builder, irFunc, state)
-                elif exprCtx.assigmentStmt():
-                    # sys.stderr.write("........... Assignment Statement")
-                    assignCtx = exprCtx.assigmentStmt()
-                    ExpressionHandler.handle_assigmentStmt(assignCtx, builder, irFunc, state)
-                elif exprCtx.conditionalStmt():
-                    conditionalCtx = exprCtx.conditionalStmt()
-                    ExpressionHandler.handle_conditionalStmt(conditionalCtx, builder, irFunc, state)
-                    # ifCtx = conditionalCtx.ifStmt()
-                    # ExpressionHandler.handle_ifStmt(ifCtx, builder, irFunc, state)
-                elif exprCtx.loopStmt():
-                    loopCtx = exprCtx.loopStmt()
-                    ExpressionHandler.handle_loopStmt(loopCtx, builder, irFunc, state)
-                else:
-                    sys.stderr.write("........... WTF - main ?!?\n")
-                    sys.exit(1)
+            ExpressionHandler.handle_statementList(stmtList, builder, irFunc, state)
 
 def processCode(parsedFileDict):
     for walker, tree in parsedFileDict.values():

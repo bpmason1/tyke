@@ -456,8 +456,12 @@ class __ExpressionHandler(BaseHandler):
                 self.handle_assigmentStmt(assignCtx, builder, irFunc, newScopeObj)
 
             elif exprCtx.conditionalStmt():
-                ifCtx = exprCtx.ifStmt()
-                self.handle_ifStmt(ifCtx, builder, irFunc, newScopeObj)
+                conditionalCtx = exprCtx.conditionalStmt()
+                ExpressionHandler.handle_conditionalStmt(conditionalCtx, builder, irFunc, newScopeObj)
+
+            # elif exprCtx.ifStmt():
+            #     ifCtx = exprCtx.ifStmt()
+            #     self.handle_ifStmt(ifCtx, builder, irFunc, newScopeObj)
 
             elif exprCtx.loopStmt():
                 loopCtx = exprCtx.loopStmt()
