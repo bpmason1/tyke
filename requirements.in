@@ -1,4 +1,4 @@
 antlr4-python3-runtime
 anytree
 colorama
-llvmlite==0.40.1
+llvmlite==0.41.1

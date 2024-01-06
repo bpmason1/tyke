@@ -4,13 +4,13 @@
 #
 #    pip-compile --output-file=requirements.txt requirements.in
 #
-antlr4-python3-runtime==4.13.0
+antlr4-python3-runtime==4.13.1
     # via -r requirements.in
-anytree==2.9.0
+anytree==2.12.1
     # via -r requirements.in
 colorama==0.4.6
     # via -r requirements.in
-llvmlite==0.40.1
+llvmlite==0.41.1
     # via -r requirements.in
 six==1.16.0
     # via anytree
