@@ -1,15 +1,12 @@
-import antlr4
+# import antlr4
 from colorama import Fore, Style
 from hashlib import md5
-from llvmlite import ir
 from llvmlite.ir.instructions import Instruction
 from llvmlite.ir.values import Constant
-import llvmlite
-import re
 import sys
 
 from .base import BaseHandler
-from primitive import Primitive
+# from primitive import Primitive
 from keywords import *
 
 from builder.ProgramNode import ProgramNode

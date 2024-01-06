@@ -5,7 +5,6 @@ from TykeLexer import TykeLexer
 from TykeListener import TykeListener
 from TykeParser import TykeParser
 import os
-import re
 import sys
 
 from typed_value import TypedValue
