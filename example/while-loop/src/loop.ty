@@ -3,7 +3,7 @@ package main;
 def main() -> int {
     let mut x = 4;
     while ( x >= 0 ) {
-        print( x ) ;
+        println( x ) ;
         x = x - 1;
     }
     return 0;
