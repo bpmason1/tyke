@@ -50,8 +50,8 @@ class State:
         if self._scopes:
             self._scopes.pop()
         else:
-            sys.stderr.write('ERROR: no scopes remaining to pop\n')
-            sys.exit(1)
+            msg = 'ERROR: no scopes remaining to pop'
+            fail_fast(msg, 1)
         # self.print_num_scopes()
 
     def getStackPtr(self, name):
@@ -95,8 +95,8 @@ class State:
         zero = int32(0)
 
         if len(fieldNameList) <= 1:
-            sys.stderr.write(f'Undefined call to State.read_struct with only {len(fieldNameList)} names in fieldNameList\n')
-            sys.exit(1)
+            msg = f'Undefined call to State.read_struct with only {len(fieldNameList)} names in fieldNameList'
+            fail_fast(msg, 1)
 
         stackPtr, _ = self.getStackPtr(fieldNameList[0])
         pointee = stackPtr.type.pointee
@@ -108,7 +108,6 @@ class State:
             for idx, (fieldNameFound, fieldTypeFound) in enumerate(ordElemDict.items()):
                 if fieldName == fieldNameFound:
                     indices.append(int32(idx))
-                    typeName = pointee.elements[idx]
                     pointee = pointee.elements[idx]
                     break
         elemPtr = builder.gep(stackPtr, indices, inbounds=True)  # TODO: what the heck does the inbounds field do???
@@ -123,8 +122,7 @@ class State:
 
         if not stackPtr:
             msg = f'ERROR: no such variable {name}'
-            sys.stderr.write(Fore.RED + msg + Style.RESET_ALL)
-            sys.exit(1)
+            fail_fast(msg, 1)
 
         return builder.load(stackPtr)
 
@@ -134,8 +132,7 @@ class State:
             self._uninitialized.remove(name)
         elif mutability == Mutability.IMMUTABLE:
             msg = f'ERROR: trying to modify immutable struct variable "{name}"\n'
-            sys.stderr.write(Fore.RED + msg + Style.RESET_ALL)
-            sys.exit(1)
+            fail_fast(msg, 1)
 
         self._write_internal_struct(stackPtr, structData, builder)
 
@@ -165,9 +162,8 @@ class State:
     def write(self, name, value, builder):
         stackPtr, mutability = self.getStackPtr(name)
         if not stackPtr:
-            msg = f'Error: Variable "{name}" has not been declared\n'
-            sys.stderr.write(Fore.RED + msg + Style.RESET_ALL)
-            sys.exit(1)
+            msg = f'Error: Variable "{name}" has not been declared'
+            fail_fast(msg, 1)
 
         # the variable has alredy been allocated on the stack
         if name in self._uninitialized:
@@ -176,9 +172,8 @@ class State:
             return
         elif mutability == Mutability.IMMUTABLE:
             # the variable has been initialized ... is it mutable???
-                msg = f'ERROR: trying to modify immutable variable "{name}"\n'
-                sys.stderr.write(Fore.RED + msg + Style.RESET_ALL)
-                sys.exit(1)
+                msg = f'ERROR: trying to modify immutable variable "{name}"'
+                fail_fast(msg, 1)
 
         builder.store(value, stackPtr)   # generates the LLVM to store value on the stack
 
