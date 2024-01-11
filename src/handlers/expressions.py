@@ -10,7 +10,7 @@ from .base import BaseHandler
 from keywords import *
 
 from builder.ProgramNode import ProgramNode
-from builder.State import new_scope
+from builder.State import new_scope, ScopeType
 from .arithmetic import get_llvmlite_arithmetic_function, get_comparison_operator
 from .builtins import PrintoutHandler
 from utils import fail_fast
@@ -211,7 +211,7 @@ class __ExpressionHandler(BaseHandler):
 
         # implement the loop logic here
         builder.position_at_start(entryBlock)
-        with new_scope(newScopeObj) as whileScope:
+        with new_scope(newScopeObj, ScopeType.WHILE_STMT) as whileScope:
             stmtList = whileCtx.statementList()
             self.handle_statementList(stmtList, builder, irFunc, whileScope)
             builder.branch(predicateBlock)
@@ -240,28 +240,31 @@ class __ExpressionHandler(BaseHandler):
     def handle_ifStmt(self, ifCtx, builder, irFunc, newScopeObj):
         predicate = self.handle_booleanExpression(ifCtx.booleanExpression(), builder, newScopeObj)
         with builder.if_then(predicate): # as (then, otherwise):
-            #with then:
+            with new_scope(newScopeObj, ScopeType.IF_STMT) as ifScope:
                 stmtList = ifCtx.statementList()
-                self.handle_statementList(stmtList, builder, irFunc, newScopeObj)
+                self.handle_statementList(stmtList, builder, irFunc, ifScope)
 
     def handle_ifElseStmt(self, ifCtx, elseCtx, builder, irFunc, newScopeObj):
         predicate = self.handle_booleanExpression(ifCtx.booleanExpression(), builder, newScopeObj)
         with builder.if_else(predicate) as (then, otherwise):
-            with then:
-                stmtList = ifCtx.statementList()
-                self.handle_statementList(stmtList, builder, irFunc, newScopeObj)
-            with otherwise:
-                stmtList = elseCtx.statementList()
-                self.handle_statementList(stmtList, builder, irFunc, newScopeObj)
+            with new_scope(newScopeObj, ScopeType.IF_STMT) as ifScope:
+                with then:
+                    stmtList = ifCtx.statementList()
+                    self.handle_statementList(stmtList, builder, irFunc, ifScope)
+            with new_scope(newScopeObj, ScopeType.IF_STMT) as elseScope:
+                with otherwise:
+                    stmtList = elseCtx.statementList()
+                    self.handle_statementList(stmtList, builder, irFunc, elseScope)
 
     def handle_ifElifStmt(self, ifCtx, elifCtxList, elseCtx, builder, irFunc, newScopeObj):
         if len(elifCtxList) > 0:
             predicate = self.handle_booleanExpression(ifCtx.booleanExpression(), builder, newScopeObj)
             # recursively calls handle_ifElifStmt inside the 'otherwise' contextmanager
             with builder.if_else(predicate) as (then, otherwise):
-                with then:
-                    stmtList = ifCtx.statementList()
-                    self.handle_statementList(stmtList, builder, irFunc, newScopeObj)
+                with new_scope(newScopeObj, ScopeType.IF_STMT) as ifScope:
+                    with then:
+                        stmtList = ifCtx.statementList()
+                        self.handle_statementList(stmtList, builder, irFunc, newScopeObj)
                 with otherwise:
                     new_ifCtx = elifCtxList[0]
                     new_elifCtx = [x for (idx, x) in enumerate(elifCtxList) if idx > 0]  # all but the element at idx=0
@@ -273,12 +276,12 @@ class __ExpressionHandler(BaseHandler):
         else:
             self.handle_ifStmt(ifCtx, builder, irFunc, newScopeObj)
 
-    def handle_elifStmt(self, elifCtx, builder, irFunc, newScopeObj):
-        predicate = self.handle_booleanExpression(ifCtx.booleanExpression(), builder, newScopeObj)
-        with builder.if_then(predicate): # as (then, otherwise):
-            #with then:
-                stmtList = ifCtx.statementList()
-                self.handle_statementList(stmtList, builder, irFunc, newScopeObj)
+    # def handle_elifStmt(self, elifCtx, builder, irFunc, newScopeObj):
+    #     predicate = self.handle_booleanExpression(ifCtx.booleanExpression(), builder, newScopeObj)
+    #     with builder.if_then(predicate): # as (then, otherwise):
+    #         #with then:
+    #             stmtList = ifCtx.statementList()
+    #             self.handle_statementList(stmtList, builder, irFunc, newScopeObj)
 
     def handle_funcCall(self, callCtx, builder, newScopeObj):
             callName = callCtx.NAME().getText()

@@ -14,6 +14,13 @@ class Mutability(Enum):
     MUTABLE = 1
     IMMUTABLE = 2
 
+class ScopeType(Enum):
+    FUNC_CALL = 0
+    IF_STMT = 1
+    ELIF_STMT = 2
+    ELSE_STMT = 3
+    WHILE_STMT = 4
+
 class StackPtr:
     def __init__(self, name, valType):
         self._name = name
@@ -23,18 +30,19 @@ class StackPtr:
         builder.store(self.valType, value)   # generates the LLVM to store value on the stack
 
 class Scope:
-    def __init__(self):
+    def __init__(self, scopeType):
         # self.__args = {}
+        self._scopeType = scopeType
         self._mutable = {}
         self._immutable = {}
 
 class State:
     def __init__(self):
-        self._scopes = [Scope()]
+        self._scopes = [Scope(ScopeType.FUNC_CALL)]
         self._uninitialized = set()
 
-    def _add_scope(self):
-        newScope = Scope()
+    def _add_scope(self, scopeType: ScopeType):
+        newScope = Scope(scopeType)
         self._scopes.append(newScope)
         # self.print_num_scopes()
 
@@ -182,8 +190,8 @@ class State:
         sys.stderr.write(f'Scopes: {len(self._scopes)}')
 
 @contextmanager
-def new_scope(state):
-    state._add_scope()
+def new_scope(state: State, scopeType: ScopeType):
+    state._add_scope(scopeType)
     try:
         yield state
     finally:
