@@ -7,6 +7,7 @@ from llvmlite.ir.instructions import LoadInstr
 from llvmlite.ir.values import Constant
 import sys
 from primitive import Primitive
+from typing import Dict, Union
 from utils import fail_fast
 
 class Mutability(Enum):
@@ -30,19 +31,20 @@ class StackPtr:
         builder.store(self.valType, value)   # generates the LLVM to store value on the stack
 
 class Scope:
-    def __init__(self, scopeType):
+    def __init__(self, scopeType, meta: Union[Dict, None] = None):
         # self.__args = {}
         self._scopeType = scopeType
         self._mutable = {}
         self._immutable = {}
+        self._meta = meta or {}
 
 class State:
     def __init__(self):
         self._scopes = [Scope(ScopeType.FUNC_CALL)]
         self._uninitialized = set()
 
-    def _add_scope(self, scopeType: ScopeType):
-        newScope = Scope(scopeType)
+    def _add_scope(self, scopeType, meta):
+        newScope = Scope(scopeType, meta)
         self._scopes.append(newScope)
         # self.print_num_scopes()
 
@@ -185,8 +187,8 @@ class State:
         sys.stderr.write(f'Scopes: {len(self._scopes)}')
 
 @contextmanager
-def new_scope(state: State, scopeType: ScopeType):
-    state._add_scope(scopeType)
+def new_scope(state: State, scopeType, meta: Union[Dict, None] = None):
+    state._add_scope(scopeType, meta)
     try:
         yield state
     finally:

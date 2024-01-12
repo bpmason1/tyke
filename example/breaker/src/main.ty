@@ -1,0 +1,13 @@
+package main;
+
+def main() -> int {
+  let mut x = 5;
+  while ( x >= 0 ) {
+      if ( x == 1  ) {
+        break 1 ;
+      }
+      println(x);
+    x = x - 1;
+  }
+  return 0;
+}

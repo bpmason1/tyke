@@ -18,13 +18,17 @@ conditionalStmt : ifStmt elifStmt* elseStmt? ;
 fieldInit: NAME ':' expression ;
 fieldInitList: fieldInit (',' fieldInit)* ;
 makeStructExpr : NAME '{' fieldInitList? '}' ;
-whileStmt: WHILE booleanExpression '{' statementList? '}' ;
 
+whileStmt: WHILE booleanExpression '{' statementList? '}' ;
 loopStmt: whileStmt;
+
+breakStmt: BREAK INTEGER? SEMICOLON ;
+branchStmt: breakStmt ;
+
 // statements
 statementList: statement+ ;
 
-statement: returnStmt | funcCallStmt | assigmentStmt | declareAndAssignStmt | conditionalStmt | loopStmt;
+statement: returnStmt | funcCallStmt | assigmentStmt | declareAndAssignStmt | conditionalStmt | loopStmt | branchStmt ;
 returnStmt: 'return' (simpleExpression | arthimeticExpr)?  SEMICOLON;
 funcCallStmt: funcCall SEMICOLON;
 
@@ -98,6 +102,7 @@ MUT : 'mut' ;
 IF : 'if' ;
 ELIF : 'elif' ;
 ELSE : 'else' ;
+BREAK : 'break' ;
 BOOL : 'bool' ;
 PACKAGE : 'package' ;
 SEMICOLON : ';' ;

@@ -211,7 +211,14 @@ class __ExpressionHandler(BaseHandler):
 
         # implement the loop logic here
         builder.position_at_start(entryBlock)
-        with new_scope(newScopeObj, ScopeType.WHILE_STMT) as whileScope:
+        scopeMeta = {
+            'blocks': {
+                'predicateBlock': predicateBlock,
+                'entryBlock': entryBlock,
+                'exitBlock': exitBlock
+            }
+        }
+        with new_scope(newScopeObj, ScopeType.WHILE_STMT, meta=scopeMeta) as whileScope:
             stmtList = whileCtx.statementList()
             self.handle_statementList(stmtList, builder, irFunc, whileScope)
             builder.branch(predicateBlock)
@@ -224,7 +231,29 @@ class __ExpressionHandler(BaseHandler):
         if loopCtx.whileStmt():
             whileCtx = loopCtx.whileStmt()
             self.handle_whileStmt(whileCtx, builder, irFunc, newScopeObj)
+        else:
+            fail_fast("Unhandled loop construct", 3)
         # print("Exitting loop")
+
+    def handle_branchStmt(self, branchCtx, builder, irFunc, newScopeObj):
+        if branchCtx.breakStmt():
+            breakCtx = branchCtx.breakStmt()
+            tokens = breakCtx.children
+            depth = 1 if len(tokens) == 2 else int(tokens[1].symbol.text)
+            if depth < 1:
+                fail_fast(f'minimum break depth is 1 found {depth}')
+            tmpDepth = depth
+            scopeIdx = len(newScopeObj._scopes) - 1
+            while scopeIdx >= 0 and tmpDepth > 0:
+                scope = newScopeObj._scopes[scopeIdx]
+                if scope._scopeType in [ ScopeType.WHILE_STMT ]:
+                    tmpDepth -= 1
+                    if tmpDepth == 0:
+                        blockPtr = scope._meta['blocks']['exitBlock']
+                        builder.branch(blockPtr)
+                scopeIdx -= 1
+        else:
+            fail_fast("Unhandled branch construct", 3)
 
     def handle_conditionalStmt(self, conditionalCtx, builder, irFunc, newScopeObj):
         ifCtx = conditionalCtx.ifStmt()
@@ -318,7 +347,7 @@ class __ExpressionHandler(BaseHandler):
                 #     data = newScopeObj.read(paramName, builder)
                 #     callArgs.append(data)
                 else:
-                    msg = f'ERROR: dataCtx has unknown arg type'
+                    msg = 'ERROR: dataCtx has unknown arg type'
                     print(Fore.RED + msg + Style.RESET_ALL)
                     sys.exit(1)
 
@@ -468,6 +497,9 @@ class __ExpressionHandler(BaseHandler):
         elif stmtCtx.loopStmt():
             loopCtx = stmtCtx.loopStmt()
             self.handle_loopStmt(loopCtx, builder, irFunc, newScopeObj)
+        elif stmtCtx.branchStmt():
+            branchCtx = stmtCtx.branchStmt()
+            self.handle_branchStmt(branchCtx, builder, irFunc, newScopeObj)
         else:
             sys.stderr.write("........... WTF ?!?\n")
             sys.exit(1)
