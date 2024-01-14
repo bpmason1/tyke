@@ -143,6 +143,15 @@ class TykeListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by TykeParser#continueStmt.
+    def enterContinueStmt(self, ctx:TykeParser.ContinueStmtContext):
+        pass
+
+    # Exit a parse tree produced by TykeParser#continueStmt.
+    def exitContinueStmt(self, ctx:TykeParser.ContinueStmtContext):
+        pass
+
+
     # Enter a parse tree produced by TykeParser#branchStmt.
     def enterBranchStmt(self, ctx:TykeParser.BranchStmtContext):
         pass

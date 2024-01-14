@@ -252,6 +252,22 @@ class __ExpressionHandler(BaseHandler):
                         blockPtr = scope._meta['blocks']['exitBlock']
                         builder.branch(blockPtr)
                 scopeIdx -= 1
+        elif branchCtx.continueStmt():
+            continueCtx = branchCtx.continueStmt()
+            tokens = continueCtx.children
+            depth = 1 if len(tokens) == 2 else int(tokens[1].symbol.text)
+            if depth < 1:
+                fail_fast(f'minimum break depth is 1 found {depth}')
+            tmpDepth = depth
+            scopeIdx = len(newScopeObj._scopes) - 1
+            while scopeIdx >= 0 and tmpDepth > 0:
+                scope = newScopeObj._scopes[scopeIdx]
+                if scope._scopeType in [ ScopeType.WHILE_STMT ]:
+                    tmpDepth -= 1
+                    if tmpDepth == 0:
+                        blockPtr = scope._meta['blocks']['predicateBlock']
+                        builder.branch(blockPtr)
+                scopeIdx -= 1
         else:
             fail_fast("Unhandled branch construct", 3)
 

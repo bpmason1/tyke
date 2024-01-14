@@ -23,7 +23,8 @@ whileStmt: WHILE booleanExpression '{' statementList? '}' ;
 loopStmt: whileStmt;
 
 breakStmt: BREAK INTEGER? SEMICOLON ;
-branchStmt: breakStmt ;
+continueStmt : CONTINUE INTEGER? SEMICOLON ;
+branchStmt: breakStmt | continueStmt ;
 
 // statements
 statementList: statement+ ;
@@ -103,6 +104,7 @@ IF : 'if' ;
 ELIF : 'elif' ;
 ELSE : 'else' ;
 BREAK : 'break' ;
+CONTINUE : 'continue' ;
 BOOL : 'bool' ;
 PACKAGE : 'package' ;
 SEMICOLON : ';' ;
