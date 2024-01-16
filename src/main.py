@@ -13,7 +13,8 @@ from primitive import Primitive
 from utils import fail_fast, warn
 
 from builder.ProgramNode import ProgramNode
-from builder.State import State, new_scope
+from builder.FunctionNode import FunctionNode
+from builder.State import State
 
 package = ProgramNode.newPackage('main')
 
@@ -68,7 +69,6 @@ class TykeFunctionTableBuilder(TykeListener):
         # inputTypedValueList = inputArgs.typedValueList()
 
         argList = []
-        argNames = []
 
         # if the function has args
         if hasattr(typedArgList, 'typedArg'):
@@ -77,9 +77,7 @@ class TykeFunctionTableBuilder(TykeListener):
                 argName = tv.NAME().getText()
                 argType = package.get_type_by_name(tv.varType().getText())
                 arg = TypedValue(argName, argType)
-                argList.append( arg )
-
-        argValues = [a.type for a in argList]
+                argList.append(arg)
 
         # funcNode = package.newFunction(name, returnType, argList)
         package.newFunction(name, returnType, argList)
@@ -104,7 +102,7 @@ class TykePrintListener(TykeListener):
         stmtList = ctx.statementList()
 
         state = State()
-        irFunc = fnAst.llvmIR()
+        irFunc: FunctionNode = fnAst.llvmIR()
         
         for idx in range(len(irFunc.args)):
             argName = funcArgs[idx].value
