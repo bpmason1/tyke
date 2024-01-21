@@ -7,7 +7,28 @@ PROJECT_DIR=$(cd $SCRIPTS_DIR/.. && pwd)
 VENV_DIR=$(echo $PROJECT_DIR/.venv)
 SRC_DIR=$(echo $PROJECT_DIR/src)
 BIN_DIR='./bin'
-APP_NAME=${1:-$(basename $PWD)}
+#APP_NAME=${1:-$(basename $PWD)}
+APP_NAME=$(basename $PWD)
+
+LLVM_ONLY=false
+
+#while getopts n:h flag
+#do
+#  echo "${flag}"
+#  case "${flag}" in
+#    h) echo $LLVM_ONLY;; #LLVM_ONLY=${OPTARG};;
+#    n) LLVM_ONLY=${OPTARG};;
+#    *) ;; #echo "OH SNAP - unknown arg: ${flag}";; #exit 1;
+#  esac
+#done
+
+# handle args starting with '--'
+for arg in "$@"; do
+  if [ "$arg" == "--llvm-only" ]; then
+    LLVM_ONLY=true
+  fi
+done
+
 
 if [ ! -d $VENV_DIR ]; then
   tput setaf 1
@@ -29,7 +50,12 @@ function cleanup {
 }
 trap cleanup EXIT
 
-python3 $SRC_DIR/main.py $PWD/src > ${TMP_LLVM_DIR}/main.ll
+python3 "${SRC_DIR}"/main.py $PWD/src > "${TMP_LLVM_DIR}"/main.ll
+
+if [ $LLVM_ONLY == true ]; then
+  cp -p "${TMP_LLVM_DIR}"/main.ll ./"${APP_NAME}".ll
+  exit 0
+fi
 
 $SCRIPTS_DIR/build-llvm.sh $TMP_LLVM_DIR main
 mv $TMP_LLVM_DIR/main $BIN_DIR/$APP_NAME

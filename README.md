@@ -22,6 +22,12 @@ This test verifies that the LLVM code output during compilation hasn't changed.
 The test is useful tool to test for regressions.
 `./scripts/test-examples`
 
+### Output llvm bytecode instead of an executable binary
+```
+`cd ./example/fib`
+`../../scripts/tykec --llvm-only`
+```
+
 ### Run pytest
 source .venv/bin/activate
 `PYTHONPATH=$PWD/src pytest`
