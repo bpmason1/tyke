@@ -6,6 +6,9 @@ from unittest.mock import call
 
 class TestMain(unittest.TestCase):
     def test_run(self):
+        """
+        This function tests the run method by mocking the parseFile and processCode calls.
+        """
         all_directories = ['/foo', '/bar', '/baz', '/a/b/c']
         with patch('main.parseFile') as parseFileMock:
             with patch('main.processCode') as processCodeMock:
