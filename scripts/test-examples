@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/bash
 
 # don't exit the script on error
 # set -e

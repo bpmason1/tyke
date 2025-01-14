@@ -1,8 +1,10 @@
 # Tyke
 
 ### Project prerequisites
-* Install python3.11
+* Install python3
 * Install java JDK (tested on JDK 17)
+* Install apt-get
+* Verify bash executable is installed at /usr/bin/bash
 
 ### Initial setup of the project (only needs to be performed once)
 `./scripts/setup`
