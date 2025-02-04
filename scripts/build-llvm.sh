@@ -14,10 +14,10 @@ cd $TMP_LLVM_DIR
 NAME=${2:-tyke}
 
 # translate IR to bytecode
-llvm-as-11 -f ${NAME}.ll
+llvm-as-18 -f ${NAME}.ll
 
 # translate bytecode to assemly
-llc-11 ${NAME}.bc
+llc-18 ${NAME}.bc
 
 # compile assembly
 # g++ -o myApp tyke.s
