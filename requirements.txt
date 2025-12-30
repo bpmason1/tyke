@@ -10,7 +10,7 @@ anytree==2.12.1
     # via -r requirements.in
 colorama==0.4.6
     # via -r requirements.in
-llvmlite==0.42.0
+llvmlite==0.45.1
     # via -r requirements.in
 six==1.17.0
     # via anytree
