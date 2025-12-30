@@ -11,7 +11,7 @@
 
 ### To run antlr
 `cd ./src`
-`java -Xmx500M -cp ../lib/antlr-4.13.0-complete.jar org.antlr.v4.Tool -Dlanguage=Python3 ./Tyke.g4`
+`java -Xmx500M -cp ../lib/antlr-4.13.2-complete.jar org.antlr.v4.Tool -Dlanguage=Python3 ./Tyke.g4`
 
 ### Commpile and run the example application
 ```
@@ -115,4 +115,5 @@ def fibonacci(n: int) -> void {
 - implement strings (excluding print statements)
 - enable declaring values on the heap
 - garbage collection
+- allow passing command line arguments
 
